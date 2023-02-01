@@ -26,11 +26,6 @@
         android:name="tarc.edu.carpartsapp.AboutUsFragment"
         android:label="@string/menu_aboutUs"
         tools:layout="@layout/fragment_about_us" />
-    <activity
-        android:id="@+id/nav_logOut_customer"
-        android:name="tarc.edu.carpartsapp.MainActivity"
-        android:label="@string/menu_logOut"
-        tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/nav_home_customer"
         android:name="tarc.edu.carpartsapp.Customer.HomeCustomerFragment"
@@ -89,6 +84,9 @@
         <action
             android:id="@+id/action_nav_details_customer_to_nav_view_all_recommended_customer"
             app:destination="@id/nav_view_all_recommended_customer" />
+        <action
+            android:id="@+id/action_nav_details_customer_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/nav_view_all_category_customer"
@@ -125,5 +123,41 @@
         <action
             android:id="@+id/action_nav_creditCard_customer_to_nav_placedOrder_customer"
             app:destination="@id/nav_placedOrder_customer" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="tarc.edu.carpartsapp.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_nav_details_customer"
+            app:destination="@id/nav_details_customer" />
+        <action
+            android:id="@+id/action_loginFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_passwordForgotFragment"
+            app:destination="@id/passwordForgotFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="tarc.edu.carpartsapp.RegistrationFragment"
+        android:label="Registration"
+        tools:layout="@layout/fragment_registration" >
+        <action
+            android:id="@+id/action_registrationFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/passwordForgotFragment"
+        android:name="tarc.edu.carpartsapp.PasswordForgotFragment"
+        android:label="Forget Password"
+        tools:layout="@layout/fragment_password_forgot" >
+        <action
+            android:id="@+id/action_passwordForgotFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_passwordForgotFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
     </fragment>
 </navigation>

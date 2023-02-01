@@ -59,11 +59,6 @@
         android:name="tarc.edu.carpartsapp.AboutUsFragment"
         android:label="@string/menu_aboutUs"
         tools:layout="@layout/fragment_about_us" />
-    <activity
-        android:id="@+id/nav_logOut_admin"
-        android:name="tarc.edu.carpartsapp.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/nav_car_parts_category_admin"
         android:name="tarc.edu.carpartsapp.Admin.CustomerHomepageEdit.CarPartsCategoryFragment"

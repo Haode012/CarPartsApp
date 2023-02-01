@@ -28,4 +28,45 @@
         <item>2.5</item>
         <item>3</item>
     </string-array>
+
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="login_to">Login in to your account</string>
+    <string name="email">Email Address</string>
+    <string name="password">Password</string>
+    <string name="forgotPass">Forgot Password ?</string>
+    <string name="account">Create an account</string>
+    <string name="name">Full Name</string>
+    <string name="dateOfBirth">Date Of Birth</string>
+    <string name="phoneNumber">Phone Number</string>
+    <string name="address">Home Address</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="forgotPassword">Forgot Password</string>
+    <string name="dialogPassword">We will send you a password reset link to your email address you have registered with us</string>
+    <string name="feedback">Customer Feedback</string>
+    <string name="service">Are you satisfied with the service?</string>
+    <string name="improve">Tell us what can be improved?</string>
+    <string name="submit">Submit</string>
+    <string name="editName">Name</string>
+    <string name="currentPasswd">Current Password</string>
+    <string name="newpasswd">New Password</string>
+    <string name="returnProductID">Return ProductID</string>
+    <string name="returnProductName">Return Product Name</string>
+    <string name="returnProductImage">Return Product Image</string>
+    <string name="deliveryStatus">Delivery Status</string>
+
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="hello">My name is Ruth</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_customer_home">CustomerHome</string>
+    <string name="title_activity_admin_main">AdminMainActivity</string>
+    <string name="title_activity_admin_main_new">AdminMainActivityNew</string>
+    <string name="title_activity_admin_main_latest">AdminMainActivityLatest</string>
 </resources>
