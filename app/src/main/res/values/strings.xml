@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">CarPartsApp</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Username</string>
+    <string name="nav_header_subtitle">user123@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_category">Category</string>
+    <string name="menu_myCart">My Cart</string>
+    <string name="menu_myOrder">My Order</string>
+    <string name="menu_aboutUs">About Us</string>
+    <string name="menu_logOut">Log Out</string>
+    <string-array name="spinnerBankTypes">
+        <item>Alliance Bank</item>
+        <item>Hong Leong Bank</item>
+        <item>HSBC Bank</item>
+        <item>May Bank</item>
+        <item>Public Bank</item>
+    </string-array>
+    <string-array name="spinnerWarranty">
+        <item>1</item>
+        <item>1.5</item>
+        <item>2</item>
+        <item>2.5</item>
+        <item>3</item>
+    </string-array>
+
+</resources>

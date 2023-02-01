@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "331127674993",
+    "firebase_url": "https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "latestcarpartsdatabase",
+    "storage_bucket": "latestcarpartsdatabase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:331127674993:android:32a8dd781b72951a9f63d0",
+        "android_client_info": {
+          "package_name": "tarc.edu.carpartsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "331127674993-v2g1547rse9kojiug12hiibldre01l0b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5rN_kue38D9MQNGQ7S4vB6kr9IwChIBM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "331127674993-v2g1547rse9kojiug12hiibldre01l0b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

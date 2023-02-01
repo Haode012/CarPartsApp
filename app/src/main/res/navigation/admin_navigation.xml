@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/admin_navigation"
+    app:startDestination="@id/nav_home_admin">
+    <fragment
+        android:id="@+id/nav_home_admin"
+        android:name="tarc.edu.carpartsapp.Admin.HomeAdminFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home_admin" >
+        <action
+            android:id="@+id/action_nav_home_admin_to_nav_selection_admin"
+            app:destination="@id/nav_selection_admin" />
+        <action
+            android:id="@+id/action_nav_home_admin_to_nav_selection_view_all_admin"
+            app:destination="@id/nav_selection_view_all_admin" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_popular_car_parts_admin"
+        android:name="tarc.edu.carpartsapp.Admin.CustomerHomepageEdit.PopularCarPartsFragment"
+        android:label="Popular Car Parts"
+        tools:layout="@layout/fragment_popular_car_parts" >
+        <action
+            android:id="@+id/action_nav_popular_car_parts_admin_to_nav_selection_admin"
+            app:destination="@id/nav_selection_admin" />
+        <action
+            android:id="@+id/action_nav_popular_car_parts_admin_to_nav_add_popular_car_parts_admin"
+            app:destination="@id/nav_add_popular_car_parts_admin" />
+        <action
+            android:id="@+id/action_nav_popular_car_parts_admin_to_nav_edit_delete_popular_car_parts_admin"
+            app:destination="@id/nav_edit_delete_popular_car_parts_admin" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_selection_admin"
+        android:name="tarc.edu.carpartsapp.Admin.CustomerHomepageEdit.SelectionFragment"
+        android:label="Selection"
+        tools:layout="@layout/fragment_selection" >
+        <action
+            android:id="@+id/action_nav_selection_admin_to_nav_home_admin"
+            app:destination="@id/nav_home_admin" />
+        <action
+            android:id="@+id/action_nav_selection_admin_to_nav_popular_car_parts_admin"
+            app:destination="@id/nav_popular_car_parts_admin" />
+        <action
+            android:id="@+id/action_nav_selection_admin_to_nav_car_parts_category_admin"
+            app:destination="@id/nav_car_parts_category_admin" />
+        <action
+            android:id="@+id/action_nav_selection_admin_to_nav_recommended_car_parts_admin"
+            app:destination="@id/nav_recommended_car_parts_admin" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_profile_admin"
+        android:name="tarc.edu.carpartsapp.ProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/nav_aboutUs_admin"
+        android:name="tarc.edu.carpartsapp.AboutUsFragment"
+        android:label="@string/menu_aboutUs"
+        tools:layout="@layout/fragment_about_us" />
+    <activity
+        android:id="@+id/nav_logOut_admin"
+        android:name="tarc.edu.carpartsapp.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/nav_car_parts_category_admin"
+        android:name="tarc.edu.carpartsapp.Admin.CustomerHomepageEdit.CarPartsCategoryFragment"
+        android:label="Car Parts Category"
+        tools:layout="@layout/fragment_car_parts_category" >
+        <action
+            android:id="@+id/action_nav_car_parts_category_admin_to_nav_selection_admin"
+            app:destination="@id/nav_selection_admin" />
+        <action
+            android:id="@+id/action_nav_car_parts_category_admin_to_nav_add_car_parts_category_admin"
+            app:destination="@id/nav_add_car_parts_category_admin" />
+        <action
+            android:id="@+id/action_nav_car_parts_category_admin_to_nav_edit_delete_car_parts_category_admin"
+            app:destination="@id/nav_edit_delete_car_parts_category_admin" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_recommended_car_parts_admin"
+        android:name="tarc.edu.carpartsapp.Admin.CustomerHomepageEdit.RecommendedCarPartsFragment"
+        android:label="Recommended Car Parts"
+        tools:layout="@layout/fragment_recommended_car_parts">
+        <action
+            android:id="@+id/action_nav_recommended_car_parts_admin_to_nav_selection_admin"
+            app:destination="@id/nav_selection_admin" />
+        <action
+            android:id="@+id/action_nav_recommended_car_parts_admin_to_nav_add_recommended_car_parts"
+            app:destination="@id/nav_add_recommended_car_parts" />
+        <action
+            android:id="@+id/action_nav_recommended_car_parts_admin_to_nav_edit_delete_recommended_car_parts"
+            app:destination="@id/nav_edit_delete_recommended_car_parts" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_add_popular_car_parts_admin"
+        android:name="tarc.edu.carpartsapp.Admin.CustomerHomepageEdit.AddPopularCarPartsFragment"
+        android:label="Add Popular Car Part"
+        tools:layout="@layout/fragment_add_popular_car_parts" >
+        <action
+            android:id="@+id/action_nav_add_popular_car_parts_admin_to_nav_popular_car_parts_admin"
+            app:destination="@id/nav_popular_car_parts_admin" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_add_car_parts_category_admin"
+        android:name="tarc.edu.carpartsapp.Admin.CustomerHomepageEdit.AddCarPartsCategoryFragment"
+        android:label="Add Car Parts Category"
+        tools:layout="@layout/fragment_add_car_parts_category" >
+        <action
+            android:id="@+id/action_nav_add_car_parts_category_admin_to_nav_car_parts_category_admin"
+            app:destination="@id/nav_car_parts_category_admin" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_add_recommended_car_parts"
+        android:name="tarc.edu.carpartsapp.Admin.CustomerHomepageEdit.AddRecommendedCarPartsFragment"
+        android:label="Add Recommended Car Parts"
+        tools:layout="@layout/fragment_add_recommended_car_parts" >
+        <action
+            android:id="@+id/action_nav_add_recommended_car_parts_to_nav_recommended_car_parts_admin"
+            app:destination="@id/nav_recommended_car_parts_admin" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_edit_delete_popular_car_parts_admin"
+        android:name="tarc.edu.carpartsapp.Admin.CustomerHomepageEdit.EditDeletePopularCarPartsFragment"
+        android:label="Edit Delete Popular Car Part"
+        tools:layout="@layout/fragment_edit_delete_popular_car_parts" >
+        <action
+            android:id="@+id/action_nav_edit_delete_popular_car_parts_admin_to_nav_popular_car_parts_admin"
+            app:destination="@id/nav_popular_car_parts_admin" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_edit_delete_car_parts_category_admin"
+        android:name="tarc.edu.carpartsapp.Admin.CustomerHomepageEdit.EditDeleteCarPartsCategoryFragment"
+        android:label="Edit Delete Car Part Category"
+        tools:layout="@layout/fragment_edit_delete_car_parts_category" >
+        <action
+            android:id="@+id/action_nav_edit_delete_car_parts_category_admin_to_nav_car_parts_category_admin"
+            app:destination="@id/nav_car_parts_category_admin" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_edit_delete_recommended_car_parts"
+        android:name="tarc.edu.carpartsapp.Admin.CustomerHomepageEdit.EditDeleteRecommendedCarPartsFragment"
+        android:label="Edit Delete Recommended Car Parts"
+        tools:layout="@layout/fragment_edit_delete_recommended_car_parts" >
+        <action
+            android:id="@+id/action_nav_edit_delete_recommended_car_parts_to_nav_recommended_car_parts_admin"
+            app:destination="@id/nav_recommended_car_parts_admin" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_selection_view_all_admin"
+        android:name="tarc.edu.carpartsapp.Admin.CustomerViewAllPageEdit.SelectionViewAllFragment"
+        android:label="Selection View All"
+        tools:layout="@layout/fragment_selection_view_all" >
+        <action
+            android:id="@+id/action_nav_selection_view_all_admin_to_nav_home_admin"
+            app:destination="@id/nav_home_admin" />
+        <action
+            android:id="@+id/action_nav_selection_view_all_admin_to_nav_view_all_popular_car_parts_admin"
+            app:destination="@id/nav_view_all_popular_car_parts_admin" />
+        <action
+            android:id="@+id/action_nav_selection_view_all_admin_to_nav_view_all_car_parts_category_admin"
+            app:destination="@id/nav_view_all_car_parts_category_admin" />
+        <action
+            android:id="@+id/action_nav_selection_view_all_admin_to_nav_view_all_recommended_car_parts_admin"
+            app:destination="@id/nav_view_all_recommended_car_parts_admin" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_view_all_popular_car_parts_admin"
+        android:name="tarc.edu.carpartsapp.Admin.CustomerViewAllPageEdit.ViewAllPopularCarPartsFragment"
+        android:label="View All Popular Car Parts"
+        tools:layout="@layout/fragment_view_all_popular_car_parts_admin">
+        <action
+            android:id="@+id/action_nav_view_all_popular_car_parts_admin_to_nav_selection_view_all_admin"
+            app:destination="@id/nav_selection_view_all_admin" />
+        <action
+            android:id="@+id/action_nav_view_all_popular_car_parts_admin_to_nav_add_view_all_popular_car_parts_admin"
+            app:destination="@id/nav_add_view_all_popular_car_parts_admin" />
+        <action
+            android:id="@+id/action_nav_view_all_popular_car_parts_admin_to_nav_edit_delete_view_all_popular_car_parts_admin"
+            app:destination="@id/nav_edit_delete_view_all_popular_car_parts_admin" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_view_all_car_parts_category_admin"
+        android:name="tarc.edu.carpartsapp.Admin.CustomerViewAllPageEdit.ViewAllCarPartsCategoryFragment"
+        android:label="View All Car Parts Category"
+        tools:layout="@layout/fragment_view_all_car_parts_category_admin" >
+        <action
+            android:id="@+id/action_nav_view_all_car_parts_category_admin_to_nav_selection_view_all_admin"
+            app:destination="@id/nav_selection_view_all_admin" />
+        <action
+            android:id="@+id/action_nav_view_all_car_parts_category_admin_to_nav_add_view_all_car_parts_category_admin"
+            app:destination="@id/nav_add_view_all_car_parts_category_admin" />
+        <action
+            android:id="@+id/action_nav_view_all_car_parts_category_admin_to_nav_edit_delete_view_all_car_parts_category_admin"
+            app:destination="@id/nav_edit_delete_view_all_car_parts_category_admin" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_view_all_recommended_car_parts_admin"
+        android:name="tarc.edu.carpartsapp.Admin.CustomerViewAllPageEdit.ViewAllRecommendedCarPartsFragment"
+        android:label="View All Recommended Car Parts"
+        tools:layout="@layout/fragment_view_all_recommended_car_parts_admin" >
+        <action
+            android:id="@+id/action_nav_view_all_recommended_car_parts_admin_to_nav_selection_view_all_admin"
+            app:destination="@id/nav_selection_view_all_admin" />
+        <action
+            android:id="@+id/action_nav_view_all_recommended_car_parts_admin_to_nav_add_view_all_recommended_car_parts_admin"
+            app:destination="@id/nav_add_view_all_recommended_car_parts_admin" />
+        <action
+            android:id="@+id/action_nav_view_all_recommended_car_parts_admin_to_nav_edit_delete_view_all_recommended_car_parts_admin"
+            app:destination="@id/nav_edit_delete_view_all_recommended_car_parts_admin" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_add_view_all_popular_car_parts_admin"
+        android:name="tarc.edu.carpartsapp.Admin.CustomerViewAllPageEdit.AddViewAllPopularCarPartsFragment"
+        android:label="Add Popular Car Part"
+        tools:layout="@layout/fragment_add_view_all_popular_car_parts" >
+        <action
+            android:id="@+id/action_nav_add_view_all_popular_car_parts_admin_to_nav_view_all_popular_car_parts_admin"
+            app:destination="@id/nav_view_all_popular_car_parts_admin" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_add_view_all_recommended_car_parts_admin"
+        android:name="tarc.edu.carpartsapp.Admin.CustomerViewAllPageEdit.AddViewAllRecommendedCarPartsFragment"
+        android:label="Add Recommended Car Part"
+        tools:layout="@layout/fragment_add_view_all_recommended_car_parts" >
+        <action
+            android:id="@+id/action_nav_add_view_all_recommended_car_parts_admin_to_nav_view_all_recommended_car_parts_admin"
+            app:destination="@id/nav_view_all_recommended_car_parts_admin" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_add_view_all_car_parts_category_admin"
+        android:name="tarc.edu.carpartsapp.Admin.CustomerViewAllPageEdit.AddViewAllCarPartsCategoryFragment"
+        android:label="Add Car Part Category"
+        tools:layout="@layout/fragment_add_view_all_car_parts_category" >
+        <action
+            android:id="@+id/action_nav_add_view_all_car_parts_category_admin_to_nav_view_all_car_parts_category_admin"
+            app:destination="@id/nav_view_all_car_parts_category_admin" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_edit_delete_view_all_popular_car_parts_admin"
+        android:name="tarc.edu.carpartsapp.Admin.CustomerViewAllPageEdit.EditDeleteViewAllPopularCarPartsFragment"
+        android:label="Edit Delete Popular Car Part"
+        tools:layout="@layout/fragment_edit_delete_view_all_popular_car_parts" >
+        <action
+            android:id="@+id/action_nav_edit_delete_view_all_popular_car_parts_admin_to_nav_view_all_popular_car_parts_admin"
+            app:destination="@id/nav_view_all_popular_car_parts_admin" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_edit_delete_view_all_car_parts_category_admin"
+        android:name="tarc.edu.carpartsapp.Admin.CustomerViewAllPageEdit.EditDeleteViewAllCarPartsCategoryFragment"
+        android:label="Edit Delete Car Part Category"
+        tools:layout="@layout/fragment_edit_delete_view_all_car_parts_category" >
+        <action
+            android:id="@+id/action_nav_edit_delete_view_all_car_parts_category_admin_to_nav_view_all_car_parts_category_admin"
+            app:destination="@id/nav_view_all_car_parts_category_admin" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_edit_delete_view_all_recommended_car_parts_admin"
+        android:name="tarc.edu.carpartsapp.Admin.CustomerViewAllPageEdit.EditDeleteViewAllRecommendedCarPartsFragment"
+        android:label="Edit Delete Recommended Car Part"
+        tools:layout="@layout/fragment_edit_delete_view_all_recommended_car_parts" >
+        <action
+            android:id="@+id/action_nav_edit_delete_view_all_recommended_car_parts_admin_to_nav_view_all_recommended_car_parts_admin"
+            app:destination="@id/nav_view_all_recommended_car_parts_admin" />
+    </fragment>
+</navigation>
