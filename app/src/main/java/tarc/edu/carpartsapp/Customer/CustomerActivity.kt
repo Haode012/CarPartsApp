@@ -53,7 +53,7 @@ class CustomerActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-     //updateNavHeader()
+     updateNavHeader()
     }
 
     private fun updateNavHeader() {
