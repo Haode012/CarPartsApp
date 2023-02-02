@@ -15,9 +15,6 @@
         <action
             android:id="@+id/action_nav_home_admin_to_nav_selection_view_all_admin"
             app:destination="@id/nav_selection_view_all_admin" />
-        <action
-            android:id="@+id/action_nav_home_admin_to_fragmentAdminViewFeedback"
-            app:destination="@id/fragmentAdminViewFeedback" />
     </fragment>
     <fragment
         android:id="@+id/nav_popular_car_parts_admin"
@@ -263,9 +260,8 @@
             android:id="@+id/action_nav_edit_delete_view_all_recommended_car_parts_admin_to_nav_view_all_recommended_car_parts_admin"
             app:destination="@id/nav_view_all_recommended_car_parts_admin" />
     </fragment>
-    <fragment
-        android:id="@+id/fragmentAdminViewFeedback"
-        android:name="tarc.edu.carpartsapp.FragmentAdminViewFeedback"
-        android:label="fragment_admin_view_feedback"
-        tools:layout="@layout/fragment_admin_view_feedback" />
+    <activity
+        android:id="@+id/nav_logOut_admin"
+        android:name="tarc.edu.carpartsapp.Customer.CustomerActivity"
+        android:label="Home" />
 </navigation>
