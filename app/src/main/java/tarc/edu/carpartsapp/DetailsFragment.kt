@@ -1,4 +1,4 @@
-package tarc.edu.carpartsapp.Customer
+package tarc.edu.carpartsapp
 
 import android.content.Intent
 import android.os.Bundle

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    android:label="Forget Password"
+    app:startDestination="@id/nav_home_customer">
+
+    <fragment
+        android:id="@+id/nav_home_customer"
+        android:name="tarc.edu.carpartsapp.Customer.HomeCustomerFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home_customer">
+        <action
+            android:id="@+id/action_nav_home_customer_to_nav_view_all_popular_customer"
+            app:destination="@id/nav_view_all_popular_customer" />
+        <action
+            android:id="@+id/action_nav_home_customer_to_nav_view_all_category_customer"
+            app:destination="@id/nav_view_all_category_customer" />
+        <action
+            android:id="@+id/action_nav_home_customer_to_nav_view_all_recommended_customer"
+            app:destination="@id/nav_view_all_recommended_customer" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_view_all_popular_customer"
+        android:name="tarc.edu.carpartsapp.Customer.ViewAllPopularFragment"
+        android:label="View All Popular Car Parts"
+        tools:layout="@layout/fragment_view_all_popular">
+        <action
+            android:id="@+id/action_nav_view_all_popular_customer_to_nav_home_customer"
+            app:destination="@id/nav_home_customer" />
+        <action
+            android:id="@+id/action_nav_view_all_popular_customer_to_nav_details_customer"
+            app:destination="@id/nav_details_customer" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_view_all_category_customer"
+        android:name="tarc.edu.carpartsapp.Customer.ViewAllCategoryFragment"
+        android:label="View All Car Parts Category"
+        tools:layout="@layout/fragment_view_all_category">
+        <action
+            android:id="@+id/action_nav_view_all_category_customer_to_nav_home_customer"
+            app:destination="@id/nav_home_customer" />
+        <action
+            android:id="@+id/action_nav_view_all_category_customer_to_nav_details_customer"
+            app:destination="@id/nav_details_customer" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_view_all_recommended_customer"
+        android:name="tarc.edu.carpartsapp.Customer.ViewAllRecommendedFragment"
+        android:label="View All Recommended Car Parts "
+        tools:layout="@layout/fragment_view_all_recommended">
+        <action
+            android:id="@+id/action_nav_view_all_recommended_customer_to_nav_home_customer"
+            app:destination="@id/nav_home_customer" />
+        <action
+            android:id="@+id/action_nav_view_all_recommended_customer_to_nav_details_customer"
+            app:destination="@id/nav_details_customer" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="tarc.edu.carpartsapp.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_passwordForgotFragment"
+            app:destination="@id/passwordForgotFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="tarc.edu.carpartsapp.RegistrationFragment"
+        android:label="Registration"
+        tools:layout="@layout/fragment_registration">
+        <action
+            android:id="@+id/action_registrationFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/passwordForgotFragment"
+        android:name="tarc.edu.carpartsapp.PasswordForgotFragment"
+        android:label="Forget Password"
+        tools:layout="@layout/fragment_password_forgot">
+        <action
+            android:id="@+id/action_passwordForgotFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_passwordForgotFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_profile_customer"
+        android:name="tarc.edu.carpartsapp.ProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/nav_aboutUs_customer"
+        android:name="tarc.edu.carpartsapp.AboutUsFragment"
+        android:label="@string/menu_aboutUs"
+        tools:layout="@layout/fragment_about_us" />
+    <fragment
+        android:id="@+id/nav_myOrder_customer"
+        android:name="tarc.edu.carpartsapp.Customer.MyOrderFragment"
+        android:label="@string/menu_myOrder"
+        tools:layout="@layout/fragment_my_order" />
+    <fragment
+        android:id="@+id/nav_myCart_customer"
+        android:name="tarc.edu.carpartsapp.Customer.MyCartFragment"
+        android:label="@string/menu_myCart"
+        tools:layout="@layout/fragment_my_cart" >
+        <action
+            android:id="@+id/action_nav_myCart_customer_to_nav_creditCard_customer"
+            app:destination="@id/nav_creditCard_customer" />
+        <action
+            android:id="@+id/action_nav_myCart_customer_to_nav_placedOrder_customer"
+            app:destination="@id/nav_placedOrder_customer" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_creditCard_customer"
+        android:name="tarc.edu.carpartsapp.Customer.CreditCardFragment"
+        android:label="Credit Card Details"
+        tools:layout="@layout/fragment_credit_card" >
+        <action
+            android:id="@+id/action_nav_creditCard_customer_to_nav_myCart_customer"
+            app:destination="@id/nav_myCart_customer" />
+        <action
+            android:id="@+id/action_nav_creditCard_customer_to_nav_placedOrder_customer"
+            app:destination="@id/nav_placedOrder_customer" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_placedOrder_customer"
+        android:name="tarc.edu.carpartsapp.Customer.PlacedOrderFragment"
+        android:label="Placed Order"
+        tools:layout="@layout/fragment_placed_order" />
+    <fragment
+        android:id="@+id/nav_details_customer"
+        android:name="tarc.edu.carpartsapp.DetailsFragment"
+        android:label="Car Parts Details"
+        tools:layout="@layout/fragment_details" >
+        <action
+            android:id="@+id/action_nav_details_customer_to_nav_view_all_category_customer"
+            app:destination="@id/nav_view_all_category_customer" />
+        <action
+            android:id="@+id/action_nav_details_customer_to_nav_view_all_popular_customer"
+            app:destination="@id/nav_view_all_popular_customer" />
+        <action
+            android:id="@+id/action_nav_details_customer_to_nav_view_all_recommended_customer"
+            app:destination="@id/nav_view_all_recommended_customer" />
+        <action
+            android:id="@+id/action_nav_details_customer_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+</navigation>

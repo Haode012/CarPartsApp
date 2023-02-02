@@ -9,10 +9,6 @@
             android:icon="@drawable/ic_baseline_home_24"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/loginFragment"
-            android:icon="@drawable/ic_baseline_login_24"
-            android:title="@string/menu_login" />
-        <item
             android:id="@+id/nav_profile_customer"
             android:icon="@drawable/ic_baseline_person_24"
             android:title="@string/menu_profile" />
@@ -28,9 +24,5 @@
             android:id="@+id/nav_aboutUs_customer"
             android:icon="@drawable/ic_baseline_info_24"
             android:title="@string/menu_aboutUs" />
-        <item
-            android:id="@+id/nav_logOut_customer"
-            android:icon="@drawable/ic_baseline_logout_24"
-            android:title="@string/menu_logOut" />
     </group>
 </menu>

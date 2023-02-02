@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/admin_navigation"
-    app:startDestination="@id/nav_home_admin">
+    app:startDestination="@id/nav_home_customer">
     <fragment
-        android:id="@+id/nav_home_admin"
+        android:id="@+id/nav_home_customer"
         android:name="tarc.edu.carpartsapp.Admin.HomeAdminFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home_admin" >
@@ -38,7 +38,7 @@
         tools:layout="@layout/fragment_selection" >
         <action
             android:id="@+id/action_nav_selection_admin_to_nav_home_admin"
-            app:destination="@id/nav_home_admin" />
+            app:destination="@id/nav_home_customer" />
         <action
             android:id="@+id/action_nav_selection_admin_to_nav_popular_car_parts_admin"
             app:destination="@id/nav_popular_car_parts_admin" />
@@ -150,7 +150,7 @@
         tools:layout="@layout/fragment_selection_view_all" >
         <action
             android:id="@+id/action_nav_selection_view_all_admin_to_nav_home_admin"
-            app:destination="@id/nav_home_admin" />
+            app:destination="@id/nav_home_customer" />
         <action
             android:id="@+id/action_nav_selection_view_all_admin_to_nav_view_all_popular_car_parts_admin"
             app:destination="@id/nav_view_all_popular_car_parts_admin" />
@@ -260,8 +260,4 @@
             android:id="@+id/action_nav_edit_delete_view_all_recommended_car_parts_admin_to_nav_view_all_recommended_car_parts_admin"
             app:destination="@id/nav_view_all_recommended_car_parts_admin" />
     </fragment>
-    <activity
-        android:id="@+id/nav_logOut_admin"
-        android:name="tarc.edu.carpartsapp.Customer.CustomerActivity"
-        android:label="Home" />
 </navigation>

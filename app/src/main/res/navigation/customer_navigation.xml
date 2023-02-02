@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
+    android:label="Forget Password"
     app:startDestination="@id/nav_home_customer">
     <fragment
         android:id="@+id/nav_profile_customer"
@@ -13,7 +14,7 @@
         android:id="@+id/nav_myCart_customer"
         android:name="tarc.edu.carpartsapp.Customer.MyCartFragment"
         android:label="@string/menu_myCart"
-        tools:layout="@layout/fragment_my_cart" >
+        tools:layout="@layout/fragment_my_cart">
         <action
             android:id="@+id/action_nav_myCart_customer_to_nav_placedOrder_customer"
             app:destination="@id/nav_placedOrder_customer" />
@@ -30,7 +31,7 @@
         android:id="@+id/nav_home_customer"
         android:name="tarc.edu.carpartsapp.Customer.HomeCustomerFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home_customer" >
+        tools:layout="@layout/fragment_home_customer">
         <action
             android:id="@+id/action_nav_home_customer_to_nav_view_all_popular_customer"
             app:destination="@id/nav_view_all_popular_customer" />
@@ -50,7 +51,7 @@
         android:id="@+id/nav_view_all_popular_customer"
         android:name="tarc.edu.carpartsapp.Customer.ViewAllPopularFragment"
         android:label="View All Popular Car Parts"
-        tools:layout="@layout/fragment_view_all_popular" >
+        tools:layout="@layout/fragment_view_all_popular">
         <action
             android:id="@+id/action_nav_view_all_popular_customer_to_nav_home_customer"
             app:destination="@id/nav_home_customer" />
@@ -62,7 +63,7 @@
         android:id="@+id/nav_view_all_recommended_customer"
         android:name="tarc.edu.carpartsapp.Customer.ViewAllRecommendedFragment"
         android:label="View All Recommended Car Parts "
-        tools:layout="@layout/fragment_view_all_recommended" >
+        tools:layout="@layout/fragment_view_all_recommended">
         <action
             android:id="@+id/action_nav_view_all_recommended_customer_to_nav_home_customer"
             app:destination="@id/nav_home_customer" />
@@ -71,28 +72,10 @@
             app:destination="@id/nav_details_customer" />
     </fragment>
     <fragment
-        android:id="@+id/nav_details_customer"
-        android:name="tarc.edu.carpartsapp.Customer.DetailsFragment"
-        android:label="Car Parts Details"
-        tools:layout="@layout/fragment_details" >
-        <action
-            android:id="@+id/action_nav_details_customer_to_nav_view_all_category_customer"
-            app:destination="@id/nav_view_all_category_customer" />
-        <action
-            android:id="@+id/action_nav_details_customer_to_nav_view_all_popular_customer"
-            app:destination="@id/nav_view_all_popular_customer" />
-        <action
-            android:id="@+id/action_nav_details_customer_to_nav_view_all_recommended_customer"
-            app:destination="@id/nav_view_all_recommended_customer" />
-        <action
-            android:id="@+id/action_nav_details_customer_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/nav_view_all_category_customer"
         android:name="tarc.edu.carpartsapp.Customer.ViewAllCategoryFragment"
         android:label="View All Car Parts Category"
-        tools:layout="@layout/fragment_view_all_category" >
+        tools:layout="@layout/fragment_view_all_category">
         <action
             android:id="@+id/action_nav_view_all_category_customer_to_nav_home_customer"
             app:destination="@id/nav_home_customer" />
@@ -123,6 +106,24 @@
         <action
             android:id="@+id/action_nav_creditCard_customer_to_nav_placedOrder_customer"
             app:destination="@id/nav_placedOrder_customer" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_details_customer"
+        android:name="tarc.edu.carpartsapp.DetailsFragment"
+        android:label="Car Parts Details"
+        tools:layout="@layout/fragment_details">
+        <action
+            android:id="@+id/action_nav_details_customer_to_nav_view_all_popular_customer"
+            app:destination="@id/nav_view_all_popular_customer" />
+        <action
+            android:id="@+id/action_nav_details_customer_to_nav_view_all_category_customer"
+            app:destination="@id/nav_view_all_category_customer" />
+        <action
+            android:id="@+id/action_nav_details_customer_to_nav_view_all_recommended_customer"
+            app:destination="@id/nav_view_all_recommended_customer" />
+        <action
+            android:id="@+id/action_nav_details_customer_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -157,8 +158,4 @@
             android:id="@+id/action_passwordForgotFragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />
     </fragment>
-    <activity
-        android:id="@+id/nav_logOut_customer"
-        android:name="tarc.edu.carpartsapp.Customer.CustomerActivity"
-        android:label="Home" />
 </navigation>

@@ -17,7 +17,6 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import tarc.edu.carpartsapp.Admin.AdminActivity
 import tarc.edu.carpartsapp.Customer.CustomerActivity
-import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
