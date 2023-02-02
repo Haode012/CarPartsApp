@@ -15,13 +15,9 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import tarc.edu.carpartsapp.Model.Users
-import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.FragmentRegistrationBinding
 import java.lang.Exception
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
 class RegistrationFragment : Fragment() {
 
     private var _binding: FragmentRegistrationBinding? = null
@@ -53,17 +49,15 @@ class RegistrationFragment : Fragment() {
         return binding.root
 
     }
-
-
     private fun validateInput():Boolean{
         val fullName = binding.editTextFullName.text.toString()
         val address = binding.editTextAddress.text.toString()
         val phoneNum = binding.editTextPhone.text.toString()
-        val dateOfBirth = binding.editTextDate.toString()
-        val email = binding.editTextEmail.toString()
-        val passwd = binding.editTextPasswd.toString()
+        val dateOfBirth = binding.editTextDate.text.toString()
+        val email = binding.editTextEmail.text.toString()
+        val passwd = binding.editTextPasswd.text.toString()
 
-        userProfile["email"] = email
+        userProfile["emailAddress"] = email
         if(email.isNullOrEmpty()){
             binding.editTextEmail.error = "Email Address is incorrect"
             return false
@@ -105,7 +99,7 @@ class RegistrationFragment : Fragment() {
         val address = binding.editTextAddress.text.toString()
         val phoneNum = binding.editTextPhone.text.toString()
         val dateOfBirth = binding.editTextDate.text.toString()
-       // val email = binding.editTextEmail.toString()
+        // val email = binding.editTextEmail.toString()
         //val passwd = binding.editTextPasswd.toString()
 
         val database = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
@@ -118,16 +112,14 @@ class RegistrationFragment : Fragment() {
 
                     userProfile(task.result.user?.uid!!)
                     if(binding.radioButtonMale.isChecked){
-                        ref.child(firebaseUser.uid).setValue(
-                            Users(
+                        ref.child(firebaseUser.uid).setValue(Users(
                             "$fullName", "$email", "$address",
                             "$phoneNum", "$dateOfBirth", "Male",
                             "Customer"
-                        )
-                        )
+                        ))
                     }
                     Toast.makeText(context, "Register Successfully", Toast.LENGTH_SHORT).show()
-                   findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
+                    findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
 
 
                 } else {

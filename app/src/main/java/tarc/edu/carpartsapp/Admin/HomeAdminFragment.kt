@@ -40,5 +40,9 @@ class HomeAdminFragment : Fragment() {
         binding.imageViewCustomerViewAllEdit.setOnClickListener {
             findNavController().navigate(R.id.action_nav_home_admin_to_nav_selection_view_all_admin)
         }
+
+        binding.imageViewCustomerFeedback.setOnClickListener{
+            findNavController().navigate(R.id.action_nav_home_admin_to_fragmentAdminViewFeedback)
+        }
     }
 }

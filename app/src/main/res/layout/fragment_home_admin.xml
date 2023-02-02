@@ -79,7 +79,7 @@
             android:id="@+id/textViewCustomerViewAllPageEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="28dp"
+            android:layout_marginEnd="16dp"
             android:lines="2"
             android:text="Customer View\n All Page Edit"
             android:textAlignment="center"
@@ -88,7 +88,35 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/imageViewCustomerViewAllEdit"
             app:layout_constraintTop_toBottomOf="@+id/imageViewCustomerHomepageEdit"
-            app:layout_constraintVertical_bias="0.55" />
+            app:layout_constraintVertical_bias="0.252" />
+
+        <ImageView
+            android:id="@+id/imageViewCustomerFeedback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:maxWidth="500dp"
+            android:maxHeight="300dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/user_feedback_header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewCustomerViewAllEdit"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/textViewAdminViewFeedback"
+            android:layout_width="283dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/adminViewFeedback"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewCustomerFeedback"
+            app:layout_constraintStart_toStartOf="@+id/imageViewCustomerFeedback"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewCustomerViewAllEdit"
+            app:layout_constraintVertical_bias="0.613" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

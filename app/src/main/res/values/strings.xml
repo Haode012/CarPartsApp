@@ -58,6 +58,7 @@
     <string name="returnProductName">Return Product Name</string>
     <string name="returnProductImage">Return Product Image</string>
     <string name="deliveryStatus">Delivery Status</string>
+    <string name="adminViewFeedback">Admin View Customer Feedback</string>
 
 
     <string name="hello_first_fragment">Hello first fragment</string>
