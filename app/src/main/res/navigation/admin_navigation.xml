@@ -260,4 +260,8 @@
             android:id="@+id/action_nav_edit_delete_view_all_recommended_car_parts_admin_to_nav_view_all_recommended_car_parts_admin"
             app:destination="@id/nav_view_all_recommended_car_parts_admin" />
     </fragment>
+    <activity
+        android:id="@+id/nav_logOut_admin"
+        android:name="tarc.edu.carpartsapp.Customer.CustomerActivity"
+        android:label="Home" />
 </navigation>

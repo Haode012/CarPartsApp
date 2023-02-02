@@ -130,9 +130,6 @@
         android:label="Login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_nav_details_customer"
-            app:destination="@id/nav_details_customer" />
-        <action
             android:id="@+id/action_loginFragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />
         <action
@@ -160,4 +157,8 @@
             android:id="@+id/action_passwordForgotFragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />
     </fragment>
+    <activity
+        android:id="@+id/nav_logOut_customer"
+        android:name="tarc.edu.carpartsapp.Customer.CustomerActivity"
+        android:label="Home" />
 </navigation>
