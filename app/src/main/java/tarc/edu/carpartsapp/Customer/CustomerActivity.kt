@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -14,15 +13,10 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.nav_header_main.view.*
-import tarc.edu.carpartsapp.LoginFragment
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.ActivityCustomerBinding
 
@@ -52,9 +46,16 @@ class CustomerActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-     updateNavHeader()
+    newUpdateHeader()
     }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.customer, menu)
+        return true
+
+    }
+
 
     private fun updateNavHeader() {
         firebaseAuth = FirebaseAuth.getInstance()
@@ -66,24 +67,30 @@ class CustomerActivity : AppCompatActivity() {
             Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
                 .getReference("Users").child(uid)
 
-        ref.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val navView: NavigationView = binding.navView
-                val view: View = navView.getHeaderView(0)
-                val name = dataSnapshot.child("fullName").value as String?
-                val email = dataSnapshot.child("emailAddress").value as String?
-                view.textViewUsername.setText(name)
-                view.textViewEmail.setText(email)
-            }
-            override fun onCancelled(databaseError: DatabaseError) {}
-        })
+        ref.get().addOnSuccessListener {
+            val name = it.child("fullName").value as String
+            val email = it.child("emailAddress").value as String
+            val navView: NavigationView = binding.navView
+            val view: View = navView.getHeaderView(0)
+            view.textViewFullName.setText(name)
+            view.textViewEmail.setText(email)
+        }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.customer, menu)
-        return true
-    }
+    private fun newUpdateHeader(){
+
+        val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
+            val ref =
+                Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                    .getReference("Users/$userId")
+            ref.get().addOnSuccessListener {
+                val navView: NavigationView = binding.navView
+                val view: View = navView.getHeaderView(0)
+                view.textViewFullName.text = it.child("fullName").getValue(String:: class.java)
+                view.textViewEmail.text = it.child("emailAddress").getValue(String:: class.java)
+            }
+        }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){

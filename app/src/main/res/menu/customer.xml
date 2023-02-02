@@ -6,6 +6,5 @@
         android:id="@+id/action_log_out"
         android:icon="@drawable/ic_baseline_logout_white_24"
         android:orderInCategory="100"
-        android:title="Log Out"
-        />
+        android:title="@string/menu_logOut" />
 </menu>
