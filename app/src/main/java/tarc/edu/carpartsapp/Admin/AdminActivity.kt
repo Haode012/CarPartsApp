@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.nav_header_admin.view.*
+import kotlinx.android.synthetic.main.nav_header_customer.view.*
 import tarc.edu.carpartsapp.MainActivity
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.ActivityAdminBinding
@@ -51,7 +52,7 @@ class AdminActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        updateNavHeader()
+        newUpdateHeader()
     }
 
     private fun updateNavHeader() {
@@ -75,6 +76,20 @@ class AdminActivity : AppCompatActivity() {
             }
             override fun onCancelled(databaseError: DatabaseError) {}
         })
+    }
+
+    private fun newUpdateHeader(){
+
+        val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
+        val ref =
+            Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("Users/$userId")
+        ref.get().addOnSuccessListener {
+            val navView: NavigationView = binding.navView
+            val view: View = navView.getHeaderView(0)
+            view.textViewUsernameAdmin.text = it.child("fullName").getValue(String:: class.java)
+            view.textViewEmailAdmin.text = it.child("emailAddress").getValue(String:: class.java)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

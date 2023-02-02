@@ -16,7 +16,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.nav_header_customer.view.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
+import tarc.edu.carpartsapp.MainActivity
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.ActivityCustomerBinding
 
@@ -41,7 +43,7 @@ class CustomerActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home_customer, R.id.loginFragment, R.id.nav_profile_customer, R.id.nav_myCart_customer, R.id.nav_myOrder_customer, R.id.nav_aboutUs_customer, R.id.nav_logOut_customer
+                R.id.nav_home_customer, R.id.loginFragment, R.id.nav_profile_customer, R.id.nav_myCart_customer, R.id.nav_myOrder_customer, R.id.nav_aboutUs_customer
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -86,8 +88,8 @@ class CustomerActivity : AppCompatActivity() {
             ref.get().addOnSuccessListener {
                 val navView: NavigationView = binding.navView
                 val view: View = navView.getHeaderView(0)
-                view.textViewFullName.text = it.child("fullName").getValue(String:: class.java)
-                view.textViewEmail.text = it.child("emailAddress").getValue(String:: class.java)
+                view.textViewUsernameCustomer.text = it.child("fullName").getValue(String:: class.java)
+                view.textViewEmailCustomer.text = it.child("emailAddress").getValue(String:: class.java)
             }
         }
 
@@ -96,7 +98,7 @@ class CustomerActivity : AppCompatActivity() {
         return when(item.itemId){
             R.id.action_log_out -> {
                 firebaseAuth.signOut().apply {
-                    startActivity(Intent(applicationContext, CustomerActivity::class.java))
+                    startActivity(Intent(applicationContext, MainActivity::class.java))
                     finish()
                 }
                 true
