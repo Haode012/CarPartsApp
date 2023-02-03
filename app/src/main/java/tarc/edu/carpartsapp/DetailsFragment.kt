@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -65,10 +66,8 @@ class DetailsFragment : Fragment() {
         }
 
         binding.buttonAddToCart.setOnClickListener{
-            var totalQuantity = binding.quantity.text.toString().trim().toInt()
 
-            var totalPrice = 0.00
-            totalPrice = price.toDouble() * totalQuantity
+            Toast.makeText(requireContext(), "Your are required to login first", Toast.LENGTH_SHORT).show()
 
             findNavController().navigate(R.id.action_nav_details_main_to_loginFragment)
         }

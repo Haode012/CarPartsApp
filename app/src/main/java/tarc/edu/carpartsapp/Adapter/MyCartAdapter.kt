@@ -37,12 +37,14 @@ class MyCartAdapter: RecyclerView.Adapter<MyCartAdapter.MyViewHolder> {
 
         val myCartModel = myCartModelArrayList[position]
         val name = myCartModel.name
+        val warranty = myCartModel.warranty
         val price = myCartModel.price
         val total_quantity = myCartModel.total_quantity
         val total_price = myCartModel.total_price
         val img_url = myCartModel.img_url
 
         holder.name.text = name
+        holder.warranty.text = warranty
         holder.price.text = price
         holder.total_quantity.text = total_quantity
         holder.total_price.text = total_price
@@ -57,6 +59,7 @@ class MyCartAdapter: RecyclerView.Adapter<MyCartAdapter.MyViewHolder> {
     inner class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
         val name : TextView = binding.myCartItemName
+        val warranty : TextView = binding.myCartItemWarranty
         val price : TextView = binding.myCartItemPrice
         val total_quantity : TextView = binding.myCartItemTotalQuantity
         val total_price : TextView = binding.myCartItemTotalPrice

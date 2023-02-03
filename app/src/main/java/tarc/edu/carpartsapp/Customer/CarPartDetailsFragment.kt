@@ -5,11 +5,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.FragmentCarPartDetailsBinding
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.HashMap
 
 class CarPartDetailsFragment : Fragment() {
 
@@ -40,6 +46,7 @@ class CarPartDetailsFragment : Fragment() {
         val warranty = requireArguments().getString("warranty").toString()
         val img_url = requireArguments().getString("img_url").toString()
 
+
         binding.detailsName.setText(name)
         binding.detailsDescription.setText(description)
         binding.detailsPrice.setText(price)
@@ -67,8 +74,36 @@ class CarPartDetailsFragment : Fragment() {
         binding.buttonAddToCart.setOnClickListener{
             var totalQuantity = binding.quantity.text.toString().trim().toInt()
 
-            var totalPrice = 0.00
-            totalPrice = price.toDouble() * totalQuantity
+            var totalPrice = price.toDouble() * totalQuantity
+            var formattedPrice = String.format("%.2f", totalPrice)
+
+            val currentDate = SimpleDateFormat("MM/dd/yyyy")
+            val saveCurrentDate = currentDate.format(Calendar.getInstance().time)
+
+            val currentTime = SimpleDateFormat("HH:mm:ss a", Locale.ENGLISH)
+            val saveCurrentTime = currentTime.format(Calendar.getInstance().time)
+
+            val hashMap = HashMap<String, Any>()
+            hashMap["uid"] = FirebaseAuth.getInstance().currentUser!!.uid
+            hashMap["name"] = "$name"
+            hashMap["price"] = "$price"
+            hashMap["warranty"] = "$warranty"
+            hashMap["total_price"] = "$formattedPrice"
+            hashMap["total_quantity"] = "$totalQuantity"
+            hashMap["img_url"] = "$img_url"
+            hashMap["currentDate"] = "$saveCurrentDate"
+            hashMap["currentTime"] = "$saveCurrentTime"
+
+            val database = FirebaseDatabase.getInstance()
+            val reference = database.getReference("CartItem")
+            reference.push().setValue(hashMap).addOnCompleteListener {
+                    task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(requireContext(), "Added to Cart", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireContext(), "Failed to Add", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 }

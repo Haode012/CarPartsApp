@@ -1,6 +1,7 @@
 package tarc.edu.carpartsapp.Customer
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -68,17 +69,19 @@ class MyCartFragment : Fragment() {
         dbref.addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    for(myCartSnapshot in snapshot.children){
-
-                        val myCart = myCartSnapshot.getValue(MyCartModel::class.java)
-                        myCartModelArrayList.add(myCart!!)
+                try {
+                    if (snapshot.exists()) {
+                        for (myCartSnapshot in snapshot.children) {
+                            val myCart = myCartSnapshot.getValue(MyCartModel::class.java)
+                            myCartModelArrayList.add(myCart!!)
+                        }
+                        val myCartAdapter = MyCartAdapter(myCartModelArrayList, requireContext())
+                        recyclerView.adapter = myCartAdapter
                     }
-                    val myCartAdapter = MyCartAdapter(myCartModelArrayList, requireContext())
-                    recyclerView.adapter = myCartAdapter
+                } catch (e: Exception) {
+                    Log.e("getData", "Error getting data from Firebase: ${e.message}")
                 }
             }
-
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
