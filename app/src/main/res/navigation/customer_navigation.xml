@@ -135,4 +135,13 @@
             android:id="@+id/action_fragmentEditProfile2_to_nav_profile_customer"
             app:destination="@id/nav_profile_customer" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_feedback_customer"
+        android:name="tarc.edu.carpartsapp.CustomerFeedbackFragment"
+        android:label="fragment_customer_feedback"
+        tools:layout="@layout/fragment_customer_feedback" >
+        <action
+            android:id="@+id/action_nav_feedback_customer_to_nav_home_customer"
+            app:destination="@id/nav_home_customer" />
+    </fragment>
 </navigation>

@@ -42,20 +42,20 @@ class CustomerFeedbackFragment : Fragment() {
         val ratings = binding.ratingBar.rating.toString()
         val comments = binding.comments.text.toString()
 
-        binding.btnSubmit.setOnClickListener {
+        binding.btnSubmit.setOnClickListener { task->
 //            val database = Firebase.database("https://carsurusmobileapplication-default-rtdb.asia-southeast1.firebasedatabase.app/")
 //            database.getReference("Feedback").child("feedback"+1).get().addOnCompleteListener { task ->
-                //if(task.isSuccessful){
+               // if(task.isSuccessful){
                     feedback()
                     storeFeedbacks()
                     Toast.makeText(context, "Rated Successfully", Toast.LENGTH_LONG)
-                    //findNavController().navigate(R.id.action_customerFeedbackFragment_to_customerHomepage)
+                    findNavController().navigate(R.id.action_nav_feedback_customer_to_nav_home_customer)
                // }else{
-                   // Toast.makeText(context, "Error", Toast.LENGTH_SHORT)
-                //}
+                 //   Toast.makeText(context, "Error", Toast.LENGTH_SHORT)
+                }
             }
-        }
-   // }
+
+
 
     private fun feedback(){
 
