@@ -9,7 +9,11 @@
         android:id="@+id/nav_profile_customer"
         android:name="tarc.edu.carpartsapp.ProfileFragment"
         android:label="@string/menu_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_nav_profile_customer_to_fragmentEditProfile2"
+            app:destination="@id/fragmentEditProfile2" />
+    </fragment>
     <fragment
         android:id="@+id/nav_myCart_customer"
         android:name="tarc.edu.carpartsapp.Customer.MyCartFragment"
@@ -121,5 +125,14 @@
         <action
             android:id="@+id/action_nav_view_all_recommended_customer2_to_nav_details_customer2"
             app:destination="@id/nav_details_customer2" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentEditProfile2"
+        android:name="tarc.edu.carpartsapp.FragmentEditProfile"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" >
+        <action
+            android:id="@+id/action_fragmentEditProfile2_to_nav_profile_customer"
+            app:destination="@id/nav_profile_customer" />
     </fragment>
 </navigation>
