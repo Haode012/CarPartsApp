@@ -129,8 +129,8 @@
     <fragment
         android:id="@+id/fragmentEditProfile2"
         android:name="tarc.edu.carpartsapp.FragmentEditProfile"
-        android:label="fragment_edit_profile"
-        tools:layout="@layout/fragment_edit_profile" >
+        android:label="@string/edit_profile"
+        tools:layout="@layout/fragment_edit_profile">
         <action
             android:id="@+id/action_fragmentEditProfile2_to_nav_profile_customer"
             app:destination="@id/nav_profile_customer" />

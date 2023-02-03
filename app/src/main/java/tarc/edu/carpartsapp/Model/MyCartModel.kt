@@ -1,5 +1,6 @@
 package tarc.edu.carpartsapp.Model
 class MyCartModel{
+    var id:String = ""
     var name:String = ""
     var warranty:String = ""
     var price:String = ""
@@ -15,6 +16,7 @@ class MyCartModel{
 
     //parameterized constructor
     constructor(
+        id: String,
         name: String,
         warranty: String,
         price: String,
@@ -27,6 +29,7 @@ class MyCartModel{
 
     ) {
         this.uid = uid
+        this.id = id
         this.name =  name
         this.warranty =  warranty
         this.price = price

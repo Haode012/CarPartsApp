@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_cart_item_card_view"
     android:layout_width="match_parent"
-    android:layout_height="270dp"
+    android:layout_height="330dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="5dp"
     android:elevation="4dp"
@@ -17,8 +17,9 @@
         <ImageView
             android:id="@+id/my_cart_item_image"
             android:layout_width="150dp"
-            android:layout_height="250dp"
+            android:layout_height="270dp"
             android:src="@drawable/brake_kit_popular"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintHorizontal_bias="0.315"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,14 +33,23 @@
             app:layout_constraintGuide_begin="169dp" />
 
         <TextView
+            android:id="@+id/textViewID"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Product ID"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/textViewName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="Name"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/my_cart_item_id" />
 
         <TextView
             android:id="@+id/textViewWarranty"
@@ -82,12 +92,21 @@
             app:layout_constraintTop_toBottomOf="@+id/my_cart_item_total_quantity" />
 
         <TextView
+            android:id="@+id/my_cart_item_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="ID"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/textViewID" />
+
+        <TextView
             android:id="@+id/my_cart_item_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="TextView1"
-            app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/textViewName" />
 
         <TextView

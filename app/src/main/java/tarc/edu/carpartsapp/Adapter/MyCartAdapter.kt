@@ -1,6 +1,7 @@
 package tarc.edu.carpartsapp.Adapter
 
 import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -43,6 +44,7 @@ class MyCartAdapter: RecyclerView.Adapter<MyCartAdapter.MyViewHolder> {
     override fun onBindViewHolder(holder: MyCartAdapter.MyViewHolder, position:Int) {
 
         val myCartModel = myCartModelArrayList[position]
+        val id = myCartModel.id
         val name = myCartModel.name
         val warranty = myCartModel.warranty
         val price = myCartModel.price
@@ -50,6 +52,7 @@ class MyCartAdapter: RecyclerView.Adapter<MyCartAdapter.MyViewHolder> {
         val total_price = myCartModel.total_price
         val img_url = myCartModel.img_url
 
+        holder.id.text = id
         holder.name.text = name
         holder.warranty.text = warranty
         holder.price.text = price
@@ -59,19 +62,30 @@ class MyCartAdapter: RecyclerView.Adapter<MyCartAdapter.MyViewHolder> {
 
 
         holder.deleteBtn.setOnClickListener{
+            val builder = AlertDialog.Builder(context)
+            builder.setTitle("Delete")
+                .setMessage("Are you sure you want to delete this cart item?")
+                .setPositiveButton("Confirm"){a,d->
                     deleteCartItem(myCartModel, holder)
+                }
+                .setNegativeButton("Cancel"){a,d->
+                    a.dismiss()
+                }
+                .show()
         }
     }
 
     private fun deleteCartItem(myCartModel: MyCartModel, holder: MyCartAdapter.MyViewHolder) {
 
-        val name = myCartModel.name
+        val id = myCartModel.id
 
         val ref = FirebaseDatabase.getInstance().getReference("CartItem")
-        ref.child(name)
+        ref.child(id)
             .removeValue()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+                    myCartModelArrayList.remove(myCartModel)
+                    notifyDataSetChanged()
                     Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(context, "Delete failed", Toast.LENGTH_SHORT).show()
@@ -86,6 +100,7 @@ class MyCartAdapter: RecyclerView.Adapter<MyCartAdapter.MyViewHolder> {
 
     inner class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
+        var id : TextView = binding.myCartItemId
         var name : TextView = binding.myCartItemName
         val warranty : TextView = binding.myCartItemWarranty
         val price : TextView = binding.myCartItemPrice

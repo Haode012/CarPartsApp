@@ -96,12 +96,15 @@ class CarPartDetailsFragment : Fragment() {
 
             val database = FirebaseDatabase.getInstance()
             val reference = database.getReference("CartItem")
-            reference.push().setValue(hashMap).addOnCompleteListener {
-                    task ->
-                if (task.isSuccessful) {
-                    Toast.makeText(requireContext(), "Added to Cart", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(requireContext(), "Failed to Add", Toast.LENGTH_SHORT).show()
+            val key = reference.push().key
+            hashMap["id"] = "$key"
+            if (key != null) {
+                reference.child(key).setValue(hashMap).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(requireContext(), "Added to Cart", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(requireContext(), "Failed to Add", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }
