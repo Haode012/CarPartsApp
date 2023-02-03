@@ -1,9 +1,42 @@
 package tarc.edu.carpartsapp.Model
+class MyCartModel{
+    var name:String = ""
+    var warranty:String = ""
+    var price:String = ""
+    var total_quantity:String = ""
+    var total_price:String = ""
+    var img_url:String = ""
+    var currentDate:String = ""
+    var currentTime:String = ""
+    var uid:String = ""
 
-data class MyCartModel(var id: String? = null,
-                       var name: String? = null,
-                       var warranty: String? = null,
-                       var price: String? = null,
-                       var total_quantity: String? = null,
-                       var total_price: String? = null,
-                       var img_url: String? = null)
+    //empty constructor, required by firebase
+    constructor()
+
+    //parameterized constructor
+    constructor(
+        name: String,
+        warranty: String,
+        price: String,
+        total_quantity: String,
+        total_price: String,
+        img_url: String,
+        currentDate: String,
+        currentTime: String,
+        uid:String
+
+    ) {
+        this.uid = uid
+        this.name =  name
+        this.warranty =  warranty
+        this.price = price
+        this.total_quantity = total_quantity
+        this.total_price = total_price
+        this.img_url = img_url
+        this.currentDate = currentDate
+        this.currentTime = currentTime
+    }
+}
+
+
+
