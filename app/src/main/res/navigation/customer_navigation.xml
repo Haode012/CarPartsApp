@@ -33,56 +33,20 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home_customer">
         <action
-            android:id="@+id/action_nav_home_customer_to_nav_view_all_popular_customer"
-            app:destination="@id/nav_view_all_popular_customer" />
+            android:id="@+id/action_nav_home_customer_to_nav_view_all_popular_customer2"
+            app:destination="@id/nav_view_all_popular_customer2" />
         <action
-            android:id="@+id/action_nav_home_customer_to_nav_view_all_recommended_customer"
-            app:destination="@id/nav_view_all_recommended_customer" />
+            android:id="@+id/action_nav_home_customer_to_nav_view_all_category_customer2"
+            app:destination="@id/nav_view_all_category_customer2" />
         <action
-            android:id="@+id/action_nav_home_customer_to_nav_view_all_category_customer"
-            app:destination="@id/nav_view_all_category_customer" />
+            android:id="@+id/action_nav_home_customer_to_nav_view_all_recommended_customer2"
+            app:destination="@id/nav_view_all_recommended_customer2" />
     </fragment>
     <fragment
         android:id="@+id/nav_myOrder_customer"
         android:name="tarc.edu.carpartsapp.Customer.MyOrderFragment"
         android:label="@string/menu_myOrder"
         tools:layout="@layout/fragment_my_order" />
-    <fragment
-        android:id="@+id/nav_view_all_popular_customer"
-        android:name="tarc.edu.carpartsapp.Customer.ViewAllPopularFragment"
-        android:label="View All Popular Car Parts"
-        tools:layout="@layout/fragment_view_all_popular">
-        <action
-            android:id="@+id/action_nav_view_all_popular_customer_to_nav_home_customer"
-            app:destination="@id/nav_home_customer" />
-        <action
-            android:id="@+id/action_nav_view_all_popular_customer_to_nav_details_customer"
-            app:destination="@id/nav_details_customer" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_view_all_recommended_customer"
-        android:name="tarc.edu.carpartsapp.Customer.ViewAllRecommendedFragment"
-        android:label="View All Recommended Car Parts "
-        tools:layout="@layout/fragment_view_all_recommended">
-        <action
-            android:id="@+id/action_nav_view_all_recommended_customer_to_nav_home_customer"
-            app:destination="@id/nav_home_customer" />
-        <action
-            android:id="@+id/action_nav_view_all_recommended_customer_to_nav_details_customer"
-            app:destination="@id/nav_details_customer" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_view_all_category_customer"
-        android:name="tarc.edu.carpartsapp.Customer.ViewAllCategoryFragment"
-        android:label="View All Car Parts Category"
-        tools:layout="@layout/fragment_view_all_category">
-        <action
-            android:id="@+id/action_nav_view_all_category_customer_to_nav_home_customer"
-            app:destination="@id/nav_home_customer" />
-        <action
-            android:id="@+id/action_nav_view_all_category_customer_to_nav_details_customer"
-            app:destination="@id/nav_details_customer" />
-    </fragment>
     <fragment
         android:id="@+id/nav_placedOrder_customer"
         android:name="tarc.edu.carpartsapp.Customer.PlacedOrderFragment"
@@ -108,54 +72,54 @@
             app:destination="@id/nav_placedOrder_customer" />
     </fragment>
     <fragment
-        android:id="@+id/nav_details_customer"
-        android:name="tarc.edu.carpartsapp.DetailsFragment"
+        android:id="@+id/nav_details_customer2"
+        android:name="tarc.edu.carpartsapp.Customer.CarPartDetailsFragment"
         android:label="Car Parts Details"
-        tools:layout="@layout/fragment_details">
+        tools:layout="@layout/fragment_car_part_details">
         <action
-            android:id="@+id/action_nav_details_customer_to_nav_view_all_popular_customer"
-            app:destination="@id/nav_view_all_popular_customer" />
+            android:id="@+id/action_nav_details_customer2_to_nav_view_all_popular_customer2"
+            app:destination="@id/nav_view_all_popular_customer2" />
         <action
-            android:id="@+id/action_nav_details_customer_to_nav_view_all_category_customer"
-            app:destination="@id/nav_view_all_category_customer" />
+            android:id="@+id/action_nav_details_customer2_to_nav_view_all_category_customer2"
+            app:destination="@id/nav_view_all_category_customer2" />
         <action
-            android:id="@+id/action_nav_details_customer_to_nav_view_all_recommended_customer"
-            app:destination="@id/nav_view_all_recommended_customer" />
-        <action
-            android:id="@+id/action_nav_details_customer_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_nav_details_customer2_to_nav_view_all_recommended_customer2"
+            app:destination="@id/nav_view_all_recommended_customer2" />
     </fragment>
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="tarc.edu.carpartsapp.LoginFragment"
-        android:label="Login"
-        tools:layout="@layout/fragment_login" >
+        android:id="@+id/nav_view_all_popular_customer2"
+        android:name="tarc.edu.carpartsapp.Customer.ViewAllPopularFragment"
+        android:label="View All Popular"
+        tools:layout="@layout/fragment_view_all_popular_customer">
         <action
-            android:id="@+id/action_loginFragment_to_registrationFragment"
-            app:destination="@id/registrationFragment" />
+            android:id="@+id/action_nav_view_all_popular_customer2_to_nav_home_customer"
+            app:destination="@id/nav_home_customer" />
         <action
-            android:id="@+id/action_loginFragment_to_passwordForgotFragment"
-            app:destination="@id/passwordForgotFragment" />
+            android:id="@+id/action_nav_view_all_popular_customer2_to_nav_details_customer2"
+            app:destination="@id/nav_details_customer2" />
     </fragment>
     <fragment
-        android:id="@+id/registrationFragment"
-        android:name="tarc.edu.carpartsapp.RegistrationFragment"
-        android:label="Registration"
-        tools:layout="@layout/fragment_registration" >
+        android:id="@+id/nav_view_all_category_customer2"
+        android:name="tarc.edu.carpartsapp.Customer.ViewAllCategoryFragment"
+        android:label="View All Category"
+        tools:layout="@layout/fragment_view_all_category_customer">
         <action
-            android:id="@+id/action_registrationFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_nav_view_all_category_customer2_to_nav_home_customer"
+            app:destination="@id/nav_home_customer" />
+        <action
+            android:id="@+id/action_nav_view_all_category_customer2_to_nav_details_customer2"
+            app:destination="@id/nav_details_customer2" />
     </fragment>
     <fragment
-        android:id="@+id/passwordForgotFragment"
-        android:name="tarc.edu.carpartsapp.PasswordForgotFragment"
-        android:label="Forget Password"
-        tools:layout="@layout/fragment_password_forgot" >
+        android:id="@+id/nav_view_all_recommended_customer2"
+        android:name="tarc.edu.carpartsapp.Customer.ViewAllRecommendedFragment"
+        android:label="View All Recommended"
+        tools:layout="@layout/fragment_view_all_recommended_customer">
         <action
-            android:id="@+id/action_passwordForgotFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_nav_view_all_recommended_customer2_to_nav_home_customer"
+            app:destination="@id/nav_home_customer" />
         <action
-            android:id="@+id/action_passwordForgotFragment_to_registrationFragment"
-            app:destination="@id/registrationFragment" />
+            android:id="@+id/action_nav_view_all_recommended_customer2_to_nav_details_customer2"
+            app:destination="@id/nav_details_customer2" />
     </fragment>
 </navigation>

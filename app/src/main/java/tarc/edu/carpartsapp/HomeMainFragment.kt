@@ -1,4 +1,4 @@
-package tarc.edu.carpartsapp.Customer
+package tarc.edu.carpartsapp
 
 import android.content.Context
 import android.os.Bundle
@@ -13,14 +13,17 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
-import tarc.edu.carpartsapp.Adapter.*
+import tarc.edu.carpartsapp.Adapter.CarPartsCategoryAdapter
+import tarc.edu.carpartsapp.Adapter.PopularAdapter
+import tarc.edu.carpartsapp.Adapter.RecommendedAdapter
 import tarc.edu.carpartsapp.Model.CarPartsCategoryModel
 import tarc.edu.carpartsapp.Model.PopularModel
 import tarc.edu.carpartsapp.Model.RecommendedModel
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.FragmentHomeCustomerBinding
+import tarc.edu.carpartsapp.databinding.FragmentHomeMainBinding
 
-class HomeCustomerFragment : Fragment() {
+class HomeMainFragment : Fragment() {
 
     private lateinit var scrollView : ScrollView
     private lateinit var progressBar : ProgressBar
@@ -36,7 +39,7 @@ class HomeCustomerFragment : Fragment() {
     private lateinit var recyclerView3: RecyclerView
     private lateinit var recommendedModelArrayList : ArrayList<RecommendedModel>
 
-    private var _binding: FragmentHomeCustomerBinding? = null
+    private var _binding: FragmentHomeMainBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -48,7 +51,7 @@ class HomeCustomerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentHomeCustomerBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeMainBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -96,7 +99,7 @@ class HomeCustomerFragment : Fragment() {
                         val popular = popularSnapshot.getValue(PopularModel::class.java)
                         popularModelArrayList.add(popular!!)
                     }
-                    recyclerView.adapter = PopularAdapterCustomer(popularModelArrayList, requireContext())
+                    recyclerView.adapter = PopularAdapter(popularModelArrayList, requireContext())
                     progressBar.setVisibility(View.GONE)
                     scrollView.setVisibility(View.VISIBLE)
                 }
@@ -118,7 +121,7 @@ class HomeCustomerFragment : Fragment() {
                         val category = categorySnapshot.getValue(CarPartsCategoryModel::class.java)
                         carPartsCategoryModelArrayList.add(category!!)
                     }
-                    recyclerView2.adapter = CarPartsCategoryAdapterCustomer(carPartsCategoryModelArrayList, requireContext())
+                    recyclerView2.adapter = CarPartsCategoryAdapter(carPartsCategoryModelArrayList, requireContext())
                     progressBar.setVisibility(View.GONE)
                     scrollView.setVisibility(View.VISIBLE)
                 }
@@ -140,7 +143,7 @@ class HomeCustomerFragment : Fragment() {
                         val recommended = recommendedSnapshot.getValue(RecommendedModel::class.java)
                         recommendedModelArrayList.add(recommended!!)
                     }
-                    recyclerView3.adapter = RecommendedAdapterCustomer(recommendedModelArrayList, requireContext())
+                    recyclerView3.adapter = RecommendedAdapter(recommendedModelArrayList, requireContext())
                     progressBar.setVisibility(View.GONE)
                     scrollView.setVisibility(View.VISIBLE)
                 }

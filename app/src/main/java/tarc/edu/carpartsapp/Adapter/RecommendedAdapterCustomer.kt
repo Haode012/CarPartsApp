@@ -13,26 +13,27 @@ import tarc.edu.carpartsapp.Model.PopularModel
 import tarc.edu.carpartsapp.Model.RecommendedModel
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.RecommendedCarPartsBinding
+import tarc.edu.carpartsapp.databinding.RecommendedCarPartsCustomerBinding
 
-class RecommendedAdapter: RecyclerView.Adapter<RecommendedAdapter.MyViewHolder> {
+class RecommendedAdapterCustomer: RecyclerView.Adapter<RecommendedAdapterCustomer.MyViewHolder> {
 
     public var recommendedModelArrayList: ArrayList<RecommendedModel>
     private val context: Context
-    private lateinit var binding: RecommendedCarPartsBinding
+    private lateinit var binding: RecommendedCarPartsCustomerBinding
 
     constructor(recommendedModelArrayList: ArrayList<RecommendedModel>, context: Context){
         this.recommendedModelArrayList = recommendedModelArrayList
         this.context = context
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecommendedAdapter.MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecommendedAdapterCustomer.MyViewHolder {
 
-        binding = RecommendedCarPartsBinding.inflate(LayoutInflater.from(context), parent, false)
+        binding = RecommendedCarPartsCustomerBinding.inflate(LayoutInflater.from(context), parent, false)
 
         return MyViewHolder(binding.root)
     }
 
-    override fun onBindViewHolder(holder: RecommendedAdapter.MyViewHolder, position:Int) {
+    override fun onBindViewHolder(holder: RecommendedAdapterCustomer.MyViewHolder, position:Int) {
 
         val recommendedModel = recommendedModelArrayList[position]
         val name = recommendedModel.name
@@ -48,9 +49,9 @@ class RecommendedAdapter: RecyclerView.Adapter<RecommendedAdapter.MyViewHolder> 
         }
     }
 
-    private fun viewAllRecommendedFragment(recommendedModel: RecommendedModel, holder: RecommendedAdapter.MyViewHolder) {
+    private fun viewAllRecommendedFragment(recommendedModel: RecommendedModel, holder: RecommendedAdapterCustomer.MyViewHolder) {
         Navigation.findNavController(holder.itemView)
-            .navigate(R.id.action_nav_home_main_to_nav_view_all_recommended_main)
+            .navigate(R.id.action_nav_home_customer_to_nav_view_all_recommended_customer2)
     }
 
 

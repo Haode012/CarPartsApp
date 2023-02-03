@@ -9,9 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import tarc.edu.carpartsapp.Adapter.ViewAllPopularAdapter
+import tarc.edu.carpartsapp.Adapter.ViewAllPopularAdapterCustomer
 import tarc.edu.carpartsapp.Model.ViewAllPopularModel
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.FragmentViewAllPopularBinding
+import tarc.edu.carpartsapp.databinding.FragmentViewAllPopularCustomerBinding
 
 class ViewAllPopularFragment : Fragment() {
 
@@ -19,7 +21,7 @@ class ViewAllPopularFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAllPopularModelArrayList : ArrayList<ViewAllPopularModel>
 
-    private var _binding: FragmentViewAllPopularBinding? = null
+    private var _binding: FragmentViewAllPopularCustomerBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -31,7 +33,7 @@ class ViewAllPopularFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentViewAllPopularBinding.inflate(inflater, container, false)
+        _binding = FragmentViewAllPopularCustomerBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         return root
@@ -60,7 +62,7 @@ class ViewAllPopularFragment : Fragment() {
                         val popular = popularSnapshot.getValue(ViewAllPopularModel::class.java)
                        viewAllPopularModelArrayList.add(popular!!)
                     }
-                    val pAdapter = ViewAllPopularAdapter(viewAllPopularModelArrayList, requireContext())
+                    val pAdapter = ViewAllPopularAdapterCustomer(viewAllPopularModelArrayList, requireContext())
                     recyclerView.adapter = pAdapter
                 }
             }

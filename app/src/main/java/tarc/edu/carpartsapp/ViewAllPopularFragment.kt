@@ -1,4 +1,4 @@
-package tarc.edu.carpartsapp.Customer
+package tarc.edu.carpartsapp
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,20 +9,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import tarc.edu.carpartsapp.Adapter.ViewAllPopularAdapter
-import tarc.edu.carpartsapp.Adapter.ViewAllRecommendedAdapter
-import tarc.edu.carpartsapp.Adapter.ViewAllRecommendedAdapterCustomer
 import tarc.edu.carpartsapp.Model.ViewAllPopularModel
-import tarc.edu.carpartsapp.Model.ViewAllRecommendedModel
 import tarc.edu.carpartsapp.R
-import tarc.edu.carpartsapp.databinding.FragmentViewAllRecommendedBinding
+import tarc.edu.carpartsapp.databinding.FragmentViewAllPopularBinding
 
-class ViewAllRecommendedFragment : Fragment() {
+class ViewAllPopularFragment : Fragment() {
 
     private lateinit var dbref : DatabaseReference
     private lateinit var recyclerView: RecyclerView
-    private lateinit var viewAllRecommendedModelArrayList : ArrayList<ViewAllRecommendedModel>
+    private lateinit var viewAllPopularModelArrayList : ArrayList<ViewAllPopularModel>
 
-    private var _binding: FragmentViewAllRecommendedBinding? = null
+    private var _binding: FragmentViewAllPopularBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -34,7 +31,7 @@ class ViewAllRecommendedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentViewAllRecommendedBinding.inflate(inflater, container, false)
+        _binding = FragmentViewAllPopularBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         return root
@@ -43,27 +40,27 @@ class ViewAllRecommendedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerView = view.findViewById(R.id.view_all_recommended_recycler_view)
+        recyclerView = view.findViewById(R.id.view_all_popular_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.setHasFixedSize(true)
-        viewAllRecommendedModelArrayList = arrayListOf<ViewAllRecommendedModel>()
+        viewAllPopularModelArrayList = arrayListOf<ViewAllPopularModel>()
 
         getData()
     }
 
     private fun getData() {
-        dbref = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("ViewAllRecommended")
+        dbref = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("ViewAllPopular")
 
         dbref.addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
-                    for(recommendedSnapshot in snapshot.children){
+                    for(popularSnapshot in snapshot.children){
 
-                        val recommended = recommendedSnapshot.getValue(ViewAllRecommendedModel::class.java)
-                        viewAllRecommendedModelArrayList.add(recommended!!)
+                        val popular = popularSnapshot.getValue(ViewAllPopularModel::class.java)
+                       viewAllPopularModelArrayList.add(popular!!)
                     }
-                    val pAdapter = ViewAllRecommendedAdapterCustomer(viewAllRecommendedModelArrayList, requireContext())
+                    val pAdapter = ViewAllPopularAdapter(viewAllPopularModelArrayList, requireContext())
                     recyclerView.adapter = pAdapter
                 }
             }

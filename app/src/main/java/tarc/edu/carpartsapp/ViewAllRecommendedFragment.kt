@@ -1,4 +1,4 @@
-package tarc.edu.carpartsapp.Customer
+package tarc.edu.carpartsapp
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import tarc.edu.carpartsapp.Adapter.ViewAllPopularAdapter
 import tarc.edu.carpartsapp.Adapter.ViewAllRecommendedAdapter
-import tarc.edu.carpartsapp.Adapter.ViewAllRecommendedAdapterCustomer
 import tarc.edu.carpartsapp.Model.ViewAllPopularModel
 import tarc.edu.carpartsapp.Model.ViewAllRecommendedModel
 import tarc.edu.carpartsapp.R
@@ -63,7 +62,7 @@ class ViewAllRecommendedFragment : Fragment() {
                         val recommended = recommendedSnapshot.getValue(ViewAllRecommendedModel::class.java)
                         viewAllRecommendedModelArrayList.add(recommended!!)
                     }
-                    val pAdapter = ViewAllRecommendedAdapterCustomer(viewAllRecommendedModelArrayList, requireContext())
+                    val pAdapter = ViewAllRecommendedAdapter(viewAllRecommendedModelArrayList, requireContext())
                     recyclerView.adapter = pAdapter
                 }
             }

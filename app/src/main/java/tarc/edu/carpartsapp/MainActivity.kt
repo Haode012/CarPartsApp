@@ -29,14 +29,14 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarMain.toolbar)
 
-        val drawerLayout: DrawerLayout = binding.drawerLayout
-        val navView: NavigationView = binding.navView
+        val drawerLayout: DrawerLayout = binding.drawerLayoutMain
+        val navView: NavigationView = binding.navViewMain
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home_customer, R.id.loginFragment, R.id.nav_aboutUs_customer
+                R.id.nav_home_main, R.id.loginFragment, R.id.nav_aboutUs_main
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

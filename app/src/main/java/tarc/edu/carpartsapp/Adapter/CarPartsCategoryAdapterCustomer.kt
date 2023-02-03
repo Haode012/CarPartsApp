@@ -14,27 +14,28 @@ import tarc.edu.carpartsapp.Model.CarPartsCategoryModel
 import tarc.edu.carpartsapp.Model.PopularModel
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.CarPartsCategoryBinding
+import tarc.edu.carpartsapp.databinding.CarPartsCategoryCustomerBinding
 
 
-class CarPartsCategoryAdapter: RecyclerView.Adapter<CarPartsCategoryAdapter.MyViewHolder> {
+class CarPartsCategoryAdapterCustomer: RecyclerView.Adapter<CarPartsCategoryAdapterCustomer.MyViewHolder> {
 
     public var carPartsCategoryModelArrayList: ArrayList<CarPartsCategoryModel>
     private val context: Context
-    private lateinit var binding: CarPartsCategoryBinding
+    private lateinit var binding: CarPartsCategoryCustomerBinding
 
     constructor(carPartsCategoryModelArrayList: ArrayList<CarPartsCategoryModel>, context: Context){
         this.carPartsCategoryModelArrayList = carPartsCategoryModelArrayList
         this.context = context
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarPartsCategoryAdapter.MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarPartsCategoryAdapterCustomer.MyViewHolder {
 
-        binding = CarPartsCategoryBinding.inflate(LayoutInflater.from(context), parent, false)
+        binding = CarPartsCategoryCustomerBinding.inflate(LayoutInflater.from(context), parent, false)
 
         return MyViewHolder(binding.root)
     }
 
-    override fun onBindViewHolder(holder: CarPartsCategoryAdapter.MyViewHolder, position:Int) {
+    override fun onBindViewHolder(holder: CarPartsCategoryAdapterCustomer.MyViewHolder, position:Int) {
 
         val carPartsCategoryModel = carPartsCategoryModelArrayList[position]
         val name = carPartsCategoryModel.name
@@ -48,11 +49,11 @@ class CarPartsCategoryAdapter: RecyclerView.Adapter<CarPartsCategoryAdapter.MyVi
         }
     }
 
-    private fun viewAllCategoryFragment(carPartsCategoryModel: CarPartsCategoryModel, holder: CarPartsCategoryAdapter.MyViewHolder) {
+    private fun viewAllCategoryFragment(carPartsCategoryModel: CarPartsCategoryModel, holder: CarPartsCategoryAdapterCustomer.MyViewHolder) {
         val type = carPartsCategoryModel.type
 
         Navigation.findNavController(holder.itemView)
-            .navigate(R.id.action_nav_home_main_to_nav_view_all_category_main, Bundle().apply {
+            .navigate(R.id.action_nav_home_customer_to_nav_view_all_category_customer2, Bundle().apply {
 
                 putString("type",type.toString())
 

@@ -16,27 +16,28 @@ import tarc.edu.carpartsapp.Model.RecommendedModel
 import tarc.edu.carpartsapp.Model.ViewAllCategoryModel
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.ViewAllCategoryBinding
+import tarc.edu.carpartsapp.databinding.ViewAllCategoryCustomerBinding
 
 
-class ViewAllCategoryAdapter: RecyclerView.Adapter<ViewAllCategoryAdapter.MyViewHolder> {
+class ViewAllCategoryAdapterCustomer: RecyclerView.Adapter<ViewAllCategoryAdapterCustomer.MyViewHolder> {
 
     public var viewAllCategoryModelArrayList: ArrayList<ViewAllCategoryModel>
     private val context: Context
-    private lateinit var binding: ViewAllCategoryBinding
+    private lateinit var binding: ViewAllCategoryCustomerBinding
 
     constructor(viewAllCategoryModelArrayList: ArrayList<ViewAllCategoryModel>, context: Context){
         this.viewAllCategoryModelArrayList = viewAllCategoryModelArrayList
         this.context = context
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewAllCategoryAdapter.MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewAllCategoryAdapterCustomer.MyViewHolder {
 
-        binding = ViewAllCategoryBinding.inflate(LayoutInflater.from(context), parent, false)
+        binding = ViewAllCategoryCustomerBinding.inflate(LayoutInflater.from(context), parent, false)
 
         return MyViewHolder(binding.root)
     }
 
-    override fun onBindViewHolder(holder: ViewAllCategoryAdapter.MyViewHolder, position:Int) {
+    override fun onBindViewHolder(holder: ViewAllCategoryAdapterCustomer.MyViewHolder, position:Int) {
 
         val viewAllCategoryModel = viewAllCategoryModelArrayList[position]
         val name = viewAllCategoryModel.name
@@ -56,7 +57,7 @@ class ViewAllCategoryAdapter: RecyclerView.Adapter<ViewAllCategoryAdapter.MyView
         }
     }
 
-    private fun detailsFragment(viewAllCategoryModel: ViewAllCategoryModel, holder: ViewAllCategoryAdapter.MyViewHolder) {
+    private fun detailsFragment(viewAllCategoryModel: ViewAllCategoryModel, holder: ViewAllCategoryAdapterCustomer.MyViewHolder) {
          val name = viewAllCategoryModel.name
          val description = viewAllCategoryModel.description
         val price = viewAllCategoryModel.price
@@ -65,7 +66,7 @@ class ViewAllCategoryAdapter: RecyclerView.Adapter<ViewAllCategoryAdapter.MyView
 
 
         Navigation.findNavController(holder.itemView)
-            .navigate(R.id.action_nav_view_all_category_main_to_nav_details_main, Bundle().apply {
+            .navigate(R.id.action_nav_view_all_category_customer2_to_nav_details_customer2, Bundle().apply {
                 putString("name",name.toString())
                 putString("description",description.toString())
                 putString("price",price.toString())

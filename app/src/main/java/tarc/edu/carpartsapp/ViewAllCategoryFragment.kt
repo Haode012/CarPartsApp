@@ -1,4 +1,4 @@
-package tarc.edu.carpartsapp.Customer
+package tarc.edu.carpartsapp
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,13 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import tarc.edu.carpartsapp.Adapter.ViewAllCategoryAdapter
-import tarc.edu.carpartsapp.Adapter.ViewAllCategoryAdapterCustomer
 import tarc.edu.carpartsapp.Adapter.ViewAllPopularAdapter
 import tarc.edu.carpartsapp.Model.ViewAllCategoryModel
 import tarc.edu.carpartsapp.Model.ViewAllPopularModel
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.FragmentViewAllCategoryBinding
-import tarc.edu.carpartsapp.databinding.FragmentViewAllCategoryCustomerBinding
 
 class ViewAllCategoryFragment : Fragment() {
 
@@ -24,7 +22,7 @@ class ViewAllCategoryFragment : Fragment() {
     private lateinit var viewAllCategoryModelArrayList : ArrayList<ViewAllCategoryModel>
     private lateinit var query : Query
 
-    private var _binding: FragmentViewAllCategoryCustomerBinding? = null
+    private var _binding: FragmentViewAllCategoryBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -36,7 +34,7 @@ class ViewAllCategoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentViewAllCategoryCustomerBinding.inflate(inflater, container, false)
+        _binding = FragmentViewAllCategoryBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         return root
@@ -77,7 +75,7 @@ class ViewAllCategoryFragment : Fragment() {
                             }
                         }
                         recyclerView.adapter =
-                            ViewAllCategoryAdapterCustomer(viewAllCategoryModelArrayList, requireContext())
+                            ViewAllCategoryAdapter(viewAllCategoryModelArrayList, requireContext())
                     }
                 }
 
@@ -107,7 +105,7 @@ class ViewAllCategoryFragment : Fragment() {
                             }
                         }
                         recyclerView.adapter =
-                            ViewAllCategoryAdapterCustomer(viewAllCategoryModelArrayList, requireContext())
+                            ViewAllCategoryAdapter(viewAllCategoryModelArrayList, requireContext())
                     }
                 }
 
@@ -137,7 +135,7 @@ class ViewAllCategoryFragment : Fragment() {
                             }
                         }
                         recyclerView.adapter =
-                            ViewAllCategoryAdapterCustomer(viewAllCategoryModelArrayList, requireContext())
+                            ViewAllCategoryAdapter(viewAllCategoryModelArrayList, requireContext())
                     }
                 }
 
@@ -171,7 +169,7 @@ class ViewAllCategoryFragment : Fragment() {
                             }
                         }
                         recyclerView.adapter =
-                            ViewAllCategoryAdapterCustomer(viewAllCategoryModelArrayList, requireContext())
+                            ViewAllCategoryAdapter(viewAllCategoryModelArrayList, requireContext())
                     }
                 }
 
@@ -201,7 +199,7 @@ class ViewAllCategoryFragment : Fragment() {
                             }
                         }
                         recyclerView.adapter =
-                            ViewAllCategoryAdapterCustomer(viewAllCategoryModelArrayList, requireContext())
+                            ViewAllCategoryAdapter(viewAllCategoryModelArrayList, requireContext())
                     }
                 }
 
@@ -231,7 +229,7 @@ class ViewAllCategoryFragment : Fragment() {
                             }
                         }
                         recyclerView.adapter =
-                            ViewAllCategoryAdapterCustomer(viewAllCategoryModelArrayList, requireContext())
+                            ViewAllCategoryAdapter(viewAllCategoryModelArrayList, requireContext())
                     }
                 }
 
@@ -261,7 +259,7 @@ class ViewAllCategoryFragment : Fragment() {
                             }
                         }
                         recyclerView.adapter =
-                            ViewAllCategoryAdapterCustomer(viewAllCategoryModelArrayList, requireContext())
+                            ViewAllCategoryAdapter(viewAllCategoryModelArrayList, requireContext())
                     }
                 }
 
@@ -291,7 +289,7 @@ class ViewAllCategoryFragment : Fragment() {
                             }
                         }
                         recyclerView.adapter =
-                            ViewAllCategoryAdapterCustomer(viewAllCategoryModelArrayList, requireContext())
+                            ViewAllCategoryAdapter(viewAllCategoryModelArrayList, requireContext())
                     }
                 }
 
@@ -321,7 +319,7 @@ class ViewAllCategoryFragment : Fragment() {
                             }
                         }
                         recyclerView.adapter =
-                            ViewAllCategoryAdapterCustomer(viewAllCategoryModelArrayList, requireContext())
+                            ViewAllCategoryAdapter(viewAllCategoryModelArrayList, requireContext())
                     }
                 }
 
@@ -346,7 +344,7 @@ class ViewAllCategoryFragment : Fragment() {
                             viewAllCategoryModelArrayList.add(category!!)
                         }
                         recyclerView.adapter =
-                            ViewAllCategoryAdapterCustomer(viewAllCategoryModelArrayList, requireContext())
+                            ViewAllCategoryAdapter(viewAllCategoryModelArrayList, requireContext())
                     }
                 }
 

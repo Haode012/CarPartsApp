@@ -15,26 +15,27 @@ import tarc.edu.carpartsapp.Model.ViewAllPopularModel
 import tarc.edu.carpartsapp.Model.ViewAllRecommendedModel
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.ViewAllRecommendedBinding
+import tarc.edu.carpartsapp.databinding.ViewAllRecommendedCustomerBinding
 
-class ViewAllRecommendedAdapter: RecyclerView.Adapter<ViewAllRecommendedAdapter.MyViewHolder> {
+class ViewAllRecommendedAdapterCustomer: RecyclerView.Adapter<ViewAllRecommendedAdapterCustomer.MyViewHolder> {
 
     public var viewAllRecommendedModelArrayList: ArrayList<ViewAllRecommendedModel>
     private val context: Context
-    private lateinit var binding: ViewAllRecommendedBinding
+    private lateinit var binding: ViewAllRecommendedCustomerBinding
 
     constructor(viewAllRecommendedModelArrayList: ArrayList<ViewAllRecommendedModel>, context: Context){
         this.viewAllRecommendedModelArrayList= viewAllRecommendedModelArrayList
         this.context = context
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewAllRecommendedAdapter.MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewAllRecommendedAdapterCustomer.MyViewHolder {
 
-        binding = ViewAllRecommendedBinding.inflate(LayoutInflater.from(context), parent, false)
+        binding = ViewAllRecommendedCustomerBinding.inflate(LayoutInflater.from(context), parent, false)
 
         return MyViewHolder(binding.root)
     }
 
-    override fun onBindViewHolder(holder: ViewAllRecommendedAdapter.MyViewHolder, position:Int) {
+    override fun onBindViewHolder(holder: ViewAllRecommendedAdapterCustomer.MyViewHolder, position:Int) {
 
         val viewAllRecommendedModel = viewAllRecommendedModelArrayList[position]
         val name =  viewAllRecommendedModel.name
@@ -54,7 +55,7 @@ class ViewAllRecommendedAdapter: RecyclerView.Adapter<ViewAllRecommendedAdapter.
         }
     }
 
-    private fun detailsFragment(viewAllRecommendedModel: ViewAllRecommendedModel, holder: ViewAllRecommendedAdapter.MyViewHolder) {
+    private fun detailsFragment(viewAllRecommendedModel: ViewAllRecommendedModel, holder: ViewAllRecommendedAdapterCustomer.MyViewHolder) {
         val name =  viewAllRecommendedModel.name
         val description =  viewAllRecommendedModel.description
         val price =  viewAllRecommendedModel.price
@@ -63,7 +64,7 @@ class ViewAllRecommendedAdapter: RecyclerView.Adapter<ViewAllRecommendedAdapter.
 
 
         Navigation.findNavController(holder.itemView)
-            .navigate(R.id.action_nav_view_all_recommended_main_to_nav_details_main, Bundle().apply {
+            .navigate(R.id.action_nav_view_all_recommended_customer2_to_nav_details_customer2, Bundle().apply {
                 putString("name",name.toString())
                 putString("description",description.toString())
                 putString("price",price.toString())

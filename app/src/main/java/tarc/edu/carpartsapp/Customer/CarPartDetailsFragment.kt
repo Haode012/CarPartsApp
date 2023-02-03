@@ -1,4 +1,4 @@
-package tarc.edu.carpartsapp
+package tarc.edu.carpartsapp.Customer
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,11 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import tarc.edu.carpartsapp.R
-import tarc.edu.carpartsapp.databinding.FragmentDetailsBinding
+import tarc.edu.carpartsapp.databinding.FragmentCarPartDetailsBinding
 
-class DetailsFragment : Fragment() {
+class CarPartDetailsFragment : Fragment() {
 
-    private var _binding: FragmentDetailsBinding? = null
+    private var _binding: FragmentCarPartDetailsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,7 +25,7 @@ class DetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentDetailsBinding.inflate(inflater, container, false)
+        _binding = FragmentCarPartDetailsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         return root
@@ -69,8 +69,6 @@ class DetailsFragment : Fragment() {
 
             var totalPrice = 0.00
             totalPrice = price.toDouble() * totalQuantity
-
-            findNavController().navigate(R.id.action_nav_details_main_to_loginFragment)
         }
     }
 }

@@ -20,7 +20,6 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.nav_header_admin.view.*
-import kotlinx.android.synthetic.main.nav_header_customer.view.*
 import tarc.edu.carpartsapp.MainActivity
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.ActivityAdminBinding
@@ -46,7 +45,7 @@ class AdminActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home_customer, R.id.nav_profile_admin, R.id.nav_aboutUs_admin
+                R.id.nav_home_admin, R.id.nav_profile_admin, R.id.nav_aboutUs_admin
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

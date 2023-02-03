@@ -15,26 +15,27 @@ import tarc.edu.carpartsapp.Model.ViewAllCategoryModel
 import tarc.edu.carpartsapp.Model.ViewAllPopularModel
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.ViewAllPopularBinding
+import tarc.edu.carpartsapp.databinding.ViewAllPopularCustomerBinding
 
-class ViewAllPopularAdapter: RecyclerView.Adapter<ViewAllPopularAdapter.MyViewHolder> {
+class ViewAllPopularAdapterCustomer: RecyclerView.Adapter<ViewAllPopularAdapterCustomer.MyViewHolder> {
 
     public var viewAllPopularModelArrayList: ArrayList<ViewAllPopularModel>
     private val context: Context
-    private lateinit var binding: ViewAllPopularBinding
+    private lateinit var binding: ViewAllPopularCustomerBinding
 
     constructor(viewAllPopularModelArrayList: ArrayList<ViewAllPopularModel>, context: Context){
         this.viewAllPopularModelArrayList= viewAllPopularModelArrayList
         this.context = context
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewAllPopularAdapter.MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewAllPopularAdapterCustomer.MyViewHolder {
 
-        binding = ViewAllPopularBinding.inflate(LayoutInflater.from(context), parent, false)
+        binding = ViewAllPopularCustomerBinding.inflate(LayoutInflater.from(context), parent, false)
 
         return MyViewHolder(binding.root)
     }
 
-    override fun onBindViewHolder(holder: ViewAllPopularAdapter.MyViewHolder, position:Int) {
+    override fun onBindViewHolder(holder: ViewAllPopularAdapterCustomer.MyViewHolder, position:Int) {
 
         val viewAllPopularModel = viewAllPopularModelArrayList[position]
         val name = viewAllPopularModel.name
@@ -54,7 +55,7 @@ class ViewAllPopularAdapter: RecyclerView.Adapter<ViewAllPopularAdapter.MyViewHo
         }
     }
 
-    private fun detailsFragment(viewAllPopularModel: ViewAllPopularModel, holder: ViewAllPopularAdapter.MyViewHolder) {
+    private fun detailsFragment(viewAllPopularModel: ViewAllPopularModel, holder: ViewAllPopularAdapterCustomer.MyViewHolder) {
         val name = viewAllPopularModel.name
         val description = viewAllPopularModel.description
         val price = viewAllPopularModel.price
@@ -63,7 +64,7 @@ class ViewAllPopularAdapter: RecyclerView.Adapter<ViewAllPopularAdapter.MyViewHo
 
 
         Navigation.findNavController(holder.itemView)
-            .navigate(R.id.action_nav_view_all_popular_main_to_nav_details_main, Bundle().apply {
+            .navigate(R.id.action_nav_view_all_popular_customer2_to_nav_details_customer2, Bundle().apply {
                 putString("name",name.toString())
                 putString("description",description.toString())
                 putString("price",price.toString())
