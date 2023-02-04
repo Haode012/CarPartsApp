@@ -40,13 +40,14 @@ class CarPartDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val id = requireArguments().getString("id").toString()
         val name = requireArguments().getString("name").toString()
         val description = requireArguments().getString("description").toString()
         val price = requireArguments().getString("price").toString()
         val warranty = requireArguments().getString("warranty").toString()
         val img_url = requireArguments().getString("img_url").toString()
 
-
+        binding.detailsId.setText(id)
         binding.detailsName.setText(name)
         binding.detailsDescription.setText(description)
         binding.detailsPrice.setText(price)
@@ -85,6 +86,7 @@ class CarPartDetailsFragment : Fragment() {
 
             val hashMap = HashMap<String, Any>()
             hashMap["uid"] = FirebaseAuth.getInstance().currentUser!!.uid
+            hashMap["id"] = "$id"
             hashMap["name"] = "$name"
             hashMap["price"] = "$price"
             hashMap["warranty"] = "$warranty"
@@ -96,10 +98,7 @@ class CarPartDetailsFragment : Fragment() {
 
             val database = FirebaseDatabase.getInstance()
             val reference = database.getReference("CartItem")
-            val key = reference.push().key
-            hashMap["id"] = "$key"
-            if (key != null) {
-                reference.child(key).setValue(hashMap).addOnCompleteListener { task ->
+                reference.child(id).setValue(hashMap).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(requireContext(), "Added to Cart", Toast.LENGTH_SHORT).show()
                     } else {
@@ -108,5 +107,4 @@ class CarPartDetailsFragment : Fragment() {
                 }
             }
         }
-    }
 }

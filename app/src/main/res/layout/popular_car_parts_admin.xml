@@ -45,7 +45,8 @@
             android:ellipsize="end"
             android:maxLines="5"
             android:text="id"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textStyle="bold"/>
     </LinearLayout>
 
         <TextView

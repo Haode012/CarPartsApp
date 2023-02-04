@@ -40,12 +40,14 @@ class ViewAllCategoryAdapterCustomer: RecyclerView.Adapter<ViewAllCategoryAdapte
     override fun onBindViewHolder(holder: ViewAllCategoryAdapterCustomer.MyViewHolder, position:Int) {
 
         val viewAllCategoryModel = viewAllCategoryModelArrayList[position]
+        val id = viewAllCategoryModel.id
         val name = viewAllCategoryModel.name
         val description = viewAllCategoryModel.description
         val price = viewAllCategoryModel.price
         val warranty = viewAllCategoryModel.warranty
         val img_url = viewAllCategoryModel.img_url
 
+        holder.id.text = id
         holder.name.text = name
         holder.description.text = description
         holder.price.text = price
@@ -58,7 +60,8 @@ class ViewAllCategoryAdapterCustomer: RecyclerView.Adapter<ViewAllCategoryAdapte
     }
 
     private fun detailsFragment(viewAllCategoryModel: ViewAllCategoryModel, holder: ViewAllCategoryAdapterCustomer.MyViewHolder) {
-         val name = viewAllCategoryModel.name
+         val id = viewAllCategoryModel.id
+        val name = viewAllCategoryModel.name
          val description = viewAllCategoryModel.description
         val price = viewAllCategoryModel.price
         val warranty = viewAllCategoryModel.warranty
@@ -67,6 +70,7 @@ class ViewAllCategoryAdapterCustomer: RecyclerView.Adapter<ViewAllCategoryAdapte
 
         Navigation.findNavController(holder.itemView)
             .navigate(R.id.action_nav_view_all_category_customer2_to_nav_details_customer2, Bundle().apply {
+                putString("id",id.toString())
                 putString("name",name.toString())
                 putString("description",description.toString())
                 putString("price",price.toString())
@@ -82,6 +86,7 @@ class ViewAllCategoryAdapterCustomer: RecyclerView.Adapter<ViewAllCategoryAdapte
 
     inner class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
+        val id : TextView = binding.categoryItemId
         val name : TextView = binding.categoryItemName
         val description : TextView = binding.categoryItemDescription
         val price : TextView = binding.categoryItemPrice

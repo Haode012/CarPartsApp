@@ -38,12 +38,14 @@ class ViewAllRecommendedAdapterCustomer: RecyclerView.Adapter<ViewAllRecommended
     override fun onBindViewHolder(holder: ViewAllRecommendedAdapterCustomer.MyViewHolder, position:Int) {
 
         val viewAllRecommendedModel = viewAllRecommendedModelArrayList[position]
+        val id =  viewAllRecommendedModel.id
         val name =  viewAllRecommendedModel.name
         val description =  viewAllRecommendedModel.description
         val price =  viewAllRecommendedModel.price
         val warranty = viewAllRecommendedModel.warranty
         val img_url =  viewAllRecommendedModel.img_url
 
+        holder.id.text = id
         holder.name.text = name
         holder.description.text = description
         holder.price.text = price
@@ -56,6 +58,7 @@ class ViewAllRecommendedAdapterCustomer: RecyclerView.Adapter<ViewAllRecommended
     }
 
     private fun detailsFragment(viewAllRecommendedModel: ViewAllRecommendedModel, holder: ViewAllRecommendedAdapterCustomer.MyViewHolder) {
+        val id = viewAllRecommendedModel.id
         val name =  viewAllRecommendedModel.name
         val description =  viewAllRecommendedModel.description
         val price =  viewAllRecommendedModel.price
@@ -65,6 +68,7 @@ class ViewAllRecommendedAdapterCustomer: RecyclerView.Adapter<ViewAllRecommended
 
         Navigation.findNavController(holder.itemView)
             .navigate(R.id.action_nav_view_all_recommended_customer2_to_nav_details_customer2, Bundle().apply {
+                putString("id",id.toString())
                 putString("name",name.toString())
                 putString("description",description.toString())
                 putString("price",price.toString())
@@ -81,6 +85,7 @@ class ViewAllRecommendedAdapterCustomer: RecyclerView.Adapter<ViewAllRecommended
 
     inner class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
+        val id : TextView = binding.recommendedItemId
         val name : TextView = binding.recommendedItemName
         val description : TextView = binding.recommendedItemDescription
         val price : TextView = binding.recommendedItemPrice
