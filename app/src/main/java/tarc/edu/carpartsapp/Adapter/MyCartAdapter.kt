@@ -3,6 +3,7 @@ package tarc.edu.carpartsapp.Adapter
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +13,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -60,6 +63,14 @@ class MyCartAdapter: RecyclerView.Adapter<MyCartAdapter.MyViewHolder> {
         holder.total_price.text = total_price
         Glide.with(context).load(img_url).into(holder.img_url)
 
+        var total_amount = 0.0
+        for (myCartModel in myCartModelArrayList) {
+            total_amount += myCartModel.total_price.toDouble()
+        }
+
+        val intent = Intent("totalAmount")
+        intent.putExtra("totalAmount", total_amount)
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent)
 
         holder.deleteBtn.setOnClickListener{
             val builder = AlertDialog.Builder(context)
@@ -73,6 +84,8 @@ class MyCartAdapter: RecyclerView.Adapter<MyCartAdapter.MyViewHolder> {
                 }
                 .show()
         }
+
+
     }
 
     private fun deleteCartItem(myCartModel: MyCartModel, holder: MyCartAdapter.MyViewHolder) {

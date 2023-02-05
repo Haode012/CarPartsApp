@@ -20,11 +20,11 @@
         android:label="@string/menu_myCart"
         tools:layout="@layout/fragment_my_cart">
         <action
-            android:id="@+id/action_nav_myCart_customer_to_nav_placedOrder_customer"
-            app:destination="@id/nav_placedOrder_customer" />
-        <action
             android:id="@+id/action_nav_myCart_customer_to_nav_creditCard_customer"
             app:destination="@id/nav_creditCard_customer" />
+        <action
+            android:id="@+id/action_nav_myCart_customer_to_nav_placedOrder_customer"
+            app:destination="@id/nav_placedOrder_customer" />
     </fragment>
     <fragment
         android:id="@+id/nav_aboutUs_customer"
@@ -55,26 +55,12 @@
         android:id="@+id/nav_placedOrder_customer"
         android:name="tarc.edu.carpartsapp.Customer.PlacedOrderFragment"
         android:label="Placed Order"
-        tools:layout="@layout/fragment_placed_order">
-        <action
-            android:id="@+id/action_nav_placedOrder_customer_to_nav_myCart_customer"
-            app:destination="@id/nav_myCart_customer" />
-        <action
-            android:id="@+id/action_nav_placedOrder_customer_to_nav_creditCard_customer"
-            app:destination="@id/nav_creditCard_customer" />
-    </fragment>
+        tools:layout="@layout/fragment_placed_order"/>
     <fragment
         android:id="@+id/nav_creditCard_customer"
         android:name="tarc.edu.carpartsapp.Customer.CreditCardFragment"
         android:label="Credit Card Details"
-        tools:layout="@layout/fragment_credit_card">
-        <action
-            android:id="@+id/action_nav_creditCard_customer_to_nav_myCart_customer"
-            app:destination="@id/nav_myCart_customer" />
-        <action
-            android:id="@+id/action_nav_creditCard_customer_to_nav_placedOrder_customer"
-            app:destination="@id/nav_placedOrder_customer" />
-    </fragment>
+        tools:layout="@layout/fragment_credit_card"/>
     <fragment
         android:id="@+id/nav_details_customer2"
         android:name="tarc.edu.carpartsapp.Customer.CarPartDetailsFragment"

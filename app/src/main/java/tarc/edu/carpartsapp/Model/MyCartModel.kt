@@ -1,5 +1,8 @@
 package tarc.edu.carpartsapp.Model
-class MyCartModel{
+
+import java.io.Serializable
+
+class MyCartModel : Serializable {
     var id:String = ""
     var name:String = ""
     var warranty:String = ""
@@ -8,7 +11,6 @@ class MyCartModel{
     var total_price:String = ""
     var img_url:String = ""
     var currentDate:String = ""
-    var currentTime:String = ""
     var uid:String = ""
 
     //empty constructor, required by firebase
@@ -24,7 +26,6 @@ class MyCartModel{
         total_price: String,
         img_url: String,
         currentDate: String,
-        currentTime: String,
         uid:String
 
     ) {
@@ -37,7 +38,6 @@ class MyCartModel{
         this.total_price = total_price
         this.img_url = img_url
         this.currentDate = currentDate
-        this.currentTime = currentTime
     }
 }
 

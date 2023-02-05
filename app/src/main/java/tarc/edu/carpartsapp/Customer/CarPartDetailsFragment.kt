@@ -81,9 +81,6 @@ class CarPartDetailsFragment : Fragment() {
             val currentDate = SimpleDateFormat("MM/dd/yyyy")
             val saveCurrentDate = currentDate.format(Calendar.getInstance().time)
 
-            val currentTime = SimpleDateFormat("HH:mm:ss a", Locale.ENGLISH)
-            val saveCurrentTime = currentTime.format(Calendar.getInstance().time)
-
             val hashMap = HashMap<String, Any>()
             hashMap["uid"] = FirebaseAuth.getInstance().currentUser!!.uid
             hashMap["id"] = "$id"
@@ -94,7 +91,6 @@ class CarPartDetailsFragment : Fragment() {
             hashMap["total_quantity"] = "$totalQuantity"
             hashMap["img_url"] = "$img_url"
             hashMap["currentDate"] = "$saveCurrentDate"
-            hashMap["currentTime"] = "$saveCurrentTime"
 
             val database = FirebaseDatabase.getInstance()
             val reference = database.getReference("CartItem")
