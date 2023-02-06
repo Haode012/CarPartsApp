@@ -14,19 +14,34 @@
             android:title="@string/menu_profile" />
         <item
             android:id="@+id/nav_myCart_customer"
-            android:icon="@drawable/ic_baseline_add_shopping_cart_24"
+            android:icon="@drawable/ic_baseline_shopping_cart_24"
             android:title="@string/menu_myCart" />
         <item
-            android:id="@+id/nav_myOrder_customer"
-            android:icon="@drawable/ic_baseline_shopping_cart_24"
-            android:title="@string/menu_myOrder" />
+            android:title="My Order" >
+            <menu>
+                <item
+                    android:id="@+id/nav_my_order_cash_on_delivery_customer"
+                    android:icon="@drawable/ic_baseline_wallet_24"
+                    android:title="By Cash On Delivery" />
+                <item
+                    android:id="@+id/nav_my_order_credit_card_customer"
+                    android:icon="@drawable/ic_baseline_credit_card_24"
+                    android:title="By Credit Card" />
+            </menu>
+        </item>
+
         <item
-            android:id="@+id/nav_feedback_customer"
-            android:icon="@drawable/ic_baseline_feedback_24"
-            android:title="@string/menu_feedback" />
-        <item
-            android:id="@+id/nav_aboutUs_customer"
-            android:icon="@drawable/ic_baseline_info_24"
-            android:title="@string/menu_aboutUs" />
+            android:title="Others" >
+            <menu>
+                <item
+                   android:id="@+id/nav_feedback_customer"
+                    android:icon="@drawable/ic_baseline_feedback_24"
+                    android:title="@string/menu_feedback" />
+                <item
+                   android:id="@+id/nav_aboutUs_customer"
+                    android:icon="@drawable/ic_baseline_info_24"
+                    android:title="@string/menu_aboutUs" />
+            </menu>
+        </item>
     </group>
 </menu>

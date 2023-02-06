@@ -46,7 +46,8 @@ class CreditCardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Retrieve data from SharedPreferences
-        val sharedPref = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE) ?: return
+        val sharedPref =
+            requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE) ?: return
         val gson = Gson()
         val retrievedJson = sharedPref.getString("itemList", "")
         if (retrievedJson!!.isNotEmpty()) {
@@ -54,24 +55,22 @@ class CreditCardFragment : Fragment() {
             val type = object : TypeToken<ArrayList<MyCartModel>>() {}.type
             val myCartModelArrayList = gson.fromJson<ArrayList<MyCartModel>>(retrievedJson, type)
 
-            val currentDate = SimpleDateFormat("MM/dd/yyyy")
-            val saveCurrentDate = currentDate.format(Calendar.getInstance().time)
-
-            val hashMap = HashMap<String, Any>()
-            hashMap["currentDate"] = "$saveCurrentDate"
-
-            // Add to Firebase Realtime Database
             val database = FirebaseDatabase.getInstance()
-            val myRef = database.getReference("OrderItem(Credit Card)")
-            myRef.setValue(myCartModelArrayList).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Toast.makeText(requireContext(), "Your Order Has Been Placed", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(requireContext(), "Failed to Add", Toast.LENGTH_SHORT).show()
+            val myRef = database.getReference("OrderItem")
+            val orderID = myRef.push().key
+
+            for (myCartModel in myCartModelArrayList) {
+                val id = myCartModel.id
+                myCartModel.orderID = orderID!!
+                myRef.child(orderID!!).child(id!!).setValue(myCartModel).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(requireContext(), "Your Order Has Been Placed", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(requireContext(), "Failed to Add", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         } else {
-            // Handle empty string case
             Toast.makeText(requireContext(), "Empty", Toast.LENGTH_SHORT).show()
         }
 

@@ -9,11 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import tarc.edu.carpartsapp.R
-import tarc.edu.carpartsapp.databinding.FragmentMyOrderBinding
+import tarc.edu.carpartsapp.databinding.FragmentMyOrderCreditCardBinding
 
-class MyOrderFragment : Fragment() {
+class MyOrderCreditCardFragment : Fragment() {
 
-    private var _binding: FragmentMyOrderBinding? = null
+    private var _binding: FragmentMyOrderCreditCardBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,7 +25,7 @@ class MyOrderFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentMyOrderBinding.inflate(inflater, container, false)
+        _binding = FragmentMyOrderCreditCardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         return root

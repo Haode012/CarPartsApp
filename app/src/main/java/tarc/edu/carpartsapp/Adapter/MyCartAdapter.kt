@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
@@ -74,8 +75,13 @@ class MyCartAdapter: RecyclerView.Adapter<MyCartAdapter.MyViewHolder> {
 
         holder.deleteBtn.setOnClickListener{
             val builder = AlertDialog.Builder(context)
+            val view = LayoutInflater.from(context).inflate(R.layout.alert_dialog_layout, null)
+            val messageTextView = view.findViewById<TextView>(R.id.messageTextView)
+            messageTextView.text = "Are you sure you want to delete this cart item?"
+            messageTextView.setTextColor(ContextCompat.getColor(context, android.R.color.holo_red_dark))
+
             builder.setTitle("Delete")
-                .setMessage("Are you sure you want to delete this cart item?")
+                .setView(view)
                 .setPositiveButton("Confirm"){a,d->
                     deleteCartItem(myCartModel, holder)
                 }
@@ -84,8 +90,6 @@ class MyCartAdapter: RecyclerView.Adapter<MyCartAdapter.MyViewHolder> {
                 }
                 .show()
         }
-
-
     }
 
     private fun deleteCartItem(myCartModel: MyCartModel, holder: MyCartAdapter.MyViewHolder) {

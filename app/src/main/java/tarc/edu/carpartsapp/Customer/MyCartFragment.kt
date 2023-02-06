@@ -1,5 +1,6 @@
 package tarc.edu.carpartsapp.Customer
 
+import android.app.AlertDialog
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -11,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
@@ -62,22 +64,40 @@ class MyCartFragment : Fragment() {
 
         binding.buttonCashOnDelivery.setOnClickListener{
 
-            // Store data in SharedPreferences
-            val sharedPref = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE) ?: return@setOnClickListener
-            val editor = sharedPref.edit()
-            val gson = Gson()
-            val json = gson.toJson(myCartModelArrayList)
-            Log.d("JSON", json)
-            editor.putString("itemList", json)
-            editor.apply()
+            val builder = AlertDialog.Builder(context)
+            val view = LayoutInflater.from(context).inflate(R.layout.alert_dialog_layout, null)
+            val messageTextView = view.findViewById<TextView>(R.id.messageTextView)
+            messageTextView.text = "Are you sure you want to order?\nYou are not allow to make any changes after ordered"
+            messageTextView.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_red_dark))
 
-
-
-            findNavController().navigate(R.id.action_nav_myCart_customer_to_nav_placedOrder_customer)
+            builder.setTitle("Order")
+                .setView(view)
+                .setPositiveButton("Confirm"){a,d->
+                    saveData()
+                }
+                .setNegativeButton("Cancel"){a,d->
+                    a.dismiss()
+                }
+                .show()
         }
 
         binding.buttonCreditCard.setOnClickListener{
-            findNavController().navigate(R.id.action_nav_myCart_customer_to_nav_creditCard_customer)
+
+            val builder = AlertDialog.Builder(context)
+            val view = LayoutInflater.from(context).inflate(R.layout.alert_dialog_layout, null)
+            val messageTextView = view.findViewById<TextView>(R.id.messageTextView)
+            messageTextView.text = "Are you sure you want to order?\nYou are not allow to make any changes after ordered"
+            messageTextView.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_red_dark))
+
+            builder.setTitle("Order")
+                .setView(view)
+                .setPositiveButton("Confirm"){a,d->
+                    saveDataCreditCard()
+                }
+                .setNegativeButton("Cancel"){a,d->
+                    a.dismiss()
+                }
+                .show()
         }
 
         totalAmount = view.findViewById(R.id.textViewTotalAmount)
@@ -98,6 +118,23 @@ class MyCartFragment : Fragment() {
         myCartModelArrayList = arrayListOf<MyCartModel>()
 
         getData()
+    }
+
+    private fun saveDataCreditCard() {
+        findNavController().navigate(R.id.action_nav_myCart_customer_to_nav_creditCard_customer)
+    }
+
+    private fun saveData() {
+        // Store data in SharedPreferences
+        val sharedPref = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE) ?: return
+        val editor = sharedPref.edit()
+        val gson = Gson()
+        val json = gson.toJson(myCartModelArrayList)
+        Log.d("JSON", json)
+        editor.putString("itemList", json)
+        editor.apply()
+
+        findNavController().navigate(R.id.action_nav_myCart_customer_to_nav_placedOrder_customer)
     }
 
     private fun getData(){

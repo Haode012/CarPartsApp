@@ -47,11 +47,6 @@
             app:destination="@id/nav_view_all_recommended_customer2" />
     </fragment>
     <fragment
-        android:id="@+id/nav_myOrder_customer"
-        android:name="tarc.edu.carpartsapp.Customer.MyOrderFragment"
-        android:label="@string/menu_myOrder"
-        tools:layout="@layout/fragment_my_order" />
-    <fragment
         android:id="@+id/nav_placedOrder_customer"
         android:name="tarc.edu.carpartsapp.Customer.PlacedOrderFragment"
         android:label="Placed Order"
@@ -130,4 +125,14 @@
             android:id="@+id/action_nav_feedback_customer_to_nav_home_customer"
             app:destination="@id/nav_home_customer" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_my_order_cash_on_delivery_customer"
+        android:name="tarc.edu.carpartsapp.Customer.MyOrderCashOnDeliveryFragment"
+        android:label="Ordered Items"
+        tools:layout="@layout/fragment_my_order_cash_on_delivery" />
+    <fragment
+        android:id="@+id/nav_my_order_credit_card_customer"
+        android:name="tarc.edu.carpartsapp.Customer.MyOrderCreditCardFragment"
+        android:label="Ordered Items"
+        tools:layout="@layout/fragment_my_order_credit_card" />
 </navigation>

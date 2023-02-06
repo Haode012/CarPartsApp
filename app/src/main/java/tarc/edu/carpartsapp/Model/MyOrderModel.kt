@@ -1,6 +1,6 @@
 package tarc.edu.carpartsapp.Model
 
-class MyCartModel {
+class MyOrderModel {
     var orderID:String = ""
     var id:String = ""
     var name:String = ""
