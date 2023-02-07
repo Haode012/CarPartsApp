@@ -1,5 +1,9 @@
 package tarc.edu.carpartsapp.Customer
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +26,7 @@ import tarc.edu.carpartsapp.databinding.FragmentMyOrderCashOnDeliveryBinding
 
 class MyOrderCashOnDeliveryFragment : Fragment() {
 
+    private lateinit var totalAmount: TextView
     private lateinit var dbref : DatabaseReference
     private lateinit var recyclerView: RecyclerView
     private lateinit var myOrderModelArrayList : ArrayList<MyOrderModel>
@@ -44,6 +50,18 @@ class MyOrderCashOnDeliveryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        totalAmount = view.findViewById(R.id.textViewTotalAmount2)
+
+        val messageReceiver = object: BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                val totalBill = intent?.getDoubleExtra("totalAmount", 0.00)
+                val totalItemsBill = String.format("%.2f", totalBill)
+                totalAmount.text = totalItemsBill
+            }
+        }
+
+        LocalBroadcastManager.getInstance(requireActivity()).registerReceiver(messageReceiver, IntentFilter("totalAmount"))
 
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)

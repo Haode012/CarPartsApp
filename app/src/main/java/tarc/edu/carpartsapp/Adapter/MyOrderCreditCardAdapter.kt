@@ -24,29 +24,30 @@ import com.google.firebase.ktx.Firebase
 import tarc.edu.carpartsapp.Model.MyOrderModel
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.MyOrderCashOnDeliveryItemBinding
+import tarc.edu.carpartsapp.databinding.MyOrderCreditCardItemBinding
 
 
-class MyOrderCashOnDeliveryAdapter: RecyclerView.Adapter<MyOrderCashOnDeliveryAdapter.MyViewHolder> {
+class MyOrderCreditCardAdapter: RecyclerView.Adapter<MyOrderCreditCardAdapter.MyViewHolder> {
 
-    public var myOrderModelArrayList: ArrayList<MyOrderModel>
+    public var myOrderModelArrayList2: ArrayList<MyOrderModel>
     private val context: Context
-    private lateinit var binding: MyOrderCashOnDeliveryItemBinding
+    private lateinit var binding: MyOrderCreditCardItemBinding
 
     constructor(myOrderModelArrayList: ArrayList<MyOrderModel>, context: Context){
-        this.myOrderModelArrayList = myOrderModelArrayList
+        this.myOrderModelArrayList2 = myOrderModelArrayList
         this.context = context
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyOrderCashOnDeliveryAdapter.MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyOrderCreditCardAdapter.MyViewHolder {
 
-        binding = MyOrderCashOnDeliveryItemBinding.inflate(LayoutInflater.from(context), parent, false)
+        binding = MyOrderCreditCardItemBinding.inflate(LayoutInflater.from(context), parent, false)
 
         return MyViewHolder(binding.root)
     }
 
-    override fun onBindViewHolder(holder: MyOrderCashOnDeliveryAdapter.MyViewHolder, position:Int) {
+    override fun onBindViewHolder(holder: MyOrderCreditCardAdapter.MyViewHolder, position:Int) {
 
-        val myOrderModel = myOrderModelArrayList[position]
+        val myOrderModel = myOrderModelArrayList2[position]
         val id = myOrderModel.id
         val name = myOrderModel.name
         val warranty = myOrderModel.warranty
@@ -64,7 +65,7 @@ class MyOrderCashOnDeliveryAdapter: RecyclerView.Adapter<MyOrderCashOnDeliveryAd
         Glide.with(context).load(img_url).into(holder.img_url)
 
         var total_amount = 0.0
-        for (myOrderModel in myOrderModelArrayList) {
+        for (myOrderModel in myOrderModelArrayList2) {
             total_amount += myOrderModel.total_price.toDouble()
         }
 
@@ -75,17 +76,17 @@ class MyOrderCashOnDeliveryAdapter: RecyclerView.Adapter<MyOrderCashOnDeliveryAd
 
     override fun getItemCount(): Int {
 
-        return myOrderModelArrayList.size
+        return myOrderModelArrayList2.size
     }
 
     inner class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
-        var id : TextView = binding.myOrderCashOnDeliveryItemId
-        var name : TextView = binding.myOrderCashOnDeliveryItemName
-        val warranty : TextView = binding.myOrderCashOnDeliveryItemWarranty
-        val price : TextView = binding.myOrderCashOnDeliveryItemPrice
-        val total_quantity : TextView = binding.myOrderCashOnDeliveryItemTotalQuantity
-        val total_price : TextView = binding.myOrderCashOnDeliveryItemTotalPrice
-        val img_url : ImageView = binding.myOrderCashOnDeliveryItemImage
+        var id : TextView = binding.myOrderCreditCardItemId
+        var name : TextView = binding.myOrderCreditCardItemName
+        val warranty : TextView = binding.myOrderCreditCardItemWarranty
+        val price : TextView = binding.myOrderCreditCardItemPrice
+        val total_quantity : TextView = binding.myOrderCreditCardItemTotalQuantity
+        val total_price : TextView = binding.myOrderCreditCardItemTotalPrice
+        val img_url : ImageView = binding.myOrderCreditCardItemImage
     }
 }

@@ -1,6 +1,6 @@
 package tarc.edu.carpartsapp.Model
 
-class MyOrderModel {
+class PaymentModel {
     var paymentID:String = ""
     var bankType:String = ""
     var cardNumber:String = ""
@@ -39,7 +39,6 @@ class MyOrderModel {
         img_url: String,
         currentDate: String,
         uid:String
-
     ) {
         this.paymentID = paymentID
         this.bankType = bankType

@@ -86,7 +86,7 @@ class MyCartFragment : Fragment() {
             val builder = AlertDialog.Builder(context)
             val view = LayoutInflater.from(context).inflate(R.layout.alert_dialog_layout, null)
             val messageTextView = view.findViewById<TextView>(R.id.messageTextView)
-            messageTextView.text = "Are you sure you want to order?\nYou are not allow to make any changes after ordered"
+            messageTextView.text = "Are you sure you want to order?\nYou are not allow to make any changes after confirmed and must pay it now"
             messageTextView.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_red_dark))
 
             builder.setTitle("Order")
@@ -121,6 +121,15 @@ class MyCartFragment : Fragment() {
     }
 
     private fun saveDataCreditCard() {
+        // Store data in SharedPreferences
+        val sharedPref = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE) ?: return
+        val editor = sharedPref.edit()
+        val gson = Gson()
+        val json = gson.toJson(myCartModelArrayList)
+        Log.d("JSON", json)
+        editor.putString("itemList2", json)
+        editor.apply()
+
         findNavController().navigate(R.id.action_nav_myCart_customer_to_nav_creditCard_customer)
     }
 
@@ -134,7 +143,7 @@ class MyCartFragment : Fragment() {
         editor.putString("itemList", json)
         editor.apply()
 
-        findNavController().navigate(R.id.action_nav_myCart_customer_to_nav_placedOrder_customer)
+        findNavController().navigate(R.id.action_nav_myCart_customer_to_nav_home_customer)
     }
 
     private fun getData(){

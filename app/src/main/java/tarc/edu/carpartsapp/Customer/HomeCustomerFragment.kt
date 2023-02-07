@@ -9,14 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.ScrollView
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.common.reflect.TypeToken
 import com.google.firebase.database.*
+import com.google.gson.Gson
 import tarc.edu.carpartsapp.Adapter.*
-import tarc.edu.carpartsapp.Model.CarPartsCategoryModel
-import tarc.edu.carpartsapp.Model.PopularModel
-import tarc.edu.carpartsapp.Model.RecommendedModel
+import tarc.edu.carpartsapp.Model.*
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.FragmentHomeCustomerBinding
 
@@ -81,6 +82,86 @@ class HomeCustomerFragment : Fragment() {
         recommendedModelArrayList = arrayListOf<RecommendedModel>()
 
         getData()
+
+        // Retrieve data from SharedPreferences
+        val sharedPref =
+            requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE) ?: return
+        val gson = Gson()
+        val retrievedJson = sharedPref.getString("itemList", "")
+        if (retrievedJson!!.isNotEmpty()) {
+            Log.d("Retrieved JSON", retrievedJson)
+            val type = object : TypeToken<ArrayList<MyCartModel>>() {}.type
+            val myCartModelArrayList = gson.fromJson<ArrayList<MyCartModel>>(retrievedJson, type)
+
+            val database = FirebaseDatabase.getInstance()
+            val myRef = database.getReference("OrderItem(Cash On Delivery)")
+            val orderID = myRef.push().key
+
+            for (myCartModel in myCartModelArrayList) {
+                val id = myCartModel.id
+                myCartModel.orderID = orderID!!
+                myRef.child(orderID!!).child(id!!).setValue(myCartModel).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(requireContext(), "Your Order Has Been Placed", Toast.LENGTH_SHORT).show()
+                        val sharedPref = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE) ?: return@addOnCompleteListener
+                        val editor = sharedPref.edit()
+                        editor.clear()
+                        editor.apply()
+                    } else {
+                        Toast.makeText(requireContext(), "Failed to Add", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        } else {
+        }
+
+        // Retrieve data from SharedPreferences3
+        val sharedPref3 =
+            requireActivity().getSharedPreferences("MyPref3", Context.MODE_PRIVATE) ?: return
+        val gson3 = Gson()
+        val retrievedJson3 = sharedPref3.getString("itemList3", "")
+        if (retrievedJson3!!.isNotEmpty()) {
+            Log.d("Retrieved JSON3", retrievedJson3)
+            val type3 = object : TypeToken<ArrayList<MyOrderModel>>() {}.type
+            val myOrderModelArrayList2 = gson3.fromJson<ArrayList<MyOrderModel>>(retrievedJson3, type3)
+
+            val database = FirebaseDatabase.getInstance()
+            val myRef = database.getReference("PaymentDetails")
+            val paymentID = myRef.push().key
+            val bankType = arguments?.getString("bankType").toString()
+            val cardNumber = arguments?.getString("cardNumber").toString()
+            val expirationDateMonth = arguments?.getString("expirationDateMonth").toString()
+            val expirationDateYear = arguments?.getString("expirationDateYear").toString()
+            val CVV = arguments?.getString("CVV").toString()
+
+            for (myOrderModel in myOrderModelArrayList2) {
+                val orderID = myOrderModel.orderID
+                myOrderModel.paymentID = paymentID!!
+                myOrderModel.bankType = bankType!!
+                myOrderModel.cardNumber = cardNumber!!
+                myOrderModel.expirationDateMonth = expirationDateMonth!!
+                myOrderModel.expirationDateYear = expirationDateYear!!
+                myOrderModel.CVV = CVV!!
+
+                myRef.child(paymentID!!).child(orderID!!).setValue(myOrderModel).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(requireContext(), "Your Order Has Been Placed", Toast.LENGTH_SHORT).show()
+                        val sharedPref = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE) ?: return@addOnCompleteListener
+                        val editor = sharedPref.edit()
+                        editor.clear()
+                        editor.apply()
+
+                        val sharedPref3 = requireActivity().getSharedPreferences("MyPref3", Context.MODE_PRIVATE) ?: return@addOnCompleteListener
+                        val editor3 = sharedPref3.edit()
+                        editor3.clear()
+                        editor3.apply()
+                    } else {
+                        Toast.makeText(requireContext(), "Failed to Add", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        } else {
+        }
     }
 
     private fun getData(){
