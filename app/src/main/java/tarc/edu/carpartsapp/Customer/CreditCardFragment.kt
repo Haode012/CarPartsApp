@@ -114,30 +114,6 @@ class CreditCardFragment : Fragment() {
             } else if (!CVV.matches(Regex("^\\d{3}$"))) {
                 binding.editTextCVV.error = "CVV must be 3 digits and no letters"
             } else {
-
-               /* val sharedPref = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE) ?: return@setOnClickListener
-                val gson = Gson()
-                val retrievedJson = sharedPref.getString("itemList2", "")
-                if (retrievedJson!!.isNotEmpty()) {
-                    val type = object : TypeToken<ArrayList<MyCartModel>>() {}.type
-                    val myCartModelArrayList = gson.fromJson<ArrayList<MyCartModel>>(retrievedJson, type)
-                    val myOrderModelArrayList = myCartModelArrayList
-
-                    // Set the orderID property of each element in myOrderModelArrayList
-                    for (i in myOrderModelArrayList.indices) {
-                        if(myCartModelArrayList[i].orderID.isNotEmpty()){
-                            myOrderModelArrayList[i].orderID = myCartModelArrayList[i].orderID
-                        }
-                    }
-
-                    // Store myOrderModelArrayList in another SharedPreferences
-                    val sharedPref3 = requireActivity().getSharedPreferences("MyPref3", Context.MODE_PRIVATE) ?: return@setOnClickListener
-                    val editor3 = sharedPref3.edit()
-                    val gson3 = Gson()
-                    val json3 = gson3.toJson(myOrderModelArrayList)
-                    editor3.putString("itemList3", json3)
-                    editor3.apply()*/
-
                     findNavController().navigate(
                         R.id.action_nav_creditCard_customer_to_nav_home_customer,
                         Bundle().apply {
