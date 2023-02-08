@@ -103,7 +103,7 @@ class MyCartAdapter: RecyclerView.Adapter<MyCartAdapter.MyViewHolder> {
                 if (task.isSuccessful) {
                     myCartModelArrayList.remove(myCartModel)
                     notifyDataSetChanged()
-                    Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "You item have been deleted", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(context, "Delete failed", Toast.LENGTH_SHORT).show()
                 }

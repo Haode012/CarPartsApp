@@ -123,7 +123,7 @@ class HomeCustomerFragment : Fragment() {
         if (retrievedJson3!!.isNotEmpty()) {
             Log.d("Retrieved JSON3", retrievedJson3)
             val type3 = object : TypeToken<ArrayList<MyOrderModel>>() {}.type
-            val myOrderModelArrayList2 = gson3.fromJson<ArrayList<MyOrderModel>>(retrievedJson3, type3)
+            val myOrderModelArrayList = gson3.fromJson<ArrayList<MyOrderModel>>(retrievedJson3, type3)
 
             val database = FirebaseDatabase.getInstance()
             val myRef = database.getReference("PaymentDetails")
@@ -134,8 +134,8 @@ class HomeCustomerFragment : Fragment() {
             val expirationDateYear = arguments?.getString("expirationDateYear").toString()
             val CVV = arguments?.getString("CVV").toString()
 
-            for (myOrderModel in myOrderModelArrayList2) {
-                val orderID = myOrderModel.orderID
+            for (myOrderModel in myOrderModelArrayList) {
+                val id = myOrderModel.id
                 myOrderModel.paymentID = paymentID!!
                 myOrderModel.bankType = bankType!!
                 myOrderModel.cardNumber = cardNumber!!
@@ -143,7 +143,7 @@ class HomeCustomerFragment : Fragment() {
                 myOrderModel.expirationDateYear = expirationDateYear!!
                 myOrderModel.CVV = CVV!!
 
-                myRef.child(paymentID!!).child(orderID!!).setValue(myOrderModel).addOnCompleteListener { task ->
+                myRef.child(paymentID!!).child(id!!).setValue(myOrderModel).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(requireContext(), "Your Order Has Been Placed", Toast.LENGTH_SHORT).show()
                         val sharedPref = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE) ?: return@addOnCompleteListener
