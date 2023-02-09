@@ -94,10 +94,11 @@ class MyCartAdapter: RecyclerView.Adapter<MyCartAdapter.MyViewHolder> {
 
     private fun deleteCartItem(myCartModel: MyCartModel, holder: MyCartAdapter.MyViewHolder) {
 
+        val uid = FirebaseAuth.getInstance().currentUser!!.uid
         val id = myCartModel.id
 
         val ref = FirebaseDatabase.getInstance().getReference("CartItem")
-        ref.child(id)
+        ref.child(uid).child(id)
             .removeValue()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {

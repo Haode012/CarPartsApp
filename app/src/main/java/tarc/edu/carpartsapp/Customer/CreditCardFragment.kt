@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.common.reflect.TypeToken
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.gson.Gson
 import tarc.edu.carpartsapp.Model.MyCartModel
@@ -61,11 +62,12 @@ class CreditCardFragment : Fragment() {
             val database = FirebaseDatabase.getInstance()
             val myRef = database.getReference("OrderItem(Credit Card)")
             val orderID = myRef.push().key
+            val uid =  FirebaseAuth.getInstance().currentUser!!.uid
 
             for (myCartModel in myCartModelArrayList) {
                 val id = myCartModel.id
                 myCartModel.orderID = orderID!!
-                myRef.child(orderID!!).child(id!!).setValue(myCartModel)
+                myRef.child(uid).child(orderID!!).child(id!!).setValue(myCartModel)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             // Store myOrderModelArrayList in another SharedPreferences

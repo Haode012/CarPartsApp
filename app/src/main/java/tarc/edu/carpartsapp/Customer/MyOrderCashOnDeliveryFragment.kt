@@ -16,6 +16,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import tarc.edu.carpartsapp.Adapter.MyCartAdapter
 import tarc.edu.carpartsapp.Adapter.MyOrderCashOnDeliveryAdapter
@@ -73,7 +74,8 @@ class MyOrderCashOnDeliveryFragment : Fragment() {
 
     private fun getData(){
 
-        dbref = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("OrderItem(Cash On Delivery)")
+        dbref = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("OrderItem(Cash On Delivery)").child(
+            FirebaseAuth.getInstance().currentUser!!.uid)
 
         dbref.addValueEventListener(object : ValueEventListener {
 

@@ -16,6 +16,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import tarc.edu.carpartsapp.Adapter.MyOrderCreditCardAdapter
 import tarc.edu.carpartsapp.Model.MyOrderModel
@@ -71,7 +72,7 @@ class MyOrderCreditCardFragment : Fragment() {
 
     private fun getData(){
 
-        dbref = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("PaymentDetails")
+        dbref = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("PaymentDetails").child(FirebaseAuth.getInstance().currentUser!!.uid)
 
         dbref.addValueEventListener(object : ValueEventListener {
 

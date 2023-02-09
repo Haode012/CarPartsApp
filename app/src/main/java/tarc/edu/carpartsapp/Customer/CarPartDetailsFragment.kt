@@ -94,7 +94,7 @@ class CarPartDetailsFragment : Fragment() {
 
             val database = FirebaseDatabase.getInstance()
             val reference = database.getReference("CartItem")
-                reference.child(id).setValue(hashMap).addOnCompleteListener { task ->
+                reference.child(FirebaseAuth.getInstance().currentUser!!.uid).child(id).setValue(hashMap).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(requireContext(), "Added to Cart", Toast.LENGTH_SHORT).show()
                     } else {

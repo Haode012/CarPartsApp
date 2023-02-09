@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.common.reflect.TypeToken
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.gson.Gson
 import tarc.edu.carpartsapp.Adapter.*
@@ -95,12 +96,13 @@ class HomeCustomerFragment : Fragment() {
 
             val database = FirebaseDatabase.getInstance()
             val myRef = database.getReference("OrderItem(Cash On Delivery)")
+            val uid = FirebaseAuth.getInstance().currentUser!!.uid
             val orderID = myRef.push().key
 
             for (myCartModel in myCartModelArrayList) {
                 val id = myCartModel.id
                 myCartModel.orderID = orderID!!
-                myRef.child(orderID!!).child(id!!).setValue(myCartModel).addOnCompleteListener { task ->
+                myRef.child(uid).child(orderID!!).child(id!!).setValue(myCartModel).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(requireContext(), "Your Order Has Been Placed", Toast.LENGTH_SHORT).show()
                         val sharedPref = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE) ?: return@addOnCompleteListener
@@ -127,6 +129,7 @@ class HomeCustomerFragment : Fragment() {
 
             val database = FirebaseDatabase.getInstance()
             val myRef = database.getReference("PaymentDetails")
+            val uid = FirebaseAuth.getInstance().currentUser!!.uid
             val paymentID = myRef.push().key
             val bankType = arguments?.getString("bankType").toString()
             val cardNumber = arguments?.getString("cardNumber").toString()
@@ -143,7 +146,7 @@ class HomeCustomerFragment : Fragment() {
                 myOrderModel.expirationDateYear = expirationDateYear!!
                 myOrderModel.CVV = CVV!!
 
-                myRef.child(paymentID!!).child(id!!).setValue(myOrderModel).addOnCompleteListener { task ->
+                myRef.child(uid).child(paymentID!!).child(id!!).setValue(myOrderModel).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(requireContext(), "Your Order Has Been Placed", Toast.LENGTH_SHORT).show()
                         val sharedPref = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE) ?: return@addOnCompleteListener
