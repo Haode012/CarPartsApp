@@ -68,6 +68,10 @@ class MyOrderCreditCardFragment : Fragment() {
         myOrderModelArrayList2 = arrayListOf<MyOrderModel>()
 
         getData()
+
+        binding.buttonGoToDelivery.setOnClickListener {
+            findNavController().navigate(R.id.action_nav_my_order_credit_card_customer_to_nav_delivery_credit_card_customer)
+        }
     }
 
     private fun getData(){

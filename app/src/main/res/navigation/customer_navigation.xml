@@ -128,10 +128,36 @@
         android:id="@+id/nav_my_order_cash_on_delivery_customer"
         android:name="tarc.edu.carpartsapp.Customer.MyOrderCashOnDeliveryFragment"
         android:label="Ordered Items"
-        tools:layout="@layout/fragment_my_order_cash_on_delivery" />
+        tools:layout="@layout/fragment_my_order_cash_on_delivery" >
+        <action
+            android:id="@+id/action_nav_my_order_cash_on_delivery_customer_to_nav_delivery_cash_on_delivery_customer"
+            app:destination="@id/nav_delivery_cash_on_delivery_customer" />
+    </fragment>
     <fragment
         android:id="@+id/nav_my_order_credit_card_customer"
         android:name="tarc.edu.carpartsapp.Customer.MyOrderCreditCardFragment"
         android:label="Ordered Items"
-        tools:layout="@layout/fragment_my_order_credit_card" />
+        tools:layout="@layout/fragment_my_order_credit_card" >
+        <action
+            android:id="@+id/action_nav_my_order_credit_card_customer_to_nav_delivery_credit_card_customer"
+            app:destination="@id/nav_delivery_credit_card_customer" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_delivery_cash_on_delivery_customer"
+        android:name="tarc.edu.carpartsapp.Customer.DeliveryCashOnDeliveryFragment"
+        android:label="Ordered Items"
+        tools:layout="@layout/fragment_delivery_cash_on_delivery" >
+        <action
+            android:id="@+id/action_nav_delivery_cash_on_delivery_customer_to_nav_my_order_cash_on_delivery_customer"
+            app:destination="@id/nav_my_order_cash_on_delivery_customer" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_delivery_credit_card_customer"
+        android:name="tarc.edu.carpartsapp.Customer.DeliveryCreditCardFragment"
+        android:label="Ordered Items"
+        tools:layout="@layout/fragment_delivery_credit_card" >
+        <action
+            android:id="@+id/action_nav_delivery_credit_card_customer_to_nav_my_order_credit_card_customer"
+            app:destination="@id/nav_my_order_credit_card_customer" />
+    </fragment>
 </navigation>

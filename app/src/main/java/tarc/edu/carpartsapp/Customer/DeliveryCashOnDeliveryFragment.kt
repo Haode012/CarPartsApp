@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
@@ -23,15 +24,15 @@ import tarc.edu.carpartsapp.Adapter.MyOrderCashOnDeliveryAdapter
 import tarc.edu.carpartsapp.Model.MyCartModel
 import tarc.edu.carpartsapp.Model.MyOrderModel
 import tarc.edu.carpartsapp.R
-import tarc.edu.carpartsapp.databinding.FragmentMyOrderCashOnDeliveryBinding
+import tarc.edu.carpartsapp.databinding.FragmentDeliveryCashOnDeliveryBinding
 
-class MyOrderCashOnDeliveryFragment : Fragment() {
+class DeliveryCashOnDeliveryFragment : Fragment() {
 
     private lateinit var totalAmount: TextView
     private lateinit var dbref : DatabaseReference
     private lateinit var recyclerView: RecyclerView
     private lateinit var myOrderModelArrayList : ArrayList<MyOrderModel>
-    private var _binding: FragmentMyOrderCashOnDeliveryBinding? = null
+    private var _binding: FragmentDeliveryCashOnDeliveryBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -43,7 +44,7 @@ class MyOrderCashOnDeliveryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentMyOrderCashOnDeliveryBinding.inflate(inflater, container, false)
+        _binding = FragmentDeliveryCashOnDeliveryBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         return root
@@ -71,8 +72,15 @@ class MyOrderCashOnDeliveryFragment : Fragment() {
 
         getData()
 
-        binding.buttonGoToDelivery.setOnClickListener {
-            findNavController().navigate(R.id.action_nav_my_order_cash_on_delivery_customer_to_nav_delivery_cash_on_delivery_customer)
+        binding.buttonViewDeliveryStatus.setOnClickListener {
+
+            val deliveryAddress = binding.editTextDeliveryAddress.text.toString().trim()
+
+            //validation
+            if (deliveryAddress.isEmpty()) {
+                binding.editTextDeliveryAddress.error = "Delivery address cannot be blank"
+            }
+
         }
     }
 

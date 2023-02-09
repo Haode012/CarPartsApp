@@ -18,20 +18,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import tarc.edu.carpartsapp.Adapter.MyCartAdapter
-import tarc.edu.carpartsapp.Adapter.MyOrderCashOnDeliveryAdapter
-import tarc.edu.carpartsapp.Model.MyCartModel
+import tarc.edu.carpartsapp.Adapter.MyOrderCreditCardAdapter
 import tarc.edu.carpartsapp.Model.MyOrderModel
 import tarc.edu.carpartsapp.R
-import tarc.edu.carpartsapp.databinding.FragmentMyOrderCashOnDeliveryBinding
+import tarc.edu.carpartsapp.databinding.FragmentDeliveryCreditCardBinding
 
-class MyOrderCashOnDeliveryFragment : Fragment() {
+class DeliveryCreditCardFragment : Fragment() {
 
     private lateinit var totalAmount: TextView
     private lateinit var dbref : DatabaseReference
     private lateinit var recyclerView: RecyclerView
-    private lateinit var myOrderModelArrayList : ArrayList<MyOrderModel>
-    private var _binding: FragmentMyOrderCashOnDeliveryBinding? = null
+    private lateinit var myOrderModelArrayList2 : ArrayList<MyOrderModel>
+    private var _binding: FragmentDeliveryCreditCardBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -43,7 +41,7 @@ class MyOrderCashOnDeliveryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentMyOrderCashOnDeliveryBinding.inflate(inflater, container, false)
+        _binding = FragmentDeliveryCreditCardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         return root
@@ -52,7 +50,7 @@ class MyOrderCashOnDeliveryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        totalAmount = view.findViewById(R.id.textViewTotalAmount2)
+        totalAmount = view.findViewById(R.id.textViewTotalAmount3)
 
         val messageReceiver = object: BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
@@ -67,19 +65,25 @@ class MyOrderCashOnDeliveryFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.setHasFixedSize(true)
-        myOrderModelArrayList = arrayListOf<MyOrderModel>()
+        myOrderModelArrayList2 = arrayListOf<MyOrderModel>()
 
         getData()
 
-        binding.buttonGoToDelivery.setOnClickListener {
-            findNavController().navigate(R.id.action_nav_my_order_cash_on_delivery_customer_to_nav_delivery_cash_on_delivery_customer)
+        binding.buttonViewDeliveryStatus.setOnClickListener {
+
+            val deliveryAddress = binding.editTextDeliveryAddress.text.toString().trim()
+
+            //validation
+            if (deliveryAddress.isEmpty()) {
+                binding.editTextDeliveryAddress.error = "Delivery address cannot be blank"
+            }
+
         }
     }
 
     private fun getData(){
 
-        dbref = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("OrderItem(Cash On Delivery)").child(
-            FirebaseAuth.getInstance().currentUser!!.uid)
+        dbref = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("PaymentDetails").child(FirebaseAuth.getInstance().currentUser!!.uid)
 
         dbref.addValueEventListener(object : ValueEventListener {
 
@@ -89,10 +93,10 @@ class MyOrderCashOnDeliveryFragment : Fragment() {
                         for (firstChildSnapshot in snapshot.children) {
                             for (secondChildSnapshot in firstChildSnapshot.children) {
                                 val myOrder = secondChildSnapshot.getValue(MyOrderModel::class.java)
-                                myOrderModelArrayList.add(myOrder!!)
+                                myOrderModelArrayList2.add(myOrder!!)
                             }
                         }
-                        val myOrderAdapter = MyOrderCashOnDeliveryAdapter(myOrderModelArrayList, requireContext())
+                        val myOrderAdapter = MyOrderCreditCardAdapter(myOrderModelArrayList2, requireContext())
                         recyclerView.adapter = myOrderAdapter
                     }
                 } catch (e: Exception) {
