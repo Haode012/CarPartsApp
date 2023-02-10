@@ -5,26 +5,35 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import tarc.edu.carpartsapp.Filter.CarPartsCategoryFilter
+import tarc.edu.carpartsapp.Filter.PopularFilter
 import tarc.edu.carpartsapp.Model.CarPartsCategoryModel
 import tarc.edu.carpartsapp.Model.PopularModel
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.CarPartsCategoryBinding
 
 
-class CarPartsCategoryAdapter: RecyclerView.Adapter<CarPartsCategoryAdapter.MyViewHolder> {
+class CarPartsCategoryAdapter: RecyclerView.Adapter<CarPartsCategoryAdapter.MyViewHolder>,
+    Filterable {
 
     public var carPartsCategoryModelArrayList: ArrayList<CarPartsCategoryModel>
     private val context: Context
     private lateinit var binding: CarPartsCategoryBinding
+    private var filterList: ArrayList<CarPartsCategoryModel>
+
+    private var filter: CarPartsCategoryFilter? = null
 
     constructor(carPartsCategoryModelArrayList: ArrayList<CarPartsCategoryModel>, context: Context){
         this.carPartsCategoryModelArrayList = carPartsCategoryModelArrayList
         this.context = context
+        this.filterList = carPartsCategoryModelArrayList
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarPartsCategoryAdapter.MyViewHolder {
@@ -71,5 +80,12 @@ class CarPartsCategoryAdapter: RecyclerView.Adapter<CarPartsCategoryAdapter.MyVi
         val img_url : ImageView = binding.carPartsCategoryImage
 
 
+    }
+
+    override fun getFilter(): Filter {
+        if(filter == null){
+            filter = CarPartsCategoryFilter(filterList, this)
+        }
+        return filter as CarPartsCategoryFilter
     }
 }

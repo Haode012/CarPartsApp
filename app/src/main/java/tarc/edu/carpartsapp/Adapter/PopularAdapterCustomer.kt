@@ -4,27 +4,35 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import tarc.edu.carpartsapp.Filter.PopularFilter
+import tarc.edu.carpartsapp.Filter.PopularFilterCustomer
 import tarc.edu.carpartsapp.Model.PopularModel
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.PopularCarPartsBinding
 import tarc.edu.carpartsapp.databinding.PopularCarPartsCustomerBinding
 
 
-class PopularAdapterCustomer: RecyclerView.Adapter<PopularAdapterCustomer.MyViewHolder> {
+class PopularAdapterCustomer: RecyclerView.Adapter<PopularAdapterCustomer.MyViewHolder> , Filterable{
 
     public var popularModelArrayList: ArrayList<PopularModel>
     private val context: Context
     private lateinit var binding: PopularCarPartsCustomerBinding
+    private var filterList: ArrayList<PopularModel>
+
+    private var filter: PopularFilterCustomer? = null
 
     constructor(popularModelArrayList: ArrayList<PopularModel>, context: Context){
         this.popularModelArrayList = popularModelArrayList
         this.context = context
+        this.filterList = popularModelArrayList
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularAdapterCustomer.MyViewHolder {
@@ -66,5 +74,12 @@ class PopularAdapterCustomer: RecyclerView.Adapter<PopularAdapterCustomer.MyView
         val description : TextView = binding.popularDescription
         val img_url : ImageView = binding.popularImage
         var itemView : CardView = binding.popularCardView
+    }
+
+    override fun getFilter(): Filter {
+        if(filter == null){
+            filter = PopularFilterCustomer(filterList, this)
+        }
+        return filter as PopularFilterCustomer
     }
 }

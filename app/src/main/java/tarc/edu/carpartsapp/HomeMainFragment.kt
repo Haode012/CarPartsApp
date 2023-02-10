@@ -2,6 +2,8 @@ package tarc.edu.carpartsapp
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -30,14 +32,17 @@ class HomeMainFragment : Fragment() {
     private lateinit var dbref : DatabaseReference
     private lateinit var recyclerView: RecyclerView
     private lateinit var popularModelArrayList : ArrayList<PopularModel>
+    private lateinit var popularAdapter: PopularAdapter
 
     //car parts category
     private lateinit var recyclerView2: RecyclerView
     private lateinit var carPartsCategoryModelArrayList : ArrayList<CarPartsCategoryModel>
+    private lateinit var carPartsCategoryAdapter: CarPartsCategoryAdapter
 
     //recommended
     private lateinit var recyclerView3: RecyclerView
     private lateinit var recommendedModelArrayList : ArrayList<RecommendedModel>
+    private lateinit var recommendedAdapter: RecommendedAdapter
 
     private var _binding: FragmentHomeMainBinding? = null
 
@@ -76,12 +81,32 @@ class HomeMainFragment : Fragment() {
         recyclerView2.setHasFixedSize(true)
         carPartsCategoryModelArrayList = arrayListOf<CarPartsCategoryModel>()
 
-
         //recommended
         recyclerView3 = view.findViewById(R.id.recycleViewHorizontal3)
         recyclerView3.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
         recyclerView3.setHasFixedSize(true)
         recommendedModelArrayList = arrayListOf<RecommendedModel>()
+
+        //search
+        binding.editTextSearch.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                //called as and when user type anything
+                try{
+                    popularAdapter.filter.filter(s)
+                    carPartsCategoryAdapter.filter.filter(s)
+                    recommendedAdapter.filter.filter(s)
+                }
+                catch (e: Exception){
+
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+            }
+        })
 
         getData()
     }
@@ -99,7 +124,8 @@ class HomeMainFragment : Fragment() {
                         val popular = popularSnapshot.getValue(PopularModel::class.java)
                         popularModelArrayList.add(popular!!)
                     }
-                    recyclerView.adapter = PopularAdapter(popularModelArrayList, requireContext())
+                    popularAdapter = PopularAdapter(popularModelArrayList, requireContext())
+                    recyclerView.adapter = popularAdapter
                     progressBar.setVisibility(View.GONE)
                     scrollView.setVisibility(View.VISIBLE)
                 }
@@ -121,7 +147,8 @@ class HomeMainFragment : Fragment() {
                         val category = categorySnapshot.getValue(CarPartsCategoryModel::class.java)
                         carPartsCategoryModelArrayList.add(category!!)
                     }
-                    recyclerView2.adapter = CarPartsCategoryAdapter(carPartsCategoryModelArrayList, requireContext())
+                    carPartsCategoryAdapter = CarPartsCategoryAdapter(carPartsCategoryModelArrayList, requireContext())
+                    recyclerView2.adapter = carPartsCategoryAdapter
                     progressBar.setVisibility(View.GONE)
                     scrollView.setVisibility(View.VISIBLE)
                 }
@@ -143,7 +170,8 @@ class HomeMainFragment : Fragment() {
                         val recommended = recommendedSnapshot.getValue(RecommendedModel::class.java)
                         recommendedModelArrayList.add(recommended!!)
                     }
-                    recyclerView3.adapter = RecommendedAdapter(recommendedModelArrayList, requireContext())
+                    recommendedAdapter = RecommendedAdapter(recommendedModelArrayList, requireContext())
+                    recyclerView3.adapter = recommendedAdapter
                     progressBar.setVisibility(View.GONE)
                     scrollView.setVisibility(View.VISIBLE)
                 }

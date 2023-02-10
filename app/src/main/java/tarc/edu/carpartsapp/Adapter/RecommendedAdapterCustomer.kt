@@ -4,26 +4,33 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import tarc.edu.carpartsapp.Filter.RecommendedFilter
+import tarc.edu.carpartsapp.Filter.RecommendedFilterCustomer
 import tarc.edu.carpartsapp.Model.PopularModel
 import tarc.edu.carpartsapp.Model.RecommendedModel
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.RecommendedCarPartsBinding
 import tarc.edu.carpartsapp.databinding.RecommendedCarPartsCustomerBinding
 
-class RecommendedAdapterCustomer: RecyclerView.Adapter<RecommendedAdapterCustomer.MyViewHolder> {
+class RecommendedAdapterCustomer: RecyclerView.Adapter<RecommendedAdapterCustomer.MyViewHolder> , Filterable {
 
     public var recommendedModelArrayList: ArrayList<RecommendedModel>
     private val context: Context
     private lateinit var binding: RecommendedCarPartsCustomerBinding
+    private var filterList: ArrayList<RecommendedModel>
 
+    private var filter: RecommendedFilterCustomer? = null
     constructor(recommendedModelArrayList: ArrayList<RecommendedModel>, context: Context){
         this.recommendedModelArrayList = recommendedModelArrayList
         this.context = context
+        this.filterList = recommendedModelArrayList
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecommendedAdapterCustomer.MyViewHolder {
@@ -66,5 +73,12 @@ class RecommendedAdapterCustomer: RecyclerView.Adapter<RecommendedAdapterCustome
         val description : TextView = binding.recommendedDescription
         val img_url : ImageView = binding.recommendedImage
 
+    }
+
+    override fun getFilter(): Filter {
+        if(filter == null){
+            filter = RecommendedFilterCustomer(filterList, this)
+        }
+        return filter as RecommendedFilterCustomer
     }
 }
