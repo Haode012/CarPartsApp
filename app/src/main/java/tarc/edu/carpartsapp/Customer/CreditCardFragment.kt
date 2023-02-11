@@ -63,10 +63,12 @@ class CreditCardFragment : Fragment() {
             val myRef = database.getReference("OrderItem(Credit Card)")
             val orderID = myRef.push().key
             val uid =  FirebaseAuth.getInstance().currentUser!!.uid
-
+            val address = arguments?.getString("address").toString()
+            val currentTime = arguments?.getString("currentTime").toString()
             for (myCartModel in myCartModelArrayList) {
                 val id = myCartModel.id
                 myCartModel.orderID = orderID!!
+                myCartModel.address = address!!
                 myRef.child(uid).child(orderID!!).child(id!!).setValue(myCartModel)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {

@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
@@ -23,10 +24,14 @@ import com.bumptech.glide.Glide
 import com.google.common.reflect.TypeToken
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
+import com.google.protobuf.Value
 import tarc.edu.carpartsapp.Adapter.MyCartAdapter
 import tarc.edu.carpartsapp.Adapter.PopularAdapterAdmin
 import tarc.edu.carpartsapp.Model.MyCartModel
+import tarc.edu.carpartsapp.Model.MyOrderModel
 import tarc.edu.carpartsapp.Model.PopularModel
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.FragmentMyCartBinding
@@ -61,6 +66,22 @@ class MyCartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
+        val firebase = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
+        val ref = firebase.getReference("Users/$userId")
+
+        ref.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val address = snapshot.child("address").value.toString()
+                binding.outputAddress.setText(address)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(context,"Error finding address", Toast.LENGTH_LONG).show()
+            }
+
+        })
 
         binding.buttonCashOnDelivery.setOnClickListener{
 
@@ -130,7 +151,13 @@ class MyCartFragment : Fragment() {
         editor.putString("itemList2", json)
         editor.apply()
 
+        val address = binding.outputAddress.text.toString().trim()
         findNavController().navigate(R.id.action_nav_myCart_customer_to_nav_creditCard_customer)
+        //edited here
+        Bundle().apply {
+            putString("address", address)
+            //orderIdDuplication()
+        }
     }
 
     private fun saveData() {
@@ -143,7 +170,24 @@ class MyCartFragment : Fragment() {
         editor.putString("itemList", json)
         editor.apply()
 
-        findNavController().navigate(R.id.action_nav_myCart_customer_to_nav_home_customer)
+        val address = binding.outputAddress.text.toString().trim()
+        findNavController().navigate(R.id.action_nav_myCart_customer_to_nav_home_customer,
+            //edited here
+            Bundle().apply {
+                putString("address", address)
+                //orderIdDuplication()
+            }
+        )
+
+    }
+
+
+    private fun pushAddress(){
+        val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
+        val database = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
+        val ref = database.getReference("OrderItem(Cash On Delivery)").child("$userId")
+
+        ref.child("address").setValue(binding.outputAddress.text.toString())
     }
 
     private fun getData(){

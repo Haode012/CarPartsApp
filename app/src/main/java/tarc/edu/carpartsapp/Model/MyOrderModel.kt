@@ -16,7 +16,9 @@ class MyOrderModel {
     var total_price:String = ""
     var img_url:String = ""
     var currentDate:String = ""
+    var address: String = ""
     var uid:String = ""
+    var currentTime: String = ""
 
     //empty constructor, required by firebase
     constructor()
@@ -38,7 +40,9 @@ class MyOrderModel {
         total_price: String,
         img_url: String,
         currentDate: String,
-        uid:String
+        uid:String,
+         currentTime:String,
+    address: String
 
     ) {
         this.paymentID = paymentID
@@ -57,6 +61,8 @@ class MyOrderModel {
         this.total_price = total_price
         this.img_url = img_url
         this.currentDate = currentDate
+        this.currentTime = currentTime
+        this.address = address
     }
 }
 

@@ -23,9 +23,11 @@ import tarc.edu.carpartsapp.Adapter.*
 import tarc.edu.carpartsapp.Model.*
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.FragmentHomeCustomerBinding
+import java.util.*
+import kotlin.collections.ArrayList
 
 class HomeCustomerFragment : Fragment() {
-
+    private lateinit var orderDuplication: HashMap<String, String>
     private lateinit var scrollView : ScrollView
     private lateinit var progressBar : ProgressBar
     private lateinit var dbref : DatabaseReference
@@ -54,6 +56,8 @@ class HomeCustomerFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        orderDuplication = hashMapOf()
 
         _binding = FragmentHomeCustomerBinding.inflate(inflater, container, false)
 
@@ -126,12 +130,28 @@ class HomeCustomerFragment : Fragment() {
             val myRef = database.getReference("OrderItem(Cash On Delivery)")
             val uid = FirebaseAuth.getInstance().currentUser!!.uid
             val orderID = myRef.push().key
+            val address = arguments?.getString("address").toString()
+            val currentTime = Calendar.getInstance().time
+
+            val databaseNew = FirebaseDatabase.getInstance()
+            val myRefNew = database.getReference("OrderItem(Cash On Delivery) Duplicate")
 
             for (myCartModel in myCartModelArrayList) {
                 val id = myCartModel.id
                 myCartModel.orderID = orderID!!
+                myCartModel.address = address!!
+                myCartModel.currentTime = currentTime.toString()
                 myRef.child(uid).child(orderID!!).child(id!!).setValue(myCartModel).addOnCompleteListener { task ->
+                    //edited here
                     if (task.isSuccessful) {
+                                orderDuplication["orderID"] = orderID
+                                orderDuplication["userID"] = uid
+                                try {
+                                    myRefNew.child(orderID).setValue(orderDuplication)
+                                } catch (e: Exception) {
+                                    Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                                }
+
                         Toast.makeText(requireContext(), "Your Order Has Been Placed", Toast.LENGTH_SHORT).show()
                         val sharedPref = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE) ?: return@addOnCompleteListener
                         val editor = sharedPref.edit()
@@ -139,7 +159,7 @@ class HomeCustomerFragment : Fragment() {
                         editor.apply()
                     } else {
                         Toast.makeText(requireContext(), "Failed to Add", Toast.LENGTH_SHORT).show()
-                    }
+                    }// until here
                 }
             }
         } else {
@@ -164,6 +184,8 @@ class HomeCustomerFragment : Fragment() {
             val expirationDateMonth = arguments?.getString("expirationDateMonth").toString()
             val expirationDateYear = arguments?.getString("expirationDateYear").toString()
             val CVV = arguments?.getString("CVV").toString()
+            val address = arguments?.getString("address").toString()
+            val currentTime = Calendar.getInstance().time.toString()
 
             for (myOrderModel in myOrderModelArrayList) {
                 val id = myOrderModel.id
@@ -173,6 +195,8 @@ class HomeCustomerFragment : Fragment() {
                 myOrderModel.expirationDateMonth = expirationDateMonth!!
                 myOrderModel.expirationDateYear = expirationDateYear!!
                 myOrderModel.CVV = CVV!!
+                myOrderModel.address = address!!
+                myOrderModel.currentTime = currentTime!!
 
                 myRef.child(uid).child(paymentID!!).child(id!!).setValue(myOrderModel).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
