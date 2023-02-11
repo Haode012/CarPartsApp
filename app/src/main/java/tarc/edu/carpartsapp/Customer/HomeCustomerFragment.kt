@@ -149,7 +149,7 @@ class HomeCustomerFragment : Fragment() {
                 myRef.child(uid).child(orderID!!).child(id!!).setValue(myCartModel).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                                 orderDuplication["orderID"] = orderID
-                                orderDuplication["uid"] = uid
+                                orderDuplication["userId"] = uid
                                 try {
                                     myRefNew.child(orderID).setValue(orderDuplication)
                                 } catch (e: Exception) {
