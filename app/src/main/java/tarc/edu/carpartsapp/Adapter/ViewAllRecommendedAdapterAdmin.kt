@@ -5,26 +5,35 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import tarc.edu.carpartsapp.Filter.ViewAllPopularFilterAdmin
+import tarc.edu.carpartsapp.Filter.ViewAllRecommendedFilterAdmin
 import tarc.edu.carpartsapp.Model.ViewAllPopularModel
 import tarc.edu.carpartsapp.Model.ViewAllRecommendedModel
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.ViewAllRecommendedAdminBinding
 
-class ViewAllRecommendedAdapterAdmin: RecyclerView.Adapter<ViewAllRecommendedAdapterAdmin.MyViewHolder> {
+class ViewAllRecommendedAdapterAdmin: RecyclerView.Adapter<ViewAllRecommendedAdapterAdmin.MyViewHolder> ,
+    Filterable {
 
     public var viewAllRecommendedModelArrayList: ArrayList<ViewAllRecommendedModel>
     private val context: Context
     private lateinit var binding: ViewAllRecommendedAdminBinding
+    private var filterList: ArrayList<ViewAllRecommendedModel>
+
+    private var filter: ViewAllRecommendedFilterAdmin? = null
 
     constructor(viewAllRecommendedModelArrayList: ArrayList<ViewAllRecommendedModel>, context: Context){
-        this.viewAllRecommendedModelArrayList= viewAllRecommendedModelArrayList
+        this.viewAllRecommendedModelArrayList = viewAllRecommendedModelArrayList
         this.context = context
+        this.filterList = viewAllRecommendedModelArrayList
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewAllRecommendedAdapterAdmin.MyViewHolder {
@@ -91,5 +100,12 @@ class ViewAllRecommendedAdapterAdmin: RecyclerView.Adapter<ViewAllRecommendedAda
         val warranty : TextView = binding.recommendedItemWarranty
         val img_url : ImageView = binding.recommendedItemImage
         var itemView : CardView = binding.recommendedItemCardView
+    }
+
+    override fun getFilter(): Filter {
+        if(filter == null){
+            filter = ViewAllRecommendedFilterAdmin(filterList, this)
+        }
+        return filter as ViewAllRecommendedFilterAdmin
     }
 }

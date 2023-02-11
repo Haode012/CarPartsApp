@@ -1,6 +1,8 @@
 package tarc.edu.carpartsapp.Admin.CustomerHomepageEdit
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import com.google.firebase.firestore.*
 import tarc.edu.carpartsapp.Adapter.PopularAdapterAdmin
+import tarc.edu.carpartsapp.Adapter.PopularAdapterCustomer
 import tarc.edu.carpartsapp.Model.PopularModel
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.FragmentPopularCarPartsBinding
@@ -20,6 +23,7 @@ class PopularCarPartsFragment : Fragment() {
     private lateinit var dbref : DatabaseReference
     private lateinit var recyclerView: RecyclerView
     private lateinit var popularModelArrayList : ArrayList<PopularModel>
+    private lateinit var popularAdapterAdmin: PopularAdapterAdmin
 
     private var _binding: FragmentPopularCarPartsBinding? = null
 
@@ -40,6 +44,25 @@ class PopularCarPartsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //search
+        binding.editTextSearch.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                //called as and when user type anything
+                try{
+                    popularAdapterAdmin.filter.filter(s)
+                }
+                catch (e: Exception){
+
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+            }
+        })
 
         binding.buttonAddPopularCarPart.setOnClickListener{
             findNavController().navigate(R.id.action_nav_popular_car_parts_admin_to_nav_add_popular_car_parts_admin)
@@ -67,8 +90,8 @@ class PopularCarPartsFragment : Fragment() {
                         val popular = popularSnapshot.getValue(PopularModel::class.java)
                         popularModelArrayList.add(popular!!)
                     }
-                    val pAdapter = PopularAdapterAdmin(popularModelArrayList, requireContext())
-                    recyclerView.adapter = pAdapter
+                    popularAdapterAdmin = PopularAdapterAdmin(popularModelArrayList, requireContext())
+                    recyclerView.adapter = popularAdapterAdmin
                 }
             }
 

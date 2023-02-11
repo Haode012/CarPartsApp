@@ -5,26 +5,35 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import tarc.edu.carpartsapp.Filter.PopularFilterAdmin
+import tarc.edu.carpartsapp.Filter.ViewAllPopularFilterAdmin
+import tarc.edu.carpartsapp.Model.PopularModel
 import tarc.edu.carpartsapp.Model.ViewAllCategoryModel
 import tarc.edu.carpartsapp.Model.ViewAllPopularModel
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.ViewAllPopularAdminBinding
 
-class ViewAllPopularAdapterAdmin: RecyclerView.Adapter<ViewAllPopularAdapterAdmin.MyViewHolder> {
+class ViewAllPopularAdapterAdmin: RecyclerView.Adapter<ViewAllPopularAdapterAdmin.MyViewHolder> , Filterable{
 
     public var viewAllPopularModelArrayList: ArrayList<ViewAllPopularModel>
     private val context: Context
     private lateinit var binding: ViewAllPopularAdminBinding
+    private var filterList: ArrayList<ViewAllPopularModel>
+
+    private var filter: ViewAllPopularFilterAdmin? = null
 
     constructor(viewAllPopularModelArrayList: ArrayList<ViewAllPopularModel>, context: Context){
         this.viewAllPopularModelArrayList= viewAllPopularModelArrayList
         this.context = context
+        this.filterList= viewAllPopularModelArrayList
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewAllPopularAdapterAdmin.MyViewHolder {
@@ -91,5 +100,12 @@ class ViewAllPopularAdapterAdmin: RecyclerView.Adapter<ViewAllPopularAdapterAdmi
         val warranty : TextView = binding.popularItemWarranty
         val img_url : ImageView = binding.popularItemImage
         var itemView : CardView = binding.popularItemCardView
+    }
+
+    override fun getFilter(): Filter {
+        if(filter == null){
+            filter = ViewAllPopularFilterAdmin(filterList, this)
+        }
+        return filter as ViewAllPopularFilterAdmin
     }
 }

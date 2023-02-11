@@ -5,29 +5,34 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import tarc.edu.carpartsapp.Model.CarPartsCategoryModel
-import tarc.edu.carpartsapp.Model.PopularModel
-import tarc.edu.carpartsapp.Model.RecommendedModel
-import tarc.edu.carpartsapp.Model.ViewAllCategoryModel
+import tarc.edu.carpartsapp.Filter.ViewAllCategoryFilterAdmin
+import tarc.edu.carpartsapp.Filter.ViewAllPopularFilterAdmin
+import tarc.edu.carpartsapp.Model.*
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.ViewAllCategoryAdminBinding
 import tarc.edu.carpartsapp.databinding.ViewAllCategoryBinding
 
 
-class ViewAllCategoryAdapterAdmin: RecyclerView.Adapter<ViewAllCategoryAdapterAdmin.MyViewHolder> {
+class ViewAllCategoryAdapterAdmin: RecyclerView.Adapter<ViewAllCategoryAdapterAdmin.MyViewHolder> , Filterable {
 
     public var viewAllCategoryModelArrayList: ArrayList<ViewAllCategoryModel>
     private val context: Context
     private lateinit var binding: ViewAllCategoryAdminBinding
+    private var filterList: ArrayList<ViewAllCategoryModel>
+
+    private var filter: ViewAllCategoryFilterAdmin? = null
 
     constructor(viewAllCategoryModelArrayList: ArrayList<ViewAllCategoryModel>, context: Context){
         this.viewAllCategoryModelArrayList = viewAllCategoryModelArrayList
         this.context = context
+        this.filterList = viewAllCategoryModelArrayList
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewAllCategoryAdapterAdmin.MyViewHolder {
@@ -97,7 +102,12 @@ class ViewAllCategoryAdapterAdmin: RecyclerView.Adapter<ViewAllCategoryAdapterAd
         val warranty : TextView = binding.categoryItemWarranty
         val type : TextView = binding.categoryItemType
         val img_url : ImageView = binding.categoryItemImage
+    }
 
-
+    override fun getFilter(): Filter {
+        if(filter == null){
+            filter = ViewAllCategoryFilterAdmin(filterList, this)
+        }
+        return filter as ViewAllCategoryFilterAdmin
     }
 }

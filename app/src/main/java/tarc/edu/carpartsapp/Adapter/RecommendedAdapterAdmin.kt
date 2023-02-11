@@ -5,25 +5,33 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import tarc.edu.carpartsapp.Filter.RecommendedFilterAdmin
+import tarc.edu.carpartsapp.Filter.RecommendedFilterCustomer
 import tarc.edu.carpartsapp.Model.RecommendedModel
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.RecommendedCarPartsAdminBinding
 
-class RecommendedAdapterAdmin: RecyclerView.Adapter<RecommendedAdapterAdmin.MyViewHolder> {
+class RecommendedAdapterAdmin: RecyclerView.Adapter<RecommendedAdapterAdmin.MyViewHolder> ,
+    Filterable {
 
     public var recommendedModelArrayList: ArrayList<RecommendedModel>
     private val context: Context
     private lateinit var binding: RecommendedCarPartsAdminBinding
+    private var filterList: ArrayList<RecommendedModel>
 
+    private var filter: RecommendedFilterAdmin? = null
     constructor(recommendedModelArrayList: ArrayList<RecommendedModel>, context: Context){
         this.recommendedModelArrayList = recommendedModelArrayList
         this.context = context
+        this.filterList = recommendedModelArrayList
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):RecommendedAdapterAdmin.MyViewHolder {
@@ -78,5 +86,12 @@ class RecommendedAdapterAdmin: RecyclerView.Adapter<RecommendedAdapterAdmin.MyVi
         val description : TextView = binding.recommendedDescription
         val img_url : ImageView = binding.recommendedImage
         var itemView : CardView = binding.recommendedCardView
+    }
+
+    override fun getFilter(): Filter {
+        if(filter == null){
+            filter = RecommendedFilterAdmin(filterList, this)
+        }
+        return filter as RecommendedFilterAdmin
     }
 }
