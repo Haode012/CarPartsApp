@@ -61,14 +61,21 @@ class CreditCardFragment : Fragment() {
 
             val database = FirebaseDatabase.getInstance()
             val myRef = database.getReference("OrderItem(Credit Card)")
-            val orderID = myRef.push().key
             val uid =  FirebaseAuth.getInstance().currentUser!!.uid
-            val address = arguments?.getString("address").toString()
-            val currentTime = arguments?.getString("currentTime").toString()
+            val orderID = myRef.push().key
+            val deliveryAddress = arguments?.getString("deliveryAddress").toString()
+            val currentDate = SimpleDateFormat("MM/dd/yyyy")
+            val saveCurrentDate = currentDate.format(Calendar.getInstance().time)
+
+            val currentTime = SimpleDateFormat("HH:mm:ss")
+            val saveCurrentTime = currentTime.format(Calendar.getInstance().time)
+
             for (myCartModel in myCartModelArrayList) {
                 val id = myCartModel.id
                 myCartModel.orderID = orderID!!
-                myCartModel.address = address!!
+                myCartModel.deliveryAddress = deliveryAddress!!
+                myCartModel.currentDate = saveCurrentDate!!
+                myCartModel.currentTime = saveCurrentTime!!
                 myRef.child(uid).child(orderID!!).child(id!!).setValue(myCartModel)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {

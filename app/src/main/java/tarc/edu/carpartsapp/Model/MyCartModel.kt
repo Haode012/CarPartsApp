@@ -11,7 +11,7 @@ class MyCartModel {
     var img_url:String = ""
     var currentDate:String = ""
     var uid:String = ""
-    var address: String = ""
+    var deliveryAddress: String = ""
     var currentTime: String = ""
 
     //empty constructor, required by firebase
@@ -42,7 +42,7 @@ class MyCartModel {
         this.total_price = total_price
         this.img_url = img_url
         this.currentDate = currentDate
-        this.address = deliveryAddress
+        this.deliveryAddress = deliveryAddress
         this.currentTime = currentTime
     }
 }

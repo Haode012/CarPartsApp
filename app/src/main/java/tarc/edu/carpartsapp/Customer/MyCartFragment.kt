@@ -151,13 +151,13 @@ class MyCartFragment : Fragment() {
         editor.putString("itemList2", json)
         editor.apply()
 
-        val address = binding.outputAddress.text.toString().trim()
-        findNavController().navigate(R.id.action_nav_myCart_customer_to_nav_creditCard_customer)
-        //edited here
+        val deliveryAddress = binding.outputAddress.text.toString().trim()
+
+        findNavController().navigate(R.id.action_nav_myCart_customer_to_nav_creditCard_customer,
         Bundle().apply {
-            putString("address", address)
-            //orderIdDuplication()
-        }
+            putString("deliveryAddress", deliveryAddress)
+         }
+        )
     }
 
     private fun saveData() {
@@ -170,24 +170,13 @@ class MyCartFragment : Fragment() {
         editor.putString("itemList", json)
         editor.apply()
 
-        val address = binding.outputAddress.text.toString().trim()
+        val deliveryAddress = binding.outputAddress.text.toString().trim()
+
         findNavController().navigate(R.id.action_nav_myCart_customer_to_nav_home_customer,
-            //edited here
             Bundle().apply {
-                putString("address", address)
-                //orderIdDuplication()
+                putString("deliveryAddress", deliveryAddress)
             }
         )
-
-    }
-
-
-    private fun pushAddress(){
-        val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
-        val database = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
-        val ref = database.getReference("OrderItem(Cash On Delivery)").child("$userId")
-
-        ref.child("address").setValue(binding.outputAddress.text.toString())
     }
 
     private fun getData(){

@@ -16,7 +16,7 @@ class MyOrderModel {
     var total_price:String = ""
     var img_url:String = ""
     var currentDate:String = ""
-    var address: String = ""
+    var deliveryAddress: String = ""
     var uid:String = ""
     var currentTime: String = ""
 
@@ -41,8 +41,8 @@ class MyOrderModel {
         img_url: String,
         currentDate: String,
         uid:String,
-         currentTime:String,
-    address: String
+        currentTime:String,
+        deliveryAddress: String
 
     ) {
         this.paymentID = paymentID
@@ -62,7 +62,7 @@ class MyOrderModel {
         this.img_url = img_url
         this.currentDate = currentDate
         this.currentTime = currentTime
-        this.address = address
+        this.deliveryAddress = deliveryAddress
     }
 }
 

@@ -23,11 +23,13 @@ import tarc.edu.carpartsapp.Adapter.*
 import tarc.edu.carpartsapp.Model.*
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.FragmentHomeCustomerBinding
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
 class HomeCustomerFragment : Fragment() {
     private lateinit var orderDuplication: HashMap<String, String>
+    private lateinit var paymentDuplication: HashMap<String, String>
     private lateinit var scrollView : ScrollView
     private lateinit var progressBar : ProgressBar
     private lateinit var dbref : DatabaseReference
@@ -58,6 +60,7 @@ class HomeCustomerFragment : Fragment() {
     ): View {
 
         orderDuplication = hashMapOf()
+        paymentDuplication = hashMapOf()
 
         _binding = FragmentHomeCustomerBinding.inflate(inflater, container, false)
 
@@ -112,8 +115,6 @@ class HomeCustomerFragment : Fragment() {
             }
         })
 
-
-
         getData()
 
         // Retrieve data from SharedPreferences
@@ -130,22 +131,25 @@ class HomeCustomerFragment : Fragment() {
             val myRef = database.getReference("OrderItem(Cash On Delivery)")
             val uid = FirebaseAuth.getInstance().currentUser!!.uid
             val orderID = myRef.push().key
-            val address = arguments?.getString("address").toString()
-            val currentTime = Calendar.getInstance().time
+            val deliveryAddress = arguments?.getString("deliveryAddress").toString()
+            val currentDate = SimpleDateFormat("MM/dd/yyyy")
+            val saveCurrentDate = currentDate.format(Calendar.getInstance().time)
 
-            val databaseNew = FirebaseDatabase.getInstance()
+            val currentTime = SimpleDateFormat("HH:mm:ss")
+            val saveCurrentTime = currentTime.format(Calendar.getInstance().time)
+
             val myRefNew = database.getReference("OrderItem(Cash On Delivery) Duplicate")
 
             for (myCartModel in myCartModelArrayList) {
                 val id = myCartModel.id
                 myCartModel.orderID = orderID!!
-                myCartModel.address = address!!
-                myCartModel.currentTime = currentTime.toString()
+                myCartModel.deliveryAddress = deliveryAddress!!
+                myCartModel.currentDate = saveCurrentDate!!
+                myCartModel.currentTime = saveCurrentTime!!
                 myRef.child(uid).child(orderID!!).child(id!!).setValue(myCartModel).addOnCompleteListener { task ->
-                    //edited here
                     if (task.isSuccessful) {
                                 orderDuplication["orderID"] = orderID
-                                orderDuplication["userID"] = uid
+                                orderDuplication["uid"] = uid
                                 try {
                                     myRefNew.child(orderID).setValue(orderDuplication)
                                 } catch (e: Exception) {
@@ -159,7 +163,7 @@ class HomeCustomerFragment : Fragment() {
                         editor.apply()
                     } else {
                         Toast.makeText(requireContext(), "Failed to Add", Toast.LENGTH_SHORT).show()
-                    }// until here
+                    }
                 }
             }
         } else {
@@ -184,32 +188,46 @@ class HomeCustomerFragment : Fragment() {
             val expirationDateMonth = arguments?.getString("expirationDateMonth").toString()
             val expirationDateYear = arguments?.getString("expirationDateYear").toString()
             val CVV = arguments?.getString("CVV").toString()
-            val address = arguments?.getString("address").toString()
-            val currentTime = Calendar.getInstance().time.toString()
+            val currentDate = SimpleDateFormat("MM/dd/yyyy")
+            val saveCurrentDate = currentDate.format(Calendar.getInstance().time)
+
+            val currentTime = SimpleDateFormat("HH:mm:ss")
+            val saveCurrentTime = currentTime.format(Calendar.getInstance().time)
+
+            val myRefNew = database.getReference("PaymentDetails Duplicate")
 
             for (myOrderModel in myOrderModelArrayList) {
                 val id = myOrderModel.id
+                val orderID = myOrderModel.orderID
                 myOrderModel.paymentID = paymentID!!
                 myOrderModel.bankType = bankType!!
                 myOrderModel.cardNumber = cardNumber!!
                 myOrderModel.expirationDateMonth = expirationDateMonth!!
                 myOrderModel.expirationDateYear = expirationDateYear!!
                 myOrderModel.CVV = CVV!!
-                myOrderModel.address = address!!
-                myOrderModel.currentTime = currentTime!!
+                myOrderModel.currentDate = saveCurrentDate!!
+                myOrderModel.currentTime = saveCurrentTime!!
 
                 myRef.child(uid).child(paymentID!!).child(id!!).setValue(myOrderModel).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
+
+                        paymentDuplication["orderID"] = orderID
+                        paymentDuplication["paymentID"] = paymentID
+                        paymentDuplication["uid"] = uid
+
+                        try {
+                            myRefNew.child(orderID).setValue(paymentDuplication)
+                        } catch (e: Exception) {
+                            Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                        }
+
                         Toast.makeText(requireContext(), "Your Order Has Been Placed", Toast.LENGTH_SHORT).show()
-                        val sharedPref = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE) ?: return@addOnCompleteListener
-                        val editor = sharedPref.edit()
-                        editor.clear()
-                        editor.apply()
 
                         val sharedPref3 = requireActivity().getSharedPreferences("MyPref3", Context.MODE_PRIVATE) ?: return@addOnCompleteListener
                         val editor3 = sharedPref3.edit()
                         editor3.clear()
                         editor3.apply()
+
                     } else {
                         Toast.makeText(requireContext(), "Failed to Add", Toast.LENGTH_SHORT).show()
                     }
