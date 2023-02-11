@@ -150,6 +150,9 @@
         <action
             android:id="@+id/action_nav_delivery_cash_on_delivery_customer_to_nav_my_order_cash_on_delivery_customer"
             app:destination="@id/nav_my_order_cash_on_delivery_customer" />
+        <action
+            android:id="@+id/action_nav_delivery_cash_on_delivery_customer_to_fragmentCustDeliveryStatus"
+            app:destination="@id/fragmentCustDeliveryStatus" />
     </fragment>
     <fragment
         android:id="@+id/nav_delivery_credit_card_customer"
@@ -160,4 +163,9 @@
             android:id="@+id/action_nav_delivery_credit_card_customer_to_nav_my_order_credit_card_customer"
             app:destination="@id/nav_my_order_credit_card_customer" />
     </fragment>
+    <fragment
+        android:id="@+id/fragmentCustDeliveryStatus"
+        android:name="tarc.edu.carpartsapp.FragmentCustDeliveryStatus"
+        android:label="fragment_cust_delivery_status"
+        tools:layout="@layout/fragment_cust_delivery_status" />
 </navigation>
