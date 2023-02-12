@@ -24,5 +24,9 @@ class ReturnProductSelectionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.imageViewByCashOnDelivery.setOnClickListener{
+            findNavController().navigate(R.id.action_nav_returnProduct_customer_to_nav_returnProductCashOnDelivery_customer)
+        }
+
     }
 }
