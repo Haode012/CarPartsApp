@@ -168,4 +168,9 @@
         android:name="tarc.edu.carpartsapp.FragmentCustDeliveryStatus"
         android:label="fragment_cust_delivery_status"
         tools:layout="@layout/fragment_cust_delivery_status" />
+    <fragment
+        android:id="@+id/nav_returnProduct_customer"
+        android:name="tarc.edu.carpartsapp.Customer.ReturnProductSelectionFragment"
+        android:label="Return Product"
+        tools:layout="@layout/fragment_return_product" />
 </navigation>
