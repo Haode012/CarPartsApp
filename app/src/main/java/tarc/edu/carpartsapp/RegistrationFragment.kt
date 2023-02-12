@@ -116,12 +116,15 @@ class RegistrationFragment : Fragment() {
                             "$fullName", "$email", "$address",
                             "$phoneNum", "$dateOfBirth", "Male",
                             "Customer"
+
                         ))
+                    }else{
+                        ref.child(firebaseUser.uid).setValue(Users("$fullName", "$email", "$address",
+                            "$phoneNum", "$dateOfBirth", "Female",
+                            "Customer"))
                     }
                     Toast.makeText(context, "Register Successfully", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
-
-
                 } else {
                     Toast.makeText(context, "Error: ", Toast.LENGTH_SHORT).show()
                 }

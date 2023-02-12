@@ -150,6 +150,9 @@ class HomeCustomerFragment : Fragment() {
                     if (task.isSuccessful) {
                                 orderDuplication["orderID"] = orderID
                                 orderDuplication["userId"] = uid
+                                orderDuplication["TotalAmount"] = myCartModel.total_price
+                                orderDuplication["Delivery Address"] = myCartModel.deliveryAddress
+                                orderDuplication["Date of Order Placed"] = myCartModel.currentDate
                                 try {
                                     myRefNew.child(orderID).setValue(orderDuplication)
                                 } catch (e: Exception) {
@@ -213,7 +216,10 @@ class HomeCustomerFragment : Fragment() {
 
                         paymentDuplication["orderID"] = orderID
                         paymentDuplication["paymentID"] = paymentID
-                        paymentDuplication["uid"] = uid
+                        paymentDuplication["userId"] = uid
+                        orderDuplication["TotalAmount"] = myOrderModel.total_price
+                        orderDuplication["Delivery Address"] = myOrderModel.deliveryAddress
+                        orderDuplication["Date of Order Placed"] = myOrderModel.currentDate
 
                         try {
                             myRefNew.child(orderID).setValue(paymentDuplication)

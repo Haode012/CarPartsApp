@@ -99,6 +99,10 @@ class DeliveryCashOnDeliveryFragment : Fragment() {
                             for (secondChildSnapshot in firstChildSnapshot.children) {
                                 val myOrder = secondChildSnapshot.getValue(MyOrderModel::class.java)
                                 myOrderModelArrayList.add(myOrder!!)
+
+                                // get address and display from database
+                                val address = secondChildSnapshot.child("deliveryAddress").value as String
+                                binding.editTextDeliveryAddress.setText(address)
                             }
                         }
                         val myOrderAdapter = MyOrderCashOnDeliveryAdapter(myOrderModelArrayList, requireContext())

@@ -16,6 +16,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import tarc.edu.carpartsapp.Model.MyOrderModel
 import tarc.edu.carpartsapp.databinding.FragmentCreateDeliveryStatusBinding
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -46,28 +47,35 @@ class CreateDeliveryStatus : Fragment() {
         //var date = binding.textViewDate.text
         val dateNow = Calendar.getInstance().time
         val deliveryStatus = binding.editTextTextMultiLine.text.toString()
-        binding.textViewDate.text = dateNow.toString()
+        val currentDate = SimpleDateFormat("MM/dd/yyyy")
+        val saveCurrentDate = currentDate.format(Calendar.getInstance().time)
+        binding.outputCurrentDate.text = saveCurrentDate
 
         val databaseNew = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
         val ref = databaseNew.getReference().child("OrderItem(Cash On Delivery) Duplicate")
-        ref.addListenerForSingleValueEvent(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    for (snap in snapshot.children) {
-                        val userID = snap.child("userId")
-                            .getValue(String::class.java)
-                        binding.outputUserid.setText(userID)
-
-
-                    }
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-
-        })
+//        ref.addListenerForSingleValueEvent(object : ValueEventListener{
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                if (snapshot.exists()) {
+//                    for (snap in snapshot.children) {
+//                        if(snap.child("orderID").value.toString().equals(binding.spinnerOrder.selectedItem.toString())) {
+//                            val userID = snap.child("userId")
+//                                .getValue(String::class.java)
+//                            binding.outputUserid.setText(userID)
+//                            val dateOfOrder = snap.child("Date of Order Placed").value as String
+//                            binding.outputDateOrder.text = dateOfOrder
+//                            val deliveryAddress = snap.child("Delivery Address").value as String
+//                            binding.outputCustDeliveryAddress.text = deliveryAddress
+//
+//                        }
+//                    }
+//                }
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                TODO("Not yet implemented")
+//            }
+//
+//        })
 
         val database =
             Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
@@ -81,7 +89,10 @@ class CreateDeliveryStatus : Fragment() {
                             dataSnapshot2.child("orderID")
                                 .getValue(String::class.java)
                         )
+
                     }
+
+
 
                     // val order = orderSnap.getValue(Order::class.java)
                     //  val orders: ArrayList<String?> = ArrayList()
@@ -103,8 +114,35 @@ class CreateDeliveryStatus : Fragment() {
                             p2: Int,
                             p3: Long
                         ) {
-                            Toast.makeText(context, "Thank You", Toast.LENGTH_SHORT).show()
-                        }
+                            val database = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                            val ref = database.getReference("OrderItem(Cash On Delivery) Duplicate")
+                            ref.addValueEventListener(object : ValueEventListener{
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    for (snap in snapshot.children) {
+                                        if (snap.child("orderID").value.toString()
+                                                .equals(binding.spinnerOrder.selectedItem.toString())
+                                        ) {
+                                            val userID = snap.child("userId")
+                                                .getValue(String::class.java)
+                                            binding.outputUserid.setText(userID)
+                                            val dateOfOrder =
+                                                snap.child("Date of Order Placed").value as String
+                                            binding.outputDateOrder.text = dateOfOrder
+                                            val deliveryAddress =
+                                                snap.child("Delivery Address").value as String
+                                            binding.outputCustDeliveryAddress.text = deliveryAddress
+                                        }
+                                    }
+                                }
+
+                                override fun onCancelled(error: DatabaseError) {
+                                    TODO("Not yet implemented")
+                                }
+
+                            })
+
+                                }
+
 
                         override fun onNothingSelected(p0: AdapterView<*>?) {
                             TODO("Not yet implemented")
@@ -208,12 +246,12 @@ class CreateDeliveryStatus : Fragment() {
         val spinner = binding.spinnerOrder.selectedItem.toString()
         val deliveryStatus = binding.editTextTextMultiLine.text.toString()
         val dateNow = Calendar.getInstance().time
-        binding.textViewDate.text = dateNow.toString()
 
         deliveryStatusNew["orderID"] = spinner
         deliveryStatusNew["deliveryStatus"] = deliveryStatus
         deliveryStatusNew["dateTime"] = dateNow.toString()
         deliveryStatusNew["userId"] = binding.outputUserid.text.toString()
+        deliveryStatusNew["address"] = binding.outputCustDeliveryAddress.text.toString()
 
 
 

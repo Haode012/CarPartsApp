@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout7"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Admin.CreateDeliveryStatus" >
+    tools:context="Admin.CreateDeliveryStatus">
 
     <TextView
         android:id="@+id/labelDeliveryStatus"
@@ -14,6 +14,7 @@
         android:layout_marginTop="28dp"
         android:text="@string/deliveryStatus"
         android:textSize="20sp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,6 +27,7 @@
         android:layout_marginTop="72dp"
         android:text="Order ID"
         android:textSize="16sp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toStartOf="@+id/spinnerOrder"
         app:layout_constraintHorizontal_bias="0.197"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +38,7 @@
         android:layout_width="277dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelDeliveryStatus"
         tools:ignore="SpeakableTextPresentCheck" />
@@ -46,22 +48,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="120dp"
         android:text="@string/deliveryStatus"
+        android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView42" />
 
     <EditText
         android:id="@+id/editTextTextMultiLine"
-        android:layout_width="277dp"
-        android:layout_height="74dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="265dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="80dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintHorizontal_bias="0.805"
         app:layout_constraintStart_toEndOf="@+id/textView43"
         app:layout_constraintTop_toBottomOf="@+id/spinnerOrder"
         tools:ignore="SpeakableTextPresentCheck" />
@@ -70,22 +74,25 @@
         android:id="@+id/textView45"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
         android:text="Date"
+        android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView43" />
+        app:layout_constraintEnd_toEndOf="@+id/labelDateOfOrder"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/labelDateOfOrder"
+        app:layout_constraintTop_toBottomOf="@+id/labelDateOfOrder" />
 
     <TextView
-        android:id="@+id/textViewDate"
+        android:id="@+id/outputCurrentDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:text="TextView"
+        android:layout_marginTop="84dp"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintHorizontal_bias="0.58"
         app:layout_constraintStart_toEndOf="@+id/textView45"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
 
@@ -93,23 +100,24 @@
         android:id="@+id/buttonCreate"
         android:layout_width="260dp"
         android:layout_height="49dp"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="112dp"
         android:backgroundTint="#FDC12A"
         android:text="Create Delivery Status"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.569"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDate" />
+        app:layout_constraintTop_toBottomOf="@+id/outputCurrentDate" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/labelUID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="40dp"
         android:text="User ID"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/textView45"
-        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintHorizontal_bias="0.083"
         app:layout_constraintStart_toStartOf="@+id/textView45"
         app:layout_constraintTop_toBottomOf="@+id/textView45" />
 
@@ -117,8 +125,60 @@
         android:id="@+id/outputUserid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="328dp"
-        app:layout_constraintEnd_toEndOf="@+id/textViewDate"
-        app:layout_constraintStart_toStartOf="@+id/textViewDate"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="36dp"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/outputCurrentDate"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/outputCurrentDate"
+        app:layout_constraintTop_toBottomOf="@+id/outputCurrentDate" />
+
+    <TextView
+        android:id="@+id/labelDeliveryAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="@string/deliveryAddress"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/textView42"
+        app:layout_constraintHorizontal_bias="0.166"
+        app:layout_constraintStart_toStartOf="@+id/textView42"
+        app:layout_constraintTop_toBottomOf="@+id/textView42" />
+
+    <TextView
+        android:id="@+id/outputCustDeliveryAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toEndOf="@+id/labelDeliveryAddress"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerOrder" />
+
+    <TextView
+        android:id="@+id/labelDateOfOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="@string/dateOfOrderPlaced"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView43"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView43"
+        app:layout_constraintTop_toBottomOf="@+id/textView43" />
+
+    <TextView
+        android:id="@+id/outputDateOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTextMultiLine"
+        app:layout_constraintHorizontal_bias="0.471"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextMultiLine"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
 </androidx.constraintlayout.widget.ConstraintLayout>
