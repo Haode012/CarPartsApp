@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/return_product_credit_card_item_card_view"
+    android:layout_width="match_parent"
+    android:layout_height="320dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    android:elevation="4dp"
+    android:layout_margin="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFEE82">
+
+        <ImageView
+            android:id="@+id/return_product_credit_card_item_image"
+            android:layout_width="150dp"
+            android:layout_height="270dp"
+            android:src="@drawable/brake_kit_popular"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.315"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="169dp" />
+
+        <TextView
+            android:id="@+id/textViewID"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Product ID"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Name"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/return_product_credit_card_item_id" />
+
+        <TextView
+            android:id="@+id/textViewWarranty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Warranty"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/return_product_credit_card_item_name" />
+
+        <TextView
+            android:id="@+id/textViewOrderDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Order Date"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/return_product_credit_card_item_order_id" />
+
+        <TextView
+            android:id="@+id/textViewOrderTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Order Time"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/return_product_credit_card_item_order_date" />
+
+        <TextView
+            android:id="@+id/return_product_credit_card_item_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="ID"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/textViewID" />
+
+        <TextView
+            android:id="@+id/return_product_credit_card_item_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="TextView1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/textViewName" />
+
+        <TextView
+            android:id="@+id/return_product_credit_card_item_warranty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="TextView2"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/textViewWarranty" />
+
+        <TextView
+            android:id="@+id/warrantyLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text=" Years"
+            app:layout_constraintStart_toEndOf="@+id/return_product_credit_card_item_warranty"
+            app:layout_constraintTop_toTopOf="@+id/return_product_credit_card_item_warranty" />
+
+        <TextView
+            android:id="@+id/return_product_credit_card_item_order_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView4"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/textViewOrderDate" />
+
+        <TextView
+            android:id="@+id/return_product_credit_card_item_order_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView5"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/textViewOrderTime" />
+
+        <TextView
+            android:id="@+id/textViewOrderID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Order ID"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/return_product_credit_card_item_warranty" />
+
+        <TextView
+            android:id="@+id/return_product_credit_card_item_order_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView3"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/textViewOrderID" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

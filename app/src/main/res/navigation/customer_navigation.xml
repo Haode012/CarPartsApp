@@ -176,6 +176,9 @@
         <action
             android:id="@+id/action_nav_returnProduct_customer_to_nav_returnProductCashOnDelivery_customer"
             app:destination="@id/nav_returnProductCashOnDelivery_customer" />
+        <action
+            android:id="@+id/action_nav_returnProduct_customer_to_nav_returnProductCreditCard_customer"
+            app:destination="@id/nav_returnProductCreditCard_customer" />
     </fragment>
     <fragment
         android:id="@+id/nav_returnProductCashOnDelivery_customer"
@@ -197,5 +200,20 @@
         <action
             android:id="@+id/action_nav_requestReturnProduct_customer_to_nav_returnProductCashOnDelivery_customer"
             app:destination="@id/nav_returnProductCashOnDelivery_customer" />
+        <action
+            android:id="@+id/action_nav_requestReturnProduct_customer_to_nav_returnProductCreditCard_customer"
+            app:destination="@id/nav_returnProductCreditCard_customer" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_returnProductCreditCard_customer"
+        android:name="tarc.edu.carpartsapp.Customer.ReturnProductCreditCardFragment"
+        android:label="Credit Card"
+        tools:layout="@layout/fragment_return_product_credit_card" >
+        <action
+            android:id="@+id/action_nav_returnProductCreditCard_customer_to_nav_returnProduct_customer"
+            app:destination="@id/nav_returnProduct_customer" />
+        <action
+            android:id="@+id/action_nav_returnProductCreditCard_customer_to_nav_requestReturnProduct_customer"
+            app:destination="@id/nav_requestReturnProduct_customer" />
     </fragment>
 </navigation>

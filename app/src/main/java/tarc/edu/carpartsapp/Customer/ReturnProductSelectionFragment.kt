@@ -28,5 +28,9 @@ class ReturnProductSelectionFragment : Fragment() {
             findNavController().navigate(R.id.action_nav_returnProduct_customer_to_nav_returnProductCashOnDelivery_customer)
         }
 
+        binding.imageViewByCreditCard.setOnClickListener{
+            findNavController().navigate(R.id.action_nav_returnProduct_customer_to_nav_returnProductCreditCard_customer)
+        }
+
     }
 }
