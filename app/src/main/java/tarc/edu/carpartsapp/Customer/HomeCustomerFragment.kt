@@ -217,7 +217,7 @@ class HomeCustomerFragment : Fragment() {
                         paymentDuplication["orderID"] = orderID
                         paymentDuplication["paymentID"] = paymentID
                         paymentDuplication["userId"] = uid
-                        orderDuplication["TotalAmount"] = myOrderModel.total_price
+                        orderDuplication["Total Amount"] = myOrderModel.total_price
                         orderDuplication["Delivery Address"] = myOrderModel.deliveryAddress
                         orderDuplication["Date of Order Placed"] = myOrderModel.currentDate
 

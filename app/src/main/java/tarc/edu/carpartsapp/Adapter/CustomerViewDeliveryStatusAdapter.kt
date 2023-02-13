@@ -30,7 +30,10 @@ class CustomerViewDeliveryStatusAdapter(private val customerDeliveryStatusList: 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = customerDeliveryStatusList[position]
         holder.deliveryStatusText.text = currentItem.deliveryStatus
-        holder.dateTime.text = currentItem.deliveryDateAndTime
+        holder.orderDate.text = currentItem.dateTime
+        holder.orderId.text = currentItem.orderID
+        holder.houseAddress.text = currentItem.address
+        holder.totalAmount.text = currentItem.TotalAmount
     }
 
 
@@ -43,8 +46,10 @@ class CustomerViewDeliveryStatusAdapter(private val customerDeliveryStatusList: 
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val deliveryStatusText : TextView = itemView.findViewById(R.id.outputDeliveryStatus)
-        val dateTime : TextView = itemView.findViewById(R.id.outputDate)
-
+        val deliveryStatusText : TextView = itemView.findViewById(R.id.outputDeliveryStatusnew)
+        val orderDate : TextView = itemView.findViewById(R.id.outputPurchaseDate)
+        val houseAddress : TextView = itemView.findViewById(R.id.outputHouseAddress)
+        val orderId : TextView = itemView.findViewById(R.id.outputOrderID)
+        val totalAmount : TextView = itemView.findViewById(R.id.outputTotalAmount)
     }
 }

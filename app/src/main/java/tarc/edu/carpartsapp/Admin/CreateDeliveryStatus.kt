@@ -131,6 +131,8 @@ class CreateDeliveryStatus : Fragment() {
                                             val deliveryAddress =
                                                 snap.child("Delivery Address").value as String
                                             binding.outputCustDeliveryAddress.text = deliveryAddress
+                                            val totalAmount = snap.child("TotalAmount").value as String
+                                            binding.outputOrderAmount.text = totalAmount
                                         }
                                     }
                                 }
@@ -252,6 +254,7 @@ class CreateDeliveryStatus : Fragment() {
         deliveryStatusNew["dateTime"] = dateNow.toString()
         deliveryStatusNew["userId"] = binding.outputUserid.text.toString()
         deliveryStatusNew["address"] = binding.outputCustDeliveryAddress.text.toString()
+        deliveryStatusNew["TotalAmount"] = binding.outputOrderAmount.text.toString()
 
 
 

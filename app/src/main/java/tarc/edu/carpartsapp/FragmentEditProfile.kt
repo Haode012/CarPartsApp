@@ -105,6 +105,7 @@ class FragmentEditProfile : Fragment() {
                     val databaseReference = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users/$userId")
                     databaseReference.child("profilePicture").setValue(imageMap)
                         .addOnSuccessListener {
+                            findNavController().navigate(R.id.action_fragmentEditProfile2_to_nav_profile_customer)
                             Toast.makeText(context, "Success", Toast.LENGTH_LONG).show()
                         }
                         .addOnFailureListener{

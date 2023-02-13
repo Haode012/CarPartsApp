@@ -64,8 +64,8 @@ class FragmentCustDeliveryStatus : Fragment() {
                 if (snapshot.exists()) {
                     for (deliverysnaps in snapshot.children) {
                         if(deliverysnaps.child("userId").value.toString().equals(userId)) {
-                            binding.outputOrderId.text = deliverysnaps.child("orderID").value.toString()
-                            binding.outputDeliveryAddress.text = deliverysnaps.child("deliveryAddress").value.toString()
+                            //binding.outputOrderId.text = deliverysnaps.child("orderID").value.toString()
+                            //binding.outputDeliveryAddress.text = deliverysnaps.child("deliveryAddress").value.toString()
                         val deliveryStatus =
                             deliverysnaps.getValue(DeliveryStatus::class.java)
                         custDeliveryStatusArrayList.add(deliveryStatus!!)
