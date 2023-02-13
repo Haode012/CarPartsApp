@@ -1,6 +1,5 @@
 package tarc.edu.carpartsapp
 
-import android.app.ProgressDialog
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,25 +7,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
+import com.google.firebase.storage.ktx.storage
 import tarc.edu.carpartsapp.databinding.FragmentEditProfileBinding
 import tarc.edu.carpartsapp.databinding.FragmentProfileBinding
 
 class FragmentEditProfile : Fragment() {
     private var _binding: FragmentEditProfileBinding? = null
     private var imageUri: Uri? = null
-    private lateinit var storage: FirebaseStorage
+    private  var storageRef = Firebase.storage
+
+    // This property is only valid between onCreateView and
+    // onDestroyView.
     private val binding get() = _binding!!
-    private lateinit var progressDialog: ProgressDialog
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
+        val auth = FirebaseAuth.getInstance()
+
         _binding = FragmentEditProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -49,6 +58,8 @@ class FragmentEditProfile : Fragment() {
             val phoneNumber = it.child("phoneNumber").value as String
             val birthDate = it.child("birthDate").value as String
             val gender = it.child("gender").value as String
+            val profilePic = it.child("profilePicture").child("url").value.toString()
+            Glide.with(this).load(profilePic).into(binding.imageView6)
 
             binding.textViewLabelBigName.text = name
             binding.textInputFullName.setText(name)
@@ -57,20 +68,59 @@ class FragmentEditProfile : Fragment() {
             binding.textInputPhone.setText(phoneNumber)
             binding.textInputDateOfBirth.setText(birthDate)
             binding.textInputGender.setText(gender)
+
+
+            //binding.profilePicture.setOnClickListener {
+            //  getPhoto.launch("image/*")
+            //}
+            // }
+
+            //  binding.button4.setOnClickListener {
+            //   ref.child("fullName").setValue(binding.fullName.text.toString())
+            //   ref.child("emailAddress").setValue(binding.emailAddress.text.toString())
+            //   ref.child("address").setValue(binding.homeAddress.text.toString())
+            //ref.setValue(binding.emailAddress.text.toString())
+            // ref.setValue(binding.emailAddress.text.toString())
         }
 
-        binding.buttonProfile.setOnClickListener {
+        val galleryImg = registerForActivityResult(
+            ActivityResultContracts.GetContent(),
+            ActivityResultCallback{
+                binding.imageView6.setImageURI(it)
+                imageUri = it
+            }
+        )
 
-              ref.child("fullName").setValue(binding.textInputFullName.text.toString())
-            //ref.child("fullName").setValue(binding.textViewLabelBigName.text)
-               ref.child("emailAddress").setValue(binding.textInputEmail.text.toString())
-               ref.child("address").setValue(binding.textInputHomeAddress.text.toString())
-            ref.child("phoneNumber").setValue(binding.textInputPhone.text.toString())
-            ref.child("birthDate").setValue(binding.textInputDateOfBirth.text.toString())
-            ref.child("gender").setValue(binding.textInputGender.text.toString())
-            Toast.makeText(context,"User Profile Updated", Toast.LENGTH_LONG).show()
-            findNavController().navigate(R.id.action_fragmentEditProfile2_to_nav_profile_customer)
+        binding.imageView6.setOnClickListener{
+            galleryImg.launch("image/*")
         }
+
+        binding.buttonProfile.setOnClickListener{
+            storageRef.getReference("Images").child(System.currentTimeMillis().toString()).putFile(imageUri!!).addOnSuccessListener { task->
+                task.metadata!!.reference!!.downloadUrl.addOnSuccessListener { uri->
+                    val imageMap = mapOf("url" to uri.toString())
+                    //val databaseReference = Firebase.database("https://carsurusmobileapplication-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                    //val ref = databaseReference.getReference("Users/$userId")
+                    //ref.child("profilePicture").setValue(imageMap)
+                    val databaseReference = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users/$userId")
+                    databaseReference.child("profilePicture").setValue(imageMap)
+                        .addOnSuccessListener {
+                            Toast.makeText(context, "Success", Toast.LENGTH_LONG).show()
+                        }
+                        .addOnFailureListener{
+                            Toast.makeText(context, it.toString(), Toast.LENGTH_LONG).show()
+                        }
+                }
+            }
+        }
+
     }
 
+    private fun uploadInfo() {
+    }
+
+    private fun storeData(imageUri: UploadTask.TaskSnapshot) {
+
+
+    }
 }

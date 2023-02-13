@@ -13,9 +13,11 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.nav_header_customer.*
 import kotlinx.android.synthetic.main.nav_header_customer.view.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 import tarc.edu.carpartsapp.MainActivity
@@ -73,9 +75,11 @@ class CustomerActivity : AppCompatActivity() {
             val name = it.child("fullName").value as String
             val email = it.child("emailAddress").value as String
             val navView: NavigationView = binding.navView
+           // val profilePic = it.child("profilePicture").child("url").value.toString()
             val view: View = navView.getHeaderView(0)
             view.textViewFullName.setText(name)
             view.textViewEmail.setText(email)
+            //Glide.with(this).load(profilePic).into(imageView)
         }
     }
 
@@ -88,8 +92,10 @@ class CustomerActivity : AppCompatActivity() {
             ref.get().addOnSuccessListener {
                 val navView: NavigationView = binding.navView
                 val view: View = navView.getHeaderView(0)
+                val profilePic = it.child("profilePicture").child("url").value.toString()
                 view.textViewUsernameCustomer.text = it.child("fullName").getValue(String:: class.java)
                 view.textViewEmailCustomer.text = it.child("emailAddress").getValue(String:: class.java)
+                Glide.with(this).load(profilePic).into(imageView)
             }
         }
 

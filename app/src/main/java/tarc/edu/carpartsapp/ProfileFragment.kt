@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -45,6 +46,8 @@ class ProfileFragment : Fragment() {
             val phoneNumber = it.child("phoneNumber").value as String
             val birthDate = it.child("birthDate").value as String
             val gender = it.child("gender").value as String
+            val profilePic = it.child("profilePicture").child("url").value.toString()
+            Glide.with(this).load(profilePic).into(binding.imageView6)
 
             binding.textViewLabelBigName.text = name
             binding.textInputFullName.setText(name)
