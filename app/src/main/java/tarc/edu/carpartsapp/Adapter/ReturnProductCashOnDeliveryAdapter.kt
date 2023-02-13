@@ -49,6 +49,7 @@ class ReturnProductCashOnDeliveryAdapter: RecyclerView.Adapter<ReturnProductCash
         val id = myOrderModel.id
         val name = myOrderModel.name
         val warranty = myOrderModel.warranty
+        val total_quantity = myOrderModel.total_quantity
         val order_id = myOrderModel.orderID
         val order_date = myOrderModel.currentDate
         val order_time = myOrderModel.currentTime
@@ -57,6 +58,7 @@ class ReturnProductCashOnDeliveryAdapter: RecyclerView.Adapter<ReturnProductCash
         holder.id.text = id
         holder.name.text = name
         holder.warranty.text = warranty
+        holder.total_quantity.text = total_quantity
         holder.order_id.text = order_id
         holder.order_date.text = order_date
         holder.order_time.text = order_time
@@ -71,6 +73,7 @@ class ReturnProductCashOnDeliveryAdapter: RecyclerView.Adapter<ReturnProductCash
         val id = myOrderModel.id
         val name = myOrderModel.name
         val warranty = myOrderModel.warranty
+        val total_quantity = myOrderModel.total_quantity
         val order_id = myOrderModel.orderID
         val order_date = myOrderModel.currentDate
         val order_time = myOrderModel.currentTime
@@ -81,6 +84,7 @@ class ReturnProductCashOnDeliveryAdapter: RecyclerView.Adapter<ReturnProductCash
                 putString("id",id.toString())
                 putString("name",name.toString())
                 putString("warranty",warranty.toString())
+                putString("total_quantity",total_quantity.toString())
                 putString("order_id",order_id.toString())
                 putString("order_date",order_date.toString())
                 putString("order_time",order_time.toString())
@@ -97,6 +101,7 @@ class ReturnProductCashOnDeliveryAdapter: RecyclerView.Adapter<ReturnProductCash
         var id : TextView = binding.returnProductCashOnDeliveryItemId
         var name : TextView = binding.returnProductCashOnDeliveryItemName
         val warranty : TextView = binding.returnProductCashOnDeliveryItemWarranty
+        val total_quantity : TextView = binding.returnProductCashOnDeliveryItemTotalQuantity
         var order_id : TextView = binding.returnProductCashOnDeliveryItemOrderId
         val order_date : TextView = binding.returnProductCashOnDeliveryItemOrderDate
         val order_time : TextView = binding.returnProductCashOnDeliveryItemOrderTime

@@ -51,6 +51,7 @@ class ReturnProductCreditCardAdapter: RecyclerView.Adapter<ReturnProductCreditCa
         val id = myOrderModel.id
         val name = myOrderModel.name
         val warranty = myOrderModel.warranty
+        val total_quantity = myOrderModel.total_quantity
         val order_id = myOrderModel.orderID
         val order_date = myOrderModel.currentDate
         val order_time = myOrderModel.currentTime
@@ -59,6 +60,7 @@ class ReturnProductCreditCardAdapter: RecyclerView.Adapter<ReturnProductCreditCa
         holder.id.text = id
         holder.name.text = name
         holder.warranty.text = warranty
+        holder.total_quantity.text = total_quantity
         holder.order_id.text = order_id
         holder.order_date.text = order_date
         holder.order_time.text = order_time
@@ -73,6 +75,7 @@ class ReturnProductCreditCardAdapter: RecyclerView.Adapter<ReturnProductCreditCa
         val id = myOrderModel.id
         val name = myOrderModel.name
         val warranty = myOrderModel.warranty
+        val total_quantity = myOrderModel.total_quantity
         val order_id = myOrderModel.orderID
         val order_date = myOrderModel.currentDate
         val order_time = myOrderModel.currentTime
@@ -83,6 +86,7 @@ class ReturnProductCreditCardAdapter: RecyclerView.Adapter<ReturnProductCreditCa
                 putString("id",id.toString())
                 putString("name",name.toString())
                 putString("warranty",warranty.toString())
+                putString("total_quantity",total_quantity.toString())
                 putString("order_id",order_id.toString())
                 putString("order_date",order_date.toString())
                 putString("order_time",order_time.toString())
@@ -99,6 +103,7 @@ class ReturnProductCreditCardAdapter: RecyclerView.Adapter<ReturnProductCreditCa
         var id : TextView = binding.returnProductCreditCardItemId
         var name : TextView = binding.returnProductCreditCardItemName
         val warranty : TextView = binding.returnProductCreditCardItemWarranty
+        val total_quantity : TextView = binding.returnProductCreditCardItemTotalQuantity
         var order_id : TextView = binding.returnProductCreditCardItemOrderId
         val order_date : TextView = binding.returnProductCreditCardItemOrderDate
         val order_time : TextView = binding.returnProductCreditCardItemOrderTime

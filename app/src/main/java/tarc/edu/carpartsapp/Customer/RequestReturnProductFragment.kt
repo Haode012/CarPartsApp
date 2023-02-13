@@ -40,27 +40,40 @@ class RequestReturnProductFragment : Fragment() {
         val id = requireArguments().getString("id").toString()
         val name = requireArguments().getString("name").toString()
         val warranty = requireArguments().getString("warranty").toString()
+        val total_quantity = requireArguments().getString("total_quantity").toString()
         val order_id = requireArguments().getString("order_id").toString()
         val order_date = requireArguments().getString("order_date").toString()
         val order_time = requireArguments().getString("order_time").toString()
         val img_url = requireArguments().getString("img_url").toString()
 
-
         binding.requestId.setText(id)
         binding.requestName.setText(name)
         binding.requestWarranty.setText(warranty)
+        binding.requestTotalQuantity.setText(total_quantity)
         binding.requestOrderId.setText(order_id)
         binding.requestOrderDate.setText(order_date)
         binding.requestOrderTime.setText(order_time)
         Glide.with(requireContext()).load(img_url).into(binding.requestImage)
 
+        binding.removeQuantity.setOnClickListener {
+            var totalQuantity = binding.requestTotalQuantity.text.toString().trim().toInt()
+
+            if (totalQuantity > 1) {
+                totalQuantity--
+                binding.requestTotalQuantity.text = totalQuantity.toString()
+            }
+        }
+
+
         binding.buttonRequestReturnProduct.setOnClickListener{
+            var totalQuantity = binding.requestTotalQuantity.text.toString().trim().toInt()
 
             val hashMap = HashMap<String, Any>()
             hashMap["uid"] = FirebaseAuth.getInstance().currentUser!!.uid
             hashMap["id"] = "$id"
             hashMap["name"] = "$name"
             hashMap["warranty"] = "$warranty"
+            hashMap["total_quantity"] = "$totalQuantity"
             hashMap["orderID"] = "$order_id"
             hashMap["orderDate"] = "$order_date"
             hashMap["orderTime"] = "$order_time"
@@ -68,7 +81,7 @@ class RequestReturnProductFragment : Fragment() {
 
             val database = FirebaseDatabase.getInstance()
             val reference = database.getReference("RequestReturnProduct")
-                reference.child(FirebaseAuth.getInstance().currentUser!!.uid).child(order_id).setValue(hashMap).addOnCompleteListener { task ->
+                reference.child(FirebaseAuth.getInstance().currentUser!!.uid).child(order_id).child(id).setValue(hashMap).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(requireContext(), "Requested Successfully", Toast.LENGTH_SHORT).show()
                     } else {

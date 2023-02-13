@@ -38,7 +38,7 @@
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/label_id2"
-        app:layout_constraintTop_toBottomOf="@+id/request_warranty" />
+        app:layout_constraintTop_toBottomOf="@+id/request_total_quantity" />
 
     <TextView
         android:id="@+id/label_id2"
@@ -50,7 +50,7 @@
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <ImageView
         android:id="@+id/request_image"
@@ -156,8 +156,8 @@
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="2dp"
         android:background="#FFEE82"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -166,17 +166,56 @@
 
     <Button
         android:id="@+id/buttonRequestReturnProduct"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="3dp"
         android:background="@drawable/shape_button"
         android:text="Request Return Product"
         android:textColor="@color/black"
+        android:textSize="12dp"
         android:textStyle="bold"
         app:backgroundTint="#FDC12A"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.545" />
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="10dp"
+        android:text="Total Quantity: "
+        android:textStyle="bold"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/request_total_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Quantity"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/request_warranty" />
+
+    <ImageView
+        android:id="@+id/remove_quantity"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:src="@drawable/ic_baseline_remove_circle_outline_24"
+        app:layout_constraintStart_toEndOf="@+id/request_total_quantity"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
