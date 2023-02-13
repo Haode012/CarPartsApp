@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_nav_home_admin_to_fragmentAdminDeliveryManagement"
             app:destination="@id/fragmentAdminDeliveryManagement" />
+        <action
+            android:id="@+id/action_nav_home_admin_to_nav_returnProduct_admin"
+            app:destination="@id/nav_returnProduct_admin" />
     </fragment>
     <fragment
         android:id="@+id/nav_popular_car_parts_admin"
@@ -305,4 +308,13 @@
         android:id="@+id/createDeliveryStatus2"
         android:name="tarc.edu.carpartsapp.Admin.CreateDeliveryStatus"
         android:label="CreateDeliveryStatus" />
+    <fragment
+        android:id="@+id/nav_returnProduct_admin"
+        android:name="tarc.edu.carpartsapp.Admin.ReturnProductAdminFragment"
+        android:label="Return Product Requests"
+        tools:layout="@layout/fragment_return_product_admin">
+        <action
+            android:id="@+id/action_nav_returnProduct_admin_to_nav_home_admin"
+            app:destination="@id/nav_home_admin" />
+    </fragment>
 </navigation>

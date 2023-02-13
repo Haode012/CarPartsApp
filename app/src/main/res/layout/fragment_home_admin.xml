@@ -146,6 +146,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageViewCustomerFeedback" />
 
+        <ImageView
+            android:id="@+id/imageViewReturnProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:maxWidth="500dp"
+            android:maxHeight="300dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/return_product_management"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewDelivery"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Return Product \n Management"
+            android:textColor="@color/white"
+            android:textSize="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewReturnProduct"
+            app:layout_constraintStart_toStartOf="@+id/imageViewReturnProduct"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewDelivery" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
