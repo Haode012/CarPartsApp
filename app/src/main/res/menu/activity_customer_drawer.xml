@@ -30,16 +30,25 @@
             </menu>
         </item>
         <item
+            android:title="Return Product" >
+            <menu>
+                <item
+                    android:id="@+id/nav_itemOrdered_customer"
+                    android:icon="@drawable/ic_baseline_keyboard_return_24"
+                    android:title="Item Ordered" />
+                <item
+                    android:id="@+id/nav_status_customer"
+                    android:icon="@drawable/ic_baseline_signal_wifi_statusbar_null_24"
+                    android:title="Status" />
+            </menu>
+        </item>
+        <item
             android:title="Others" >
             <menu>
                 <item
                    android:id="@+id/nav_feedback_customer"
                     android:icon="@drawable/ic_baseline_feedback_24"
                     android:title="@string/menu_feedback" />
-                <item
-                    android:id="@+id/nav_returnProduct_customer"
-                    android:icon="@drawable/ic_baseline_keyboard_return_24"
-                    android:title="Return Product" />
                 <item
                    android:id="@+id/nav_aboutUs_customer"
                     android:icon="@drawable/ic_baseline_info_24"

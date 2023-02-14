@@ -169,7 +169,7 @@
         android:label="fragment_cust_delivery_status"
         tools:layout="@layout/fragment_cust_delivery_status" />
     <fragment
-        android:id="@+id/nav_returnProduct_customer"
+        android:id="@+id/nav_itemOrdered_customer"
         android:name="tarc.edu.carpartsapp.Customer.ReturnProductSelectionFragment"
         android:label="Return Product"
         tools:layout="@layout/fragment_return_product" >
@@ -187,7 +187,7 @@
         tools:layout="@layout/fragment_return_product_cash_on_delivery" >
         <action
             android:id="@+id/action_nav_returnProductCashOnDelivery_customer_to_nav_returnProduct_customer"
-            app:destination="@id/nav_returnProduct_customer" />
+            app:destination="@id/nav_itemOrdered_customer" />
         <action
             android:id="@+id/action_nav_returnProductCashOnDelivery_customer_to_nav_requestReturnProduct_customer"
             app:destination="@id/nav_requestReturnProduct_customer" />
@@ -211,9 +211,14 @@
         tools:layout="@layout/fragment_return_product_credit_card" >
         <action
             android:id="@+id/action_nav_returnProductCreditCard_customer_to_nav_returnProduct_customer"
-            app:destination="@id/nav_returnProduct_customer" />
+            app:destination="@id/nav_itemOrdered_customer" />
         <action
             android:id="@+id/action_nav_returnProductCreditCard_customer_to_nav_requestReturnProduct_customer"
             app:destination="@id/nav_requestReturnProduct_customer" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_status_customer"
+        android:name="tarc.edu.carpartsapp.Customer.ReturnProductStatusFragment"
+        android:label="Return Product Status"
+        tools:layout="@layout/fragment_return_product_status" />
 </navigation>

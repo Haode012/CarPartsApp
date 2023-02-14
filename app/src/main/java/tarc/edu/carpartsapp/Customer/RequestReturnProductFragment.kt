@@ -45,6 +45,7 @@ class RequestReturnProductFragment : Fragment() {
         val order_date = requireArguments().getString("order_date").toString()
         val order_time = requireArguments().getString("order_time").toString()
         val img_url = requireArguments().getString("img_url").toString()
+        val status = "pending"
 
         binding.requestId.setText(id)
         binding.requestName.setText(name)
@@ -88,6 +89,26 @@ class RequestReturnProductFragment : Fragment() {
                         Toast.makeText(requireContext(), "Failed to Request", Toast.LENGTH_SHORT).show()
                     }
                 }
+
+            val hashMap2 = HashMap<String, Any>()
+            hashMap2["uid"] = FirebaseAuth.getInstance().currentUser!!.uid
+            hashMap2["id"] = "$id"
+            hashMap2["name"] = "$name"
+            hashMap2["warranty"] = "$warranty"
+            hashMap2["total_quantity"] = "$totalQuantity"
+            hashMap2["orderID"] = "$order_id"
+            hashMap2["orderDate"] = "$order_date"
+            hashMap2["orderTime"] = "$order_time"
+            hashMap2["img_url"] = "$img_url"
+            hashMap2["status"] = "$status"
+
+            val database2 = FirebaseDatabase.getInstance()
+            val reference2 = database2.getReference("ReturnProductStatus")
+            reference2.child(FirebaseAuth.getInstance().currentUser!!.uid).child(order_id).child(id).setValue(hashMap2).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                } else {
+                }
+            }
             }
         }
 }

@@ -10,6 +10,7 @@ class ReturnProductModel {
     var img_url:String = ""
     var orderDate:String = ""
     var orderTime: String = ""
+    var status: String = ""
 
     //empty constructor, required by firebase
     constructor()
@@ -25,6 +26,7 @@ class ReturnProductModel {
         orderDate: String,
         uid:String,
         orderTime:String,
+        status:String
 
     ) {
         this.orderID = orderID
@@ -36,6 +38,7 @@ class ReturnProductModel {
         this.img_url = img_url
         this.orderDate = orderDate
         this.orderTime = orderTime
+        this.status = status
     }
 }
 
