@@ -12,6 +12,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import tarc.edu.carpartsapp.Model.Feedback
 import tarc.edu.carpartsapp.databinding.FragmentCustomerFeedbackBinding
 import java.lang.Exception
 
@@ -43,12 +44,9 @@ class CustomerFeedbackFragment : Fragment() {
         val comments = binding.comments.text.toString()
 
         binding.btnSubmit.setOnClickListener { task->
-//            val database = Firebase.database("https://carsurusmobileapplication-default-rtdb.asia-southeast1.firebasedatabase.app/")
-//            database.getReference("Feedback").child("feedback"+1).get().addOnCompleteListener { task ->
-               // if(task.isSuccessful){
                     feedback()
                     storeFeedbacks()
-                    Toast.makeText(context, "Rated Successfully", Toast.LENGTH_LONG)
+                    Toast.makeText(context, "Rated Successfully", Toast.LENGTH_LONG).show()
                     findNavController().navigate(R.id.action_nav_feedback_customer_to_nav_home_customer)
                // }else{
                  //   Toast.makeText(context, "Error", Toast.LENGTH_SHORT)
@@ -79,12 +77,15 @@ class CustomerFeedbackFragment : Fragment() {
 
    private fun storeFeedbacks(){
         val database = FirebaseDatabase.getInstance()
-        val databaseReference = database.getReference("Feedback").push()
+        val databaseReference = database.getReference("Customer Feedback").push()
+       val databaseReference2 = database.getReference("Admin View All Feedback").push()
        //val databaseReference = database.getReference("Feedback").child("$userId").push()
        //val databaseReference = database.getReference("Feedback").child("$userId").child("Feedback").push()
-
+       val ref = databaseReference2.key
+       feedbacks["feedbackId"] = ref.toString()
         try {
             databaseReference.setValue(feedbacks)
+            databaseReference2.setValue(feedbacks)
         } catch (e: Exception) {
             Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
         }

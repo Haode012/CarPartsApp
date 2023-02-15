@@ -22,13 +22,21 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
+            android:id="@+id/labelComments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/comments" />
+
+        <TextView
             android:id="@+id/feedbackText"
             android:layout_width="match_parent"
             android:layout_height="121dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="10dp"
+            android:background="#D0D0D0"
             android:fontFamily="sans-serif"
             android:textSize="16sp" />
 

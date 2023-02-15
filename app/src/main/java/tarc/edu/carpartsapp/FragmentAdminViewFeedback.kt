@@ -47,7 +47,7 @@ class FragmentAdminViewFeedback : Fragment() {
     private fun getData() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
         db = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
-            .getReference("Feedback")
+            .getReference("Admin View All Feedback")
 
         db.addValueEventListener(object : ValueEventListener {
 
