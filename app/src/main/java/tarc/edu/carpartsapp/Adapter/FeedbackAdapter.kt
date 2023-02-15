@@ -30,6 +30,7 @@ class FeedbackAdapter(private val feedbackList: ArrayList<Feedback>) :
         return MyViewHolder(itemView)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = feedbackList[position]
         holder.ratings.rating = currentItem.rating.toFloat()
@@ -37,8 +38,8 @@ class FeedbackAdapter(private val feedbackList: ArrayList<Feedback>) :
         holder.deleteButton.setOnClickListener {
             deleteFeedback(holder.bindingAdapterPosition)
             Toast.makeText(it.context, "Deleted Successfully", Toast.LENGTH_LONG).show()
-
         }
+        holder.feedbackId.text ="Feedback ID:"+currentItem.feedbackId
     }
 
 
@@ -64,5 +65,6 @@ class FeedbackAdapter(private val feedbackList: ArrayList<Feedback>) :
         val ratings : RatingBar = itemView.findViewById(R.id.ratingBarNew)
         val comment : TextView = itemView.findViewById(R.id.feedbackText)
         val deleteButton : ImageView = itemView.findViewById(R.id.imageButtonDelete)
+        val feedbackId : TextView = itemView.findViewById(R.id.labelFeedbackId)
     }
 }
