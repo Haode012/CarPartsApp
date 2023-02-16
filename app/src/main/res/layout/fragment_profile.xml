@@ -147,11 +147,19 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/buttonProfile"
+            android:id="@+id/btnEditProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#FDC12A"
             android:text="@string/edit_profile"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btnChangeProfilePic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FDC12A"
+            android:text="Change Profile Picture"
             android:textColor="@color/black" />
 
 

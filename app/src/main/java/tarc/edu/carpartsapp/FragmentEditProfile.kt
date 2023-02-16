@@ -24,7 +24,7 @@ import tarc.edu.carpartsapp.databinding.FragmentProfileBinding
 class FragmentEditProfile : Fragment() {
     private var _binding: FragmentEditProfileBinding? = null
     private var imageUri: Uri? = null
-    private  var storageRef = Firebase.storage
+    private var storageRef = Firebase.storage
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -83,45 +83,65 @@ class FragmentEditProfile : Fragment() {
             // ref.setValue(binding.emailAddress.text.toString())
         }
 
-        val galleryImg = registerForActivityResult(
-            ActivityResultContracts.GetContent(),
-            ActivityResultCallback{
-                binding.imageView6.setImageURI(it)
-                imageUri = it
-            }
-        )
+        //val galleryImg = registerForActivityResult(
+        //    ActivityResultContracts.GetContent(),
+         //   ActivityResultCallback {
+         //       binding.imageView6.setImageURI(it)
+         //       imageUri = it
+         //   }
+      //  )
 
-        binding.imageView6.setOnClickListener{
-            galleryImg.launch("image/*")
+       // binding.imageView6.setOnClickListener {
+           // galleryImg.launch("image/*")
+        //}
+
+        binding.buttonSaveProfile.setOnClickListener {
+            saveProfileInformation()
         }
 
-        binding.buttonProfile.setOnClickListener{
-            storageRef.getReference("Images").child(System.currentTimeMillis().toString()).putFile(imageUri!!).addOnSuccessListener { task->
-                task.metadata!!.reference!!.downloadUrl.addOnSuccessListener { uri->
+    }
+
+    fun saveProfileInformation() {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
+        val databaseReference =
+            FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("Users/$userId")
+        databaseReference.child("fullName").setValue(binding.textViewLabelBigName.text.toString())
+        databaseReference.child("fullName").setValue(binding.textInputFullName.text.toString())
+        databaseReference.child("emailAddress").setValue(binding.textInputEmail.text.toString())
+        databaseReference.child("address").setValue(binding.textInputHomeAddress.text.toString())
+        databaseReference.child("phoneNumber").setValue(binding.textInputPhone.text.toString())
+        databaseReference.child("birthDate").setValue(binding.textInputDateOfBirth.text.toString())
+        databaseReference.child("gender").setValue(binding.textInputGender.text.toString())
+            .addOnSuccessListener {
+                findNavController().navigate(R.id.action_fragmentEditProfile2_to_nav_profile_customer)
+                Toast.makeText(context, "Success", Toast.LENGTH_LONG).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(context, "Failed to edit profile", Toast.LENGTH_LONG).show()
+            }
+    }
+
+    fun updateProfilePicture() {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
+        storageRef.getReference("Images").child(System.currentTimeMillis().toString())
+            .putFile(imageUri!!).addOnSuccessListener { task ->
+                task.metadata!!.reference!!.downloadUrl.addOnSuccessListener { uri ->
                     val imageMap = mapOf("url" to uri.toString())
                     //val databaseReference = Firebase.database("https://carsurusmobileapplication-default-rtdb.asia-southeast1.firebasedatabase.app/")
                     //val ref = databaseReference.getReference("Users/$userId")
                     //ref.child("profilePicture").setValue(imageMap)
-                    val databaseReference = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users/$userId")
+                    val databaseReference =
+                        FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                            .getReference("Users/$userId")
                     databaseReference.child("profilePicture").setValue(imageMap)
-                        .addOnSuccessListener {
-                            findNavController().navigate(R.id.action_fragmentEditProfile2_to_nav_profile_customer)
-                            Toast.makeText(context, "Success", Toast.LENGTH_LONG).show()
-                        }
-                        .addOnFailureListener{
-                            Toast.makeText(context, it.toString(), Toast.LENGTH_LONG).show()
-                        }
+                    findNavController().navigate(R.id.action_fragmentEditProfile2_to_nav_profile_customer)
+                    Toast.makeText(context, "Profile Picture Updated", Toast.LENGTH_LONG).show()
+
                 }
+
             }
-        }
-
-    }
-
-    private fun uploadInfo() {
-    }
-
-    private fun storeData(imageUri: UploadTask.TaskSnapshot) {
-
-
     }
 }
+
+

@@ -62,9 +62,13 @@ class ProfileFragment : Fragment() {
             //}
             // }
 
-              binding.buttonProfile.setOnClickListener {
+              binding.btnEditProfile.setOnClickListener {
                   findNavController().navigate(R.id.action_nav_profile_customer_to_fragmentEditProfile2)
               }
+
+            binding.btnChangeProfilePic.setOnClickListener {
+                findNavController().navigate(R.id.action_nav_profile_customer_to_fragmentChangeProfilePicture)
+            }
             //   ref.child("fullName").setValue(binding.fullName.text.toString())
             //   ref.child("emailAddress").setValue(binding.emailAddress.text.toString())
             //   ref.child("address").setValue(binding.homeAddress.text.toString())

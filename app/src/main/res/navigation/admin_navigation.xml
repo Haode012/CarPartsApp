@@ -316,5 +316,17 @@
         <action
             android:id="@+id/action_nav_returnProduct_admin_to_nav_home_admin"
             app:destination="@id/nav_home_admin" />
+        <action
+            android:id="@+id/action_nav_returnProduct_admin_to_fragmentAdminReturnProductDecision"
+            app:destination="@id/fragmentAdminReturnProductDecision" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentAdminReturnProductDecision"
+        android:name="tarc.edu.carpartsapp.FragmentAdminReturnProductDecision"
+        android:label="fragment_admin_return_product_decision"
+        tools:layout="@layout/fragment_admin_return_product_decision" >
+        <action
+            android:id="@+id/action_fragmentAdminReturnProductDecision_to_nav_returnProduct_admin"
+            app:destination="@id/nav_returnProduct_admin" />
     </fragment>
 </navigation>

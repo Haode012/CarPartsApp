@@ -85,18 +85,18 @@ class ReturnProductAdminAdapter: RecyclerView.Adapter<ReturnProductAdminAdapter.
         val order_time = returnProductModel.orderTime
         val img_url = returnProductModel.img_url
 
-       /* Navigation.findNavController(holder.itemView)
-            .navigate(R.id.action_nav_returnProductCashOnDelivery_customer_to_nav_requestReturnProduct_customer, Bundle().apply {
-                putString("uid",uid.toString())
+       Navigation.findNavController(holder.itemView)
+            .navigate(R.id.action_nav_returnProduct_admin_to_fragmentAdminReturnProductDecision, Bundle().apply {
+               // putString("uid",uid.toString())
                 putString("id",id.toString())
                 putString("name",name.toString())
                 putString("warranty",warranty.toString())
-                putString("total_quantity",total_quantity.toString())
-                putString("order_id",order_id.toString())
-                putString("order_date",order_date.toString())
-                putString("order_time",order_time.toString())
+               // putString("total_quantity",total_quantity.toString())
+                //putString("order_id",order_id.toString())
+               // putString("order_date",order_date.toString())
+               // putString("order_time",order_time.toString())
                 putString("img_url",img_url.toString())
-            })*/
+            })
     }
 
     override fun getItemCount(): Int {
