@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -66,15 +68,19 @@ class FragmentAdminReturnProductDecision : Fragment() {
             ref2.addValueEventListener(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                 for(snap in snapshot.children) {
-                   ref2.child("status").setValue("Accepted")
+                   ref2.child("status").setValue("Accepted (Pls call to\n office 03-12343212 to\n ask more information,\n thank you!!)")
                     Toast.makeText(context, "Return Product Request Accepted", Toast.LENGTH_SHORT).show()
                 }
                 }
                 override fun onCancelled(error: DatabaseError) {
                     TODO("Not yet implemented")
                 }
-
             })
+
+            deleteData(userId, orderId, returnProductId)
+
+            findNavController().navigate(R.id.action_fragmentAdminReturnProductDecision_to_nav_home_admin)
+
         }
 
         btnReject.setOnClickListener {
@@ -82,7 +88,7 @@ class FragmentAdminReturnProductDecision : Fragment() {
             val ref = database.getReference("ReturnProductStatus").child(userId).child(orderId).child(returnProductId)
             ref.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    ref.child("status").setValue("Rejected")
+                    ref.child("status").setValue("Rejected (Sorry your ordered\n item has over the\n warranty period)")
                     Toast.makeText(context, "Return Product Request Rejected", Toast.LENGTH_SHORT).show()
                 }
 
@@ -91,10 +97,34 @@ class FragmentAdminReturnProductDecision : Fragment() {
                 }
 
             })
+
+            deleteData2(userId, orderId, returnProductId)
+
+            findNavController().navigate(R.id.action_fragmentAdminReturnProductDecision_to_nav_home_admin)
         }
     }
 
-        override fun onDestroyView() {
+    private fun deleteData2(userId: String, orderId: String, returnProductId: String) {
+        val ref = FirebaseDatabase.getInstance().getReference("RequestReturnProduct").child(userId).child(orderId).child(returnProductId)
+        ref.removeValue()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                } else {
+                }
+            }
+    }
+
+    private fun deleteData(userId: String, orderId: String, returnProductId: String) {
+        val ref = FirebaseDatabase.getInstance().getReference("RequestReturnProduct").child(userId).child(orderId).child(returnProductId)
+        ref.removeValue()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                } else {
+                }
+            }
+    }
+
+    override fun onDestroyView() {
             super.onDestroyView()
             _binding = null
         }

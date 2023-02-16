@@ -328,5 +328,8 @@
         <action
             android:id="@+id/action_fragmentAdminReturnProductDecision_to_nav_returnProduct_admin"
             app:destination="@id/nav_returnProduct_admin" />
+        <action
+            android:id="@+id/action_fragmentAdminReturnProductDecision_to_nav_home_admin"
+            app:destination="@id/nav_home_admin" />
     </fragment>
 </navigation>

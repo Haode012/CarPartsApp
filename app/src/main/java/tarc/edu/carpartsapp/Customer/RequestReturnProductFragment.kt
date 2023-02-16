@@ -45,7 +45,7 @@ class RequestReturnProductFragment : Fragment() {
         val order_date = requireArguments().getString("order_date").toString()
         val order_time = requireArguments().getString("order_time").toString()
         val img_url = requireArguments().getString("img_url").toString()
-        val status = "pending"
+        val status = "Pending"
 
         binding.requestId.setText(id)
         binding.requestName.setText(name)
