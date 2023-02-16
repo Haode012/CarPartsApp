@@ -92,10 +92,11 @@ class ReturnProductAdminAdapter: RecyclerView.Adapter<ReturnProductAdminAdapter.
                 putString("name",name.toString())
                 putString("warranty",warranty.toString())
                // putString("total_quantity",total_quantity.toString())
-                //putString("order_id",order_id.toString())
+                putString("order_id",order_id.toString())
                // putString("order_date",order_date.toString())
                // putString("order_time",order_time.toString())
                 putString("img_url",img_url.toString())
+                putString("uid",uid)
             })
     }
 
