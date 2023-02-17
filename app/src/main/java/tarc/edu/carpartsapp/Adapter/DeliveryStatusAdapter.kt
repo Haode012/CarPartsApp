@@ -32,13 +32,13 @@ class DeliveryStatusAdapter(private val deliveryStatusList: ArrayList<DeliverySt
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = deliveryStatusList[position]
-        holder.deliveryStatusId.text = currentItem.orderID
+        holder.deliveryStatusId.text = currentItem.deliveryStatusId
         holder.buttonUpdate.setOnClickListener{
             val bundle = Bundle()
             val fragment = AdminUpdateDeliveryStatus()
-            bundle.putString("orderID", currentItem.orderID)
+            bundle.putString("orderID", currentItem.deliveryStatusId)
             fragment.arguments = bundle
-            //Navigation.findNavController(it).navigate(R.id.action_fragmentAdminViewAllDeliveryStatus_to_adminUpdateDeliveryStatus2,bundle)
+            Navigation.findNavController(it).navigate(R.id.action_fragmentAdminViewAllDeliveryStatus_to_adminUpdateDeliveryStatus,bundle)
         }
     }
 

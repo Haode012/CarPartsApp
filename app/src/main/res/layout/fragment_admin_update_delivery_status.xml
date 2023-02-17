@@ -9,7 +9,7 @@
     tools:context=".Admin.AdminUpdateDeliveryStatus">
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/btnUpdateNewStatus"
         android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -20,14 +20,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextDeliveryStatus" />
 
     <TextView
         android:id="@+id/labelDeliveryStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="@string/deliveryStatus"
+        android:text="@string/updateDeliveryStatus"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/labelDeliveryStatus" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextDeliveryStatus"
         android:layout_width="326dp"
         android:layout_height="68dp"
         android:layout_marginTop="28dp"
@@ -65,7 +65,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView27"
+        app:layout_constraintTop_toBottomOf="@+id/outputDateToday"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
@@ -81,7 +81,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <TextView
-        android:id="@+id/textViewOrderId"
+        android:id="@+id/outputDeliveryOrderId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -92,7 +92,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <TextView
-        android:id="@+id/textView27"
+        android:id="@+id/outputDateToday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"

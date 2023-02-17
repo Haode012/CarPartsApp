@@ -263,9 +263,10 @@ class CreateDeliveryStatus : Fragment() {
     private fun storeDeliveryStatus() {
         val database = FirebaseDatabase.getInstance()
         val databaseReference = database.getReference("Delivery Status").push()
+        val key = databaseReference.key
         //val databaseReference = database.getReference("Feedback").child("$userId").push()
         //val databaseReference = database.getReference("Feedback").child("$userId").child("Feedback").push()
-
+        deliveryStatusNew["deliveryStatusId"] = key.toString()
         try {
             databaseReference.setValue(deliveryStatusNew)
         } catch (e: Exception) {
