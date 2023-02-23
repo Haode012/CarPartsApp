@@ -61,7 +61,7 @@ class ReturnProductCashOnDeliveryFragment : Fragment() {
             override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 //called as and when user type anything
                 try{
-                    returnProductCashOnDeliveryAdapter.filter.filter(s)
+                    /*returnProductCashOnDeliveryAdapter.filter.filter(s)*/
                 }
                 catch (e: Exception){
 
@@ -92,8 +92,8 @@ class ReturnProductCashOnDeliveryFragment : Fragment() {
                                 myOrderModelArrayList.add(myOrder!!)
                             }
                         }
-                        returnProductCashOnDeliveryAdapter = ReturnProductCashOnDeliveryAdapter(myOrderModelArrayList, requireContext())
-                        recyclerView.adapter = returnProductCashOnDeliveryAdapter
+                     /*   returnProductCashOnDeliveryAdapter = ReturnProductCashOnDeliveryAdapter(myOrderModelArrayList, requireContext())
+                        recyclerView.adapter = returnProductCashOnDeliveryAdapter*/
                     }
                 } catch (e: Exception) {
                     Log.e("getData", "Error getting data from Firebase: ${e.message}")
