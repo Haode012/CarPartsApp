@@ -97,11 +97,12 @@ class FragmentDeliveryStatusCreditCard : Fragment() {
                             if (snap2.child("orderID").value.toString().equals(orderId)) {
                                 test++
                                 binding.address.text =
-                                    snap2.child("address").value.toString()
+                                    snap2.child("DeliveryAddress").value.toString()
                                 binding.datePurchased.text =
                                     snap2.child("dateTime").value.toString()
-                                binding.total
+                                binding.total.text =
                                 snap2.child("TotalAmount").value.toString()
+                                binding.status.text = snap2.child("deliveryStatus").value.toString()
                                 //binding.outputOrderId.text = deliverysnaps.child("orderID").value.toString()
                                 //binding.outputDeliveryAddress.text = deliverysnaps.child("deliveryAddress").value.toString()
                                 val deliveryStatus =
