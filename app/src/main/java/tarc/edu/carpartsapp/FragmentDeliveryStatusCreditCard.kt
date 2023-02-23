@@ -84,7 +84,7 @@ class FragmentDeliveryStatusCreditCard : Fragment() {
         val key = ref.key.toString()
         val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
         db = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
-            .getReference("Delivery Status(Credit Card Payment")
+            .getReference("Delivery Status(Credit Card Payment)")
 
         db.addValueEventListener(object : ValueEventListener {
 
@@ -131,8 +131,8 @@ class FragmentDeliveryStatusCreditCard : Fragment() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
         val orderId = binding.orderIdd.text
         val databaseNew = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
-        val ref = databaseNew.getReference().child("Delivery Status(Credit Card Payment")
-        val databaseReference = databaseNew.getReference().child("Delivered Items(Credit Card Payment)").child(FirebaseAuth.getInstance().currentUser!!.uid).push()
+        val ref = databaseNew.getReference().child("Delivery Status(Credit Card Payment)")
+        val databaseReference = databaseNew.getReference().child("Delivery Status(Credit Card Payment)").child(FirebaseAuth.getInstance().currentUser!!.uid).push()
         val key = databaseReference.key.toString()
 
         val currentDate = SimpleDateFormat("MM/dd/yyyy")
@@ -174,6 +174,9 @@ class FragmentDeliveryStatusCreditCard : Fragment() {
                             }
                         }
 
+                        //////
+                        ////
+                        ////
                     }
                 }
             }
