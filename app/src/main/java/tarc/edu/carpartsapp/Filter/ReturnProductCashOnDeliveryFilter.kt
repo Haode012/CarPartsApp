@@ -2,6 +2,7 @@ package tarc.edu.carpartsapp.Filter
 
 import android.widget.Filter
 import tarc.edu.carpartsapp.Adapter.ReturnProductCashOnDeliveryAdapter
+import tarc.edu.carpartsapp.Model.DeliveryModel
 import tarc.edu.carpartsapp.Model.MyOrderModel
 
 class ReturnProductCashOnDeliveryFilter: Filter {
@@ -52,7 +53,7 @@ class ReturnProductCashOnDeliveryFilter: Filter {
 
     override fun publishResults(constraint: CharSequence?, results: Filter.FilterResults) {
         //apply filter changes
-        returnProductCashOnDeliveryAdapter.myOrderModelArrayList= results.values as ArrayList<MyOrderModel>
+        returnProductCashOnDeliveryAdapter.deliveryModelArrayList= results.values as ArrayList<DeliveryModel>
         //notify changes
         returnProductCashOnDeliveryAdapter.notifyDataSetChanged()
     }

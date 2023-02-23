@@ -117,6 +117,6 @@ class ReturnProductCashOnDeliveryAdapter: RecyclerView.Adapter<ReturnProductCash
         if(filter == null){
             filter = ReturnProductCashOnDeliveryFilter(filterList, this)
         }
-        return filter as ReturnProductCashOnDeliveryFilter
+        return filter as ReturnProductCashOnDeliveryFilter p
     }*/
 }
