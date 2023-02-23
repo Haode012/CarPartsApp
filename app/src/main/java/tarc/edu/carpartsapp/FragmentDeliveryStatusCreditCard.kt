@@ -16,7 +16,9 @@ import tarc.edu.carpartsapp.Adapter.DeliveryStatusProductsCreditCardAdapter
 import tarc.edu.carpartsapp.Model.DeliveryStatus
 import tarc.edu.carpartsapp.databinding.FragmentCustDeliveryStatusCreditCardBinding
 import tarc.edu.carpartsapp.databinding.FragmentDeliveryStatusCreditCardBinding
-import java.util.HashMap
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class FragmentDeliveryStatusCreditCard : Fragment() {
     private lateinit var db: DatabaseReference
@@ -101,7 +103,7 @@ class FragmentDeliveryStatusCreditCard : Fragment() {
                                 binding.datePurchased.text =
                                     snap2.child("dateTime").value.toString()
                                 binding.total.text =
-                                snap2.child("TotalAmount").value.toString()
+                                    snap2.child("TotalAmount").value.toString()
                                 binding.status.text = snap2.child("deliveryStatus").value.toString()
                                 //binding.outputOrderId.text = deliverysnaps.child("orderID").value.toString()
                                 //binding.outputDeliveryAddress.text = deliverysnaps.child("deliveryAddress").value.toString()
@@ -132,6 +134,13 @@ class FragmentDeliveryStatusCreditCard : Fragment() {
         val ref = databaseNew.getReference().child("Delivery Status(Credit Card Payment")
         val databaseReference = databaseNew.getReference().child("Delivered Items(Credit Card Payment)").child(FirebaseAuth.getInstance().currentUser!!.uid).push()
         val key = databaseReference.key.toString()
+
+        val currentDate = SimpleDateFormat("MM/dd/yyyy")
+        val deliveredDate = currentDate.format(Calendar.getInstance().time)
+
+        val currentTime = SimpleDateFormat("HH:mm:ss")
+        val deliveredTime = currentTime.format(Calendar.getInstance().time)
+
         ref.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (snap in snapshot.children) {
@@ -154,6 +163,10 @@ class FragmentDeliveryStatusCreditCard : Fragment() {
                             deliveredItemsCreditCard["names"] = snap2.child("names").value as String
                             deliveredItemsCreditCard["quantity"] =
                                 snap2.child("quantity").value as String
+                            deliveredItemsCreditCard["deliveredDate"] = "$deliveredDate"
+                            deliveredItemsCreditCard["deliveredTime"] = "$deliveredTime"
+                            deliveredItemsCreditCard["warranty"] = snap2.child("warranty").value as String
+
                             try {
                                 databaseReference.child(prodId).setValue(deliveredItemsCreditCard)
                             } catch (e: Exception) {

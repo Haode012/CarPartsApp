@@ -12,6 +12,7 @@ class DeliveryModel {
     var quantity: String=""
     var deliveredDate: String=""
     var deliveredTime: String=""
+    var warranty: String=""
 
     constructor()
 
@@ -26,7 +27,8 @@ class DeliveryModel {
         userId:String,
         quantity: String,
         deliveredDate: String,
-        deliveredTime: String
+        deliveredTime: String,
+        warranty: String
     ) {
         this.TotalAmount = TotalAmount
         this.address = address
@@ -39,6 +41,7 @@ class DeliveryModel {
         this.quantity = quantity
         this.deliveredDate = deliveredDate
         this.deliveredTime = deliveredTime
+        this.warranty = warranty
 
     }
 }

@@ -311,7 +311,7 @@ class CreateDeliveryStatus : Fragment() {
                             deliveryStatusNew["names"] = snap2.child("name").value as String
                             deliveryStatusNew["quantity"] = snap2.child("quantity").value as String
                             deliveryStatusNew["deliveryStatusId"] = key.toString()
-                          /*  deliveryStatusNew["warranty"] = snap2.child("warranty").value as String*/
+                            deliveryStatusNew["warranty"] = snap2.child("warranty").value as String
                             try {
                                 databaseReference.child(key66).setValue(deliveryStatusNew)
                             } catch (e: Exception) {
