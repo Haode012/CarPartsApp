@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/return_product_credit_card_item_card_view"
     android:layout_width="match_parent"
-    android:layout_height="360dp"
+    android:layout_height="450dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="5dp"
     android:elevation="4dp"
@@ -166,6 +166,42 @@
             android:text="TextView3"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/textViewTotalQuantity" />
+
+        <TextView
+            android:id="@+id/textViewDeliveryID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Delievry ID"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/return_product_credit_card_item_order_time" />
+
+        <TextView
+            android:id="@+id/return_product_credit_card_item_deliveryID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView7"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDeliveryID" />
+
+        <TextView
+            android:id="@+id/textViewDeliveryAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Delivery Address"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/return_product_credit_card_item_deliveryID" />
+
+        <TextView
+            android:id="@+id/return_product_credit_card_item_deliveryAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView8"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDeliveryAddress" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

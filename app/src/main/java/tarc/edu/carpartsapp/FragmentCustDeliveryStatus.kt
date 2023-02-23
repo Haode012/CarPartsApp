@@ -17,7 +17,9 @@ import tarc.edu.carpartsapp.Adapter.CustomerViewDeliveryStatusAdapter
 import tarc.edu.carpartsapp.Adapter.DeliveryStatusProductsAdapter
 import tarc.edu.carpartsapp.Model.DeliveryStatus
 import tarc.edu.carpartsapp.databinding.FragmentCustDeliveryStatusBinding
-import java.util.HashMap
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class FragmentCustDeliveryStatus : Fragment() {
     private lateinit var db: DatabaseReference
@@ -169,8 +171,15 @@ class FragmentCustDeliveryStatus : Fragment() {
         val orderId = binding.outputOrderIdd.text
         val databaseNew = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
         val ref = databaseNew.getReference().child("Delivery Status")
-        val databaseReference = databaseNew.getReference().child("Delivered Items").push()
+        val databaseReference = databaseNew.getReference().child("Delivered Items").child(FirebaseAuth.getInstance().currentUser!!.uid).push()
         val key = databaseReference.key.toString()
+
+        val currentDate = SimpleDateFormat("MM/dd/yyyy")
+        val deliveredDate = currentDate.format(Calendar.getInstance().time)
+
+        val currentTime = SimpleDateFormat("HH:mm:ss")
+        val deliveredTime = currentTime.format(Calendar.getInstance().time)
+
         ref.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (snap in snapshot.children) {
@@ -192,6 +201,10 @@ class FragmentCustDeliveryStatus : Fragment() {
                                     deliveredItems["names"] = snap2.child("names").value as String
                                     deliveredItems["quantity"] =
                                         snap2.child("quantity").value as String
+                                    deliveredItems["deliveryID"] = key
+                                    deliveredItems["deliveredDate"] = "$deliveredDate"
+                                    deliveredItems["deliveredTime"] = "$deliveredTime"
+
                                     try {
                                         databaseReference.child(prodId).setValue(deliveredItems)
                                     } catch (e: Exception) {

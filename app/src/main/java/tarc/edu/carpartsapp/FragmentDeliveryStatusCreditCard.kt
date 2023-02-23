@@ -130,7 +130,7 @@ class FragmentDeliveryStatusCreditCard : Fragment() {
         val orderId = binding.orderIdd.text
         val databaseNew = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
         val ref = databaseNew.getReference().child("Delivery Status(Credit Card Payment")
-        val databaseReference = databaseNew.getReference().child("Delivered Items(Credit Card Payment)").push()
+        val databaseReference = databaseNew.getReference().child("Delivered Items(Credit Card Payment)").child(FirebaseAuth.getInstance().currentUser!!.uid).push()
         val key = databaseReference.key.toString()
         ref.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -141,6 +141,7 @@ class FragmentDeliveryStatusCreditCard : Fragment() {
                     for (snap2 in snap.children) {
                         val prodId = snap2.key.toString()
                         if (snap2.child("orderID").value.toString().equals(orderId)) {
+                            deliveredItemsCreditCard["deliveryID"] = key
                             deliveredItemsCreditCard["orderID"] = orderId.toString()
                             deliveredItemsCreditCard["userId"] = userId
                             val id = snap2.child("id").value.toString()

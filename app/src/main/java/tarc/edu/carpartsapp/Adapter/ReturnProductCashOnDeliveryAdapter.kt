@@ -15,25 +15,26 @@ import com.bumptech.glide.Glide
 import tarc.edu.carpartsapp.Filter.CarPartsCategoryFilter
 import tarc.edu.carpartsapp.Filter.ReturnProductCashOnDeliveryFilter
 import tarc.edu.carpartsapp.Model.CarPartsCategoryModel
+import tarc.edu.carpartsapp.Model.DeliveryModel
 import tarc.edu.carpartsapp.Model.MyOrderModel
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.ReturnProductCashOnDeliveryItemBinding
 
 
-class ReturnProductCashOnDeliveryAdapter: RecyclerView.Adapter<ReturnProductCashOnDeliveryAdapter.MyViewHolder> ,
-    Filterable {
+class ReturnProductCashOnDeliveryAdapter: RecyclerView.Adapter<ReturnProductCashOnDeliveryAdapter.MyViewHolder>
+     {
 
-    public var myOrderModelArrayList: ArrayList<MyOrderModel>
+    public var deliveryModelArrayList: ArrayList<DeliveryModel>
     private val context: Context
     private lateinit var binding: ReturnProductCashOnDeliveryItemBinding
-    private var filterList: ArrayList<MyOrderModel>
+    private var filterList: ArrayList<DeliveryModel>
 
     private var filter: ReturnProductCashOnDeliveryFilter? = null
 
-    constructor(myOrderModelArrayList: ArrayList<MyOrderModel>, context: Context){
-        this.myOrderModelArrayList = myOrderModelArrayList
+    constructor(deliveryModelArrayList: ArrayList<DeliveryModel>, context: Context){
+        this.deliveryModelArrayList = deliveryModelArrayList
         this.context = context
-        this.filterList = myOrderModelArrayList
+        this.filterList = deliveryModelArrayList
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReturnProductCashOnDeliveryAdapter.MyViewHolder {
@@ -45,15 +46,17 @@ class ReturnProductCashOnDeliveryAdapter: RecyclerView.Adapter<ReturnProductCash
 
     override fun onBindViewHolder(holder: ReturnProductCashOnDeliveryAdapter.MyViewHolder, position:Int) {
 
-        val myOrderModel = myOrderModelArrayList[position]
-        val id = myOrderModel.id
-        val name = myOrderModel.name
-        val warranty = myOrderModel.warranty
-        val total_quantity = myOrderModel.total_quantity
-        val order_id = myOrderModel.orderID
-        val order_date = myOrderModel.currentDate
-        val order_time = myOrderModel.currentTime
-        val img_url = myOrderModel.img_url
+   /*     val deliveryModel = deliveryModelArrayList[position]
+        val deliveryID = deliveryModel.deliveryID
+        val address = deliveryModel.address
+        val id = deliveryModel.id
+        val name = deliveryModel.names
+        val warranty = deliveryModel.warranty
+        val total_quantity = deliveryModel.total_quantity
+        val order_id = deliveryModel.orderID
+        val deliverd_date = deliveryModel.currentDate
+        val delivered_time = deliveryModel.currentTime
+        val img_url = deliveryModel.img_url
 
         holder.id.text = id
         holder.name.text = name
@@ -66,7 +69,7 @@ class ReturnProductCashOnDeliveryAdapter: RecyclerView.Adapter<ReturnProductCash
 
         holder.itemView.setOnClickListener{
             returnProductCashOnDeliveryFragment(myOrderModel, holder)
-        }
+        }*/
     }
 
     private fun returnProductCashOnDeliveryFragment(myOrderModel: MyOrderModel, holder: ReturnProductCashOnDeliveryAdapter.MyViewHolder) {
@@ -94,24 +97,26 @@ class ReturnProductCashOnDeliveryAdapter: RecyclerView.Adapter<ReturnProductCash
 
     override fun getItemCount(): Int {
 
-        return myOrderModelArrayList.size
+       return deliveryModelArrayList.size
     }
 
     inner class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+        var deliveryID : TextView = binding.returnProductCashOnDeliveryItemDeliveryID
+        var address : TextView = binding.returnProductCashOnDeliveryDeliveryAddress
         var id : TextView = binding.returnProductCashOnDeliveryItemId
         var name : TextView = binding.returnProductCashOnDeliveryItemName
         val warranty : TextView = binding.returnProductCashOnDeliveryItemWarranty
         val total_quantity : TextView = binding.returnProductCashOnDeliveryItemTotalQuantity
         var order_id : TextView = binding.returnProductCashOnDeliveryItemOrderId
-        val order_date : TextView = binding.returnProductCashOnDeliveryItemOrderDate
-        val order_time : TextView = binding.returnProductCashOnDeliveryItemOrderTime
+        val delivered_date : TextView = binding.returnProductCashOnDeliveryItemDeliveryDate
+        val delivered_time : TextView = binding.returnProductCashOnDeliveryItemDeliveryTime
         val img_url : ImageView = binding.returnProductCashOnDeliveryItemImage
     }
 
-    override fun getFilter(): Filter {
+ /*   override fun getFilter(): Filter {
         if(filter == null){
             filter = ReturnProductCashOnDeliveryFilter(filterList, this)
         }
         return filter as ReturnProductCashOnDeliveryFilter
-    }
+    }*/
 }

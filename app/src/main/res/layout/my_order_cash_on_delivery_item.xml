@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_order_cash_on_delivery_item_card_view"
     android:layout_width="match_parent"
-    android:layout_height="330dp"
+    android:layout_height="350dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="5dp"
     android:elevation="4dp"
@@ -173,19 +173,17 @@
             android:id="@+id/labelOrderIdddd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:text="Order ID"
-            app:layout_constraintEnd_toEndOf="@+id/my_order_cash_on_delivery_item_total_price"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTotalPrice" />
+            app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
         <TextView
             android:id="@+id/outputMyOrderId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@+id/labelOrderIdddd"
-            app:layout_constraintHorizontal_bias="0.411"
+            android:text="TextView5"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/labelOrderIdddd" />
 

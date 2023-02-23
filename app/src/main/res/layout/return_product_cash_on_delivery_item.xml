@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/return_product_cash_on_delivery_item_card_view"
     android:layout_width="match_parent"
-    android:layout_height="360dp"
+    android:layout_height="450dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="5dp"
     android:elevation="4dp"
@@ -66,7 +66,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Order Date"
+            android:text="Delivered Date"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/return_product_cash_on_delivery_item_order_id" />
@@ -76,10 +76,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Order Time"
+            android:text="Delivered Time"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/return_product_cash_on_delivery_item_order_date" />
+            app:layout_constraintTop_toBottomOf="@+id/return_product_cash_on_delivery_item_delivery_date" />
 
         <TextView
             android:id="@+id/return_product_cash_on_delivery_item_id"
@@ -116,7 +116,7 @@
             app:layout_constraintTop_toTopOf="@+id/return_product_cash_on_delivery_item_warranty" />
 
         <TextView
-            android:id="@+id/return_product_cash_on_delivery_item_order_date"
+            android:id="@+id/return_product_cash_on_delivery_item_delivery_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView5"
@@ -124,7 +124,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewOrderDate" />
 
         <TextView
-            android:id="@+id/return_product_cash_on_delivery_item_order_time"
+            android:id="@+id/return_product_cash_on_delivery_item_delivery_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView6"
@@ -166,6 +166,42 @@
             android:text="TextView3"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/textViewTotalQuantity" />
+
+        <TextView
+            android:id="@+id/textViewDeliveryID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Delivery ID"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/return_product_cash_on_delivery_item_delivery_time" />
+
+        <TextView
+            android:id="@+id/return_product_cash_on_delivery_item_deliveryID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView7"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDeliveryID" />
+
+        <TextView
+            android:id="@+id/textViewDeliveryAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:text="Delivery Address"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/return_product_cash_on_delivery_item_deliveryID" />
+
+        <TextView
+            android:id="@+id/return_product_cash_on_delivery_delivery_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView8"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDeliveryAddress" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
