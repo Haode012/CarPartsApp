@@ -132,7 +132,7 @@ class FragmentDeliveryStatusCreditCard : Fragment() {
         val orderId = binding.orderIdd.text
         val databaseNew = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
         val ref = databaseNew.getReference().child("Delivery Status(Credit Card Payment)")
-        val databaseReference = databaseNew.getReference().child("Delivery Status(Credit Card Payment)").child(FirebaseAuth.getInstance().currentUser!!.uid).push()
+        val databaseReference = databaseNew.getReference().child("Delivered Item(Credit Card Payment)").child(FirebaseAuth.getInstance().currentUser!!.uid).push()
         val key = databaseReference.key.toString()
 
         val currentDate = SimpleDateFormat("MM/dd/yyyy")
@@ -155,7 +155,7 @@ class FragmentDeliveryStatusCreditCard : Fragment() {
                             deliveredItemsCreditCard["userId"] = userId
                             val id = snap2.child("id").value.toString()
                             deliveredItemsCreditCard["id"] = prodId
-                            deliveredItemsCreditCard["address"] = snap2.child("DeliveryAddress").value as String
+                            deliveredItemsCreditCard["address"] = snap2.child("address").value as String
                             deliveredItemsCreditCard["TotalAmount"] =
                                 snap2.child("TotalAmount").value as String
                             deliveredItemsCreditCard["img_url"] =
