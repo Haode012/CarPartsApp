@@ -44,6 +44,10 @@ class FragmentAdminDeliveryManagement : Fragment() {
         binding.btnGO.setOnClickListener {
             findNavController().navigate(R.id.action_fragmentAdminDeliveryManagement_to_fragmentViewAllDelivery)
         }
+
+        binding.btnDCC.setOnClickListener {
+            findNavController().navigate(R.id.action_fragmentAdminDeliveryManagement_to_fragmentCreateDeliveryStatusCreditCardPayment)
+        }
     }
 
 
