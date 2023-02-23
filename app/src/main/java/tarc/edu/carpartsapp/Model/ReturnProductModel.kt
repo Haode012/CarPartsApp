@@ -8,8 +8,10 @@ class ReturnProductModel {
     var warranty:String = ""
     var total_quantity:String = ""
     var img_url:String = ""
-    var orderDate:String = ""
-    var orderTime: String = ""
+    var deliveryID: String = ""
+    var deliveryAddress: String = ""
+    var deliveredDate:String = ""
+    var deliveredTime: String = ""
     var status: String = ""
 
     //empty constructor, required by firebase
@@ -23,11 +25,12 @@ class ReturnProductModel {
         warranty: String,
         total_quantity: String,
         img_url: String,
-        orderDate: String,
+        deliveredDate: String,
         uid:String,
-        orderTime:String,
-        status:String
-
+        deliveredTime: String,
+        status:String,
+        deliveryID: String,
+        deliveryAddress: String
     ) {
         this.orderID = orderID
         this.uid = uid
@@ -36,9 +39,11 @@ class ReturnProductModel {
         this.warranty =  warranty
         this.total_quantity = total_quantity
         this.img_url = img_url
-        this.orderDate = orderDate
-        this.orderTime = orderTime
+        this.deliveredDate = deliveredDate
+        this.deliveredTime = deliveredTime
         this.status = status
+        this.deliveryID = deliveryID
+        this.deliveryAddress = deliveryAddress
     }
 }
 

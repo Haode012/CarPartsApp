@@ -16,6 +16,7 @@ import com.google.firebase.database.*
 import tarc.edu.carpartsapp.Adapter.MyOrderCashOnDeliveryAdapter
 import tarc.edu.carpartsapp.Adapter.PopularAdapterCustomer
 import tarc.edu.carpartsapp.Adapter.ReturnProductCashOnDeliveryAdapter
+import tarc.edu.carpartsapp.Model.DeliveryModel
 import tarc.edu.carpartsapp.Model.MyOrderModel
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.FragmentReturnProductCashOnDeliveryBinding
@@ -24,7 +25,7 @@ class ReturnProductCashOnDeliveryFragment : Fragment() {
 
     private lateinit var dbref : DatabaseReference
     private lateinit var recyclerView: RecyclerView
-    private lateinit var myOrderModelArrayList : ArrayList<MyOrderModel>
+    private lateinit var deliveryModelArrayList : ArrayList<DeliveryModel>
     private lateinit var returnProductCashOnDeliveryAdapter: ReturnProductCashOnDeliveryAdapter
 
     private var _binding: FragmentReturnProductCashOnDeliveryBinding? = null
@@ -51,7 +52,7 @@ class ReturnProductCashOnDeliveryFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.setHasFixedSize(true)
-        myOrderModelArrayList = arrayListOf<MyOrderModel>()
+        deliveryModelArrayList = arrayListOf<DeliveryModel>()
 
         //search
         binding.editTextSearch.addTextChangedListener(object: TextWatcher {
@@ -61,7 +62,7 @@ class ReturnProductCashOnDeliveryFragment : Fragment() {
             override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 //called as and when user type anything
                 try{
-                    /*returnProductCashOnDeliveryAdapter.filter.filter(s)*/
+                    returnProductCashOnDeliveryAdapter.filter.filter(s)
                 }
                 catch (e: Exception){
 
@@ -78,7 +79,7 @@ class ReturnProductCashOnDeliveryFragment : Fragment() {
 
     private fun getData(){
 
-        dbref = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("OrderItem(Cash On Delivery)").child(
+        dbref = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Delivered Items").child(
             FirebaseAuth.getInstance().currentUser!!.uid)
 
         dbref.addValueEventListener(object : ValueEventListener {
@@ -88,12 +89,12 @@ class ReturnProductCashOnDeliveryFragment : Fragment() {
                     if (snapshot.exists()) {
                         for (firstChildSnapshot in snapshot.children) {
                             for (secondChildSnapshot in firstChildSnapshot.children) {
-                                val myOrder = secondChildSnapshot.getValue(MyOrderModel::class.java)
-                                myOrderModelArrayList.add(myOrder!!)
+                                val delivery = secondChildSnapshot.getValue(DeliveryModel::class.java)
+                                deliveryModelArrayList.add(delivery!!)
                             }
                         }
-                     /*   returnProductCashOnDeliveryAdapter = ReturnProductCashOnDeliveryAdapter(myOrderModelArrayList, requireContext())
-                        recyclerView.adapter = returnProductCashOnDeliveryAdapter*/
+                       returnProductCashOnDeliveryAdapter = ReturnProductCashOnDeliveryAdapter(deliveryModelArrayList, requireContext())
+                        recyclerView.adapter = returnProductCashOnDeliveryAdapter
                     }
                 } catch (e: Exception) {
                     Log.e("getData", "Error getting data from Firebase: ${e.message}")

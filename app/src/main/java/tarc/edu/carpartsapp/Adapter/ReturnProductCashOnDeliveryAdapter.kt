@@ -21,8 +21,8 @@ import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.ReturnProductCashOnDeliveryItemBinding
 
 
-class ReturnProductCashOnDeliveryAdapter: RecyclerView.Adapter<ReturnProductCashOnDeliveryAdapter.MyViewHolder>
-     {
+class ReturnProductCashOnDeliveryAdapter: RecyclerView.Adapter<ReturnProductCashOnDeliveryAdapter.MyViewHolder> ,
+Filterable {
 
     public var deliveryModelArrayList: ArrayList<DeliveryModel>
     private val context: Context
@@ -46,51 +46,57 @@ class ReturnProductCashOnDeliveryAdapter: RecyclerView.Adapter<ReturnProductCash
 
     override fun onBindViewHolder(holder: ReturnProductCashOnDeliveryAdapter.MyViewHolder, position:Int) {
 
-   /*     val deliveryModel = deliveryModelArrayList[position]
+        val deliveryModel = deliveryModelArrayList[position]
         val deliveryID = deliveryModel.deliveryID
         val address = deliveryModel.address
         val id = deliveryModel.id
         val name = deliveryModel.names
         val warranty = deliveryModel.warranty
-        val total_quantity = deliveryModel.total_quantity
+        val total_quantity = deliveryModel.quantity
         val order_id = deliveryModel.orderID
-        val deliverd_date = deliveryModel.currentDate
-        val delivered_time = deliveryModel.currentTime
+        val delivered_date = deliveryModel.deliveredDate
+        val delivered_time = deliveryModel.deliveredTime
         val img_url = deliveryModel.img_url
 
+        holder.deliveryID.text = deliveryID
+        holder.address.text = address
         holder.id.text = id
         holder.name.text = name
         holder.warranty.text = warranty
         holder.total_quantity.text = total_quantity
         holder.order_id.text = order_id
-        holder.order_date.text = order_date
-        holder.order_time.text = order_time
+        holder.delivered_date.text = delivered_date
+        holder.delivered_time.text = delivered_time
         Glide.with(context).load(img_url).into(holder.img_url)
 
         holder.itemView.setOnClickListener{
-            returnProductCashOnDeliveryFragment(myOrderModel, holder)
-        }*/
+            returnProductCashOnDeliveryFragment(deliveryModel, holder)
+        }
     }
 
-    private fun returnProductCashOnDeliveryFragment(myOrderModel: MyOrderModel, holder: ReturnProductCashOnDeliveryAdapter.MyViewHolder) {
-        val id = myOrderModel.id
-        val name = myOrderModel.name
-        val warranty = myOrderModel.warranty
-        val total_quantity = myOrderModel.total_quantity
-        val order_id = myOrderModel.orderID
-        val order_date = myOrderModel.currentDate
-        val order_time = myOrderModel.currentTime
-        val img_url = myOrderModel.img_url
+    private fun returnProductCashOnDeliveryFragment(deliveryModel: DeliveryModel, holder: ReturnProductCashOnDeliveryAdapter.MyViewHolder) {
+        val deliveryID = deliveryModel.deliveryID
+        val address = deliveryModel.address
+        val id = deliveryModel.id
+        val name = deliveryModel.names
+        val warranty = deliveryModel.warranty
+        val total_quantity = deliveryModel.quantity
+        val order_id = deliveryModel.orderID
+        val delivered_date = deliveryModel.deliveredDate
+        val delivered_time = deliveryModel.deliveredTime
+        val img_url = deliveryModel.img_url
 
         Navigation.findNavController(holder.itemView)
             .navigate(R.id.action_nav_returnProductCashOnDelivery_customer_to_nav_requestReturnProduct_customer, Bundle().apply {
+                putString("deliveryID",deliveryID.toString())
+                putString("address",address.toString())
                 putString("id",id.toString())
                 putString("name",name.toString())
                 putString("warranty",warranty.toString())
                 putString("total_quantity",total_quantity.toString())
                 putString("order_id",order_id.toString())
-                putString("order_date",order_date.toString())
-                putString("order_time",order_time.toString())
+                putString("delivered_date",delivered_date.toString())
+                putString("delivered_time",delivered_time.toString())
                 putString("img_url",img_url.toString())
             })
     }
@@ -113,10 +119,10 @@ class ReturnProductCashOnDeliveryAdapter: RecyclerView.Adapter<ReturnProductCash
         val img_url : ImageView = binding.returnProductCashOnDeliveryItemImage
     }
 
- /*   override fun getFilter(): Filter {
+    override fun getFilter(): Filter {
         if(filter == null){
             filter = ReturnProductCashOnDeliveryFilter(filterList, this)
         }
-        return filter as ReturnProductCashOnDeliveryFilter p
-    }*/
+        return filter as ReturnProductCashOnDeliveryFilter
+ }
 }

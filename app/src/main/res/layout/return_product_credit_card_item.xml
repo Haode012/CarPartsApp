@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/return_product_credit_card_item_card_view"
     android:layout_width="match_parent"
-    android:layout_height="450dp"
+    android:layout_height="470dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="5dp"
     android:elevation="4dp"
@@ -62,24 +62,24 @@
             app:layout_constraintTop_toBottomOf="@+id/return_product_credit_card_item_name" />
 
         <TextView
-            android:id="@+id/textViewOrderDate"
+            android:id="@+id/textViewDeliveryDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Order Date"
+            android:text="Delivered Date"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/return_product_credit_card_item_order_id" />
 
         <TextView
-            android:id="@+id/textViewOrderTime"
+            android:id="@+id/textViewDeliveryTime"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Order Time"
+            android:text="Delivered Time"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/return_product_credit_card_item_order_date" />
+            app:layout_constraintTop_toBottomOf="@+id/return_product_credit_card_item_delivery_date" />
 
         <TextView
             android:id="@+id/return_product_credit_card_item_id"
@@ -116,20 +116,20 @@
             app:layout_constraintTop_toTopOf="@+id/return_product_credit_card_item_warranty" />
 
         <TextView
-            android:id="@+id/return_product_credit_card_item_order_date"
+            android:id="@+id/return_product_credit_card_item_delivery_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView5"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/textViewOrderDate" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewDeliveryDate" />
 
         <TextView
-            android:id="@+id/return_product_credit_card_item_order_time"
+            android:id="@+id/return_product_credit_card_item_delivery_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView6"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/textViewOrderTime" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewDeliveryTime" />
 
         <TextView
             android:id="@+id/textViewOrderID"
@@ -175,7 +175,7 @@
             android:text="Delievry ID"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/return_product_credit_card_item_order_time" />
+            app:layout_constraintTop_toBottomOf="@+id/return_product_credit_card_item_delivery_time" />
 
         <TextView
             android:id="@+id/return_product_credit_card_item_deliveryID"

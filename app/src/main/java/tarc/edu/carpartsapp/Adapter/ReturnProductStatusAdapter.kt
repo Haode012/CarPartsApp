@@ -56,8 +56,10 @@ class ReturnProductStatusAdapter: RecyclerView.Adapter<ReturnProductStatusAdapte
         val warranty = returnProductModel.warranty
         val total_quantity = returnProductModel.total_quantity
         val order_id = returnProductModel.orderID
-        val order_date = returnProductModel.orderDate
-        val order_time = returnProductModel.orderTime
+        val delivered_date = returnProductModel.deliveredDate
+        val delivered_time = returnProductModel.deliveredTime
+        val deliveryID = returnProductModel.deliveryID
+        val deliveryAddress = returnProductModel.deliveryAddress
         val status = returnProductModel.status
         val img_url = returnProductModel.img_url
 
@@ -66,8 +68,10 @@ class ReturnProductStatusAdapter: RecyclerView.Adapter<ReturnProductStatusAdapte
         holder.warranty.text = warranty
         holder.total_quantity.text = total_quantity
         holder.order_id.text = order_id
-        holder.order_date.text = order_date
-        holder.order_time.text = order_time
+        holder.delivered_date.text = delivered_date
+        holder.delivered_time.text = delivered_time
+        holder.deliveryID.text = deliveryID
+        holder.deliveryAddress.text = deliveryAddress
         holder.status.text = status
         Glide.with(context).load(img_url).into(holder.img_url)
 
@@ -84,8 +88,10 @@ class ReturnProductStatusAdapter: RecyclerView.Adapter<ReturnProductStatusAdapte
         val warranty : TextView = binding.returnProductItemStatusWarranty
         val total_quantity : TextView = binding.returnProductItemStatusTotalQuantity
         var order_id : TextView = binding.returnProductItemStatusOrderId
-        val order_date : TextView = binding.returnProductItemStatusOrderDate
-        val order_time : TextView = binding.returnProductItemStatusOrderTime
+        val delivered_date : TextView = binding.returnProductItemStatusDeliveredDate
+        val delivered_time : TextView = binding.returnProductItemStatusDeliveredTime
+        val deliveryID: TextView = binding.returnProductItemStatusDeliveryId
+        val deliveryAddress: TextView = binding.returnProductItemStatusDeliveryAddress
         val img_url : ImageView = binding.returnProductItemStatusImage
         val status : TextView = binding.returnProductItemStatus
     }

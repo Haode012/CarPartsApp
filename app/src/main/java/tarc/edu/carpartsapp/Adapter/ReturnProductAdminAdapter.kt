@@ -55,8 +55,10 @@ class ReturnProductAdminAdapter: RecyclerView.Adapter<ReturnProductAdminAdapter.
         val warranty = returnProductModel.warranty
         val total_quantity = returnProductModel.total_quantity
         val order_id = returnProductModel.orderID
-        val order_date = returnProductModel.orderDate
-        val order_time = returnProductModel.orderTime
+        val delivered_date = returnProductModel.deliveredDate
+        val delivered_time = returnProductModel.deliveredTime
+        val deliveryID = returnProductModel.deliveryID
+        val deliveryAddress = returnProductModel.deliveryAddress
         val img_url = returnProductModel.img_url
 
         holder.uid.text = uid
@@ -65,8 +67,10 @@ class ReturnProductAdminAdapter: RecyclerView.Adapter<ReturnProductAdminAdapter.
         holder.warranty.text = warranty
         holder.total_quantity.text = total_quantity
         holder.order_id.text = order_id
-        holder.order_date.text = order_date
-        holder.order_time.text = order_time
+        holder.delivered_date.text = delivered_date
+        holder.delivered_time.text = delivered_time
+        holder.deliveryID.text = deliveryID
+        holder.deliveryAddress.text = deliveryAddress
         Glide.with(context).load(img_url).into(holder.img_url)
 
         holder.itemView.setOnClickListener{
@@ -81,8 +85,10 @@ class ReturnProductAdminAdapter: RecyclerView.Adapter<ReturnProductAdminAdapter.
         val warranty = returnProductModel.warranty
         val total_quantity = returnProductModel.total_quantity
         val order_id = returnProductModel.orderID
-        val order_date = returnProductModel.orderDate
-        val order_time = returnProductModel.orderTime
+        val delivered_date = returnProductModel.deliveredDate
+        val delivered_time = returnProductModel.deliveredTime
+        val deliveryID = returnProductModel.deliveryID
+        val deliveryAddress = returnProductModel.deliveryAddress
         val img_url = returnProductModel.img_url
 
        Navigation.findNavController(holder.itemView)
@@ -112,8 +118,10 @@ class ReturnProductAdminAdapter: RecyclerView.Adapter<ReturnProductAdminAdapter.
         val warranty : TextView = binding.returnProductAdminItemWarranty
         val total_quantity : TextView = binding.returnProductAdminItemTotalQuantity
         var order_id : TextView = binding.returnProductAdminItemOrderId
-        val order_date : TextView = binding.returnProductAdminItemOrderDate
-        val order_time : TextView = binding.returnProductAdminItemOrderTime
+        val delivered_date : TextView = binding.returnProductAdminItemDeliveredDate
+        val delivered_time : TextView = binding.returnProductAdminItemDeliveredTime
+        val deliveryID: TextView = binding.returnProductAdminItemDeliveryId
+        val deliveryAddress: TextView = binding.returnProductAdminItemDeliveryAddress
         val img_url : ImageView = binding.returnProductAdminItemImage
     }
 

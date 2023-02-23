@@ -3,19 +3,20 @@ package tarc.edu.carpartsapp.Filter
 import android.widget.Filter
 import tarc.edu.carpartsapp.Adapter.ReturnProductCashOnDeliveryAdapter
 import tarc.edu.carpartsapp.Adapter.ReturnProductCreditCardAdapter
+import tarc.edu.carpartsapp.Model.DeliveryModel
 import tarc.edu.carpartsapp.Model.MyOrderModel
 
 class ReturnProductCreditCardFilter: Filter {
 
     //arrayList in which we want to search
-    private var filterList: ArrayList<MyOrderModel>
+    private var filterList: ArrayList<DeliveryModel>
 
     //adapter in which filter need to be implemented
     private var returnProductCreditCardAdapter: ReturnProductCreditCardAdapter
 
     //constructor
     constructor(
-        filterList: ArrayList<MyOrderModel>,
+        filterList: ArrayList<DeliveryModel>,
         returnProductCreditCardAdapter: ReturnProductCreditCardAdapter
     ) : super() {
         this.filterList = filterList
@@ -32,10 +33,10 @@ class ReturnProductCreditCardFilter: Filter {
             //searched value is nor null not empty
 
             constraint = constraint.toString()
-            val filteredModels: ArrayList<MyOrderModel> = ArrayList()
+            val filteredModels: ArrayList<DeliveryModel> = ArrayList()
             for (i in 0 until filterList.size) {
                 //validate
-                if (filterList[i].name.contains(constraint, ignoreCase = true) || filterList[i].orderID.contains(constraint, ignoreCase = true)) {
+                if (filterList[i].names.contains(constraint, ignoreCase = true) || filterList[i].orderID.contains(constraint, ignoreCase = true) || filterList[i].deliveryID.contains(constraint, ignoreCase = true)) {
                     //add to filtered list
                     filteredModels.add(filterList[i])
                 }
@@ -53,7 +54,7 @@ class ReturnProductCreditCardFilter: Filter {
 
     override fun publishResults(constraint: CharSequence?, results: Filter.FilterResults) {
         //apply filter changes
-        returnProductCreditCardAdapter.myOrderModelArrayList= results.values as ArrayList<MyOrderModel>
+        returnProductCreditCardAdapter.deliveryModelArrayList= results.values as ArrayList<DeliveryModel>
         //notify changes
         returnProductCreditCardAdapter.notifyDataSetChanged()
     }

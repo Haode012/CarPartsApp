@@ -8,14 +8,14 @@ import tarc.edu.carpartsapp.Model.MyOrderModel
 class ReturnProductCashOnDeliveryFilter: Filter {
 
     //arrayList in which we want to search
-    private var filterList: ArrayList<MyOrderModel>
+    private var filterList: ArrayList<DeliveryModel>
 
     //adapter in which filter need to be implemented
     private var returnProductCashOnDeliveryAdapter: ReturnProductCashOnDeliveryAdapter
 
     //constructor
     constructor(
-        filterList: ArrayList<MyOrderModel>,
+        filterList: ArrayList<DeliveryModel>,
         returnProductCashOnDeliveryAdapter: ReturnProductCashOnDeliveryAdapter
     ) : super() {
         this.filterList = filterList
@@ -32,10 +32,10 @@ class ReturnProductCashOnDeliveryFilter: Filter {
             //searched value is nor null not empty
 
             constraint = constraint.toString()
-            val filteredModels: ArrayList<MyOrderModel> = ArrayList()
+            val filteredModels: ArrayList<DeliveryModel> = ArrayList()
             for (i in 0 until filterList.size) {
                 //validate
-                if (filterList[i].name.contains(constraint, ignoreCase = true) || filterList[i].orderID.contains(constraint, ignoreCase = true)) {
+                if (filterList[i].names.contains(constraint, ignoreCase = true) || filterList[i].orderID.contains(constraint, ignoreCase = true) || filterList[i].deliveryID.contains(constraint, ignoreCase = true)) {
                     //add to filtered list
                     filteredModels.add(filterList[i])
                 }

@@ -17,6 +17,7 @@ import tarc.edu.carpartsapp.Adapter.MyOrderCashOnDeliveryAdapter
 import tarc.edu.carpartsapp.Adapter.PopularAdapterCustomer
 import tarc.edu.carpartsapp.Adapter.ReturnProductCashOnDeliveryAdapter
 import tarc.edu.carpartsapp.Adapter.ReturnProductCreditCardAdapter
+import tarc.edu.carpartsapp.Model.DeliveryModel
 import tarc.edu.carpartsapp.Model.MyOrderModel
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.FragmentReturnProductCashOnDeliveryBinding
@@ -26,7 +27,7 @@ class ReturnProductCreditCardFragment : Fragment() {
 
     private lateinit var dbref : DatabaseReference
     private lateinit var recyclerView: RecyclerView
-    private lateinit var myOrderModelArrayList : ArrayList<MyOrderModel>
+    private lateinit var deliveryModelArrayList : ArrayList<DeliveryModel>
     private lateinit var returnProductCreditCardAdapter: ReturnProductCreditCardAdapter
 
     private var _binding: FragmentReturnProductCreditCardBinding? = null
@@ -53,7 +54,7 @@ class ReturnProductCreditCardFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.setHasFixedSize(true)
-        myOrderModelArrayList = arrayListOf<MyOrderModel>()
+        deliveryModelArrayList = arrayListOf<DeliveryModel>()
 
         //search
         binding.editTextSearch.addTextChangedListener(object: TextWatcher {
@@ -80,7 +81,7 @@ class ReturnProductCreditCardFragment : Fragment() {
 
     private fun getData(){
 
-        dbref = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("PaymentDetails").child(
+        dbref = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Delivered Item(Credit Card Payment)").child(
             FirebaseAuth.getInstance().currentUser!!.uid)
 
         dbref.addValueEventListener(object : ValueEventListener {
@@ -90,11 +91,11 @@ class ReturnProductCreditCardFragment : Fragment() {
                     if (snapshot.exists()) {
                         for (firstChildSnapshot in snapshot.children) {
                             for (secondChildSnapshot in firstChildSnapshot.children) {
-                                val myOrder = secondChildSnapshot.getValue(MyOrderModel::class.java)
-                                myOrderModelArrayList.add(myOrder!!)
+                                val delivery = secondChildSnapshot.getValue(DeliveryModel::class.java)
+                                deliveryModelArrayList.add(delivery!!)
                             }
                         }
-                        returnProductCreditCardAdapter = ReturnProductCreditCardAdapter(myOrderModelArrayList, requireContext())
+                        returnProductCreditCardAdapter = ReturnProductCreditCardAdapter(deliveryModelArrayList, requireContext())
                         recyclerView.adapter = returnProductCreditCardAdapter
                     }
                 } catch (e: Exception) {

@@ -62,7 +62,7 @@
             app:layout_constraintTop_toBottomOf="@+id/my_cart_item_name" />
 
         <TextView
-            android:id="@+id/textViewOrderDate"
+            android:id="@+id/textViewDeliveryDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -72,7 +72,7 @@
             app:layout_constraintTop_toBottomOf="@+id/my_cart_item_warranty" />
 
         <TextView
-            android:id="@+id/textViewOrderTime"
+            android:id="@+id/textViewDeliveryTime"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -133,7 +133,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/textView18"
-            app:layout_constraintTop_toBottomOf="@+id/textViewOrderDate" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewDeliveryDate" />
 
         <TextView
             android:id="@+id/my_cart_item_total_quantity"
@@ -141,7 +141,7 @@
             android:layout_height="wrap_content"
             android:text="TextView3"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/textViewOrderTime" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewDeliveryTime" />
 
         <TextView
             android:id="@+id/my_cart_item_total_price"
@@ -159,7 +159,7 @@
             android:layout_height="wrap_content"
             android:text="RM"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/textViewOrderDate" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewDeliveryDate" />
 
         <TextView
             android:id="@+id/textView19"
