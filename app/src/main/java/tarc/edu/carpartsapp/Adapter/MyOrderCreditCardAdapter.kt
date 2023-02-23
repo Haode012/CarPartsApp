@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import tarc.edu.carpartsapp.FragmentCustDeliveryStatus
+import tarc.edu.carpartsapp.FragmentDeliveryStatusCreditCard
 import tarc.edu.carpartsapp.Model.MyOrderModel
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.MyOrderCashOnDeliveryItemBinding
@@ -55,6 +58,7 @@ class MyOrderCreditCardAdapter: RecyclerView.Adapter<MyOrderCreditCardAdapter.My
         val total_quantity = myOrderModel.total_quantity
         val total_price = myOrderModel.total_price
         val img_url = myOrderModel.img_url
+        val orderID = myOrderModel.orderID
 
         holder.id.text = id
         holder.name.text = name
@@ -62,7 +66,15 @@ class MyOrderCreditCardAdapter: RecyclerView.Adapter<MyOrderCreditCardAdapter.My
         holder.price.text = price
         holder.total_quantity.text = total_quantity
         holder.total_price.text = total_price
+        holder.orderID.text = orderID
         Glide.with(context).load(img_url).into(holder.img_url)
+        holder.itemView.setOnClickListener {
+            val bundle = Bundle()
+            val fragment = FragmentDeliveryStatusCreditCard()
+            bundle.putString("orderID", orderID)
+            fragment.arguments = bundle
+            Navigation.findNavController(it).navigate(R.id.action_nav_delivery_credit_card_customer_to_fragmentDeliveryStatusCreditCard,bundle)
+        }
 
         var total_amount = 0.0
         for (myOrderModel in myOrderModelArrayList2) {
@@ -88,5 +100,6 @@ class MyOrderCreditCardAdapter: RecyclerView.Adapter<MyOrderCreditCardAdapter.My
         val total_quantity : TextView = binding.myOrderCreditCardItemTotalQuantity
         val total_price : TextView = binding.myOrderCreditCardItemTotalPrice
         val img_url : ImageView = binding.myOrderCreditCardItemImage
+        val orderID : TextView = binding.outputCreditOrderId
     }
 }

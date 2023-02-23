@@ -45,7 +45,7 @@
             android:id="@+id/textViewName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:text="Name"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -55,7 +55,7 @@
             android:id="@+id/textViewWarranty"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:text="Warranty"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -65,7 +65,7 @@
             android:id="@+id/textViewOrderDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:text="Price (per item)"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -75,7 +75,7 @@
             android:id="@+id/textViewOrderTime"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:text="Total Quantity"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -85,7 +85,7 @@
             android:id="@+id/textViewTotalPrice"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:text="Total Price"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -168,6 +168,27 @@
             android:text="RM"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/textViewTotalPrice" />
+
+        <TextView
+            android:id="@+id/labelCreditOrderId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order ID"
+            app:layout_constraintEnd_toEndOf="@+id/my_order_credit_card_item_total_price"
+            app:layout_constraintHorizontal_bias="0.055"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/my_order_credit_card_item_total_price" />
+
+        <TextView
+            android:id="@+id/outputCreditOrderId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="@+id/labelCreditOrderId"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/labelCreditOrderId" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

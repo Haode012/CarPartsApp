@@ -169,6 +169,26 @@
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/textViewTotalPrice" />
 
+        <TextView
+            android:id="@+id/labelOrderIdddd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Order ID"
+            app:layout_constraintEnd_toEndOf="@+id/my_order_cash_on_delivery_item_total_price"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTotalPrice" />
+
+        <TextView
+            android:id="@+id/outputMyOrderId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/labelOrderIdddd"
+            app:layout_constraintHorizontal_bias="0.411"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/labelOrderIdddd" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

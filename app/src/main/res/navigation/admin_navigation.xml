@@ -289,6 +289,12 @@
         <action
             android:id="@+id/action_fragmentAdminDeliveryManagement_to_createDeliveryStatus2"
             app:destination="@id/createDeliveryStatus2" />
+        <action
+            android:id="@+id/action_fragmentAdminDeliveryManagement_to_fragmentViewAllDelivery"
+            app:destination="@id/fragmentViewAllDelivery" />
+        <action
+            android:id="@+id/action_fragmentAdminDeliveryManagement_to_fragmentCreateDeliveryStatusCreditCardPayment"
+            app:destination="@id/fragmentCreateDeliveryStatusCreditCardPayment" />
     </fragment>
     <fragment
         android:id="@+id/fragmentAdminViewAllDeliveryStatus"
@@ -331,5 +337,26 @@
         <action
             android:id="@+id/action_fragmentAdminReturnProductDecision_to_nav_home_admin"
             app:destination="@id/nav_home_admin" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentViewAllDelivery"
+        android:name="tarc.edu.carpartsapp.FragmentViewAllDelivery"
+        android:label="fragment_view_all_delivery"
+        tools:layout="@layout/fragment_view_all_delivery" >
+        <action
+            android:id="@+id/action_fragmentViewAllDelivery_to_fragmentAdminDeliveryManagement"
+            app:destination="@id/fragmentAdminDeliveryManagement" />
+        <action
+            android:id="@+id/action_fragmentViewAllDelivery_to_createDeliveryStatus2"
+            app:destination="@id/createDeliveryStatus2" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentCreateDeliveryStatusCreditCardPayment"
+        android:name="tarc.edu.carpartsapp.FragmentCreateDeliveryStatusCreditCardPayment"
+        android:label="fragment_create_delivery_status_credit_card_payment"
+        tools:layout="@layout/fragment_create_delivery_status_credit_card_payment" >
+        <action
+            android:id="@+id/action_fragmentCreateDeliveryStatusCreditCardPayment_to_fragmentAdminDeliveryManagement"
+            app:destination="@id/fragmentAdminDeliveryManagement" />
     </fragment>
 </navigation>

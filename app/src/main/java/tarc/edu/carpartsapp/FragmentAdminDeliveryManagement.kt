@@ -40,6 +40,10 @@ class FragmentAdminDeliveryManagement : Fragment() {
         binding.btnCreateDeliveryStatus.setOnClickListener{
             findNavController().navigate(R.id.action_fragmentAdminDeliveryManagement_to_createDeliveryStatus2)
         }
+
+        binding.btnGO.setOnClickListener {
+            findNavController().navigate(R.id.action_fragmentAdminDeliveryManagement_to_fragmentViewAllDelivery)
+        }
     }
 
 

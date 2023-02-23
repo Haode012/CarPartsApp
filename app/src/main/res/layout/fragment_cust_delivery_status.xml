@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,15 +8,139 @@
     android:layout_height="match_parent"
     tools:context=".FragmentCustDeliveryStatus">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewDeliveryStatusCustomer"
-        android:layout_width="409dp"
-        android:layout_height="580dp"
-        android:layout_marginBottom="152dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="407dp"
+        android:layout_height="392dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck"
         tools:listitem="@layout/customer_view_delivery_status_layout" />
 
+    <TextView
+        android:id="@+id/outputOrderIdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView31"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewDeliveryStatusCustomer" />
+
+    <TextView
+        android:id="@+id/labelDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:text="Order Purchased Date"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outputOrderIdd" />
+
+    <TextView
+        android:id="@+id/outputPurchasedDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.435"
+        app:layout_constraintStart_toEndOf="@+id/labelDate"
+        app:layout_constraintTop_toBottomOf="@+id/outputOrderIdd" />
+
+    <TextView
+        android:id="@+id/labelAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Total Amount"
+        app:layout_constraintEnd_toEndOf="@+id/labelHouseAddress"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/labelHouseAddress"
+        app:layout_constraintTop_toBottomOf="@+id/labelHouseAddress" />
+
+    <TextView
+        android:id="@+id/outputTotalAmount"
+        android:layout_width="79dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="@+id/outputHouseAddress"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/outputHouseAddress"
+        app:layout_constraintTop_toBottomOf="@+id/outputHouseAddress" />
+
+    <TextView
+        android:id="@+id/labelHouseAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="House Address"
+        app:layout_constraintEnd_toEndOf="@+id/labelDate"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/labelDate"
+        app:layout_constraintTop_toBottomOf="@+id/labelDate" />
+
+    <TextView
+        android:id="@+id/outputHouseAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/outputPurchasedDate"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/outputPurchasedDate"
+        app:layout_constraintTop_toBottomOf="@+id/outputPurchasedDate" />
+
+    <TextView
+        android:id="@+id/labelCustDeliveryStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/deliveryStatus"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/labelAmount"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/labelAmount"
+        app:layout_constraintTop_toBottomOf="@+id/labelAmount" />
+
+    <TextView
+        android:id="@+id/outputDeliveryStatusnew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="@+id/outputTotalAmount"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/outputTotalAmount"
+        app:layout_constraintTop_toBottomOf="@+id/outputTotalAmount" />
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Order ID"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.019"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewDeliveryStatusCustomer" />
+
+        <Button
+        android:id="@+id/btnComplete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Complete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelCustDeliveryStatus" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

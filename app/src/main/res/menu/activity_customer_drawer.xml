@@ -30,6 +30,15 @@
             </menu>
         </item>
         <item
+            android:title="Delivery" >
+            <menu>
+                <item
+                    android:id="@+id/nav_itemDelivered_items"
+                    android:icon="@drawable/ic_baseline_delivery_dining_24"
+                    android:title="Delivered Items" />
+            </menu>
+        </item>
+        <item
             android:title="Return Product" >
             <menu>
                 <item

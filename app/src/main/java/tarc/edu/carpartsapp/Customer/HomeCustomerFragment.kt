@@ -139,6 +139,7 @@ class HomeCustomerFragment : Fragment() {
             val saveCurrentTime = currentTime.format(Calendar.getInstance().time)
 
             val myRefNew = database.getReference("OrderItem(Cash On Delivery) Duplicate")
+            val key = myRefNew.push().key.toString()
 
             for (myCartModel in myCartModelArrayList) {
                 val id = myCartModel.id
@@ -148,13 +149,18 @@ class HomeCustomerFragment : Fragment() {
                 myCartModel.currentTime = saveCurrentTime!!
                 myRef.child(uid).child(orderID!!).child(id!!).setValue(myCartModel).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
+                                orderDuplication["id"] = id
                                 orderDuplication["orderID"] = orderID
                                 orderDuplication["userId"] = uid
-                                orderDuplication["TotalAmount"] = myCartModel.total_price
-                                orderDuplication["Delivery Address"] = myCartModel.deliveryAddress
-                                orderDuplication["Date of Order Placed"] = myCartModel.currentDate
+                                orderDuplication["totalAmount"] = myCartModel.total_price
+                                orderDuplication["DeliveryAddress"] = myCartModel.deliveryAddress
+                                orderDuplication["DateOfOrderPlaced"] = myCartModel.currentDate
+                                orderDuplication["img_url"] = myCartModel.img_url
+                                orderDuplication["name"] = myCartModel.name
+                                orderDuplication["quantity"] = myCartModel.total_quantity
+
                                 try {
-                                    myRefNew.child(orderID).setValue(orderDuplication)
+                                    myRefNew.child(orderID).child(id).setValue(orderDuplication)
                                 } catch (e: Exception) {
                                     Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
                                 }
@@ -190,6 +196,7 @@ class HomeCustomerFragment : Fragment() {
             val cardNumber = arguments?.getString("cardNumber").toString()
             val expirationDateMonth = arguments?.getString("expirationDateMonth").toString()
             val expirationDateYear = arguments?.getString("expirationDateYear").toString()
+            val totalAmount = arguments?.getString("total_price").toString()
             val CVV = arguments?.getString("CVV").toString()
             val currentDate = SimpleDateFormat("MM/dd/yyyy")
             val saveCurrentDate = currentDate.format(Calendar.getInstance().time)
@@ -213,16 +220,18 @@ class HomeCustomerFragment : Fragment() {
 
                 myRef.child(uid).child(paymentID!!).child(id!!).setValue(myOrderModel).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-
+                        paymentDuplication["id"] = id
                         paymentDuplication["orderID"] = orderID
-                        paymentDuplication["paymentID"] = paymentID
                         paymentDuplication["userId"] = uid
-                        orderDuplication["Total Amount"] = myOrderModel.total_price
-                        orderDuplication["Delivery Address"] = myOrderModel.deliveryAddress
-                        orderDuplication["Date of Order Placed"] = myOrderModel.currentDate
+                        paymentDuplication["totalAmount"] = myOrderModel.total_price
+                        paymentDuplication["DeliveryAddress"] = myOrderModel.deliveryAddress
+                        paymentDuplication["DateOfOrderPlaced"] = myOrderModel.currentDate
+                        paymentDuplication["img_url"] = myOrderModel.img_url
+                        paymentDuplication["name"] = myOrderModel.name
+                        paymentDuplication["quantity"] = myOrderModel.total_quantity
 
                         try {
-                            myRefNew.child(orderID).setValue(paymentDuplication)
+                            myRefNew.child(orderID).child(id).setValue(paymentDuplication)
                         } catch (e: Exception) {
                             Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
                         }

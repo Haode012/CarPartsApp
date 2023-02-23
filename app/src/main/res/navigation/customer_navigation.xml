@@ -165,12 +165,19 @@
         <action
             android:id="@+id/action_nav_delivery_credit_card_customer_to_nav_my_order_credit_card_customer"
             app:destination="@id/nav_my_order_credit_card_customer" />
+        <action
+            android:id="@+id/action_nav_delivery_credit_card_customer_to_fragmentDeliveryStatusCreditCard"
+            app:destination="@id/fragmentDeliveryStatusCreditCard" />
     </fragment>
     <fragment
         android:id="@+id/fragmentCustDeliveryStatus"
         android:name="tarc.edu.carpartsapp.FragmentCustDeliveryStatus"
         android:label="fragment_cust_delivery_status"
-        tools:layout="@layout/fragment_cust_delivery_status" />
+        tools:layout="@layout/fragment_cust_delivery_status" >
+        <action
+            android:id="@+id/action_fragmentCustDeliveryStatus_to_nav_delivery_cash_on_delivery_customer"
+            app:destination="@id/nav_delivery_cash_on_delivery_customer" />
+    </fragment>
     <fragment
         android:id="@+id/nav_itemOrdered_customer"
         android:name="tarc.edu.carpartsapp.Customer.ReturnProductSelectionFragment"
@@ -233,4 +240,9 @@
             android:id="@+id/action_fragmentChangeProfilePicture_to_nav_profile_customer"
             app:destination="@id/nav_profile_customer" />
     </fragment>
+    <fragment
+        android:id="@+id/fragmentDeliveryStatusCreditCard"
+        android:name="tarc.edu.carpartsapp.FragmentDeliveryStatusCreditCard"
+        android:label="fragment_delivery_status_credit_card"
+        tools:layout="@layout/fragment_delivery_status_credit_card" />
 </navigation>

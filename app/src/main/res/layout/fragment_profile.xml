@@ -2,24 +2,19 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ProfileFragment"
     tools:ignore="SpeakableTextPresentCheck">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="25dp"></ImageView>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -62,9 +57,9 @@
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_baseline_person_24"
                         android:drawablePadding="10dp"
+                        android:enabled="false"
                         android:hint="@string/name"
-                        android:textColor="@color/black"
-                        android:enabled="false" />
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -77,9 +72,9 @@
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_baseline_email_24"
                         android:drawablePadding="10dp"
+                        android:enabled="false"
                         android:hint="@string/email"
-                        android:textColor="@color/black"
-                        android:enabled="false"/>
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -92,9 +87,9 @@
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_baseline_home_24"
                         android:drawablePadding="10dp"
+                        android:enabled="false"
                         android:hint="@string/address"
-                        android:textColor="@color/black"
-                        android:enabled="false"/>
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -108,8 +103,8 @@
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_baseline_local_phone_24"
                         android:drawablePadding="10dp"
-                        android:textColor="@color/black"
-                        android:enabled="false"/>
+                        android:enabled="false"
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -122,9 +117,9 @@
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_baseline_date_24"
                         android:drawablePadding="10dp"
+                        android:enabled="false"
                         android:hint="@string/dateOfBirth"
-                        android:textColor="@color/black"
-                        android:enabled="false"/>
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -137,9 +132,9 @@
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_baseline_person_24"
                         android:drawablePadding="10dp"
+                        android:enabled="false"
                         android:hint="@string/gender"
-                        android:textColor="@color/black"
-                        android:enabled="false"/>
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
