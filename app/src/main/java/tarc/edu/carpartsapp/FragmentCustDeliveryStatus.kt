@@ -204,7 +204,7 @@ class FragmentCustDeliveryStatus : Fragment() {
                                     deliveredItems["deliveryID"] = key
                                     deliveredItems["deliveredDate"] = "$deliveredDate"
                                     deliveredItems["deliveredTime"] = "$deliveredTime"
-
+                                    deliveredItems["warranty"] = snap2.child("warranty").value as String
                                     try {
                                         databaseReference.child(prodId).setValue(deliveredItems)
                                     } catch (e: Exception) {

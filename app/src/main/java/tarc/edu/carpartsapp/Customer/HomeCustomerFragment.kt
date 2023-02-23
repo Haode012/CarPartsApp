@@ -150,6 +150,7 @@ class HomeCustomerFragment : Fragment() {
                 myRef.child(uid).child(orderID!!).child(id!!).setValue(myCartModel).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                                 orderDuplication["id"] = id
+                                orderDuplication["warranty"] = myCartModel.warranty
                                 orderDuplication["orderID"] = orderID
                                 orderDuplication["userId"] = uid
                                 orderDuplication["totalAmount"] = myCartModel.total_price
@@ -221,6 +222,7 @@ class HomeCustomerFragment : Fragment() {
                 myRef.child(uid).child(paymentID!!).child(id!!).setValue(myOrderModel).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         paymentDuplication["id"] = id
+                        paymentDuplication["warranty"] = myOrderModel.warranty
                         paymentDuplication["orderID"] = orderID
                         paymentDuplication["userId"] = uid
                         paymentDuplication["totalAmount"] = myOrderModel.total_price
