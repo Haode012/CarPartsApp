@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -47,17 +48,20 @@ class FragmentAdminViewAllDeliveryStatus : Fragment() {
     private fun getData() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
         db = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
-            .getReference("Delivery Status")
+            .getReference().child("Delivery Status")
 
-        db.addValueEventListener(object : ValueEventListener {
+        db.addListenerForSingleValueEvent(object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 deliveryStatusArrayList.clear()
                 if (snapshot.exists()) {
                     for (deliverysnaps in snapshot.children) {
-                        val deliveryStatus =
-                            deliverysnaps.getValue(DeliveryStatus::class.java)
-                        deliveryStatusArrayList.add(deliveryStatus!!)
+                        for (snap in deliverysnaps.children) {
+                            val key = deliverysnaps.key.toString()
+                            val deliveryStatus = snap.getValue(DeliveryStatus::class.java)
+                            deliveryStatusArrayList.add(deliveryStatus!!)
+                            Toast.makeText(context, key, Toast.LENGTH_LONG).show()
+                        }
                     }
                     deliveryStatusRecyclerview.adapter = DeliveryStatusAdapter(deliveryStatusArrayList)
 

@@ -61,12 +61,16 @@ class AdminUpdateDeliveryStatus : Fragment() {
             ref.addValueEventListener(object :ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for (snap in snapshot.children) {
-                        for (snap2 in snapshot.children) {
+                        //updated here
+                        for (snap2 in snap.children) {
                             val key = snap.key.toString()
-                            if (snap.child("deliveryStatusId").value.toString()
+                            if (snap2.child("deliveryStatusId").value.toString()
                                     .equals(deliveryId)
                             ) {
-                                ref.child(key).child("deliveryStatus").setValue(status)
+                                //updated here
+                                val id = snap2.key.toString()
+                                //updated here
+                                ref.child(key).child(id).child("deliveryStatus").setValue(status)
                                 Toast.makeText(context, "Delivery Status Updated", Toast.LENGTH_LONG).show()
                             } else {
                                 Toast.makeText(context, "Error", Toast.LENGTH_LONG).show()
