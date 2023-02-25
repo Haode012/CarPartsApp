@@ -110,15 +110,15 @@
         app:layout_constraintStart_toStartOf="@+id/labelAmount"
         app:layout_constraintTop_toBottomOf="@+id/labelAmount" />
 
-    <TextView
-        android:id="@+id/outputDeliveryStatusnew"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="@+id/outputTotalAmount"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="@+id/outputTotalAmount"
-        app:layout_constraintTop_toBottomOf="@+id/outputTotalAmount" />
+        <TextView
+            android:id="@+id/outputDeliveryStatusnew"
+            android:layout_width="256dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.624"
+            app:layout_constraintStart_toEndOf="@+id/labelCustDeliveryStatus"
+            app:layout_constraintTop_toBottomOf="@+id/outputTotalAmount" />
 
         <TextView
             android:id="@+id/textView31"
@@ -132,15 +132,14 @@
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewDeliveryStatusCustomer" />
 
         <Button
-        android:id="@+id/btnComplete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Complete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelCustDeliveryStatus" />
+            android:id="@+id/btnComplete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Complete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/labelCustDeliveryStatus" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -115,6 +115,7 @@ class FragmentCustDeliveryStatus : Fragment() {
     }
 
     private fun getProductData() {
+        var total : Double = 0.0
         val orderId = binding.outputOrderIdd.text.toString()
         val database =
             Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
@@ -141,8 +142,12 @@ class FragmentCustDeliveryStatus : Fragment() {
                                     snap2.child("address").value.toString()
                                 binding.outputPurchasedDate.text =
                                     snap2.child("dateTime").value.toString()
-                                binding.labelAmount.text =
-                                    snap2.child("TotalAmount").value.toString()
+
+                                //total all product price from order
+                                    val amount = snap2.child("TotalAmount").value.toString()
+                                total += amount.toDouble()
+                                binding.outputTotalAmount.text = "RM"+total.toString()
+                                binding.outputDeliveryStatusnew.text = snap2.child("deliveryStatus").value.toString()
                                 //binding.outputOrderId.text = deliverysnaps.child("orderID").value.toString()
                                 //binding.outputDeliveryAddress.text = deliverysnaps.child("deliveryAddress").value.toString()
                                 val deliveryStatus =
@@ -183,36 +188,46 @@ class FragmentCustDeliveryStatus : Fragment() {
         ref.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (snap in snapshot.children) {
-                        //Toast.makeText(context, snap.key.toString(), Toast.LENGTH_LONG).show()
+                    //Toast.makeText(context, snap.key.toString(), Toast.LENGTH_LONG).show()
 //                        val prodId = snap.child("id").value as String
 //                        Toast.makeText(context, prodId, Toast.LENGTH_LONG).show()
-                        for (snap2 in snap.children) {
-                            val prodId = snap2.key.toString()
-                                if (snap2.child("orderID").value.toString().equals(orderId)) {
-                                    deliveredItems["orderID"] = orderId.toString()
-                                    deliveredItems["userId"] = userId
-                                    val id = snap2.child("id").value.toString()
-                                    deliveredItems["id"] = prodId
-                                    deliveredItems["address"] = snap2.child("address").value as String
-                                    deliveredItems["TotalAmount"] =
-                                        snap2.child("TotalAmount").value as String
-                                    deliveredItems["img_url"] =
-                                        snap2.child("img_url").value as String
-                                    deliveredItems["names"] = snap2.child("names").value as String
-                                    deliveredItems["quantity"] =
-                                        snap2.child("quantity").value as String
-                                    deliveredItems["deliveryID"] = key
-                                    deliveredItems["deliveredDate"] = "$deliveredDate"
-                                    deliveredItems["deliveredTime"] = "$deliveredTime"
-                                    deliveredItems["warranty"] = snap2.child("warranty").value as String
-                                    try {
-                                        databaseReference.child(prodId).setValue(deliveredItems)
-                                    } catch (e: Exception) {
-                                        //   Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
-                                    }
+                    for (snap2 in snap.children) {
+                        val prodId = snap2.key.toString()
+                        if (snap2.child("orderID").value.toString().equals(orderId)) {
+                            if ((binding.outputDeliveryStatusnew.text.toString()
+                                    .equals("Delivered"))
+                            ) {
+                                deliveredItems["orderID"] = orderId.toString()
+                                deliveredItems["userId"] = userId
+                                val id = snap2.child("id").value.toString()
+                                deliveredItems["id"] = prodId
+                                deliveredItems["address"] = snap2.child("address").value as String
+                                deliveredItems["TotalAmount"] =
+                                    snap2.child("TotalAmount").value as String
+                                deliveredItems["img_url"] =
+                                    snap2.child("img_url").value as String
+                                deliveredItems["names"] = snap2.child("names").value as String
+                                deliveredItems["quantity"] =
+                                    snap2.child("quantity").value as String
+                                deliveredItems["deliveryID"] = key
+                                deliveredItems["deliveredDate"] = "$deliveredDate"
+                                deliveredItems["deliveredTime"] = "$deliveredTime"
+                                deliveredItems["warranty"] = snap2.child("warranty").value as String
+                                try {
+                                    databaseReference.child(prodId).setValue(deliveredItems)
+                                } catch (e: Exception) {
+                                    //   Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
                                 }
-
+                            } else {
+                                Toast.makeText(
+                                    context,
+                                    "Your order has not been delivered",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
                         }
+
+                    }
                 }
             }
 

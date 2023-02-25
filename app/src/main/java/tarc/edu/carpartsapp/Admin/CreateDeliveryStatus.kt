@@ -189,7 +189,7 @@ class CreateDeliveryStatus : Fragment() {
         binding.buttonCreate.setOnClickListener {
             //deliveryStatuss()
             storeDeliveryStatus()
-        //    deleteOrderId()
+            deleteOrderId()
         }
 
 
@@ -254,15 +254,15 @@ class CreateDeliveryStatus : Fragment() {
         db.addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (snap in snapshot.children) {
-                    for (snap2 in snap.children) {
+                    val key2 = snap.key.toString()
+                    //for (snap2 in snap.children) {
                         // val uniqueId = snap.child("")
                         // val orderId = snap.child("orderId").getValue(String::class.java)
-                        if (snap2.child("orderID").value.toString()
-                                .equals(spinners.selectedItem.toString())
+                        if (key2.equals(spinners.selectedItem.toString())
                         ) {
                             snap.ref.removeValue()
                         }
-                    }
+                  //  }
                 }
             }
 
