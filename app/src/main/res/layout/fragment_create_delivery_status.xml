@@ -105,14 +105,14 @@
         android:id="@+id/buttonCreate"
         android:layout_width="260dp"
         android:layout_height="49dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="84dp"
         android:backgroundTint="#FDC12A"
         android:text="Create Delivery Status"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order" />
+        app:layout_constraintTop_toBottomOf="@+id/outputOrderAmount" />
 
     <TextView
         android:id="@+id/labelUID"
@@ -208,45 +208,5 @@
         app:layout_constraintStart_toStartOf="@+id/outputUserid"
         app:layout_constraintTop_toBottomOf="@+id/outputUserid" />
 
-    <TextView
-        android:id="@+id/outputProductNames"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/outputImgUrl" />
-
-    <TextView
-        android:id="@+id/outputImgUrl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/outputOrderAmount" />
-
-    <TextView
-        android:id="@+id/outputId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="@+id/outputProductNames"
-        app:layout_constraintStart_toStartOf="@+id/outputProductNames"
-        app:layout_constraintTop_toBottomOf="@+id/outputProductNames" />
-
-    <TextView
-        android:id="@+id/order"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="@+id/outputOrderAmount"
-        app:layout_constraintStart_toStartOf="@+id/outputOrderAmount"
-        app:layout_constraintTop_toBottomOf="@+id/outputOrderAmount" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

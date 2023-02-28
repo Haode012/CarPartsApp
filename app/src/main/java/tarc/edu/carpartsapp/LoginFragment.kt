@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -21,6 +22,7 @@ class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private lateinit var auth: FirebaseAuth
+    private lateinit var auth1: FirebaseAuth
 
     private val binding get() = _binding!!
 
@@ -28,6 +30,13 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        //If user previously logged in and didnt sign out, allow login synchronously
+        auth1 = Firebase.auth
+        if(auth1.currentUser !== null){
+            val intent = Intent(context, CustomerActivity::class.java)
+            startActivity(intent)
+        }
 
         //auth = Firebase.auth
         auth = FirebaseAuth.getInstance()

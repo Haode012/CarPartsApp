@@ -91,8 +91,10 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/drawable-v24/ic_baseline_date_24.xml" value="0.1435" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/drawable-v24/ic_baseline_email_24.xml" value="0.1435" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/drawable-v24/ic_baseline_local_phone_24.xml" value="0.1435" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/drawable/button_rate.xml" value="0.15" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.1435" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/activity_admin.xml" value="0.12158054711246201" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/alert_dialog_layout.xml" value="0.12158054711246201" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/app_bar_admin.xml" value="0.12158054711246201" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/app_bar_customer.xml" value="0.12158054711246201" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/customer_delivery_status_new.xml" value="0.16" />
@@ -100,7 +102,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/delivered_items_layout.xml" value="0.21875" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/deliveries_layout.xml" value="0.18009478672985782" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/delivery_status_layout.xml" value="0.25" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/delivery_status_products.xml" value="0.264" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/delivery_status_products.xml" value="0.25" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/delivery_status_products_credit_card.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/feedback_list.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/fragment__admin__view__all__delivery__status.xml" value="0.25" />
@@ -118,7 +120,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/fragment_create_delivery_status.xml" value="0.25" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/fragment_create_delivery_status_credit_card_payment.xml" value="0.25" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/fragment_credit_card.xml" value="0.22509057971014493" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/fragment_cust_delivery_status.xml" value="0.25" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/fragment_cust_delivery_status.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/fragment_cust_delivery_status_credit_card.xml" value="0.2" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/fragment_cust_view_delivery_status_credit_card.xml" value="0.24139492753623187" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/fragment_customer_feedback.xml" value="0.2259963768115942" />
@@ -136,6 +138,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/fragment_my_cart.xml" value="0.16799999999999998" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/fragment_my_order_cash_on_delivery.xml" value="0.22509057971014493" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/fragment_my_order_credit_card.xml" value="0.1" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/fragment_password_forgot.xml" value="0.12158054711246201" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/fragment_recommended_car_parts.xml" value="0.22509057971014493" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/fragment_registration.xml" value="0.1" />
@@ -159,6 +162,11 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/nav_header_customer.xml" value="0.25" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/nav_header_main.xml" value="0.2259963768115942" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/popular_car_parts.xml" value="0.21331521739130435" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/popular_car_parts_admin.xml" value="0.24139492753623187" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/rate_delivery.xml" value="0.1326530612244898" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/recommended_car_parts.xml" value="0.24139492753623187" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/recommended_car_parts_customer.xml" value="0.24139492753623187" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/layout/return_product_admin_item.xml" value="0.24139492753623187" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/menu/activity_admin_drawer.xml" value="0.25" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/menu/activity_customer_drawer.xml" value="0.25" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CarPartsApp/app/src/main/res/menu/activity_main_drawer.xml" value="0.10612244897959183" />

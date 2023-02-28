@@ -177,6 +177,9 @@
         <action
             android:id="@+id/action_fragmentCustDeliveryStatus_to_nav_delivery_cash_on_delivery_customer"
             app:destination="@id/nav_delivery_cash_on_delivery_customer" />
+        <action
+            android:id="@+id/action_fragmentCustDeliveryStatus_to_nav_home_customer"
+            app:destination="@id/nav_home_customer" />
     </fragment>
     <fragment
         android:id="@+id/nav_itemDelivered_customer"

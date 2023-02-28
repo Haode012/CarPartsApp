@@ -33,19 +33,19 @@ class FragmentAdminDeliveryManagement : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnViewDeliveryStatus.setOnClickListener{
+        binding.viewAllDeliveryStatus.setOnClickListener{
             findNavController().navigate(R.id.action_fragmentAdminDeliveryManagement_to_fragmentAdminViewAllDeliveryStatus)
         }
 
-        binding.btnCreateDeliveryStatus.setOnClickListener{
+        binding.cardViewCreateDeliveryStatus.setOnClickListener{
             findNavController().navigate(R.id.action_fragmentAdminDeliveryManagement_to_createDeliveryStatus2)
         }
 
-        binding.btnGO.setOnClickListener {
-            findNavController().navigate(R.id.action_fragmentAdminDeliveryManagement_to_fragmentViewAllDelivery)
-        }
+//        binding.btnGO.setOnClickListener {
+//            findNavController().navigate(R.id.action_fragmentAdminDeliveryManagement_to_fragmentViewAllDelivery)
+//        }
 
-        binding.btnDCC.setOnClickListener {
+        binding.cardViewDeliveryStatusCreditCard.setOnClickListener {
             findNavController().navigate(R.id.action_fragmentAdminDeliveryManagement_to_fragmentCreateDeliveryStatusCreditCardPayment)
         }
     }

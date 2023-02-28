@@ -144,11 +144,11 @@ class CreateDeliveryStatus : Fragment() {
                                                 val totalAmount =
                                                     snap2.child("totalAmount").value as String
                                                 binding.outputOrderAmount.text = totalAmount
-                                                val url = snap2.child("img_url").value as String
-                                                binding.outputImgUrl.text = url
-                                                val productNames =
-                                                    snap2.child("name").value as String
-                                                binding.outputProductNames.text = productNames
+//                                                val url = snap2.child("img_url").value as String
+//                                                binding.outputImgUrl.text = url
+//                                                val productNames =
+//                                                    snap2.child("name").value as String
+//                                                binding.outputProductNames.text = productNames
                                                // val id = snap2.child("id").value as String
                                                 //binding.outputId.text = id
 
@@ -181,10 +181,6 @@ class CreateDeliveryStatus : Fragment() {
         })
 
         // hide some details to not view on layout
-        if(binding.outputImgUrl.getVisibility() == View.INVISIBLE){
-        }
-        if(binding.outputProductNames.getVisibility() == View.INVISIBLE){
-        }
 
         binding.buttonCreate.setOnClickListener {
             //deliveryStatuss()
@@ -282,7 +278,7 @@ class CreateDeliveryStatus : Fragment() {
         val dateNow = Calendar.getInstance().time
 
 
-        val id = binding.outputId.text.toString()
+        //val id = binding.outputId.text.toString()
         val database = FirebaseDatabase.getInstance()
         //problem here, wont create delivery status for more than 1 ordered product. In 1 order that has 2 items
         // it creates the delivery for  1 items only

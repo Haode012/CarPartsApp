@@ -99,7 +99,7 @@ class RegistrationFragment : Fragment() {
         val dateOfBirth = binding.editTextDate.text.toString()
         // val email = binding.editTextEmail.toString()
         //val passwd = binding.editTextPasswd.toString()
-
+        try {
         val database = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
         val ref = database.getReference("Users")
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, passwd)
@@ -127,10 +127,11 @@ class RegistrationFragment : Fragment() {
                     Toast.makeText(context, "Error: ", Toast.LENGTH_SHORT).show()
                 }
             }
-    }
+    }catch (e: Exception) {
+                Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+        }    }
 
-    private fun userProfile(userId: String):Boolean{
-        GlobalScope.launch {
+    private fun userProfile(userId: String){
             val database = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
             val databaseReference = database.getReference("Users/$userId")
 
@@ -139,22 +140,9 @@ class RegistrationFragment : Fragment() {
             } catch (e: Exception) {
                 Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
             }
-        }
-        return true
-    }
-    /*private fun createUserProfile(userId: String): Boolean {
-        GlobalScope.launch {
-            val database = FirebaseDatabase.getInstance()
-            val databaseReference = database.getReference("users/$userId")
 
-            try {
-                databaseReference.setValue(userProfile)
-            } catch (e: Exception) {
-                Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
-            }
-        }
-        return true
-    }*/
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

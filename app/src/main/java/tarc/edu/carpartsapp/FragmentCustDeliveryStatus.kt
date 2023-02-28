@@ -1,11 +1,16 @@
 package tarc.edu.carpartsapp
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -77,6 +82,22 @@ class FragmentCustDeliveryStatus : Fragment() {
 
         binding.btnComplete.setOnClickListener {
             createDeliveredItem()
+
+            val dialogBinding = layoutInflater.inflate(R.layout.rate_delivery, null)
+            val dialog = Dialog(requireContext())
+            dialog.setContentView(dialogBinding)
+
+            dialog.setCancelable(true)
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+            //dialog.show()
+
+            val buttonMaybe = dialogBinding.findViewById<Button>(R.id.buttonLater)
+            val buttonRate = dialogBinding.findViewById<Button>(R.id.buttonRate)
+
+
+            buttonRate.setOnClickListener {
+                Toast.makeText(context, "Oh Yeah", Toast.LENGTH_LONG).show()
+            }
         }
 
 
@@ -172,6 +193,16 @@ class FragmentCustDeliveryStatus : Fragment() {
     }
 
     private fun createDeliveredItem() {
+
+        val dialogBinding = layoutInflater.inflate(R.layout.rate_delivery, null)
+        val dialog = Dialog(requireContext())
+        dialog.setContentView(dialogBinding)
+
+        dialog.setCancelable(true)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+        val buttonMaybe = dialogBinding.findViewById<Button>(R.id.buttonLater)
+
+
         val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
         val orderId = binding.outputOrderIdd.text
         val databaseNew = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
@@ -217,6 +248,11 @@ class FragmentCustDeliveryStatus : Fragment() {
                                     databaseReference.child(prodId).setValue(deliveredItems)
                                 } catch (e: Exception) {
                                     //   Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                                }
+                                dialog.show()
+                                buttonMaybe.setOnClickListener {
+                                    dialog.dismiss()
+                                    findNavController().navigate(R.id.action_fragmentCustDeliveryStatus_to_nav_home_customer)
                                 }
                             } else {
                                 Toast.makeText(

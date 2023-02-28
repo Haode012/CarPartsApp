@@ -35,20 +35,24 @@ class PasswordForgotFragment : Fragment() {
           findNavController().navigate(R.id.action_passwordForgotFragment_to_registrationFragment)
         }
 
-        binding.button2.setOnClickListener{
+        binding.btnForgotPassword.setOnClickListener{
             forgotPassword()
+        }
+    }
+
+    private fun validation(){
+        val email = binding.editTextTextEmailAddress3.text.toString()
+        if(email.isNullOrEmpty()){
+            binding.editTextTextEmailAddress3.error = "Please enter your email address"
+            Toast.makeText(context, "Please enter you email address", Toast.LENGTH_LONG).show()
         }
     }
 
     private fun forgotPassword(){
         auth= Firebase.auth
-
-        val buttonForgot = binding.button2
-
-        buttonForgot.setOnClickListener{
             val email = binding.editTextTextEmailAddress3.text.toString().trim{it <= ' '}
             if(email.isNullOrEmpty()){
-                Toast.makeText(this.context, "Please enter you email address", Toast.LENGTH_LONG).show()
+                validation()
             }else{
                 auth.sendPasswordResetEmail(email).addOnCompleteListener{
                     if(it.isSuccessful){
@@ -60,7 +64,6 @@ class PasswordForgotFragment : Fragment() {
                 }
             }
         }
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
