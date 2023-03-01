@@ -37,12 +37,14 @@ class ViewAllPopularAdapter: RecyclerView.Adapter<ViewAllPopularAdapter.MyViewHo
     override fun onBindViewHolder(holder: ViewAllPopularAdapter.MyViewHolder, position:Int) {
 
         val viewAllPopularModel = viewAllPopularModelArrayList[position]
+        val id = viewAllPopularModel.id
         val name = viewAllPopularModel.name
         val description = viewAllPopularModel.description
         val price = viewAllPopularModel.price
         val warranty = viewAllPopularModel.warranty
         val img_url = viewAllPopularModel.img_url
 
+        holder.id.text = id
         holder.name.text = name
         holder.description.text = description
         holder.price.text = price
@@ -55,6 +57,7 @@ class ViewAllPopularAdapter: RecyclerView.Adapter<ViewAllPopularAdapter.MyViewHo
     }
 
     private fun detailsFragment(viewAllPopularModel: ViewAllPopularModel, holder: ViewAllPopularAdapter.MyViewHolder) {
+        val id = viewAllPopularModel.id
         val name = viewAllPopularModel.name
         val description = viewAllPopularModel.description
         val price = viewAllPopularModel.price
@@ -64,6 +67,7 @@ class ViewAllPopularAdapter: RecyclerView.Adapter<ViewAllPopularAdapter.MyViewHo
 
         Navigation.findNavController(holder.itemView)
             .navigate(R.id.action_nav_view_all_popular_main_to_nav_details_main, Bundle().apply {
+                putString("id",id.toString())
                 putString("name",name.toString())
                 putString("description",description.toString())
                 putString("price",price.toString())
@@ -80,6 +84,7 @@ class ViewAllPopularAdapter: RecyclerView.Adapter<ViewAllPopularAdapter.MyViewHo
 
     inner class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
+        val id: TextView = binding.popularItemId
         val name : TextView = binding.popularItemName
         val description : TextView = binding.popularItemDescription
         val price : TextView = binding.popularItemPrice

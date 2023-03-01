@@ -37,12 +37,14 @@ class ViewAllRecommendedAdapter: RecyclerView.Adapter<ViewAllRecommendedAdapter.
     override fun onBindViewHolder(holder: ViewAllRecommendedAdapter.MyViewHolder, position:Int) {
 
         val viewAllRecommendedModel = viewAllRecommendedModelArrayList[position]
+        val id =  viewAllRecommendedModel.id
         val name =  viewAllRecommendedModel.name
         val description =  viewAllRecommendedModel.description
         val price =  viewAllRecommendedModel.price
         val warranty = viewAllRecommendedModel.warranty
         val img_url =  viewAllRecommendedModel.img_url
 
+        holder.id.text = id
         holder.name.text = name
         holder.description.text = description
         holder.price.text = price
@@ -55,6 +57,7 @@ class ViewAllRecommendedAdapter: RecyclerView.Adapter<ViewAllRecommendedAdapter.
     }
 
     private fun detailsFragment(viewAllRecommendedModel: ViewAllRecommendedModel, holder: ViewAllRecommendedAdapter.MyViewHolder) {
+        val id =  viewAllRecommendedModel.id
         val name =  viewAllRecommendedModel.name
         val description =  viewAllRecommendedModel.description
         val price =  viewAllRecommendedModel.price
@@ -64,6 +67,7 @@ class ViewAllRecommendedAdapter: RecyclerView.Adapter<ViewAllRecommendedAdapter.
 
         Navigation.findNavController(holder.itemView)
             .navigate(R.id.action_nav_view_all_recommended_main_to_nav_details_main, Bundle().apply {
+                putString("id",id.toString())
                 putString("name",name.toString())
                 putString("description",description.toString())
                 putString("price",price.toString())
@@ -80,6 +84,7 @@ class ViewAllRecommendedAdapter: RecyclerView.Adapter<ViewAllRecommendedAdapter.
 
     inner class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
+        val id : TextView = binding.recommendedItemId
         val name : TextView = binding.recommendedItemName
         val description : TextView = binding.recommendedItemDescription
         val price : TextView = binding.recommendedItemPrice

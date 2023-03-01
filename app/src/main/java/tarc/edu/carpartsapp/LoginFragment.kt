@@ -97,6 +97,37 @@ class LoginFragment : Fragment() {
                         }else if(userType == "Customer"){
                             val intent = Intent(context, CustomerActivity::class.java)
                             startActivity(intent)
+                            val id = requireArguments().getString("id").toString()
+                            val name = requireArguments().getString("name").toString()
+                            val price = requireArguments().getString("price").toString()
+                            val warranty = requireArguments().getString("warranty").toString()
+                            val total_price = requireArguments().getString("total_price").toString()
+                            val total_quantity = requireArguments().getString("total_quantity").toString()
+                            val img_url = requireArguments().getString("img_url").toString()
+                            val currentDate = requireArguments().getString("currentDate").toString()
+                            val currentTime = requireArguments().getString("currentTime").toString()
+
+                            val hashMap = HashMap<String, Any>()
+                            hashMap["uid"] = FirebaseAuth.getInstance().currentUser!!.uid
+                            hashMap["id"] = "$id"
+                            hashMap["name"] = "$name"
+                            hashMap["price"] = "$price"
+                            hashMap["warranty"] = "$warranty"
+                            hashMap["total_price"] = "$total_price"
+                            hashMap["total_quantity"] = "$total_quantity"
+                            hashMap["img_url"] = "$img_url"
+                            hashMap["currentDate"] = "$currentDate"
+                            hashMap["currentTime"] = "$currentTime"
+
+                            val database = FirebaseDatabase.getInstance()
+                            val reference = database.getReference("CartItem")
+                            reference.child(FirebaseAuth.getInstance().currentUser!!.uid).child(id).setValue(hashMap).addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    Toast.makeText(requireContext(), "Added to Cart", Toast.LENGTH_SHORT).show()
+                                } else {
+                                    Toast.makeText(requireContext(), "Failed to Add", Toast.LENGTH_SHORT).show()
+                                }
+                            }
                         }
 //                        if (snapshot.value == "Admin") {
 //                            Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show()
