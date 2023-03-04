@@ -47,23 +47,52 @@ class MyCartAdapter: RecyclerView.Adapter<MyCartAdapter.MyViewHolder> {
 
     override fun onBindViewHolder(holder: MyCartAdapter.MyViewHolder, position:Int) {
 
-        val myCartModel = myCartModelArrayList[position]
-        val id = myCartModel.id
-        val name = myCartModel.name
-        val warranty = myCartModel.warranty
-        val price = myCartModel.price
-        val total_quantity = myCartModel.total_quantity
-        val total_price = myCartModel.total_price
-        val img_url = myCartModel.img_url
+          val myCartModel = myCartModelArrayList[position]
+          val id = myCartModel.id
+          val name = myCartModel.name
+          val warranty = myCartModel.warranty
+          val price = myCartModel.price
+          val total_quantity = myCartModel.total_quantity
+          val total_price = myCartModel.total_price
+          val img_url = myCartModel.img_url
 
-        holder.id.text = id
-        holder.name.text = name
-        holder.warranty.text = warranty
-        holder.price.text = price
-        holder.total_quantity.text = total_quantity
-        holder.total_price.text = total_price
-        Glide.with(context).load(img_url).into(holder.img_url)
+          holder.id.text = id
+          holder.name.text = name
+          holder.warranty.text = warranty
+          holder.price.text = price
+          holder.total_quantity.text = total_quantity
+          holder.total_price.text = total_price
+          Glide.with(context).load(img_url).into(holder.img_url)
 
+          setTotalAmount()
+
+          holder.deleteBtn.setOnClickListener {
+              val builder = AlertDialog.Builder(context)
+              val view = LayoutInflater.from(context).inflate(R.layout.alert_dialog_layout, null)
+              val messageTextView = view.findViewById<TextView>(R.id.messageTextView)
+              messageTextView.text = "Are you sure you want to delete this cart item?"
+              messageTextView.setTextColor(
+                  ContextCompat.getColor(
+                      context,
+                      android.R.color.holo_red_dark
+                  )
+              )
+
+              builder.setTitle("Delete")
+                  .setView(view)
+                  .setPositiveButton("Confirm") { a, d ->
+                      deleteCartItem(myCartModel, holder)
+                      Navigation.findNavController(holder.deleteBtn)
+                          .navigate(R.id.action_nav_myCart_customer_to_nav_home_customer)
+                  }
+                  .setNegativeButton("Cancel") { a, d ->
+                      a.dismiss()
+                  }
+                  .show()
+          }
+    }
+
+    private fun setTotalAmount() {
         var total_amount = 0.0
         for (myCartModel in myCartModelArrayList) {
             total_amount += myCartModel.total_price.toDouble()
@@ -72,28 +101,9 @@ class MyCartAdapter: RecyclerView.Adapter<MyCartAdapter.MyViewHolder> {
         val intent = Intent("totalAmount")
         intent.putExtra("totalAmount", total_amount)
         LocalBroadcastManager.getInstance(context).sendBroadcast(intent)
-
-        holder.deleteBtn.setOnClickListener{
-            val builder = AlertDialog.Builder(context)
-            val view = LayoutInflater.from(context).inflate(R.layout.alert_dialog_layout, null)
-            val messageTextView = view.findViewById<TextView>(R.id.messageTextView)
-            messageTextView.text = "Are you sure you want to delete this cart item?"
-            messageTextView.setTextColor(ContextCompat.getColor(context, android.R.color.holo_red_dark))
-
-            builder.setTitle("Delete")
-                .setView(view)
-                .setPositiveButton("Confirm"){a,d->
-                    deleteCartItem(myCartModel, holder)
-                }
-                .setNegativeButton("Cancel"){a,d->
-                    a.dismiss()
-                }
-                .show()
-        }
     }
 
     private fun deleteCartItem(myCartModel: MyCartModel, holder: MyCartAdapter.MyViewHolder) {
-
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
         val id = myCartModel.id
 
@@ -102,9 +112,14 @@ class MyCartAdapter: RecyclerView.Adapter<MyCartAdapter.MyViewHolder> {
             .removeValue()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    myCartModelArrayList.remove(myCartModel)
-                    notifyDataSetChanged()
-                    Toast.makeText(context, "You item have been deleted", Toast.LENGTH_SHORT).show()
+
+
+                        myCartModelArrayList.remove(myCartModel)
+                        notifyDataSetChanged()
+
+                        Toast.makeText(context, "Your item has been deleted", Toast.LENGTH_SHORT)
+                            .show()
+
                 } else {
                     Toast.makeText(context, "Delete failed", Toast.LENGTH_SHORT).show()
                 }

@@ -121,17 +121,18 @@ class MyCartFragment : Fragment() {
                 .show()
         }
 
-        totalAmount = view.findViewById(R.id.textViewTotalAmount)
+            totalAmount = view.findViewById(R.id.textViewTotalAmount)
 
-        val messageReceiver = object: BroadcastReceiver() {
-            override fun onReceive(context: Context?, intent: Intent?) {
-                val totalBill = intent?.getDoubleExtra("totalAmount", 0.00)
-                val totalItemsBill = String.format("%.2f", totalBill)
-                totalAmount.text = totalItemsBill
+            val messageReceiver = object : BroadcastReceiver() {
+                override fun onReceive(context: Context?, intent: Intent?) {
+                    val totalBill = intent?.getDoubleExtra("totalAmount", 0.00)
+                    val totalItemsBill = String.format("%.2f", totalBill)
+                    totalAmount.text = totalItemsBill
+                }
             }
-        }
 
-        LocalBroadcastManager.getInstance(requireActivity()).registerReceiver(messageReceiver, IntentFilter("totalAmount"))
+            LocalBroadcastManager.getInstance(requireActivity()).registerReceiver(messageReceiver, IntentFilter("totalAmount"))
+
 
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
