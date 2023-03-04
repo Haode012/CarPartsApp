@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -15,6 +14,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CarPartsApp"
         tools:targetApi="31">
+
+        <!--
+             TODO: Before you run your application, you need a Google Maps API key.
+
+             To get one, follow the directions here:
+
+                https://developers.google.com/maps/documentation/android-sdk/get-api-key
+
+             Once you have your API key (it starts with "AIza"), define a new property in your
+             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
+             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
+        -->
+        <!-- google api key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCDfj33kxcZMSUGx4879C1RnC7s_7WXVjI" />
+
+        <activity
+            android:name=".DeliveryTrackerMapsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_delivery_tracker_maps" />
         <activity
             android:name=".Admin.AdminActivity"
             android:exported="false"
@@ -36,10 +56,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <!-- google api key-->
-            <meta-data
-                android:name="com.google.android.geo.API_KEY"
-                android:value="AIzaSyBK5X1-JLzIPsG3eMoQGuCUOayPDxSbcL0" />
         </activity>
     </application>
 

@@ -1,5 +1,6 @@
 package tarc.edu.carpartsapp
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -32,6 +33,11 @@ class FragmentCustSelectOrderCashOnDeliveryViewDeliveryTracker : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        binding.buttonYes.setOnClickListener {
+            val intent = Intent(context, DeliveryTrackerMapsActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 

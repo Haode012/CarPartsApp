@@ -87,4 +87,5 @@
     <string name="title_activity_admin_main">AdminMainActivity</string>
     <string name="title_activity_admin_main_new">AdminMainActivityNew</string>
     <string name="title_activity_admin_main_latest">AdminMainActivityLatest</string>
+    <string name="title_activity_delivery_tracker_maps">DeliveryTrackerMapsActivity</string>
 </resources>

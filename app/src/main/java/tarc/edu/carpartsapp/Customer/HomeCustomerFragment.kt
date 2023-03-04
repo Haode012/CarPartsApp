@@ -146,7 +146,7 @@ class HomeCustomerFragment : Fragment() {
             val myRefNew = database.getReference("OrderItem(Cash On Delivery) Duplicate")
 
             //for delivery tracker (Cash on Delivery)
-            val deliveryLocationRef = database.getReference("Delivery Tracker (Cash On Delivery)")
+            val deliveryLocationRef = database.getReference("Delivery Tracker Locations")
             val key = myRefNew.push().key.toString()
 
             for (myCartModel in myCartModelArrayList) {
@@ -223,8 +223,8 @@ class HomeCustomerFragment : Fragment() {
             val saveCurrentTime = currentTime.format(Calendar.getInstance().time)
 
             val myRefNew = database.getReference("PaymentDetails Duplicate")
-
-            val refDeliveryTrackerCredit = database.getReference("Delivery Tracker(Credit Card Payment)")
+            val deliveryLocationRef = database.getReference("Delivery Tracker Locations")
+            //val refDeliveryTrackerCredit = database.getReference("Delivery Tracker(Credit Card Payment)")
 
             for (myOrderModel in myOrderModelArrayList) {
                 val id = myOrderModel.id
@@ -259,9 +259,9 @@ class HomeCustomerFragment : Fragment() {
 
                         // for delivery tracker (Credit Card)
                         try {
-                            deliveryTrackerLocationCreditCard["orderID"] = orderID
-                            deliveryTrackerLocationCreditCard["userId"] = uid
-                            refDeliveryTrackerCredit.child(orderID).setValue(deliveryTrackerLocationCreditCard)
+                            deliveryTrackerlocation["orderID"] = orderID
+                            deliveryTrackerlocation["userId"] = uid
+                            deliveryLocationRef.child(orderID).setValue(deliveryTrackerlocation)
                         } catch (e: Exception) {
                             Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
                         }
