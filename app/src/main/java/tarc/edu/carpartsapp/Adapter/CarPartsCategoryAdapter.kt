@@ -45,16 +45,16 @@ class CarPartsCategoryAdapter: RecyclerView.Adapter<CarPartsCategoryAdapter.MyVi
 
     override fun onBindViewHolder(holder: CarPartsCategoryAdapter.MyViewHolder, position:Int) {
 
-        val carPartsCategoryModel = carPartsCategoryModelArrayList[position]
-        val name = carPartsCategoryModel.name
-        val img_url = carPartsCategoryModel.img_url
+            val carPartsCategoryModel = carPartsCategoryModelArrayList[position]
+            val name = carPartsCategoryModel.name
+            val img_url = carPartsCategoryModel.img_url
 
-        holder.name.text = name
-        Glide.with(context).load(img_url).into(holder.img_url)
+            holder.name.text = name
+            Glide.with(context).load(img_url).into(holder.img_url)
 
-        holder.itemView.setOnClickListener{
-            viewAllCategoryFragment(carPartsCategoryModel, holder)
-        }
+            holder.itemView.setOnClickListener {
+                viewAllCategoryFragment(carPartsCategoryModel, holder)
+            }
     }
 
     private fun viewAllCategoryFragment(carPartsCategoryModel: CarPartsCategoryModel, holder: CarPartsCategoryAdapter.MyViewHolder) {

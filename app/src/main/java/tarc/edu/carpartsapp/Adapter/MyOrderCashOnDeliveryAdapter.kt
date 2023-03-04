@@ -67,12 +67,20 @@ class MyOrderCashOnDeliveryAdapter: RecyclerView.Adapter<MyOrderCashOnDeliveryAd
         holder.total_price.text = total_price
         holder.orderID.text = orderID
         Glide.with(context).load(img_url).into(holder.img_url)
+
         holder.itemView.setOnClickListener {
-            val bundle = Bundle()
-            val fragment = FragmentCustDeliveryStatus()
-            bundle.putString("orderID", orderID)
-            fragment.arguments = bundle
-            Navigation.findNavController(it).navigate(R.id.action_nav_delivery_cash_on_delivery_customer_to_fragmentCustDeliveryStatus,bundle)
+            try {
+                val bundle = Bundle()
+                val fragment = FragmentCustDeliveryStatus()
+                bundle.putString("orderID", orderID)
+                fragment.arguments = bundle
+                Navigation.findNavController(it).navigate(
+                    R.id.action_nav_delivery_cash_on_delivery_customer_to_fragmentCustDeliveryStatus,
+                    bundle
+                )
+            } catch (e: Exception){
+
+            }
         }
 
         var total_amount = 0.0

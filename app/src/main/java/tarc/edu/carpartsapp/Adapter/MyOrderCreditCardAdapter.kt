@@ -68,12 +68,20 @@ class MyOrderCreditCardAdapter: RecyclerView.Adapter<MyOrderCreditCardAdapter.My
         holder.total_price.text = total_price
         holder.orderID.text = orderID
         Glide.with(context).load(img_url).into(holder.img_url)
+
         holder.itemView.setOnClickListener {
-            val bundle = Bundle()
-            val fragment = FragmentDeliveryStatusCreditCard()
-            bundle.putString("orderID", orderID)
-            fragment.arguments = bundle
-            Navigation.findNavController(it).navigate(R.id.action_nav_delivery_credit_card_customer_to_fragmentDeliveryStatusCreditCard,bundle)
+            try {
+                val bundle = Bundle()
+                val fragment = FragmentDeliveryStatusCreditCard()
+                bundle.putString("orderID", orderID)
+                fragment.arguments = bundle
+                Navigation.findNavController(it).navigate(
+                    R.id.action_nav_delivery_credit_card_customer_to_fragmentDeliveryStatusCreditCard,
+                    bundle
+                )
+            } catch (e:Exception){
+
+            }
         }
 
         var total_amount = 0.0
