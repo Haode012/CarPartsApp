@@ -156,6 +156,9 @@
         <action
             android:id="@+id/action_nav_delivery_cash_on_delivery_customer_to_fragmentCustDeliveryStatus"
             app:destination="@id/fragmentCustDeliveryStatus" />
+        <action
+            android:id="@+id/action_nav_delivery_cash_on_delivery_customer_to_fragmentCustSelectOrderCashOnDeliveryViewDeliveryTracker2"
+            app:destination="@id/fragmentCustSelectOrderCashOnDeliveryViewDeliveryTracker" />
     </fragment>
     <fragment
         android:id="@+id/nav_delivery_credit_card_customer"
@@ -248,4 +251,9 @@
         android:name="tarc.edu.carpartsapp.FragmentDeliveryStatusCreditCard"
         android:label="fragment_delivery_status_credit_card"
         tools:layout="@layout/fragment_delivery_status_credit_card" />
+    <fragment
+        android:id="@+id/fragmentCustSelectOrderCashOnDeliveryViewDeliveryTracker"
+        android:name="tarc.edu.carpartsapp.FragmentCustSelectOrderCashOnDeliveryViewDeliveryTracker"
+        android:label="fragment_cust_select_order_cash_on_delivery_view_delivery_tracker"
+        tools:layout="@layout/fragment_cust_select_order_cash_on_delivery_view_delivery_tracker" />
 </navigation>

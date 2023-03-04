@@ -73,7 +73,7 @@ class DeliveryCashOnDeliveryFragment : Fragment() {
         getData()
 
         binding.buttonViewDeliveryStatus.setOnClickListener {
-            findNavController().navigate(R.id.action_nav_delivery_cash_on_delivery_customer_to_fragmentCustDeliveryStatus)
+            findNavController().navigate(R.id.action_nav_delivery_cash_on_delivery_customer_to_fragmentCustSelectOrderCashOnDeliveryViewDeliveryTracker2)
 
             val deliveryAddress = binding.editTextDeliveryAddress.text.toString().trim()
 

@@ -26,10 +26,13 @@ import tarc.edu.carpartsapp.databinding.FragmentHomeCustomerBinding
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class HomeCustomerFragment : Fragment() {
     private lateinit var orderDuplication: HashMap<String, String>
     private lateinit var paymentDuplication: HashMap<String, String>
+    private lateinit var deliveryTrackerlocation: HashMap<String, String>
+    private lateinit var deliveryTrackerLocationCreditCard: HashMap<String,String>
     private lateinit var scrollView : ScrollView
     private lateinit var progressBar : ProgressBar
     private lateinit var dbref : DatabaseReference
@@ -61,6 +64,8 @@ class HomeCustomerFragment : Fragment() {
 
         orderDuplication = hashMapOf()
         paymentDuplication = hashMapOf()
+        deliveryTrackerlocation = hashMapOf()
+        deliveryTrackerLocationCreditCard = hashMapOf()
 
         _binding = FragmentHomeCustomerBinding.inflate(inflater, container, false)
 
@@ -139,6 +144,9 @@ class HomeCustomerFragment : Fragment() {
             val saveCurrentTime = currentTime.format(Calendar.getInstance().time)
 
             val myRefNew = database.getReference("OrderItem(Cash On Delivery) Duplicate")
+
+            //for delivery tracker (Cash on Delivery)
+            val deliveryLocationRef = database.getReference("Delivery Tracker (Cash On Delivery)")
             val key = myRefNew.push().key.toString()
 
             for (myCartModel in myCartModelArrayList) {
@@ -160,11 +168,20 @@ class HomeCustomerFragment : Fragment() {
                                 orderDuplication["name"] = myCartModel.name
                                 orderDuplication["quantity"] = myCartModel.total_quantity
 
-                                try {
-                                    myRefNew.child(orderID).child(id).setValue(orderDuplication)
-                                } catch (e: Exception) {
-                                    Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
-                                }
+                        try {
+                            myRefNew.child(orderID).child(id).setValue(orderDuplication)
+                        } catch (e: Exception) {
+                            Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                        }
+
+                        // for delivery tracker
+                        try {
+                            deliveryTrackerlocation["orderID"] = orderID
+                            deliveryTrackerlocation["userId"] = uid
+                            deliveryLocationRef.child(orderID).setValue(deliveryTrackerlocation)
+                        } catch (e: Exception) {
+                            Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                        }
 
                         Toast.makeText(requireContext(), "Your Order Has Been Placed", Toast.LENGTH_SHORT).show()
                         val sharedPref = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE) ?: return@addOnCompleteListener
@@ -207,6 +224,8 @@ class HomeCustomerFragment : Fragment() {
 
             val myRefNew = database.getReference("PaymentDetails Duplicate")
 
+            val refDeliveryTrackerCredit = database.getReference("Delivery Tracker(Credit Card Payment)")
+
             for (myOrderModel in myOrderModelArrayList) {
                 val id = myOrderModel.id
                 val orderID = myOrderModel.orderID
@@ -234,6 +253,15 @@ class HomeCustomerFragment : Fragment() {
 
                         try {
                             myRefNew.child(orderID).child(id).setValue(paymentDuplication)
+                        } catch (e: Exception) {
+                            Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                        }
+
+                        // for delivery tracker (Credit Card)
+                        try {
+                            deliveryTrackerLocationCreditCard["orderID"] = orderID
+                            deliveryTrackerLocationCreditCard["userId"] = uid
+                            refDeliveryTrackerCredit.child(orderID).setValue(deliveryTrackerLocationCreditCard)
                         } catch (e: Exception) {
                             Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
                         }
