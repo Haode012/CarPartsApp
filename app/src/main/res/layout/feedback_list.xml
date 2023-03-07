@@ -22,6 +22,12 @@
             android:layout_height="wrap_content"
             android:text="Ratings:" />
 
+        <TextView
+            android:id="@+id/outputDateOfRating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date of Feedback:" />
+
         <RatingBar
             android:id="@+id/ratingBarNew"
             android:layout_width="wrap_content"

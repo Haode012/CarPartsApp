@@ -1,5 +1,6 @@
 package tarc.edu.carpartsapp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +16,9 @@ import com.google.firebase.ktx.Firebase
 import tarc.edu.carpartsapp.Model.Feedback
 import tarc.edu.carpartsapp.databinding.FragmentCustomerFeedbackBinding
 import java.lang.Exception
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.HashMap
 
 class CustomerFeedbackFragment : Fragment() {
     private var _binding: FragmentCustomerFeedbackBinding? = null
@@ -44,7 +48,7 @@ class CustomerFeedbackFragment : Fragment() {
         val comments = binding.comments.text.toString()
 
         binding.btnSubmit.setOnClickListener { task->
-                    feedback()
+            validateFeedback()
                     storeFeedbacks()
                     Toast.makeText(context, "Rated Successfully", Toast.LENGTH_LONG).show()
                     findNavController().navigate(R.id.action_nav_feedback_customer_to_nav_home_customer)
@@ -55,23 +59,27 @@ class CustomerFeedbackFragment : Fragment() {
 
 
 
-    private fun feedback(){
+    @SuppressLint("SimpleDateFormat")
+    private fun validateFeedback(){
 
         val ratings = binding.ratingBar.rating.toString()
         val comments = binding.comments.text.toString()
+        val currentDate = SimpleDateFormat("MM/dd/yyyy")
+        val saveCurrentDate = currentDate.format(Calendar.getInstance().time)
 
         feedbacks["rating"] = ratings
-        if(ratings.isNullOrEmpty()){
-            Toast.makeText(context,"You will not like to rate our service.", Toast.LENGTH_LONG)
+        if(ratings.isEmpty()){
+            Toast.makeText(context,"You will not like to rate our service.", Toast.LENGTH_LONG).show()
             //findNavController().navigate(R.id.action_customerFeedbackFragment_to_customerHomepage)
             }
 
         feedbacks["comment"] = comments
-        if(comments.isNullOrEmpty()){
+        if(comments.isEmpty()){
             binding.comments.error = "You have no made any comments"
         }
 
         feedbacks["userId"] = userId
+        feedbacks["DateOfFeedback"] = saveCurrentDate
 
     }
 

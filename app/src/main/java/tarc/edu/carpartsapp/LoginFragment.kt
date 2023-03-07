@@ -14,6 +14,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.protobuf.Value
 import tarc.edu.carpartsapp.Admin.AdminActivity
 import tarc.edu.carpartsapp.Customer.CustomerActivity
 import tarc.edu.carpartsapp.databinding.FragmentLoginBinding
@@ -32,12 +33,40 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+
         //If user previously logged in and didnt sign out, allow login synchronously
-        auth1 = Firebase.auth
-        if (auth1.currentUser !== null) {
-            val intent = Intent(context, CustomerActivity::class.java)
-            startActivity(intent)
-        }
+            val database =
+                Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
+            auth1 = Firebase.auth
+            val ref = FirebaseDatabase.getInstance().getReference("Users")
+            ref.child(auth1.uid.toString())
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val uid = snapshot.child("uid").value
+                        val name = snapshot.child("fullName").value
+                        val userType = snapshot.child("userType").value
+                        if (userType == "Admin") {
+                            val intent = Intent(context, AdminActivity::class.java)
+                            startActivity(intent)
+                            Toast.makeText(context, "Welcome Back "+name, Toast.LENGTH_LONG).show()
+                        } else if (userType == "Customer") {
+                            val intent = Intent(context, CustomerActivity::class.java)
+                            startActivity(intent)
+                            Toast.makeText(context, "Welcome Back "+name, Toast.LENGTH_LONG).show()
+                        }
+                    }
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+                })
+
+        //If user previously logged in and didnt sign out, allow login synchronously
+//        auth1 = Firebase.auth
+//        if (auth1.currentUser !== null) {
+//            val intent = Intent(context, AdminActivity::class.java)
+//            startActivity(intent)
+//
+//        }
 
         //auth = Firebase.auth
         auth = FirebaseAuth.getInstance()

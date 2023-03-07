@@ -40,6 +40,7 @@ class FeedbackAdapter(private val feedbackList: ArrayList<Feedback>) :
             Toast.makeText(it.context, "Deleted Successfully", Toast.LENGTH_LONG).show()
         }
         holder.feedbackId.text ="Feedback ID:"+currentItem.feedbackId
+        holder.DateOfFeedback.text = currentItem.DateOfFeedback
     }
 
 
@@ -66,5 +67,6 @@ class FeedbackAdapter(private val feedbackList: ArrayList<Feedback>) :
         val comment : TextView = itemView.findViewById(R.id.feedbackText)
         val deleteButton : ImageView = itemView.findViewById(R.id.imageButtonDelete)
         val feedbackId : TextView = itemView.findViewById(R.id.labelFeedbackId)
+        val DateOfFeedback : TextView = itemView.findViewById(R.id.outputDateOfRating)
     }
 }

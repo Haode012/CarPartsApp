@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_registration.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import tarc.edu.carpartsapp.Model.Users
@@ -54,6 +55,8 @@ class RegistrationFragment : Fragment() {
         val dateOfBirth = binding.editTextDate.text.toString()
         val email = binding.editTextEmail.text.toString()
         val passwd = binding.editTextPasswd.text.toString()
+        val male = binding.radioButtonMale
+        val female = binding.radioButtonFemale
 
         userProfile["emailAddress"] = email
         if(email.isNullOrEmpty()){
@@ -84,6 +87,12 @@ class RegistrationFragment : Fragment() {
         if(address.isNullOrEmpty()){
             binding.editTextAddress.error = "Address must be entered"
             return false
+        }
+        if(!male.isChecked){
+            Toast.makeText(context, "Please select your gender", Toast.LENGTH_LONG).show()
+        }
+        if(!female.isChecked){
+            Toast.makeText(context, "Please select your gender", Toast.LENGTH_LONG).show()
         }
         return true
     }

@@ -284,9 +284,6 @@
         android:label="fragment_admin_delivery_management"
         tools:layout="@layout/fragment_admin_delivery_management" >
         <action
-            android:id="@+id/action_fragmentAdminDeliveryManagement_to_fragmentAdminViewAllDeliveryStatus"
-            app:destination="@id/fragmentAdminViewAllDeliveryStatus" />
-        <action
             android:id="@+id/action_fragmentAdminDeliveryManagement_to_createDeliveryStatus2"
             app:destination="@id/createDeliveryStatus2" />
         <action
@@ -295,6 +292,9 @@
         <action
             android:id="@+id/action_fragmentAdminDeliveryManagement_to_fragmentCreateDeliveryStatusCreditCardPayment"
             app:destination="@id/fragmentCreateDeliveryStatusCreditCardPayment" />
+        <action
+            android:id="@+id/action_fragmentAdminDeliveryManagement_to_fragmentChooseView"
+            app:destination="@id/fragmentChooseView" />
     </fragment>
     <fragment
         android:id="@+id/fragmentAdminViewAllDeliveryStatus"
@@ -359,4 +359,30 @@
             android:id="@+id/action_fragmentCreateDeliveryStatusCreditCardPayment_to_fragmentAdminDeliveryManagement"
             app:destination="@id/fragmentAdminDeliveryManagement" />
     </fragment>
+    <fragment
+        android:id="@+id/fragmentChooseView"
+        android:name="tarc.edu.carpartsapp.FragmentChooseView"
+        android:label="fragment_choose_view"
+        tools:layout="@layout/fragment_choose_view" >
+        <action
+            android:id="@+id/action_fragmentChooseView_to_fragmentAdminViewAllDeliveryStatus"
+            app:destination="@id/fragmentAdminViewAllDeliveryStatus" />
+        <action
+            android:id="@+id/action_fragmentChooseView_to_fragmentAdminViewAllDeliveryStatusCreditCard"
+            app:destination="@id/fragmentAdminViewAllDeliveryStatusCreditCard" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentAdminViewAllDeliveryStatusCreditCard"
+        android:name="tarc.edu.carpartsapp.FragmentAdminViewAllDeliveryStatusCreditCard"
+        android:label="fragment_admin_view_all_delivery_status_credit_card"
+        tools:layout="@layout/fragment_admin_view_all_delivery_status_credit_card" >
+        <action
+            android:id="@+id/action_fragmentAdminViewAllDeliveryStatusCreditCard_to_fragmentAdminUpdateDeliveryStatusCreditCard"
+            app:destination="@id/fragmentAdminUpdateDeliveryStatusCreditCard" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentAdminUpdateDeliveryStatusCreditCard"
+        android:name="tarc.edu.carpartsapp.FragmentAdminUpdateDeliveryStatusCreditCard"
+        android:label="fragment_admin_update_delivery_status_credit_card"
+        tools:layout="@layout/fragment_admin_update_delivery_status_credit_card" />
 </navigation>
