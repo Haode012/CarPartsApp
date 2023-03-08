@@ -27,6 +27,10 @@
                     android:id="@+id/nav_my_order_credit_card_customer"
                     android:icon="@drawable/ic_baseline_credit_card_24"
                     android:title="By Credit Card" />
+                <item
+                    android:id="@+id/nav_my_order_delivery_tracker"
+                    android:icon="@drawable/baseline_delivery_tracker_24"
+                    android:title="Delivery Tracker" />
             </menu>
         </item>
         <item

@@ -1,5 +1,6 @@
 package tarc.edu.carpartsapp
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.RatingBar
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +20,8 @@ import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_create_delivery_status.*
+import kotlinx.android.synthetic.main.rate_delivery.*
+import kotlinx.android.synthetic.main.rate_delivery.view.*
 import tarc.edu.carpartsapp.Adapter.CustomerViewDeliveryStatusAdapter
 import tarc.edu.carpartsapp.Adapter.DeliveryStatusProductsAdapter
 import tarc.edu.carpartsapp.Model.DeliveryStatus
@@ -35,7 +39,7 @@ class FragmentCustDeliveryStatus : Fragment() {
 
     private lateinit var deliveryStatusProductAdapter: DeliveryStatusProductsAdapter
     private lateinit var deliveryStatusAdapter: CustomerViewDeliveryStatusAdapter
-
+    private lateinit var feedbackDelivery: HashMap<String, String>
     private lateinit var deliveredItems: HashMap<String, String>
 
     private var _binding: FragmentCustDeliveryStatusBinding? = null
@@ -54,9 +58,11 @@ class FragmentCustDeliveryStatus : Fragment() {
         orderId.text = inputData.toString()
 
         deliveredItems = hashMapOf()
+        feedbackDelivery = hashMapOf()
         return binding.root
     }
 
+    @SuppressLint("InflateParams", "MissingInflatedId")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -93,16 +99,14 @@ class FragmentCustDeliveryStatus : Fragment() {
 
             val buttonMaybe = dialogBinding.findViewById<Button>(R.id.buttonLater)
             val buttonRate = dialogBinding.findViewById<Button>(R.id.buttonRate)
+            val ratingBar = dialogBinding.findViewById<RatingBar>(R.id.ratingBarRate)
+            val ratingBarRates = ratingBar.rating.toString()
 
 
-            buttonRate.setOnClickListener {
-                Toast.makeText(context, "Oh Yeah", Toast.LENGTH_LONG).show()
-            }
         }
 
 
     }
-
     private fun getData() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
         db =
@@ -169,13 +173,10 @@ class FragmentCustDeliveryStatus : Fragment() {
                                 total += amount.toDouble()
                                 binding.outputTotalAmount.text = "RM"+total.toString()
                                 binding.outputDeliveryStatusnew.text = snap2.child("deliveryStatus").value.toString()
-                                //binding.outputOrderId.text = deliverysnaps.child("orderID").value.toString()
-                                //binding.outputDeliveryAddress.text = deliverysnaps.child("deliveryAddress").value.toString()
                                 val deliveryStatus =
                                     snap2.getValue(DeliveryStatus::class.java)
                                 deliveryProductsArrayList.add(deliveryStatus!!)
-                                // }
-                                //Toast.makeText(context, keyRuth, Toast.LENGTH_LONG).show()
+
                             }
                         }
                     }
@@ -192,6 +193,7 @@ class FragmentCustDeliveryStatus : Fragment() {
         })
     }
 
+    @SuppressLint("InflateParams")
     private fun createDeliveredItem() {
 
         val dialogBinding = layoutInflater.inflate(R.layout.rate_delivery, null)
@@ -201,6 +203,7 @@ class FragmentCustDeliveryStatus : Fragment() {
         dialog.setCancelable(true)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
         val buttonMaybe = dialogBinding.findViewById<Button>(R.id.buttonLater)
+        val buttonRate = dialogBinding.findViewById<Button>(R.id.buttonRate)
 
 
         val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
@@ -247,12 +250,21 @@ class FragmentCustDeliveryStatus : Fragment() {
                                 try {
                                     databaseReference.child(prodId).setValue(deliveredItems)
                                 } catch (e: Exception) {
-                                    //   Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                                       Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
                                 }
                                 dialog.show()
                                 buttonMaybe.setOnClickListener {
                                     dialog.dismiss()
                                     findNavController().navigate(R.id.action_fragmentCustDeliveryStatus_to_nav_home_customer)
+                                }
+                                buttonRate.setOnClickListener {
+                                    val ratingBar = dialog.findViewById<RatingBar>(R.id.ratingBarRate)
+                                    val ratings = ratingBar.rating
+                                    Toast.makeText(context, ratingBar.rating.toString(), Toast.LENGTH_LONG).show()
+                                    saveDeliveryFeedback(ratings)
+                                    dialog.dismiss()
+                                    findNavController().navigate(R.id.action_fragmentCustDeliveryStatus_to_nav_home_customer)
+
                                 }
                             } else {
                                 Toast.makeText(
@@ -275,6 +287,24 @@ class FragmentCustDeliveryStatus : Fragment() {
             }
 
         })
+    }
+
+    @SuppressLint("InflateParams")
+    private fun saveDeliveryFeedback(ratings: Float) {
+
+            val database = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
+            val databaseReference2 = database.getReference("Admin View All Feedback Delivery").push()
+            val ref = databaseReference2.key
+            //val fullRatings = rating.toString()
+
+            feedbackDelivery["feedbackId"] = ref.toString()
+            feedbackDelivery["rating"] = ratings.toString()
+            try {
+                databaseReference2.setValue(feedbackDelivery)
+                Toast.makeText(context, ratings.toString(), Toast.LENGTH_LONG).show()
+            } catch (e: java.lang.Exception) {
+                Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+            }
     }
 
     //for testing purposes
