@@ -63,8 +63,14 @@ class ViewAllRecommendedFragment : Fragment() {
                         val recommended = recommendedSnapshot.getValue(ViewAllRecommendedModel::class.java)
                         viewAllRecommendedModelArrayList.add(recommended!!)
                     }
-                    val pAdapter = ViewAllRecommendedAdapterCustomer(viewAllRecommendedModelArrayList, requireContext())
-                    recyclerView.adapter = pAdapter
+                    val context = context
+                    if (context != null) {
+                        val pAdapter = ViewAllRecommendedAdapterCustomer(
+                            viewAllRecommendedModelArrayList,
+                            context
+                        )
+                        recyclerView.adapter = pAdapter
+                    }
                 }
             }
 

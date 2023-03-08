@@ -282,76 +282,110 @@ class HomeCustomerFragment : Fragment() {
         }
     }
 
-    private fun getData(){
+    private fun getData() {
+        try {
+            dbref =
+                FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                    .getReference("PopularCarParts")
 
-        dbref = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("PopularCarParts")
+            dbref.addValueEventListener(object : ValueEventListener {
 
-        dbref.addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        for (popularSnapshot in snapshot.children) {
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    for(popularSnapshot in snapshot.children){
-
-                        val popular = popularSnapshot.getValue(PopularModel::class.java)
-                        popularModelArrayList.add(popular!!)
+                            val popular = popularSnapshot.getValue(PopularModel::class.java)
+                            popularModelArrayList.add(popular!!)
+                        }
+                        val context = context
+                        if (context != null) {
+                            popularAdapterCustomer =
+                                PopularAdapterCustomer(popularModelArrayList, context)
+                        }
+                        recyclerView.adapter = popularAdapterCustomer
+                        progressBar.setVisibility(View.GONE)
+                        scrollView.setVisibility(View.VISIBLE)
                     }
-                    popularAdapterCustomer = PopularAdapterCustomer(popularModelArrayList, requireContext())
-                    recyclerView.adapter = popularAdapterCustomer
-                    progressBar.setVisibility(View.GONE)
-                    scrollView.setVisibility(View.VISIBLE)
                 }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
+        } catch (e: Exception) {
 
-        dbref = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("CarPartsCategory")
+        }
 
-        dbref.addValueEventListener(object : ValueEventListener{
+        try {
+            dbref =
+                FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                    .getReference("CarPartsCategory")
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    for(categorySnapshot in snapshot.children){
+            dbref.addValueEventListener(object : ValueEventListener {
 
-                        val category = categorySnapshot.getValue(CarPartsCategoryModel::class.java)
-                        carPartsCategoryModelArrayList.add(category!!)
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        for (categorySnapshot in snapshot.children) {
+
+                            val category =
+                                categorySnapshot.getValue(CarPartsCategoryModel::class.java)
+                            carPartsCategoryModelArrayList.add(category!!)
+                        }
+                        val context = context
+                        if (context != null) {
+                        carPartsCategoryAdapterCustomer = CarPartsCategoryAdapterCustomer(
+                            carPartsCategoryModelArrayList, context)
+                        }
+                        recyclerView2.adapter = carPartsCategoryAdapterCustomer
+                        progressBar.setVisibility(View.GONE)
+                        scrollView.setVisibility(View.VISIBLE)
                     }
-                    carPartsCategoryAdapterCustomer = CarPartsCategoryAdapterCustomer(carPartsCategoryModelArrayList, requireContext())
-                    recyclerView2.adapter = carPartsCategoryAdapterCustomer
-                    progressBar.setVisibility(View.GONE)
-                    scrollView.setVisibility(View.VISIBLE)
                 }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
+        } catch (e: Exception) {
 
-        dbref = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Recommended")
+        }
 
-        dbref.addValueEventListener(object : ValueEventListener{
+        try {
+            dbref =
+                FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                    .getReference("Recommended")
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    for(recommendedSnapshot in snapshot.children){
+            dbref.addValueEventListener(object : ValueEventListener {
 
-                        val recommended = recommendedSnapshot.getValue(RecommendedModel::class.java)
-                        recommendedModelArrayList.add(recommended!!)
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        for (recommendedSnapshot in snapshot.children) {
+
+                            val recommended =
+                                recommendedSnapshot.getValue(RecommendedModel::class.java)
+                            recommendedModelArrayList.add(recommended!!)
+                        }
+                        val context = context
+                        if (context != null) {
+                            recommendedAdapterCustomer =
+                                RecommendedAdapterCustomer(
+                                    recommendedModelArrayList,
+                                    context
+                                )
+                        }
+                        recyclerView3.adapter = recommendedAdapterCustomer
+                        progressBar.setVisibility(View.GONE)
+                        scrollView.setVisibility(View.VISIBLE)
                     }
-                    recommendedAdapterCustomer = RecommendedAdapterCustomer(recommendedModelArrayList, requireContext())
-                    recyclerView3.adapter = recommendedAdapterCustomer
-                    progressBar.setVisibility(View.GONE)
-                    scrollView.setVisibility(View.VISIBLE)
                 }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
 
+        } catch (e:Exception){
+
+        }
     }
 }

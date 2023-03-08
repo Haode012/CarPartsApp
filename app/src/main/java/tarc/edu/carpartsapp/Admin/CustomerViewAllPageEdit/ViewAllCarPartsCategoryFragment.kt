@@ -19,9 +19,9 @@ import tarc.edu.carpartsapp.databinding.FragmentViewAllCarPartsCategoryAdminBind
 
 class ViewAllCarPartsCategoryFragment : Fragment() {
 
-    private lateinit var dbref : DatabaseReference
+    private lateinit var dbref: DatabaseReference
     private lateinit var recyclerView: RecyclerView
-    private lateinit var viewAllCategoryModelArrayList : ArrayList<ViewAllCategoryModel>
+    private lateinit var viewAllCategoryModelArrayList: ArrayList<ViewAllCategoryModel>
     private lateinit var viewAllCategoryAdapterAdmin: ViewAllCategoryAdapterAdmin
 
     private var _binding: FragmentViewAllCarPartsCategoryAdminBinding? = null
@@ -45,21 +45,20 @@ class ViewAllCarPartsCategoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonAddCarPartCategory.setOnClickListener{
+        binding.buttonAddCarPartCategory.setOnClickListener {
             findNavController().navigate(R.id.action_nav_view_all_car_parts_category_admin_to_nav_add_view_all_car_parts_category_admin)
         }
 
         //search
-        binding.editTextSearch.addTextChangedListener(object: TextWatcher {
+        binding.editTextSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
             override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 //called as and when user type anything
-                try{
+                try {
                     viewAllCategoryAdapterAdmin.filter.filter(s)
-                }
-                catch (e: Exception){
+                } catch (e: Exception) {
 
                 }
             }
@@ -77,7 +76,7 @@ class ViewAllCarPartsCategoryFragment : Fragment() {
     }
 
     private fun getData() {
-
+        try {
             dbref =
                 FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
                     .getReference("ViewAllCategory")
@@ -92,7 +91,13 @@ class ViewAllCarPartsCategoryFragment : Fragment() {
                                 categorySnapshot.getValue(ViewAllCategoryModel::class.java)
                             viewAllCategoryModelArrayList.add(category!!)
                         }
-                        viewAllCategoryAdapterAdmin = ViewAllCategoryAdapterAdmin(viewAllCategoryModelArrayList, requireContext())
+                        val context = context
+                        if (context != null) {
+                            viewAllCategoryAdapterAdmin = ViewAllCategoryAdapterAdmin(
+                                viewAllCategoryModelArrayList,
+                                context
+                            )
+                        }
                         recyclerView.adapter = viewAllCategoryAdapterAdmin
                     }
                 }
@@ -101,5 +106,8 @@ class ViewAllCarPartsCategoryFragment : Fragment() {
                     TODO("Not yet implemented")
                 }
             })
+        } catch (e: Exception) {
+
         }
+    }
 }

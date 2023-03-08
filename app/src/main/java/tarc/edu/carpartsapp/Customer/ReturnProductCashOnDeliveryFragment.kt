@@ -93,8 +93,14 @@ class ReturnProductCashOnDeliveryFragment : Fragment() {
                                 deliveryModelArrayList.add(delivery!!)
                             }
                         }
-                       returnProductCashOnDeliveryAdapter = ReturnProductCashOnDeliveryAdapter(deliveryModelArrayList, requireContext())
-                        recyclerView.adapter = returnProductCashOnDeliveryAdapter
+                        val context = context
+                        if (context != null) {
+                            returnProductCashOnDeliveryAdapter = ReturnProductCashOnDeliveryAdapter(
+                                deliveryModelArrayList,
+                                context
+                            )
+                            recyclerView.adapter = returnProductCashOnDeliveryAdapter
+                        }
                     }
                 } catch (e: Exception) {
                     Log.e("getData", "Error getting data from Firebase: ${e.message}")

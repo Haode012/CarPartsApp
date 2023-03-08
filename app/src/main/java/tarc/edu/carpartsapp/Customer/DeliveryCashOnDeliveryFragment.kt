@@ -105,8 +105,14 @@ class DeliveryCashOnDeliveryFragment : Fragment() {
                                 binding.editTextDeliveryAddress.setText(address)
                             }
                         }
-                        val myOrderAdapter = MyOrderCashOnDeliveryAdapter(myOrderModelArrayList, requireContext())
-                        recyclerView.adapter = myOrderAdapter
+                        val context = context
+                        if (context != null) {
+                            val myOrderAdapter = MyOrderCashOnDeliveryAdapter(
+                                myOrderModelArrayList,
+                               context
+                            )
+                            recyclerView.adapter = myOrderAdapter
+                        }
                     }
                 } catch (e: Exception) {
                     Log.e("getData", "Error getting data from Firebase: ${e.message}")

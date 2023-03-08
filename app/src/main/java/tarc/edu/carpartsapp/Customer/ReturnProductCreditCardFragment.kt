@@ -95,8 +95,14 @@ class ReturnProductCreditCardFragment : Fragment() {
                                 deliveryModelArrayList.add(delivery!!)
                             }
                         }
-                        returnProductCreditCardAdapter = ReturnProductCreditCardAdapter(deliveryModelArrayList, requireContext())
-                        recyclerView.adapter = returnProductCreditCardAdapter
+                        val context = context
+                        if (context != null) {
+                            returnProductCreditCardAdapter = ReturnProductCreditCardAdapter(
+                                deliveryModelArrayList,
+                                context
+                            )
+                            recyclerView.adapter = returnProductCreditCardAdapter
+                        }
                     }
                 } catch (e: Exception) {
                     Log.e("getData", "Error getting data from Firebase: ${e.message}")

@@ -22,9 +22,9 @@ import tarc.edu.carpartsapp.databinding.FragmentCarPartsCategoryBinding
 class CarPartsCategoryFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var carPartsCategoryModelArrayList : ArrayList<CarPartsCategoryModel>
+    private lateinit var carPartsCategoryModelArrayList: ArrayList<CarPartsCategoryModel>
     private lateinit var carPartsCategoryAdapterAdmin: CarPartsCategoryAdapterAdmin
-    private lateinit var dbref : DatabaseReference
+    private lateinit var dbref: DatabaseReference
 
     private var _binding: FragmentCarPartsCategoryBinding? = null
 
@@ -46,21 +46,20 @@ class CarPartsCategoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonAddCarPartCategory.setOnClickListener{
+        binding.buttonAddCarPartCategory.setOnClickListener {
             findNavController().navigate(R.id.action_nav_car_parts_category_admin_to_nav_add_car_parts_category_admin)
         }
 
         //search
-        binding.editTextSearch.addTextChangedListener(object: TextWatcher {
+        binding.editTextSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
             override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 //called as and when user type anything
-                try{
+                try {
                     carPartsCategoryAdapterAdmin.filter.filter(s)
-                }
-                catch (e: Exception){
+                } catch (e: Exception) {
 
                 }
             }
@@ -77,27 +76,39 @@ class CarPartsCategoryFragment : Fragment() {
         getData()
     }
 
-    private fun getData(){
+    private fun getData() {
+        try {
+            dbref =
+                FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                    .getReference("CarPartsCategory")
 
-        dbref = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("CarPartsCategory")
+            dbref.addValueEventListener(object : ValueEventListener {
 
-        dbref.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        for (categorySnapshot in snapshot.children) {
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    for(categorySnapshot in snapshot.children){
-
-                        val category = categorySnapshot.getValue(CarPartsCategoryModel::class.java)
-                        carPartsCategoryModelArrayList.add(category!!)
+                            val category =
+                                categorySnapshot.getValue(CarPartsCategoryModel::class.java)
+                            carPartsCategoryModelArrayList.add(category!!)
+                        }
+                        val context = context
+                        if (context != null) {
+                            carPartsCategoryAdapterAdmin = CarPartsCategoryAdapterAdmin(
+                                carPartsCategoryModelArrayList,
+                                context
+                            )
+                        }
+                        recyclerView.adapter = carPartsCategoryAdapterAdmin
                     }
-                    carPartsCategoryAdapterAdmin = CarPartsCategoryAdapterAdmin(carPartsCategoryModelArrayList, requireContext())
-                    recyclerView.adapter = carPartsCategoryAdapterAdmin
                 }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
+        } catch (e: Exception) {
+
+        }
     }
 }

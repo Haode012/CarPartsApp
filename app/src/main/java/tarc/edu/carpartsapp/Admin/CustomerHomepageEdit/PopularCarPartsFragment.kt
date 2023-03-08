@@ -76,28 +76,37 @@ class PopularCarPartsFragment : Fragment() {
         getData()
     }
 
-    private fun getData(){
+    private fun getData() {
 
+        try {
+            dbref =
+                FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                    .getReference("PopularCarParts")
 
-        dbref = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("PopularCarParts")
+            dbref.addValueEventListener(object : ValueEventListener {
 
-        dbref.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        for (popularSnapshot in snapshot.children) {
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    for(popularSnapshot in snapshot.children){
-
-                        val popular = popularSnapshot.getValue(PopularModel::class.java)
-                        popularModelArrayList.add(popular!!)
+                            val popular = popularSnapshot.getValue(PopularModel::class.java)
+                            popularModelArrayList.add(popular!!)
+                        }
+                        val context = context
+                        if (context != null) {
+                            popularAdapterAdmin =
+                                PopularAdapterAdmin(popularModelArrayList, context)
+                            recyclerView.adapter = popularAdapterAdmin
+                        }
                     }
-                    popularAdapterAdmin = PopularAdapterAdmin(popularModelArrayList, requireContext())
-                    recyclerView.adapter = popularAdapterAdmin
                 }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
+        } catch (e: Exception) {
+
+        }
     }
 }

@@ -77,7 +77,7 @@ class RecommendedCarPartsFragment : Fragment() {
     }
 
     private fun getData(){
-
+try{
         dbref = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Recommended")
 
         dbref.addValueEventListener(object : ValueEventListener {
@@ -89,7 +89,11 @@ class RecommendedCarPartsFragment : Fragment() {
                         val recommended = recommendedSnapshot.getValue(RecommendedModel::class.java)
                         recommendedModelArrayList.add(recommended!!)
                     }
-                    recommendedAdapterAdmin = RecommendedAdapterAdmin(recommendedModelArrayList, requireContext())
+                    val context = context
+                    if (context != null) {
+                        recommendedAdapterAdmin =
+                            RecommendedAdapterAdmin(recommendedModelArrayList, context)
+                    }
                     recyclerView.adapter = recommendedAdapterAdmin
                 }
             }
@@ -98,5 +102,8 @@ class RecommendedCarPartsFragment : Fragment() {
                 TODO("Not yet implemented")
             }
         })
+} catch (e: Exception){
+
+}
     }
 }

@@ -194,8 +194,12 @@ class MyCartFragment : Fragment() {
                             val myCart = myCartSnapshot.getValue(MyCartModel::class.java)
                             myCartModelArrayList.add(myCart!!)
                         }
-                        val myCartAdapter = MyCartAdapter(myCartModelArrayList, requireContext())
-                        recyclerView.adapter = myCartAdapter
+                        val context = context
+                        if (context != null) {
+                            val myCartAdapter =
+                                MyCartAdapter(myCartModelArrayList, context)
+                            recyclerView.adapter = myCartAdapter
+                        }
                     }
                 } catch (e: Exception) {
                     Log.e("getData", "Error getting data from Firebase: ${e.message}")

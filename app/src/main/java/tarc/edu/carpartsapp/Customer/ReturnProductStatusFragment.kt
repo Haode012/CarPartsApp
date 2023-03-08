@@ -92,8 +92,14 @@ class ReturnProductStatusFragment : Fragment() {
                                 returnProductModelArrayList.add(returnProduct!!)
                             }
                         }
-                        returnProductStatusAdapter = ReturnProductStatusAdapter(returnProductModelArrayList, requireContext())
-                        recyclerView.adapter = returnProductStatusAdapter
+                        val context = context
+                        if (context != null) {
+                            returnProductStatusAdapter = ReturnProductStatusAdapter(
+                                returnProductModelArrayList,
+                                context
+                            )
+                            recyclerView.adapter = returnProductStatusAdapter
+                        }
                     }
                 } catch (e: Exception) {
                     Log.e("getData", "Error getting data from Firebase: ${e.message}")

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
+import tarc.edu.carpartsapp.Adapter.ViewAllCategoryAdapterCustomer
 import tarc.edu.carpartsapp.Adapter.ViewAllPopularAdapter
 import tarc.edu.carpartsapp.Adapter.ViewAllPopularAdapterCustomer
 import tarc.edu.carpartsapp.Model.ViewAllPopularModel
@@ -62,8 +63,16 @@ class ViewAllPopularFragment : Fragment() {
                         val popular = popularSnapshot.getValue(ViewAllPopularModel::class.java)
                        viewAllPopularModelArrayList.add(popular!!)
                     }
-                    val pAdapter = ViewAllPopularAdapterCustomer(viewAllPopularModelArrayList, requireContext())
-                    recyclerView.adapter = pAdapter
+
+                    val context = context
+                    if (context != null) {
+
+                        val pAdapter = ViewAllPopularAdapterCustomer(
+                            viewAllPopularModelArrayList,
+                            context
+                        )
+                        recyclerView.adapter = pAdapter
+                    }
                 }
             }
 

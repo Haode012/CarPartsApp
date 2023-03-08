@@ -68,12 +68,14 @@ class AddRecommendedCarPartsFragment : Fragment() {
     }
 
     private fun addDataToFirebase(name: String, description: String, uri: Uri) {
-        val hashMap = HashMap<String, Any>()
-        hashMap["name"] = "$name"
-        hashMap["description"] = "$description"
+
+    try{
         val ref = FirebaseDatabase.getInstance().getReference("Recommended")
         val key = ref.push().key
+        val hashMap = HashMap<String, Any>()
         hashMap["id"] = "$key"
+        hashMap["name"] = "$name"
+        hashMap["description"] = "$description"
         if (key != null) {
             ref.child(key).setValue(hashMap)
                 .addOnCompleteListener { task ->
@@ -88,6 +90,9 @@ class AddRecommendedCarPartsFragment : Fragment() {
                     }
                 }
         }
+    } catch (e: Exception){
+
+    }
     }
 
     private fun uploadImage(uri: Uri, key: String , callback: (String) -> Unit) {

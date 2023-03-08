@@ -86,6 +86,7 @@ class EditDeleteCarPartsCategoryFragment : Fragment() {
     }
 
     private fun editData(id: String, name: String, type: String, uri: Uri) {
+        try{
         val hashMap = HashMap<String, Any>()
         hashMap["id"] = "$id"
         hashMap["name"] = "$name"
@@ -105,6 +106,9 @@ class EditDeleteCarPartsCategoryFragment : Fragment() {
                     Toast.makeText(requireContext(), "Failed to Edit", Toast.LENGTH_SHORT).show()
                 }
             }
+        } catch (e: Exception){
+
+        }
     }
 
 

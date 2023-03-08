@@ -78,6 +78,7 @@ class ViewAllPopularCarPartsFragment : Fragment() {
     }
 
     private fun getData() {
+        try{
         dbref = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("ViewAllPopular")
 
         dbref.addValueEventListener(object : ValueEventListener {
@@ -89,8 +90,14 @@ class ViewAllPopularCarPartsFragment : Fragment() {
                         val popular = popularSnapshot.getValue(ViewAllPopularModel::class.java)
                        viewAllPopularModelArrayList.add(popular!!)
                     }
-                    viewAllPopularAdapterAdmin = ViewAllPopularAdapterAdmin(viewAllPopularModelArrayList, requireContext())
-                    recyclerView.adapter = viewAllPopularAdapterAdmin
+                    val context = context
+                    if (context != null) {
+                        viewAllPopularAdapterAdmin = ViewAllPopularAdapterAdmin(
+                            viewAllPopularModelArrayList,
+                            context
+                        )
+                        recyclerView.adapter = viewAllPopularAdapterAdmin
+                    }
                 }
             }
 
@@ -98,5 +105,8 @@ class ViewAllPopularCarPartsFragment : Fragment() {
                 TODO("Not yet implemented")
             }
         })
+    } catch (e: Exception) {
+
     }
 }
+    }

@@ -61,31 +61,42 @@ class AddCarPartsCategoryFragment : Fragment() {
             }else if(type.isEmpty()){
                 binding.editTextCarPartCategoryType.error = "Enter the car part type"
             }else {
+
                 addDataToFirebase(name, type, imageUri!!)
+
             }
         }
     }
 
     private fun addDataToFirebase(name: String, type: String, uri: Uri) {
-        val hashMap = HashMap<String, Any>()
-        hashMap["name"] = "$name"
-        hashMap["type"] = "$type"
-        val ref = FirebaseDatabase.getInstance().getReference("CarPartsCategory")
-        val key = ref.push().key
-        hashMap["id"] = "$key"
-        if (key != null) {
-            ref.child(key).setValue(hashMap)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Toast.makeText(requireContext(), "Added Successfully", Toast.LENGTH_SHORT).show()
-                        uploadImage(uri, key) { downloadUrl ->
-                            hashMap["img_url"] = downloadUrl
-                            ref.child("$key").updateChildren(hashMap)
+        try{
+            val ref = FirebaseDatabase.getInstance().getReference("CarPartsCategory")
+            val key = ref.push().key
+            val hashMap = HashMap<String, Any>()
+            hashMap["id"] = "$key"
+            hashMap["name"] = "$name"
+            hashMap["type"] = "$type"
+            if (key != null) {
+                ref.child(key).setValue(hashMap)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(
+                                requireContext(),
+                                "Added Successfully",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            uploadImage(uri, key) { downloadUrl ->
+                                hashMap["img_url"] = downloadUrl
+                                ref.child("$key").updateChildren(hashMap)
+                            }
+                        } else {
+                            Toast.makeText(requireContext(), "Failed to Add", Toast.LENGTH_SHORT)
+                                .show()
                         }
-                    } else {
-                        Toast.makeText(requireContext(), "Failed to Add", Toast.LENGTH_SHORT).show()
                     }
-                }
+            }
+        } catch (e: Exception){
+
         }
     }
 

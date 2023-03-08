@@ -95,14 +95,15 @@ class AddViewAllPopularCarPartsFragment : Fragment() {
     }
 
     private fun addDataToFirebase(name: String, description: String, price: String, warranty: String, uri: Uri) {
-        val hashMap = HashMap<String, Any>()
-        hashMap["name"] = "$name"
-        hashMap["description"] = "$description"
-        hashMap["price"] = "$price"
-        hashMap["warranty"] = "$warranty"
+        try{
         val ref = FirebaseDatabase.getInstance().getReference("ViewAllPopular")
         val key = ref.push().key
+            val hashMap = HashMap<String, Any>()
         hashMap["id"] = "$key"
+            hashMap["name"] = "$name"
+            hashMap["description"] = "$description"
+            hashMap["price"] = "$price"
+            hashMap["warranty"] = "$warranty"
         if (key != null) {
             ref.child(key).setValue(hashMap)
                 .addOnCompleteListener { task ->
@@ -117,7 +118,11 @@ class AddViewAllPopularCarPartsFragment : Fragment() {
                     }
                 }
         }
+        } catch (e: Exception) {
+
+        }
     }
+
 
     private fun uploadImage(uri: Uri, key: String , callback: (String) -> Unit) {
         val fileRef = reference.child("$key.${getFileExtension(uri)}")

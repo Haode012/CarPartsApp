@@ -110,27 +110,33 @@ class EditDeleteViewAllPopularCarPartsFragment : Fragment() {
     }
 
     private fun editData(id: String, name: String, description: String, price: String, warranty: String, uri: Uri) {
-        val hashMap = HashMap<String, Any>()
-        hashMap["id"] = "$id"
-        hashMap["name"] = "$name"
-        hashMap["description"] = "$description"
-        hashMap["price"] = "$price"
-        hashMap["warranty"] = "$warranty"
-        val ref = FirebaseDatabase.getInstance().getReference("ViewAllPopular").child(id)
-        ref.updateChildren(hashMap)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Toast.makeText(requireContext(), "Edited Successfully", Toast.LENGTH_SHORT).show()
-                    if (uri != null) {
-                        editImage(uri, id) { downloadUrl ->
-                            hashMap["img_url"] = downloadUrl
-                            ref.updateChildren(hashMap)
+        try {
+            val hashMap = HashMap<String, Any>()
+            hashMap["id"] = "$id"
+            hashMap["name"] = "$name"
+            hashMap["description"] = "$description"
+            hashMap["price"] = "$price"
+            hashMap["warranty"] = "$warranty"
+            val ref = FirebaseDatabase.getInstance().getReference("ViewAllPopular").child(id)
+            ref.updateChildren(hashMap)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(requireContext(), "Edited Successfully", Toast.LENGTH_SHORT)
+                            .show()
+                        if (uri != null) {
+                            editImage(uri, id) { downloadUrl ->
+                                hashMap["img_url"] = downloadUrl
+                                ref.updateChildren(hashMap)
+                            }
                         }
+                    } else {
+                        Toast.makeText(requireContext(), "Failed to Edit", Toast.LENGTH_SHORT)
+                            .show()
                     }
-                } else {
-                    Toast.makeText(requireContext(), "Failed to Edit", Toast.LENGTH_SHORT).show()
                 }
-            }
+        } catch (e: Exception) {
+
+        }
     }
 
 

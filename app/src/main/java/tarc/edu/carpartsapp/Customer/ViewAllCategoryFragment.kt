@@ -76,8 +76,14 @@ class ViewAllCategoryFragment : Fragment() {
                                 viewAllCategoryModelArrayList.add(category)
                             }
                         }
-                        recyclerView.adapter =
-                            ViewAllCategoryAdapterCustomer(viewAllCategoryModelArrayList, requireContext())
+                        val context = context
+                        if (context != null) {
+                            recyclerView.adapter =
+                                ViewAllCategoryAdapterCustomer(
+                                    viewAllCategoryModelArrayList,
+                                    context
+                                )
+                        }
                     }
                 }
 
@@ -106,8 +112,14 @@ class ViewAllCategoryFragment : Fragment() {
                                 viewAllCategoryModelArrayList.add(category)
                             }
                         }
-                        recyclerView.adapter =
-                            ViewAllCategoryAdapterCustomer(viewAllCategoryModelArrayList, requireContext())
+                        val context = context
+                        if (context != null) {
+                            recyclerView.adapter =
+                                ViewAllCategoryAdapterCustomer(
+                                    viewAllCategoryModelArrayList,
+                                    context
+                                )
+                        }
                     }
                 }
 
@@ -136,8 +148,14 @@ class ViewAllCategoryFragment : Fragment() {
                                 viewAllCategoryModelArrayList.add(category)
                             }
                         }
-                        recyclerView.adapter =
-                            ViewAllCategoryAdapterCustomer(viewAllCategoryModelArrayList, requireContext())
+                        val context = context
+                        if (context != null) {
+                            recyclerView.adapter =
+                                ViewAllCategoryAdapterCustomer(
+                                    viewAllCategoryModelArrayList,
+                                    context
+                                )
+                        }
                     }
                 }
 
@@ -170,8 +188,14 @@ class ViewAllCategoryFragment : Fragment() {
                                 viewAllCategoryModelArrayList.add(category)
                             }
                         }
-                        recyclerView.adapter =
-                            ViewAllCategoryAdapterCustomer(viewAllCategoryModelArrayList, requireContext())
+                        val context = context
+                        if (context != null) {
+                            recyclerView.adapter =
+                                ViewAllCategoryAdapterCustomer(
+                                    viewAllCategoryModelArrayList,
+                                    context
+                                )
+                        }
                     }
                 }
 
@@ -200,8 +224,14 @@ class ViewAllCategoryFragment : Fragment() {
                                 viewAllCategoryModelArrayList.add(category)
                             }
                         }
-                        recyclerView.adapter =
-                            ViewAllCategoryAdapterCustomer(viewAllCategoryModelArrayList, requireContext())
+                        val context = context
+                        if (context != null) {
+                            recyclerView.adapter =
+                                ViewAllCategoryAdapterCustomer(
+                                    viewAllCategoryModelArrayList,
+                                    context
+                                )
+                        }
                     }
                 }
 
@@ -230,8 +260,14 @@ class ViewAllCategoryFragment : Fragment() {
                                 viewAllCategoryModelArrayList.add(category)
                             }
                         }
-                        recyclerView.adapter =
-                            ViewAllCategoryAdapterCustomer(viewAllCategoryModelArrayList, requireContext())
+                        val context = context
+                        if (context != null) {
+                            recyclerView.adapter =
+                                ViewAllCategoryAdapterCustomer(
+                                    viewAllCategoryModelArrayList,
+                                    context
+                                )
+                        }
                     }
                 }
 
@@ -260,8 +296,14 @@ class ViewAllCategoryFragment : Fragment() {
                                 viewAllCategoryModelArrayList.add(category)
                             }
                         }
-                        recyclerView.adapter =
-                            ViewAllCategoryAdapterCustomer(viewAllCategoryModelArrayList, requireContext())
+                        val context = context
+                        if (context != null) {
+                            recyclerView.adapter =
+                                ViewAllCategoryAdapterCustomer(
+                                    viewAllCategoryModelArrayList,
+                                    context
+                                )
+                        }
                     }
                 }
 
@@ -290,8 +332,14 @@ class ViewAllCategoryFragment : Fragment() {
                                 viewAllCategoryModelArrayList.add(category)
                             }
                         }
-                        recyclerView.adapter =
-                            ViewAllCategoryAdapterCustomer(viewAllCategoryModelArrayList, requireContext())
+                        val context = context
+                        if (context != null) {
+                            recyclerView.adapter =
+                                ViewAllCategoryAdapterCustomer(
+                                    viewAllCategoryModelArrayList,
+                                    context
+                                )
+                        }
                     }
                 }
 
@@ -320,8 +368,14 @@ class ViewAllCategoryFragment : Fragment() {
                                 viewAllCategoryModelArrayList.add(category)
                             }
                         }
-                        recyclerView.adapter =
-                            ViewAllCategoryAdapterCustomer(viewAllCategoryModelArrayList, requireContext())
+                        val context = context
+                        if (context != null) {
+                            recyclerView.adapter =
+                                ViewAllCategoryAdapterCustomer(
+                                    viewAllCategoryModelArrayList,
+                                    context
+                                )
+                        }
                     }
                 }
 
@@ -345,8 +399,14 @@ class ViewAllCategoryFragment : Fragment() {
                                 categorySnapshot.getValue(ViewAllCategoryModel::class.java)
                             viewAllCategoryModelArrayList.add(category!!)
                         }
-                        recyclerView.adapter =
-                            ViewAllCategoryAdapterCustomer(viewAllCategoryModelArrayList, requireContext())
+                        val context = context
+                        if (context != null) {
+                            recyclerView.adapter =
+                                ViewAllCategoryAdapterCustomer(
+                                    viewAllCategoryModelArrayList,
+                                    context
+                                )
+                        }
                     }
                 }
 

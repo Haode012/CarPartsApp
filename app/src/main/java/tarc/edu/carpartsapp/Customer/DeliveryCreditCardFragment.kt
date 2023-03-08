@@ -96,8 +96,12 @@ class DeliveryCreditCardFragment : Fragment() {
                                 myOrderModelArrayList2.add(myOrder!!)
                             }
                         }
-                        val myOrderAdapter = MyOrderCreditCardAdapter(myOrderModelArrayList2, requireContext())
-                        recyclerView.adapter = myOrderAdapter
+                        val context = context
+                        if (context != null) {
+                            val myOrderAdapter =
+                                MyOrderCreditCardAdapter(myOrderModelArrayList2, context)
+                            recyclerView.adapter = myOrderAdapter
+                        }
                     }
                 } catch (e: Exception) {
                     Log.e("getData", "Error getting data from Firebase: ${e.message}")

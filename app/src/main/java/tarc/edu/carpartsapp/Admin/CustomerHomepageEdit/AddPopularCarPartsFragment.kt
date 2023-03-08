@@ -11,8 +11,11 @@ import android.view.ViewGroup
 import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
+import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.FragmentAddPopularCarPartsBinding
 
 
@@ -63,18 +66,21 @@ class AddPopularCarPartsFragment : Fragment() {
             }else if(description.isEmpty()){
                 binding.editTextPopularCarPartDescription.error = "Enter the car part description"
             }else {
+
                 addDataToFirebase(name, description, imageUri!!)
+
             }
         }
     }
 
     private fun addDataToFirebase(name: String, description: String, uri: Uri) {
-        val hashMap = HashMap<String, Any>()
-        hashMap["name"] = "$name"
-        hashMap["description"] = "$description"
+        try{
         val ref = FirebaseDatabase.getInstance().getReference("PopularCarParts")
         val key = ref.push().key
+            val hashMap = HashMap<String, Any>()
         hashMap["id"] = "$key"
+            hashMap["name"] = "$name"
+            hashMap["description"] = "$description"
         if (key != null) {
             ref.child(key).setValue(hashMap)
                 .addOnCompleteListener { task ->
@@ -88,6 +94,9 @@ class AddPopularCarPartsFragment : Fragment() {
                         Toast.makeText(requireContext(), "Failed to Add", Toast.LENGTH_SHORT).show()
                     }
                 }
+        }
+        } catch (e: Exception){
+
         }
     }
 

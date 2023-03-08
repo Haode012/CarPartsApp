@@ -77,25 +77,38 @@ class ViewAllRecommendedCarPartsFragment : Fragment() {
     }
 
     private fun getData() {
-        dbref = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("ViewAllRecommended")
+        try {
+            dbref =
+                FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                    .getReference("ViewAllRecommended")
 
-        dbref.addValueEventListener(object : ValueEventListener {
+            dbref.addValueEventListener(object : ValueEventListener {
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    for(recommendedSnapshot in snapshot.children){
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        for (recommendedSnapshot in snapshot.children) {
 
-                        val recommended = recommendedSnapshot.getValue(ViewAllRecommendedModel::class.java)
-                        viewAllRecommendedModelArrayList.add(recommended!!)
+                            val recommended =
+                                recommendedSnapshot.getValue(ViewAllRecommendedModel::class.java)
+                            viewAllRecommendedModelArrayList.add(recommended!!)
+                        }
+                        val context = context
+                        if (context != null) {
+                            viewAllRecommendedAdapterAdmin = ViewAllRecommendedAdapterAdmin(
+                                viewAllRecommendedModelArrayList,
+                                context
+                            )
+                        }
+                        recyclerView.adapter = viewAllRecommendedAdapterAdmin
                     }
-                    viewAllRecommendedAdapterAdmin = ViewAllRecommendedAdapterAdmin(viewAllRecommendedModelArrayList, requireContext())
-                    recyclerView.adapter = viewAllRecommendedAdapterAdmin
                 }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
+        } catch (e: Exception) {
+
+        }
     }
 }

@@ -97,8 +97,14 @@ class ReturnProductAdminFragment : Fragment() {
                             }
                         }
                     }
-                        returnProductAdminAdapter = ReturnProductAdminAdapter(returnProductAdminModelArrayList, requireContext())
-                        recyclerView.adapter = returnProductAdminAdapter
+                        val context = context
+                        if (context != null) {
+                            returnProductAdminAdapter = ReturnProductAdminAdapter(
+                                returnProductAdminModelArrayList,
+                                context
+                            )
+                            recyclerView.adapter = returnProductAdminAdapter
+                        }
                     }
                 } catch (e: Exception) {
                     Log.e("getData", "Error getting data from Firebase: ${e.message}")

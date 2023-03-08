@@ -110,7 +110,7 @@ class HomeMainFragment : Fragment() {
     }
 
     private fun getData(){
-
+try{
         dbref = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("PopularCarParts")
 
         dbref.addValueEventListener(object : ValueEventListener{
@@ -132,8 +132,11 @@ class HomeMainFragment : Fragment() {
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-        })
+        })} catch (e:Exception){
 
+        }
+
+        try{
         dbref = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("CarPartsCategory")
 
         dbref.addValueEventListener(object : ValueEventListener{
@@ -155,8 +158,11 @@ class HomeMainFragment : Fragment() {
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-        })
+        })} catch(e:Exception){
 
+        }
+
+        try{
         dbref = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Recommended")
 
         dbref.addValueEventListener(object : ValueEventListener{
@@ -180,5 +186,7 @@ class HomeMainFragment : Fragment() {
             }
         })
 
+    } catch(e:Exception){
+    }
     }
 }

@@ -60,8 +60,12 @@ class ViewAllPopularFragment : Fragment() {
                         val popular = popularSnapshot.getValue(ViewAllPopularModel::class.java)
                        viewAllPopularModelArrayList.add(popular!!)
                     }
-                    val pAdapter = ViewAllPopularAdapter(viewAllPopularModelArrayList, requireContext())
-                    recyclerView.adapter = pAdapter
+                    val context = context
+                    if (context != null) {
+                        val pAdapter =
+                            ViewAllPopularAdapter(viewAllPopularModelArrayList, context)
+                        recyclerView.adapter = pAdapter
+                    }
                 }
             }
 
