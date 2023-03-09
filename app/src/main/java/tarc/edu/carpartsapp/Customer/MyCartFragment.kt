@@ -70,6 +70,7 @@ class MyCartFragment : Fragment() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
         val firebase = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
         val ref = firebase.getReference("Users/$userId")
+        totalAmount = view.findViewById(R.id.textViewTotalAmount)
 
         ref.addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -83,45 +84,61 @@ class MyCartFragment : Fragment() {
 
         })
 
-        binding.buttonCashOnDelivery.setOnClickListener{
-
+        binding.buttonCashOnDelivery.setOnClickListener {
+            if (totalAmount.text.toString().toDouble() != 0.00) {
             val builder = AlertDialog.Builder(context)
             val view = LayoutInflater.from(context).inflate(R.layout.alert_dialog_layout, null)
             val messageTextView = view.findViewById<TextView>(R.id.messageTextView)
-            messageTextView.text = "Are you sure you want to order?\nYou are not allow to make any changes after ordered"
-            messageTextView.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_red_dark))
+            messageTextView.text =
+                "Are you sure you want to order?\nYou are not allow to make any changes after ordered"
+            messageTextView.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    android.R.color.holo_red_dark
+                )
+            )
 
             builder.setTitle("Order")
                 .setView(view)
-                .setPositiveButton("Confirm"){a,d->
+                .setPositiveButton("Confirm") { a, d ->
                     saveData()
                 }
-                .setNegativeButton("Cancel"){a,d->
+                .setNegativeButton("Cancel") { a, d ->
                     a.dismiss()
                 }
                 .show()
+        } else {
+            Toast.makeText(requireContext(),"Your cart is empty", Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.buttonCreditCard.setOnClickListener{
+            if (totalAmount.text.toString().toDouble() != 0.00) {
+                val builder = AlertDialog.Builder(context)
+                val view = LayoutInflater.from(context).inflate(R.layout.alert_dialog_layout, null)
+                val messageTextView = view.findViewById<TextView>(R.id.messageTextView)
+                messageTextView.text =
+                    "Are you sure you want to order?\nYou are not allow to make any changes after confirmed and must pay it now"
+                messageTextView.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        android.R.color.holo_red_dark
+                    )
+                )
 
-            val builder = AlertDialog.Builder(context)
-            val view = LayoutInflater.from(context).inflate(R.layout.alert_dialog_layout, null)
-            val messageTextView = view.findViewById<TextView>(R.id.messageTextView)
-            messageTextView.text = "Are you sure you want to order?\nYou are not allow to make any changes after confirmed and must pay it now"
-            messageTextView.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_red_dark))
-
-            builder.setTitle("Order")
-                .setView(view)
-                .setPositiveButton("Confirm"){a,d->
-                    saveDataCreditCard()
-                }
-                .setNegativeButton("Cancel"){a,d->
-                    a.dismiss()
-                }
-                .show()
+                builder.setTitle("Order")
+                    .setView(view)
+                    .setPositiveButton("Confirm") { a, d ->
+                        saveDataCreditCard()
+                    }
+                    .setNegativeButton("Cancel") { a, d ->
+                        a.dismiss()
+                    }
+                    .show()
+            } else {
+                Toast.makeText(requireContext(),"Your cart is empty", Toast.LENGTH_SHORT).show()
+            }
         }
-
-            totalAmount = view.findViewById(R.id.textViewTotalAmount)
 
             val messageReceiver = object : BroadcastReceiver() {
                 override fun onReceive(context: Context?, intent: Intent?) {
@@ -132,7 +149,6 @@ class MyCartFragment : Fragment() {
             }
 
             LocalBroadcastManager.getInstance(requireActivity()).registerReceiver(messageReceiver, IntentFilter("totalAmount"))
-
 
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)

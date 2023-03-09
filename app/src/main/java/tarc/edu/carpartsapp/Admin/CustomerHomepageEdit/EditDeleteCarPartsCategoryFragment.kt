@@ -65,13 +65,22 @@ class EditDeleteCarPartsCategoryFragment : Fragment() {
             val name = binding.editTextCarPartCategoryName.text.toString().trim()
             val type = binding.editTextCarPartCategoryType.text.toString().trim()
 
-            //validation
             if (imageUri == null) {
                 Toast.makeText(requireContext(), "Please select an image", Toast.LENGTH_SHORT).show()
             } else if (name.isEmpty()) {
                 binding.editTextCarPartCategoryName.error = "Enter the car part name"
-            }else if(type.isEmpty()){
+            } else if (name.length < 3) {
+                binding.editTextCarPartCategoryName.error =
+                    "Car part name must have at least three character"
+            } else if (!name.matches(Regex("^[a-zA-Z].*$")) || !name.matches(Regex("^[a-zA-Z][a-zA-Z].*$")) || !name.matches(Regex("^[a-zA-Z][a-zA-Z][a-zA-Z].*$"))) {
+                binding.editTextCarPartCategoryName.error = "Car part name must start with three letter"
+            } else if(type.isEmpty()){
                 binding.editTextCarPartCategoryType.error = "Enter the car part type"
+            } else if (type.length < 3) {
+                binding.editTextCarPartCategoryType.error =
+                    "Car part type must have at least three character"
+            } else if (!type.matches(Regex("^[a-zA-Z].*$")) || !type.matches(Regex("^[a-zA-Z][a-zA-Z].*$")) || !type.matches(Regex("^[a-zA-Z][a-zA-Z][a-zA-Z].*$"))) {
+                binding.editTextCarPartCategoryType.error = "Car part type must start with three letter"
             }else {
                 editData(id, name, type, imageUri!!)
             }

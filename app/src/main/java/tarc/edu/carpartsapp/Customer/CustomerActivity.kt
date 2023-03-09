@@ -90,21 +90,24 @@ class CustomerActivity : AppCompatActivity() {
 
     @SuppressLint("CheckResult")
     private fun newUpdateHeader(){
+try {
+    val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
+    val ref =
+        Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
+            .getReference("Users/$userId")
+    ref.get().addOnSuccessListener {
+        val navView: NavigationView = binding.navView
+        val view: View = navView.getHeaderView(0)
+        val profilePic = it.child("profilePicture").child("url").value.toString()
+        view.textViewUsernameCustomer.text = it.child("fullName").getValue(String::class.java)
+        view.textViewEmailCustomer.text = it.child("emailAddress").getValue(String::class.java)
+        var requestOptions = RequestOptions()
+        requestOptions.signature(ObjectKey(System.currentTimeMillis()))
+        Glide.with(this).load(profilePic).apply(requestOptions).into(imageView)
+    }
+}catch (e:Exception){
 
-        val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
-            val ref =
-                Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
-                    .getReference("Users/$userId")
-            ref.get().addOnSuccessListener {
-                val navView: NavigationView = binding.navView
-                val view: View = navView.getHeaderView(0)
-                val profilePic = it.child("profilePicture").child("url").value.toString()
-                view.textViewUsernameCustomer.text = it.child("fullName").getValue(String:: class.java)
-                view.textViewEmailCustomer.text = it.child("emailAddress").getValue(String:: class.java)
-                var requestOptions = RequestOptions()
-                requestOptions.signature(ObjectKey(System.currentTimeMillis()))
-                Glide.with(this).load(profilePic).apply(requestOptions).into(imageView)
-            }
+}
         }
 
 

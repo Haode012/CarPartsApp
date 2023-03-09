@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import tarc.edu.carpartsapp.databinding.FragmentEditDeleteViewAllPopularCarPartsBinding
+import java.text.DecimalFormat
 
 class EditDeleteViewAllPopularCarPartsFragment : Fragment() {
 
@@ -88,16 +89,35 @@ class EditDeleteViewAllPopularCarPartsFragment : Fragment() {
                 Toast.makeText(requireContext(), "Please select an image", Toast.LENGTH_SHORT).show()
             } else if (name.isEmpty()) {
                 binding.editTextPopularCarPartName.error = "Enter the car part name"
-            }else if(description.isEmpty()){
+            } else if (name.length < 3) {
+                binding.editTextPopularCarPartName.error = "Car part name must have at least three character"
+            } else if (!name.matches(Regex("^[a-zA-Z].*$")) || !name.matches(Regex("^[a-zA-Z][a-zA-Z].*$")) || !name.matches(Regex("^[a-zA-Z][a-zA-Z][a-zA-Z].*$"))) {
+                binding.editTextPopularCarPartName.error = "Car part name must start with three letter"
+            } else if(description.isEmpty()){
                 binding.editTextPopularCarPartDescription.error = "Enter the car part description"
-            }else if(price.isEmpty()){
+            }  else if (description.length < 3) {
+                binding.editTextPopularCarPartDescription.error = "Car part description must have at least three character"
+            } else if (!description.matches(Regex("^[a-zA-Z].*$")) || !description.matches(Regex("^[a-zA-Z][a-zA-Z].*$")) || !description.matches(Regex("^[a-zA-Z][a-zA-Z][a-zA-Z].*$"))) {
+                binding.editTextPopularCarPartDescription.error = "Car part description must start with three letter"
+            } else if(price.isEmpty()){
                 binding.editTextPopularCarPartPrice.error = "Enter the car part price"
-            }else if(!price.matches(Regex("-?\\d+(\\.\\d+)?"))){
-                binding.editTextPopularCarPartPrice.error = "Please enter a valid double number"
-            }else if(warranty.isEmpty()){
-                Toast.makeText(requireContext(), "Choose a expiration years", Toast.LENGTH_SHORT).show()
-            }else{
-                editData(id, name, description, price, warranty, imageUri!!)
+            } else if(!price.matches(Regex("-?\\d+(\\.\\d+)?"))) {
+                binding.editTextPopularCarPartPrice.error = "Car part price can't contain letters"
+            } else {
+                val priceDouble = price.toDouble()
+                val df = DecimalFormat("0.00")
+                val priceString = df.format(priceDouble).toString()
+
+                binding.editTextPopularCarPartPrice.setText(priceString)
+                if (warranty.isEmpty()) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Choose a expiration years",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    editData(id, name, description, priceString, warranty, imageUri!!)
+                }
             }
         }
 
@@ -109,13 +129,13 @@ class EditDeleteViewAllPopularCarPartsFragment : Fragment() {
         }
     }
 
-    private fun editData(id: String, name: String, description: String, price: String, warranty: String, uri: Uri) {
+    private fun editData(id: String, name: String, description: String, priceString: String, warranty: String, uri: Uri) {
         try {
             val hashMap = HashMap<String, Any>()
             hashMap["id"] = "$id"
             hashMap["name"] = "$name"
             hashMap["description"] = "$description"
-            hashMap["price"] = "$price"
+            hashMap["price"] = "$priceString"
             hashMap["warranty"] = "$warranty"
             val ref = FirebaseDatabase.getInstance().getReference("ViewAllPopular").child(id)
             ref.updateChildren(hashMap)

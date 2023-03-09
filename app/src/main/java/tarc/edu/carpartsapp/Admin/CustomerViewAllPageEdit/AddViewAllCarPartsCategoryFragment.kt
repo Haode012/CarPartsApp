@@ -32,6 +32,7 @@ import tarc.edu.carpartsapp.Model.ViewAllCategoryModel
 import tarc.edu.carpartsapp.Model.ViewAllRecommendedModel
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.FragmentAddViewAllCarPartsCategoryBinding
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -81,23 +82,49 @@ class AddViewAllCarPartsCategoryFragment : Fragment() {
                 Toast.makeText(requireContext(), "Please select an image", Toast.LENGTH_SHORT).show()
             } else if (name.isEmpty()) {
                 binding.editTextCarPartCategoryName.error = "Enter the car part name"
-            }else if(description.isEmpty()){
+            } else if (name.length < 3) {
+            binding.editTextCarPartCategoryName.error =
+                "Car part name must have at least three character"
+           } else if (!name.matches(Regex("^[a-zA-Z].*$")) || !name.matches(Regex("^[a-zA-Z][a-zA-Z].*$")) || !name.matches(Regex("^[a-zA-Z][a-zA-Z][a-zA-Z].*$"))) {
+            binding.editTextCarPartCategoryName.error = "Car part name must start with three letter"
+           } else if(description.isEmpty()){
                 binding.editTextCarPartCategoryDescription.error = "Enter the car part description"
-            }else if(type.isEmpty()){
+           }  else if (description.length < 3) {
+            binding.editTextCarPartCategoryDescription.error =
+                "Car part description must have at least three character"
+        } else if (!description.matches(Regex("^[a-zA-Z].*$")) || !description.matches(Regex("^[a-zA-Z][a-zA-Z].*$")) || !description.matches(Regex("^[a-zA-Z][a-zA-Z][a-zA-Z].*$"))) {
+            binding.editTextCarPartCategoryDescription.error = "Car part description must start with three letter"
+        } else if(type.isEmpty()){
                 binding.editTextCarPartCategoryType.error = "Enter the car part type"
-            }else if(price.isEmpty()){
+            } else if (type.length < 3) {
+                binding.editTextCarPartCategoryType.error =
+                    "Car part type must have at least three character"
+            } else if (!type.matches(Regex("^[a-zA-Z].*$")) || !type.matches(Regex("^[a-zA-Z][a-zA-Z].*$")) || !type.matches(Regex("^[a-zA-Z][a-zA-Z][a-zA-Z].*$"))) {
+                binding.editTextCarPartCategoryType.error = "Car part type must start with three letter"
+            } else if(price.isEmpty()){
                 binding.editTextCarPartCategoryPrice.error = "Enter the car part price"
             }else if(!price.matches(Regex("-?\\d+(\\.\\d+)?"))){
-                binding.editTextCarPartCategoryPrice.error = "Please enter a valid double number"
-            }else if(warranty.isEmpty()){
-                Toast.makeText(requireContext(), "Choose a expiration years", Toast.LENGTH_SHORT).show()
-            }else{
-                addDataToFirebase(name, description, type, price, warranty, imageUri!!)
+                binding.editTextCarPartCategoryPrice.error = "Car part price can't contain letters"
+            }else {
+                val priceDouble = price.toDouble()
+                val df = DecimalFormat("0.00")
+                val priceString = df.format(priceDouble).toString()
+                binding.editTextCarPartCategoryPrice.setText(priceString)
+
+                if (warranty.isEmpty()) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Choose a expiration years",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    addDataToFirebase(name, description, type, priceString, warranty, imageUri!!)
+                }
             }
         }
     }
 
-    private fun addDataToFirebase(name: String, description: String, type: String, price: String, warranty: String, uri: Uri) {
+    private fun addDataToFirebase(name: String, description: String, type: String, priceString: String, warranty: String, uri: Uri) {
         try {
             val ref = FirebaseDatabase.getInstance().getReference("ViewAllCategory")
             val key = ref.push().key
@@ -106,7 +133,7 @@ class AddViewAllCarPartsCategoryFragment : Fragment() {
             hashMap["name"] = "$name"
             hashMap["description"] = "$description"
             hashMap["type"] = "$type"
-            hashMap["price"] = "$price"
+            hashMap["price"] = "$priceString"
             hashMap["warranty"] = "$warranty"
             if (key != null) {
                 ref.child(key).setValue(hashMap)

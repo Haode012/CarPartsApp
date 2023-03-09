@@ -123,7 +123,7 @@ class CreditCardFragment : Fragment() {
             } else if (CVV.isEmpty()) {
                 binding.editTextCVV.error = "CVV cannot be blank"
             } else if (!CVV.matches(Regex("^\\d{3}$"))) {
-                binding.editTextCVV.error = "2a"
+                binding.editTextCVV.error = "CVV must be 3 digits and no letters"
             } else {
                     findNavController().navigate(
                         R.id.action_nav_creditCard_customer_to_nav_home_customer,

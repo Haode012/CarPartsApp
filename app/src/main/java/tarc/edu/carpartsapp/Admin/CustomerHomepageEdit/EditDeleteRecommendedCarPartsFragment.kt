@@ -70,8 +70,20 @@ class EditDeleteRecommendedCarPartsFragment : Fragment() {
                 Toast.makeText(requireContext(), "Please select an image", Toast.LENGTH_SHORT).show()
             } else if (name.isEmpty()) {
                 binding.editTextRecommendedCarPartName.error = "Enter the car part name"
-            }else if(description.isEmpty()){
+            }else if (name.length < 3) {
+                binding.editTextRecommendedCarPartName.error =
+                    "Car part name must have at least three character"
+            } else if (!name.matches(Regex("^[a-zA-Z].*$")) || !name.matches(Regex("^[a-zA-Z][a-zA-Z].*$")) || !name.matches(Regex("^[a-zA-Z][a-zA-Z][a-zA-Z].*$"))) {
+                binding.editTextRecommendedCarPartDescription.error =
+                    "Car part name must start with three letter"
+            } else if(description.isEmpty()){
                 binding.editTextRecommendedCarPartDescription.error = "Enter the car part description"
+            } else if (description.length < 3) {
+                binding.editTextRecommendedCarPartDescription.error =
+                    "Car part description must have at least three character"
+            } else if (!description.matches(Regex("^[a-zA-Z].*$")) || !description.matches(Regex("^[a-zA-Z][a-zA-Z].*$")) || !description.matches(Regex("^[a-zA-Z][a-zA-Z][a-zA-Z].*$"))) {
+                binding.editTextRecommendedCarPartDescription.error =
+                    "Car part description must start with three letter"
             }else {
                 editData(id, name, description, imageUri!!)
             }
