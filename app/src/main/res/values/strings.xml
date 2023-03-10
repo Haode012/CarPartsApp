@@ -90,4 +90,7 @@
     <string name="title_activity_delivery_tracker_maps">DeliveryTrackerMapsActivity</string>
     <string name="admin_delivery_management">Admin Delivery Management</string>
     <string name="update_delivery_status">Update Delivery Status</string>
+    <string name="title_activity_admin_create_update_delivery_tracker_location">
+        AdminCreateUpdateDeliveryTrackerLocation
+    </string>
 </resources>

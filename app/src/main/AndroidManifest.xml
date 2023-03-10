@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -14,7 +17,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CarPartsApp"
         tools:targetApi="31">
+        <activity
+            android:name=".SplashScreen"
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -26,11 +37,14 @@
              project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
              "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
         -->
-        <!-- google api key -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCDfj33kxcZMSUGx4879C1RnC7s_7WXVjI" />
+            android:value="AIzaSyDQ7JNYxKtzNsiq2mzC2Kc_JWvQcfjz9s8" />
 
+        <activity
+            android:name=".Admin.AdminCreateUpdateDeliveryTrackerLocation"
+            android:exported="false"
+            android:label="@string/title_activity_admin_create_update_delivery_tracker_location" />
         <activity
             android:name=".DeliveryTrackerMapsActivity"
             android:exported="false"
@@ -47,15 +61,9 @@
             android:theme="@style/Theme.CarPartsApp.NoActionBar" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/app_name"
             android:theme="@style/Theme.CarPartsApp.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
         </activity>
     </application>
 

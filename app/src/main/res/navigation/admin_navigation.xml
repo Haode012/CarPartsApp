@@ -295,6 +295,9 @@
         <action
             android:id="@+id/action_fragmentAdminDeliveryManagement_to_fragmentChooseView"
             app:destination="@id/fragmentChooseView" />
+        <action
+            android:id="@+id/action_fragmentAdminDeliveryManagement_to_fragmentAdminChooseOrderForDeliveryTracker"
+            app:destination="@id/fragmentAdminChooseOrderForDeliveryTracker" />
     </fragment>
     <fragment
         android:id="@+id/fragmentAdminViewAllDeliveryStatus"
@@ -385,4 +388,9 @@
         android:name="tarc.edu.carpartsapp.FragmentAdminUpdateDeliveryStatusCreditCard"
         android:label="fragment_admin_update_delivery_status_credit_card"
         tools:layout="@layout/fragment_admin_update_delivery_status_credit_card" />
+    <fragment
+        android:id="@+id/fragmentAdminChooseOrderForDeliveryTracker"
+        android:name="tarc.edu.carpartsapp.Admin.FragmentAdminChooseOrderForDeliveryTracker"
+        android:label="fragment_admin_choose_order_for_delivery_tracker"
+        tools:layout="@layout/fragment_admin_choose_order_for_delivery_tracker" />
 </navigation>

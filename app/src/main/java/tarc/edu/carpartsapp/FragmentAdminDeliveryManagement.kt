@@ -44,6 +44,10 @@ class FragmentAdminDeliveryManagement : Fragment() {
         binding.imageviewCreateDeliveryCredit.setOnClickListener {
             findNavController().navigate(R.id.action_fragmentAdminDeliveryManagement_to_fragmentCreateDeliveryStatusCreditCardPayment)
         }
+
+        binding.imageViewDeliveryTracker.setOnClickListener{
+            findNavController().navigate(R.id.action_fragmentAdminDeliveryManagement_to_fragmentAdminChooseOrderForDeliveryTracker)
+        }
     }
 
 

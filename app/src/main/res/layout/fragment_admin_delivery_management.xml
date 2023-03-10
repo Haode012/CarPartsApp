@@ -34,7 +34,7 @@
             android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.312"
+            app:layout_constraintHorizontal_bias="0.687"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageViewCreateDeliveryCash" />
 
@@ -69,11 +69,20 @@
             app:layout_constraintTop_toBottomOf="@+id/imageViewCreateDeliveryCash"
             tools:ignore="SpeakableTextPresentCheck" />
 
+        <ImageView
+            android:id="@+id/imageViewDeliveryTracker"
+            android:layout_width="414dp"
+            android:layout_height="300dp"
+            android:src="@drawable/delivery_trackerpic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageviewCreateDeliveryCredit" />
+
         <TextView
             android:id="@+id/textViewCredit"
             android:layout_width="380dp"
             android:layout_height="56dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="20dp"
             android:lines="3"
             android:text="Create Delivery Status(Credit Card )"
             android:textAlignment="center"
@@ -82,7 +91,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/imageviewCreateDeliveryCredit"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageviewCreateDeliveryCredit"
-            app:layout_constraintVertical_bias="0.091" />
+            app:layout_constraintVertical_bias="0.073" />
 
         <ImageView
             android:id="@+id/imageViewDeliveryStatus"
@@ -91,7 +100,7 @@
             android:adjustViewBounds="true"
             android:clickable="true"
             android:contentDescription="Delivery Status Picture"
-            android:hint="LOL"
+            android:hint="DSP"
             android:maxWidth="500dp"
             android:maxHeight="300dp"
             android:scaleType="fitCenter"
@@ -99,20 +108,32 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageviewCreateDeliveryCredit" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewDeliveryTracker" />
 
         <TextView
             android:id="@+id/imageViewAllDeliveryStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="148dp"
+            android:layout_width="312dp"
+            android:layout_height="73dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="48dp"
             android:lines="3"
             android:text="View All Delivery Status"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewDeliveryTracker" />
+
+        <TextView
+            android:id="@+id/textView64"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:text="Create Delivery Tracker Location"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageviewCreateDeliveryCredit" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

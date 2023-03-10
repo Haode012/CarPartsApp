@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -18,13 +19,14 @@ import tarc.edu.carpartsapp.databinding.FragmentCustSelectOrderCashOnDeliveryVie
 
 class FragmentCustChooseOrderDeliveryTracker : Fragment() {
     private var _binding: FragmentCustSelectOrderCashOnDeliveryViewDeliveryTrackerBinding? = null
-    private val binding get() = _binding!!
 
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
+
         _binding = FragmentCustSelectOrderCashOnDeliveryViewDeliveryTrackerBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -32,45 +34,55 @@ class FragmentCustChooseOrderDeliveryTracker : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
-        val database = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
-        val ref = database.getReference("Delivery Tracker Locations")
+        try {
+            val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
+            val database =
+                Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
+            val ref = database.getReference("Delivery Tracker Locations")
 
-        ref.addValueEventListener(object :ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val orders: ArrayList<String?> = ArrayList()
-                if (snapshot.exists()) {
-                    for (snap in snapshot.children) {
-                        val userIdDatabase = snap.child("userId").value as String
-                        if(userId.equals(userIdDatabase)) {
+            ref.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val orders: ArrayList<String?> = ArrayList()
+                    if (snapshot.exists()) {
+                        for (snap in snapshot.children) {
+                            // val userIdDatabase = snap.child("userId").value as String
+                            //if(userId.equals(userIdDatabase)) {
                             val orderIds = snap.key.toString()
                             orders.add(orderIds)
-                        }
+                            // }
 
+                        }
+                        val spinner = binding.spinnerDelivery
+                        val arrayAdapter = activity?.let {
+                            ArrayAdapter<String>(
+                                it,
+                                R.layout.simple_spinner_item,
+                                orders
+                            )
+                        }
+                        spinner.adapter = arrayAdapter
                     }
-                    val spinner = binding.spinnerDelivery
-                    val arrayAdapter = activity?.let {
-                        ArrayAdapter<String>(
-                            it,
-                            R.layout.simple_spinner_item,
-                            orders
-                        )
-                    }
-                    spinner.adapter = arrayAdapter
                 }
-            }
 
                 override fun onCancelled(error: DatabaseError) {
                     TODO("Not yet implemented")
                 }
-        })
+            })
 
 
-        binding.buttonYes.setOnClickListener {
-            val intent = Intent(context, DeliveryTrackerMapsActivity::class.java)
-            startActivity(intent)
+            binding.buttonYes.setOnClickListener {
+                try {
+                    val intent = Intent(context, DeliveryTrackerMapsActivity::class.java)
+                    intent.putExtra("orderID", binding.spinnerDelivery.selectedItem.toString())
+                    startActivity(intent)
+                } catch (e: NullPointerException) {
+                    Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        }catch (e: NullPointerException){
+            Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
         }
-
     }
 
 

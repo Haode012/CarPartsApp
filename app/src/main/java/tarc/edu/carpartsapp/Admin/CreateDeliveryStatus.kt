@@ -1,6 +1,7 @@
 package tarc.edu.carpartsapp.Admin
 
 import android.R
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -248,6 +249,7 @@ class CreateDeliveryStatus : Fragment() {
 
         db = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("OrderItem(Cash On Delivery) Duplicate")
         db.addListenerForSingleValueEvent(object : ValueEventListener{
+            @SuppressLint("SuspiciousIndentation")
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (snap in snapshot.children) {
                     val key2 = snap.key.toString()
@@ -288,6 +290,7 @@ class CreateDeliveryStatus : Fragment() {
         val databaseNew = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
         val ref = databaseNew.getReference().child("OrderItem(Cash On Delivery) Duplicate")
         ref.addValueEventListener(object : ValueEventListener{
+            @SuppressLint("SuspiciousIndentation")
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (snap in snapshot.children) {
                     //Toast.makeText(context, snap.key.toString(), Toast.LENGTH_LONG).show()
@@ -300,6 +303,7 @@ class CreateDeliveryStatus : Fragment() {
                             deliveryStatusNew["orderID"] = spinner
                             deliveryStatusNew["deliveryStatus"] = deliveryStatus
                             deliveryStatusNew["dateTime"] = dateNow.toString()
+                            deliveryStatusNew["dateOfOrderPlaced"] = snap2.child("DateOfOrderPlaced").value as String
                             deliveryStatusNew["userId"] = binding.outputUserid.text.toString()
                             deliveryStatusNew["address"] = binding.outputCustDeliveryAddress.text.toString()
                             deliveryStatusNew["TotalAmount"] = snap2.child("totalAmount").value as String
