@@ -34,27 +34,27 @@
             app:layout_constraintTop_toBottomOf="@+id/request_delivery_address" />
 
         <TextView
-        android:id="@+id/request_order_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="ID"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/label_id2"
-        app:layout_constraintTop_toBottomOf="@+id/request_total_quantity" />
+            android:id="@+id/request_order_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="ID"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/label_id2"
+            app:layout_constraintTop_toBottomOf="@+id/request_total_quantity" />
 
-    <TextView
-        android:id="@+id/label_id2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="10dp"
-        android:text="Order ID: "
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+        <TextView
+            android:id="@+id/label_id2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
+            android:text="Order ID: "
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView63" />
 
     <ImageView
         android:id="@+id/request_image"
@@ -196,33 +196,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-    <TextView
-        android:id="@+id/request_total_quantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Quantity"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        app:layout_constraintStart_toEndOf="@+id/textView17"
-        app:layout_constraintTop_toBottomOf="@+id/request_warranty" />
+        <TextView
+            android:id="@+id/request_total_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Quantity"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/textView63"
+            app:layout_constraintTop_toBottomOf="@+id/request_total_quantity_show" />
 
-    <ImageView
-        android:id="@+id/remove_quantity"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="10dp"
-        android:clickable="true"
-        android:src="@drawable/ic_baseline_remove_circle_outline_24"
-        app:layout_constraintStart_toEndOf="@+id/request_total_quantity"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        <ImageView
+            android:id="@+id/remove_quantity"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:clickable="true"
+            android:src="@drawable/ic_baseline_remove_circle_outline_24"
+            app:layout_constraintStart_toEndOf="@+id/request_total_quantity"
+            app:layout_constraintTop_toTopOf="@+id/request_total_quantity"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-    <TextView
+        <TextView
         android:id="@+id/textView35"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -267,6 +266,29 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/textView47" />
+
+        <TextView
+            android:id="@+id/textView63"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="10dp"
+            android:text="Quantity to return: "
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+        <TextView
+            android:id="@+id/request_total_quantity_show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Quantity"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/textView17"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

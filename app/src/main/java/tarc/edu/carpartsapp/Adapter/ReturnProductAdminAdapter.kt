@@ -103,6 +103,7 @@ class ReturnProductAdminAdapter: RecyclerView.Adapter<ReturnProductAdminAdapter.
                // putString("order_time",order_time.toString())
                 putString("img_url",img_url.toString())
                 putString("uid",uid)
+                putString("deliveredDate", delivered_date.toString())
             })
     }
 

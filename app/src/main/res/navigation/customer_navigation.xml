@@ -216,6 +216,9 @@
         <action
             android:id="@+id/action_nav_requestReturnProduct_customer_to_nav_returnProductCreditCard_customer"
             app:destination="@id/nav_returnProductCreditCard_customer" />
+        <action
+            android:id="@+id/action_nav_requestReturnProduct_customer_to_nav_itemDelivered_customer"
+            app:destination="@id/nav_itemDelivered_customer" />
     </fragment>
     <fragment
         android:id="@+id/nav_returnProductCreditCard_customer"

@@ -105,7 +105,7 @@ try {
         requestOptions.signature(ObjectKey(System.currentTimeMillis()))
         Glide.with(this).load(profilePic).apply(requestOptions).into(imageView)
     }
-}catch (e:Exception){
+}catch (e:NullPointerException){
 
 }
         }

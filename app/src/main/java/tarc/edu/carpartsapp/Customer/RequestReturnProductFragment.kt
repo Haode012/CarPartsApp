@@ -1,14 +1,20 @@
 package tarc.edu.carpartsapp.Customer
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.FragmentRequestReturnProductBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -54,6 +60,7 @@ class RequestReturnProductFragment : Fragment() {
         binding.requestId.setText(id)
         binding.requestName.setText(name)
         binding.requestWarranty.setText(warranty)
+        binding.requestTotalQuantityShow.setText(total_quantity)
         binding.requestTotalQuantity.setText(total_quantity)
         binding.requestOrderId.setText(order_id)
         binding.requestDeliveryDate.setText(delivered_date)
@@ -67,6 +74,7 @@ class RequestReturnProductFragment : Fragment() {
                 totalQuantity--
                 binding.requestTotalQuantity.text = totalQuantity.toString()
             }
+
         }
 
 
@@ -117,6 +125,108 @@ class RequestReturnProductFragment : Fragment() {
                 } else {
                 }
             }
+
+            val method = requireArguments().getString("method").toString()
+
+            if(method == "cash"){
+                editData()
+            } else {
+                editData2()
             }
+
+            findNavController().navigate(R.id.action_nav_requestReturnProduct_customer_to_nav_itemDelivered_customer)
         }
-}
+        }
+
+    private fun editData2() {
+        var totalQuantityShow = binding.requestTotalQuantityShow.text.toString().trim().toInt()
+        var totalQuantity = binding.requestTotalQuantity.text.toString().trim().toInt()
+        val deliveryId = binding.requestDeliveryId.text.toString().trim()
+        val id = binding.requestId.text.toString().trim()
+        var totalQuantityEdited = totalQuantityShow - totalQuantity
+        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+
+        val hashMap4 = HashMap<String, Any>()
+        hashMap4["quantity"] = "$totalQuantityEdited"
+        val ref2 = FirebaseDatabase.getInstance().getReference("Delivered Item(Credit Card Payment)")
+        ref2.addValueEventListener(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for(snap in snapshot.children){
+                    if(snap.key.toString().equals(userId.toString())) {
+//                       Toast.makeText(context, snap.key.toString(), Toast.LENGTH_SHORT).show()
+                        for(snap2 in snap.children) {
+                            if (snap2.key.toString().equals(deliveryId.toString())) {
+                                for(snap3 in snap2.children) {
+                                    if (snap3.key.toString().equals((id.toString()))) {
+                                        if (totalQuantityEdited != 0) {
+                                            // Update the data using the updateChildren() method
+                                            ref2.child(snap.key!!).child(snap2.key!!)
+                                                .child(snap3.key!!).updateChildren(hashMap4)
+                                        } else {
+                                            ref2.child(snap.key!!).child(snap2.key!!)
+                                                .child(snap3.key!!).removeValue()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    private fun editData() {
+        var totalQuantityShow = binding.requestTotalQuantityShow.text.toString().trim().toInt()
+        var totalQuantity = binding.requestTotalQuantity.text.toString().trim().toInt()
+        val deliveryId = binding.requestDeliveryId.text.toString().trim()
+        val id = binding.requestId.text.toString().trim()
+        var totalQuantityEdited = totalQuantityShow - totalQuantity
+        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+
+            val hashMap3 = HashMap<String, Any>()
+            hashMap3["quantity"] = "$totalQuantityEdited"
+            val ref = FirebaseDatabase.getInstance().getReference("Delivered Items")
+        ref.addValueEventListener(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+               for(snap in snapshot.children){
+                   if(snap.key.toString().equals(userId.toString())) {
+//                       Toast.makeText(context, snap.key.toString(), Toast.LENGTH_SHORT).show()
+                       for(snap2 in snap.children) {
+                           if (snap2.key.toString().equals(deliveryId.toString())) {
+                               for(snap3 in snap2.children) {
+                                   if (snap3.key.toString().equals((id.toString()))) {
+                                       if (totalQuantityEdited != 0) {
+                                           // Update the data using the updateChildren() method
+                                           ref.child(snap.key!!).child(snap2.key!!)
+                                               .child(snap3.key!!).updateChildren(hashMap3)
+                                       } else {
+                                           ref.child(snap.key!!).child(snap2.key!!)
+                                               .child(snap3.key!!).removeValue()
+                                       }
+                                   }
+                               }
+                           }
+                       }
+                   }
+               }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+
+
+
+  }

@@ -180,7 +180,7 @@ class FragmentCustDeliveryStatus : Fragment() {
                             }
                         }
                     }
-                    Toast.makeText(context, test.toString(), Toast.LENGTH_LONG).show()
+//                    Toast.makeText(context, test.toString(), Toast.LENGTH_LONG).show()
                     deliveryStatusProducts.adapter =
                         DeliveryStatusProductsAdapter(deliveryProductsArrayList)
 

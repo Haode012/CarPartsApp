@@ -168,11 +168,9 @@ class MyCartFragment : Fragment() {
         editor.putString("itemList2", json)
         editor.apply()
 
-        val deliveryAddress = binding.outputAddress.text.toString().trim()
-
         findNavController().navigate(R.id.action_nav_myCart_customer_to_nav_creditCard_customer,
         Bundle().apply {
-            putString("deliveryAddress", deliveryAddress)
+            putString("deliveryAddress", binding.outputAddress.text.toString())
          }
         )
     }
@@ -187,11 +185,11 @@ class MyCartFragment : Fragment() {
         editor.putString("itemList", json)
         editor.apply()
 
-        val deliveryAddress = binding.outputAddress.text.toString().trim()
+//        val deliveryAddress = binding.outputAddress.text.toString().trim()
 
         findNavController().navigate(R.id.action_nav_myCart_customer_to_nav_home_customer,
             Bundle().apply {
-                putString("deliveryAddress", deliveryAddress)
+                putString("deliveryAddress", binding.outputAddress.text.toString())
             }
         )
     }

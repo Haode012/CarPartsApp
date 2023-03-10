@@ -18,6 +18,8 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_admin_return_product_decision.*
 import tarc.edu.carpartsapp.databinding.FragmentAdminReturnProductDecisionBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 class FragmentAdminReturnProductDecision : Fragment() {
     private var _binding: FragmentAdminReturnProductDecisionBinding? = null
@@ -34,17 +36,25 @@ class FragmentAdminReturnProductDecision : Fragment() {
 
         _binding = FragmentAdminReturnProductDecisionBinding.inflate(inflater, container, false)
 
+        val currentDate = SimpleDateFormat("MM/dd/yyyy")
+        val currentDate2 = currentDate.format(Calendar.getInstance().time)
+
         val id = requireArguments().getString("id").toString()
         val name = requireArguments().getString("name").toString()
         val warranty = requireArguments().getString("warranty").toString()
         val img_url = requireArguments().getString("img_url").toString()
         val uid = requireArguments().getString("uid").toString()
         val orderId = requireArguments().getString("order_id").toString()
+        val delivered_date = requireArguments().getString("deliveredDate").toString()
+
         binding.outputReturnProductName.text = "Return Product Name: "+ name
         binding.outputWarrantyPeriod.text = "Warranty Period:  " + warranty +" Years"
         binding.outputReturnProductId.text = id
         binding.outputUserId.text = uid
         binding.outputOrderId.text = orderId
+        binding.outputDeliveredItemDate.text = delivered_date
+        binding.outputCDate.text = currentDate2
+
         Glide.with(requireContext()).load(img_url).into(binding.imageView4)
 
         return binding.root
