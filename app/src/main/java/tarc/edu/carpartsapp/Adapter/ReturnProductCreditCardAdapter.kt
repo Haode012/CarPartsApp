@@ -100,6 +100,7 @@ class ReturnProductCreditCardAdapter: RecyclerView.Adapter<ReturnProductCreditCa
                 putString("delivered_date",delivered_date.toString())
                 putString("delivered_time",delivered_time.toString())
                 putString("img_url",img_url.toString())
+                putString("method","credit card")
             })
     }
 

@@ -94,6 +94,9 @@ class DeliveryCreditCardFragment : Fragment() {
                             for (secondChildSnapshot in firstChildSnapshot.children) {
                                 val myOrder = secondChildSnapshot.getValue(MyOrderModel::class.java)
                                 myOrderModelArrayList2.add(myOrder!!)
+
+                                val address = secondChildSnapshot.child("deliveryAddress").value as String
+                                binding.editTextDeliveryAddress.setText(address)
                             }
                         }
                         val context = context

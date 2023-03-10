@@ -89,7 +89,7 @@ try {
         view.textViewUsernameAdmin.text = it.child("fullName").getValue(String::class.java)
         view.textViewEmailAdmin.text = it.child("emailAddress").getValue(String::class.java)
     }
-}catch (e:Exception){
+}catch (e:NullPointerException){
 
 }
     }

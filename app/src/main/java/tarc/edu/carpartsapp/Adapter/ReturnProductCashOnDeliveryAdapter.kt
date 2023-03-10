@@ -86,6 +86,8 @@ Filterable {
         val delivered_time = deliveryModel.deliveredTime
         val img_url = deliveryModel.img_url
 
+
+
         Navigation.findNavController(holder.itemView)
             .navigate(R.id.action_nav_returnProductCashOnDelivery_customer_to_nav_requestReturnProduct_customer, Bundle().apply {
                 putString("deliveryID",deliveryID.toString())
@@ -98,6 +100,7 @@ Filterable {
                 putString("delivered_date",delivered_date.toString())
                 putString("delivered_time",delivered_time.toString())
                 putString("img_url",img_url.toString())
+                putString("method","cash")
             })
     }
 
