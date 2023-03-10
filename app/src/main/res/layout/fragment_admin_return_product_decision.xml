@@ -60,7 +60,7 @@
         android:backgroundTint="#42C333"
         android:text="Accept"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.313"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/outputOrderId" />
 

@@ -71,10 +71,12 @@
 
     <Button
         android:id="@+id/btnCreateDeliveryStatus2"
-        android:layout_width="226dp"
-        android:layout_height="53dp"
+        android:layout_width="260dp"
+        android:layout_height="49dp"
         android:layout_marginTop="48dp"
         android:text="Create Delivery Status"
+        android:backgroundTint="#FDC12A"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.567"
         app:layout_constraintStart_toStartOf="parent"

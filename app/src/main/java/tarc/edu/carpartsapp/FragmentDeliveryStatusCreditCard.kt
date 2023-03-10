@@ -1,5 +1,6 @@
 package tarc.edu.carpartsapp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -78,6 +79,7 @@ class FragmentDeliveryStatusCreditCard : Fragment() {
     }
 
     private fun getProductData() {
+        var total : Double = 0.0
         val orderId = binding.orderIdd.text.toString()
         val database = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
         val ref = database.getReference("Delivery Status")
@@ -88,6 +90,7 @@ class FragmentDeliveryStatusCreditCard : Fragment() {
 
         db.addValueEventListener(object : ValueEventListener {
 
+            @SuppressLint("SetTextI18n")
             override fun onDataChange(snapshot: DataSnapshot) {
                 custDeliveryCreditCardList.clear()
                 if (snapshot.exists()) {
@@ -99,11 +102,13 @@ class FragmentDeliveryStatusCreditCard : Fragment() {
                             if (snap2.child("orderID").value.toString().equals(orderId)) {
                                 test++
                                 binding.address.text =
-                                    snap2.child("DeliveryAddress").value.toString()
+                                    snap2.child("address").value.toString()
                                 binding.datePurchased.text =
                                     snap2.child("dateTime").value.toString()
-                                binding.total.text =
+                                val amount =
                                     snap2.child("TotalAmount").value.toString()
+                                total += amount.toDouble()
+                                binding.total.text = "RM " + total.toString()
                                 binding.status.text = snap2.child("deliveryStatus").value.toString()
                                 //binding.outputOrderId.text = deliverysnaps.child("orderID").value.toString()
                                 //binding.outputDeliveryAddress.text = deliverysnaps.child("deliveryAddress").value.toString()
