@@ -1,5 +1,6 @@
-package tarc.edu.carpartsapp.Admin
+package tarc.edu.carpartsapp
 
+import android.R
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,35 +8,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import tarc.edu.carpartsapp.Model.MyOrderModel
-import tarc.edu.carpartsapp.R
-import tarc.edu.carpartsapp.databinding.FragmentAdminChooseOrderForDeliveryTrackerBinding
-import tarc.edu.carpartsapp.databinding.FragmentCreateDeliveryStatusBinding
-import java.text.SimpleDateFormat
-import java.util.*
+import tarc.edu.carpartsapp.databinding.FragmentCustomerSelectDeliveryTrackerBinding
 
-class FragmentAdminChooseOrderForDeliveryTracker : Fragment() {
+class FragmentCustomerSelectDeliveryTracker : Fragment() {
+    private var _binding: FragmentCustomerSelectDeliveryTrackerBinding? = null
 
-    private var _binding: FragmentAdminChooseOrderForDeliveryTrackerBinding? = null
-    private lateinit var db : DatabaseReference
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
-    val uid : String =""
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
-
+        val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
         val database =
             Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
         val ref = database.getReference("Delivery Tracker Locations")
@@ -45,16 +37,19 @@ class FragmentAdminChooseOrderForDeliveryTracker : Fragment() {
                 val orders: ArrayList<String?> = ArrayList()
                 if (snapshot.exists()) {
                     for (snap in snapshot.children) {
-                        val orderIds = snap.key.toString()
-                        val uids = snap.child("userId").value as String
-                        binding.outputId.text = uids.toString()
-                        orders.add(orderIds)
+                        val userIdDatabase = snap.child("userId").value as String
+                        if (userId.equals(userIdDatabase)) {
+                            val orderIds = snap.key.toString()
+                            orders.add(orderIds)
+                            // }
+
+                        }
                     }
-                    val spinner = binding.spinnerAllOrderId
+                    val spinner = binding.spinnerDelivery
                     val arrayAdapter = activity?.let {
                         ArrayAdapter<String>(
                             it,
-                            android.R.layout.simple_spinner_item,
+                            R.layout.simple_spinner_item,
                             orders
                         )
                     }
@@ -67,19 +62,31 @@ class FragmentAdminChooseOrderForDeliveryTracker : Fragment() {
             }
         })
 
-        _binding = FragmentAdminChooseOrderForDeliveryTrackerBinding.inflate(inflater, container, false)
+        _binding = FragmentCustomerSelectDeliveryTrackerBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnGoToMaps.setOnClickListener {
-            val intent = Intent(context, AdminCreateUpdateDeliveryTrackerLocation::class.java)
-            intent.putExtra("orderID", binding.spinnerAllOrderId.selectedItem.toString())
-            intent.putExtra("uid", binding.outputId.text.toString() )
-            startActivity(intent)
+
+
+        binding.buttonYes.setOnClickListener {
+            try {
+                val intent = Intent(context, DeliveryTrackerMapsActivity::class.java)
+                intent.putExtra("orderID", binding.spinnerDelivery.selectedItem.toString())
+                startActivity(intent)
+            } catch (e: NullPointerException) {
+                Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+            }
         }
+
+
     }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
+}

@@ -249,8 +249,8 @@
         android:label="fragment_delivery_status_credit_card"
         tools:layout="@layout/fragment_delivery_status_credit_card" />
     <fragment
-        android:id="@+id/nav_my_order_delivery_tracker"
-        android:name="tarc.edu.carpartsapp.FragmentCustChooseOrderDeliveryTracker"
-        android:label="fragment_cust_select_order_cash_on_delivery_view_delivery_tracker"
-        tools:layout="@layout/fragment_cust_select_order_cash_on_delivery_view_delivery_tracker" />
+        android:id="@+id/nav_my_order_delivery_tracker_new"
+        android:name="tarc.edu.carpartsapp.FragmentCustomerSelectDeliveryTracker"
+        android:label="fragment_customer_select_delivery_tracker"
+        tools:layout="@layout/fragment_customer_select_delivery_tracker" />
 </navigation>

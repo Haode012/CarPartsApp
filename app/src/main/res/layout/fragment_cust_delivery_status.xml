@@ -23,20 +23,22 @@
             tools:listitem="@layout/customer_view_delivery_status_layout" />
 
         <TextView
-        android:id="@+id/outputOrderIdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView31"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewDeliveryStatusCustomer" />
+            android:id="@+id/outputOrderIdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.569"
+            app:layout_constraintStart_toEndOf="@+id/textView31"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewDeliveryStatusCustomer" />
 
         <TextView
             android:id="@+id/labelDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:textColor="@color/black"
             android:layout_marginTop="24dp"
             android:text="Order Purchased Date"
             android:textSize="14sp"
@@ -49,6 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:textSize="16sp"
+            android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.435"
         app:layout_constraintStart_toEndOf="@+id/labelDate"
@@ -60,27 +63,30 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Total Amount"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/labelHouseAddress"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/labelHouseAddress"
         app:layout_constraintTop_toBottomOf="@+id/labelHouseAddress" />
 
-    <TextView
-        android:id="@+id/outputTotalAmount"
-        android:layout_width="79dp"
-        android:layout_height="17dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="@+id/outputHouseAddress"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="@+id/outputHouseAddress"
-        app:layout_constraintTop_toBottomOf="@+id/outputHouseAddress" />
+        <TextView
+            android:id="@+id/outputTotalAmount"
+            android:layout_width="79dp"
+            android:layout_height="17dp"
+            android:layout_marginTop="28dp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.59"
+            app:layout_constraintStart_toEndOf="@+id/labelAmount"
+            app:layout_constraintTop_toBottomOf="@+id/outputHouseAddress" />
 
-    <TextView
+        <TextView
         android:id="@+id/labelHouseAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="House Address"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/labelDate"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/labelDate"
@@ -91,6 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/outputPurchasedDate"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/outputPurchasedDate"
@@ -102,6 +109,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:text="@string/deliveryStatus"
+        android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/labelAmount"
         app:layout_constraintHorizontal_bias="0.0"
@@ -112,9 +120,10 @@
             android:id="@+id/outputDeliveryStatusnew"
             android:layout_width="256dp"
             android:layout_height="45dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="36dp"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.624"
+            app:layout_constraintHorizontal_bias="0.866"
             app:layout_constraintStart_toEndOf="@+id/labelCustDeliveryStatus"
             app:layout_constraintTop_toBottomOf="@+id/outputTotalAmount" />
 
@@ -124,6 +133,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="Order ID"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.019"
             app:layout_constraintStart_toStartOf="parent"
@@ -135,6 +145,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:text="Complete"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/labelCustDeliveryStatus" />

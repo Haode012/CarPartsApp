@@ -48,7 +48,7 @@ class CreateDeliveryStatus : Fragment() {
         val args = this.arguments
         val inputData = args?.get("name")
        // val orderId = binding.editTextTextMultiLine
-        binding.editTextTextMultiLine.setText(inputData.toString())
+        //binding.editTextTextMultiLine.setText(inputData.toString())
         //var date = binding.textViewDate.text
         val dateNow = Calendar.getInstance().time
         val deliveryStatus = binding.editTextTextMultiLine.text.toString()
@@ -60,35 +60,13 @@ class CreateDeliveryStatus : Fragment() {
         val ref = databaseNew.getReference().child("OrderItem(Cash On Delivery) Duplicate")
         val key = ref.key.toString()
 
-//        ref.addListenerForSingleValueEvent(object : ValueEventListener{
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                if (snapshot.exists()) {
-//                    for (snap in snapshot.children) {
-//                        if(snap.child("orderID").value.toString().equals(binding.spinnerOrder.selectedItem.toString())) {
-//                            val userID = snap.child("userId")
-//                                .getValue(String::class.java)
-//                            binding.outputUserid.setText(userID)
-//                            val dateOfOrder = snap.child("Date of Order Placed").value as String
-//                            binding.outputDateOrder.text = dateOfOrder
-//                            val deliveryAddress = snap.child("Delivery Address").value as String
-//                            binding.outputCustDeliveryAddress.text = deliveryAddress
-//
-//                        }
-//                    }
-//                }
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                TODO("Not yet implemented")
-//            }
-//
-//        })
 
         val database =
             Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
         val databaseReference = database.getReference("OrderItem(Cash On Delivery) Duplicate")
         //val key = databaseReference.push().key.toString()
         databaseReference.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("SuspiciousIndentation")
             override fun onDataChange(snapshot: DataSnapshot) {
                 val orders: ArrayList<String?> = ArrayList()
                 if (snapshot.exists()) {
@@ -123,8 +101,8 @@ class CreateDeliveryStatus : Fragment() {
                             p2: Int,
                             p3: Long
                         ) {
-                            val database = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
-                            val ref = database.getReference("OrderItem(Cash On Delivery) Duplicate")
+                            //val database = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                            //val ref = database.getReference("OrderItem(Cash On Delivery) Duplicate")
                             ref.addValueEventListener(object : ValueEventListener{
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     for (snap in snapshot.children) {
@@ -185,8 +163,11 @@ class CreateDeliveryStatus : Fragment() {
 
         binding.buttonCreate.setOnClickListener {
             //deliveryStatuss()
+            try{
             storeDeliveryStatus()
             deleteOrderId()
+        }catch (e: NullPointerException){
+        }
         }
 
 
@@ -315,7 +296,7 @@ class CreateDeliveryStatus : Fragment() {
                             try {
                                 databaseReference.child(key66).setValue(deliveryStatusNew)
                             } catch (e: Exception) {
-                                //   Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                                   Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
                             }
                         }
                     }

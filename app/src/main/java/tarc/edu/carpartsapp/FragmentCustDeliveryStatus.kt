@@ -163,7 +163,7 @@ class FragmentCustDeliveryStatus : Fragment() {
                         for (snap2 in snap.children) {
                             if (snap2.child("orderID").value.toString().equals(orderId)) {
                                 test++
-                                binding.labelHouseAddress.text =
+                                binding.outputHouseAddress.text =
                                     snap2.child("address").value.toString()
                                 binding.outputPurchasedDate.text =
                                     snap2.child("dateTime").value.toString()

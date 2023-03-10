@@ -70,8 +70,18 @@ class AdminUpdateDeliveryStatus : Fragment() {
                                 //updated here
                                 val id = snap2.key.toString()
                                 //updated here
-                                ref.child(key).child(id).child("deliveryStatus").setValue(status)
-                                Toast.makeText(context, "Delivery Status Updated", Toast.LENGTH_LONG).show()
+                                try {
+                                    ref.child(key).child(id).child("deliveryStatus")
+                                        .setValue(status)
+                                    Toast.makeText(
+                                        context,
+                                        "Delivery Status Updated",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }catch(e: Exception){
+                                    Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                                }
+
                             } else {
                                 Toast.makeText(context, "Error", Toast.LENGTH_LONG).show()
                             }

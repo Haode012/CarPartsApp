@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#FFEE82"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#E2E2E2">
 
     <ImageView
         android:id="@+id/productImageView"
@@ -23,6 +23,7 @@
         android:layout_height="47dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
+        android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/guideline4" />
@@ -32,6 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="144dp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/textView30"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="@+id/textView30"
@@ -42,6 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/textView28"
         app:layout_constraintHorizontal_bias="0.274"
         app:layout_constraintStart_toEndOf="@+id/productImageView"
@@ -75,6 +78,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Product Name"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
@@ -84,6 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Quantity"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintHorizontal_bias="0.039"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -95,6 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:text="Amount"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintHorizontal_bias="0.943"
         app:layout_constraintStart_toStartOf="@+id/guideline"
