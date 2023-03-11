@@ -1,5 +1,6 @@
 package tarc.edu.carpartsapp.Customer
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -37,6 +38,7 @@ class CarPartDetailsFragment : Fragment() {
         return root
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -72,39 +74,44 @@ class CarPartDetailsFragment : Fragment() {
             }
         }
 
-        binding.buttonAddToCart.setOnClickListener{
-            var totalQuantity = binding.quantity.text.toString().trim().toInt()
+        binding.buttonAddToCart.setOnClickListener {
+            try {
+                var totalQuantity = binding.quantity.text.toString().trim().toInt()
 
-            var totalPrice = price.toDouble() * totalQuantity
-            var formattedPrice = String.format("%.2f", totalPrice)
+                var totalPrice = price.toDouble() * totalQuantity
+                var formattedPrice = String.format("%.2f", totalPrice)
 
-            val currentDate = SimpleDateFormat("MM/dd/yyyy")
-            val saveCurrentDate = currentDate.format(Calendar.getInstance().time)
+                val currentDate = SimpleDateFormat("MM/dd/yyyy")
+                val saveCurrentDate = currentDate.format(Calendar.getInstance().time)
 
-            val currentTime = SimpleDateFormat("HH:mm:ss")
-            val saveCurrentTime = currentTime.format(Calendar.getInstance().time)
+                val currentTime = SimpleDateFormat("HH:mm:ss")
+                val saveCurrentTime = currentTime.format(Calendar.getInstance().time)
 
-            val hashMap = HashMap<String, Any>()
-            hashMap["uid"] = FirebaseAuth.getInstance().currentUser!!.uid
-            hashMap["id"] = "$id"
-            hashMap["name"] = "$name"
-            hashMap["price"] = "$price"
-            hashMap["warranty"] = "$warranty"
-            hashMap["total_price"] = "$formattedPrice"
-            hashMap["total_quantity"] = "$totalQuantity"
-            hashMap["img_url"] = "$img_url"
-            hashMap["currentDate"] = "$saveCurrentDate"
-            hashMap["currentTime"] = "$saveCurrentTime"
+                val hashMap = HashMap<String, Any>()
+                hashMap["uid"] = FirebaseAuth.getInstance().currentUser!!.uid
+                hashMap["id"] = "$id"
+                hashMap["name"] = "$name"
+                hashMap["price"] = "$price"
+                hashMap["warranty"] = "$warranty"
+                hashMap["total_price"] = "$formattedPrice"
+                hashMap["total_quantity"] = "$totalQuantity"
+                hashMap["img_url"] = "$img_url"
+                hashMap["currentDate"] = "$saveCurrentDate"
+                hashMap["currentTime"] = "$saveCurrentTime"
 
-            val database = FirebaseDatabase.getInstance()
-            val reference = database.getReference("CartItem")
-                reference.child(FirebaseAuth.getInstance().currentUser!!.uid).child(id).setValue(hashMap).addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Toast.makeText(requireContext(), "Added to Cart", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(requireContext(), "Failed to Add", Toast.LENGTH_SHORT).show()
+                val database = FirebaseDatabase.getInstance()
+                val reference = database.getReference("CartItem")
+                reference.child(FirebaseAuth.getInstance().currentUser!!.uid).child(id)
+                    .setValue(hashMap).addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(context, "Added to Cart", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(context, "Failed to Add", Toast.LENGTH_SHORT).show()
+                        }
                     }
-                }
+            } catch (e: IllegalStateException) {
+
             }
+        }
         }
 }

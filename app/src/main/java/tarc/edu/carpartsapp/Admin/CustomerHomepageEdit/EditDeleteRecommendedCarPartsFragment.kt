@@ -74,7 +74,7 @@ class EditDeleteRecommendedCarPartsFragment : Fragment() {
                 binding.editTextRecommendedCarPartName.error =
                     "Car part name must have at least three character"
             } else if (!name.matches(Regex("^[a-zA-Z].*$")) || !name.matches(Regex("^[a-zA-Z][a-zA-Z].*$")) || !name.matches(Regex("^[a-zA-Z][a-zA-Z][a-zA-Z].*$"))) {
-                binding.editTextRecommendedCarPartDescription.error =
+                binding.editTextRecommendedCarPartName.error =
                     "Car part name must start with three letter"
             } else if(description.isEmpty()){
                 binding.editTextRecommendedCarPartDescription.error = "Enter the car part description"
@@ -125,16 +125,16 @@ class EditDeleteRecommendedCarPartsFragment : Fragment() {
 
 
     private fun editImage(uri: Uri, id: String, callback: (String) -> Unit) {
-        val fileRef = reference.child("$id.${getFileExtension(uri)}")
-        fileRef.putFile(uri).addOnSuccessListener { taskSnapshot ->
-            fileRef.downloadUrl.addOnSuccessListener { downloadUrl ->
-                callback(downloadUrl.toString())
-                Toast.makeText(requireContext(), "Edited Image Successfully", Toast.LENGTH_SHORT).show()
+            val fileRef = reference.child("$id.${getFileExtension(uri)}")
+            fileRef.putFile(uri).addOnSuccessListener { taskSnapshot ->
+                fileRef.downloadUrl.addOnSuccessListener { downloadUrl ->
+                    callback(downloadUrl.toString())
+                    Toast.makeText(context, "Edited Image Successfully", Toast.LENGTH_SHORT).show()
+                }
+            }.addOnProgressListener { snapshot ->
+            }.addOnFailureListener { e ->
+                Toast.makeText(context, "Editing Image Failed !!", Toast.LENGTH_SHORT).show()
             }
-        }.addOnProgressListener { snapshot ->
-        }.addOnFailureListener { e ->
-            Toast.makeText(requireContext(), "Editing Image Failed !!", Toast.LENGTH_SHORT).show()
-        }
     }
 
     private fun deleteData(id: String) {

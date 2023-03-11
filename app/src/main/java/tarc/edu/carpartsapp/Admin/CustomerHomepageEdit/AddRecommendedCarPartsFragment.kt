@@ -63,7 +63,7 @@ class AddRecommendedCarPartsFragment : Fragment() {
                 binding.editTextRecommendedCarPartName.error =
                     "Car part name must have at least three character"
             } else if (!name.matches(Regex("^[a-zA-Z].*$")) || !name.matches(Regex("^[a-zA-Z][a-zA-Z].*$")) || !name.matches(Regex("^[a-zA-Z][a-zA-Z][a-zA-Z].*$"))) {
-                binding.editTextRecommendedCarPartDescription.error =
+                binding.editTextRecommendedCarPartName.error =
                     "Car part name must start with three letter"
             } else if(description.isEmpty()){
                 binding.editTextRecommendedCarPartDescription.error = "Enter the car part description"
