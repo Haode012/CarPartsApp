@@ -116,10 +116,14 @@ class CreditCardFragment : Fragment() {
                 binding.editTextExpirationDateMonth.error = "Month cannot be blank"
             } else if (!expirationDateMonth.matches(Regex("^\\d{2}$"))) {
                 binding.editTextExpirationDateMonth.error = "Month must be 2 digits and no letters"
+            } else if (!expirationDateMonth.matches(Regex("^(0[1-9]|1[0-2])$"))) {
+                    binding.editTextExpirationDateMonth.error = "Month must be in the format MM (01-12)"
             } else if (expirationDateYear.isEmpty()) {
                 binding.editTextExpirationDateYear.error = "Year cannot be blank"
             } else if (!expirationDateYear.matches(Regex("^\\d{2}$"))) {
                 binding.editTextExpirationDateYear.error = "Year must be 2 digits and no letters"
+            } else if (expirationDateYear.toInt() < 24) {
+                binding.editTextExpirationDateYear.error = "Year must be more than 24"
             } else if (CVV.isEmpty()) {
                 binding.editTextCVV.error = "CVV cannot be blank"
             } else if (!CVV.matches(Regex("^\\d{3}$"))) {

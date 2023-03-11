@@ -266,7 +266,7 @@ class HomeCustomerFragment : Fragment() {
                             Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
                         }
 
-                        Toast.makeText(requireContext(), "Your Order Has Been Placed", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Process Payment Successful, Your Order Has Been Placed", Toast.LENGTH_SHORT).show()
 
                         val sharedPref3 = requireActivity().getSharedPreferences("MyPref3", Context.MODE_PRIVATE) ?: return@addOnCompleteListener
                         val editor3 = sharedPref3.edit()
