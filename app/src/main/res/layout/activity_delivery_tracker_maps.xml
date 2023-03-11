@@ -10,6 +10,7 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:textSize="20sp"
+        android:text="Exit Delivery Tracker Map"
         tools:ignore="SpeakableTextPresentCheck">
 
     </Button>

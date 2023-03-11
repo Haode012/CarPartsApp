@@ -137,7 +137,7 @@ class RegistrationFragment : Fragment() {
                 }
             }
     }catch (e: Exception) {
-                Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Please fill up all the fields in the form", Toast.LENGTH_SHORT).show()
         }    }
 
     private fun userProfile(userId: String){

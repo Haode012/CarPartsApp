@@ -2,6 +2,7 @@ package tarc.edu.carpartsapp.Admin
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
@@ -26,6 +27,7 @@ import com.google.firebase.ktx.Firebase
 import tarc.edu.carpartsapp.R
 import tarc.edu.carpartsapp.databinding.ActivityAdminCreateUpdateDeliveryTrackerLocationBinding
 import java.io.IOException
+import java.lang.Exception
 import java.util.*
 
 
@@ -64,11 +66,17 @@ class AdminCreateUpdateDeliveryTrackerLocation : AppCompatActivity(), OnMapReady
             Firebase.database("https://mapstesting-4184b-default-rtdb.asia-southeast1.firebasedatabase.app/")
         val ref = database.getReference("Delivery Order Locations")
 
-        val orderId = intent.getStringExtra("orderID").toString()
-        Toast.makeText(this, orderId, Toast.LENGTH_LONG).show()
+       // val orderId = intent.getStringExtra("orderID").toString()
+        //Toast.makeText(this, orderId, Toast.LENGTH_LONG).show()
 
         binding.btnSavelocation.setOnClickListener {
             storeLocations()
+        }
+
+        binding.buttonExitMap.setOnClickListener {
+            val intent = Intent(this, AdminActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
@@ -118,21 +126,17 @@ class AdminCreateUpdateDeliveryTrackerLocation : AppCompatActivity(), OnMapReady
                             longitude.toString()
                         val locationn = "Location" + count.toString()
                         //orderDeliveryLocation["location"] = newlatLng.toString()
+                        try {
                         db.child(key).child(userId).push()
                             .setValue(orderDeliveryLocation)
-                        // }else{
-                        Toast.makeText(
-                            this@AdminCreateUpdateDeliveryTrackerLocation,
-                            "No",
-                            Toast.LENGTH_LONG
-                        ).show()
-                        // }
-
-
+                            Toast.makeText(this@AdminCreateUpdateDeliveryTrackerLocation, "Location Added", Toast.LENGTH_SHORT).show()
+                        } catch (e: Exception) {
+                            Toast.makeText(this@AdminCreateUpdateDeliveryTrackerLocation, e.message, Toast.LENGTH_SHORT).show()
+                        }
                     } else {
                         Toast.makeText(
                             this@AdminCreateUpdateDeliveryTrackerLocation, "Not Matching Order",
-                            Toast.LENGTH_LONG
+                            Toast.LENGTH_SHORT
                         ).show()
                     }
                 }
@@ -189,7 +193,7 @@ class AdminCreateUpdateDeliveryTrackerLocation : AppCompatActivity(), OnMapReady
                 //Toast.makeText(this@AdminCreateUpdateDeliveryTrackerLocation, newlatLng.toString(), Toast.LENGTH_LONG).show()
                 moveMarket(newlatLng)
 
-                val orderId = intent.getStringExtra("orderID").toString()
+                //val orderId = intent.getStringExtra("orderID").toString()
 
                 }
             override fun onMarkerDrag(marker: Marker) {}

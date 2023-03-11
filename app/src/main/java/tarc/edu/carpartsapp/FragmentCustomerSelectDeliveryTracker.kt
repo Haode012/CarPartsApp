@@ -77,7 +77,7 @@ class FragmentCustomerSelectDeliveryTracker : Fragment() {
                 intent.putExtra("orderID", binding.spinnerDelivery.selectedItem.toString())
                 startActivity(intent)
             } catch (e: NullPointerException) {
-                Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Delivery tracker not found ", Toast.LENGTH_SHORT).show()
             }
         }
 
