@@ -78,7 +78,7 @@ class EditDeletePopularCarPartsFragment : Fragment() {
                 binding.editTextPopularCarPartName.error =
                     "Car part name must have at least three character"
             } else if (!name.matches(Regex("^[a-zA-Z].*$")) || !name.matches(Regex("^[a-zA-Z][a-zA-Z].*$")) || !name.matches(Regex("^[a-zA-Z][a-zA-Z][a-zA-Z].*$"))) {
-                binding.editTextPopularCarPartDescription.error = "Car part name must start with three letter"
+                binding.editTextPopularCarPartName.error = "Car part name must start with three letter"
             }else if(description.isEmpty()){
                 binding.editTextPopularCarPartDescription.error = "Enter the car part description"
             } else if (description.length < 3) {
