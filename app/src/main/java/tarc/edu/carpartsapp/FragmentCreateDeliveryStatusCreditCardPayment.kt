@@ -185,9 +185,15 @@ class FragmentCreateDeliveryStatusCreditCardPayment : Fragment() {
 //        }
 
         binding.btnCreateDeliveryStatus2.setOnClickListener {
-            //deliveryStatuss()
-            storeDeliveryStatus()
-            //    deleteOrderId()
+            try {
+                if (validate()) {
+                    storeDeliveryStatus()
+                }
+                //deliveryStatuss()
+                //    deleteOrderId()
+            }catch (e: NullPointerException){
+
+            }
         }
 
 
@@ -243,6 +249,7 @@ class FragmentCreateDeliveryStatusCreditCardPayment : Fragment() {
 //        databaseReference.addValueEventListener(listener)
     }
 
+
     private fun deleteOrderId() {
         val spinners = binding.spinnerCreditCardOrderId
         val selectedId = spinners.selectedItem.toString()
@@ -269,6 +276,16 @@ class FragmentCreateDeliveryStatusCreditCardPayment : Fragment() {
             }
         })
 
+    }
+
+    private fun validate():Boolean{
+        val delivery = binding.deliveryStatusMessage.text
+
+        if(delivery.isNullOrEmpty()){
+            Toast.makeText(context, "Please enter the delivery status", Toast.LENGTH_LONG).show()
+            return false
+        }
+        return true
     }
 
     private fun deliveryStatuss() {

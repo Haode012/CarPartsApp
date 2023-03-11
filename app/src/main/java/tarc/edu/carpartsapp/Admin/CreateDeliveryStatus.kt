@@ -159,16 +159,20 @@ class CreateDeliveryStatus : Fragment() {
             }
         })
 
+
         // hide some details to not view on layout
 
         binding.buttonCreate.setOnClickListener {
             //deliveryStatuss()
             try{
-            storeDeliveryStatus()
-            deleteOrderId()
+                if(validate()){
+                    storeDeliveryStatus()
+                    deleteOrderId()
+                }
         }catch (e: NullPointerException){
         }
         }
+
 
 
         //val orders: List<String> = ArrayList()
@@ -221,6 +225,17 @@ class CreateDeliveryStatus : Fragment() {
 //            }
 //        }
 //        databaseReference.addValueEventListener(listener)
+    }
+
+
+    private fun validate():Boolean{
+        val delivery = binding.editTextTextMultiLine.text
+
+        if(delivery.isNullOrEmpty()){
+            Toast.makeText(context, "Please enter the delivery status", Toast.LENGTH_LONG).show()
+            return false
+        }
+        return true
     }
 
     private fun deleteOrderId() {

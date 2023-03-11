@@ -302,7 +302,7 @@ class FragmentCustDeliveryStatus : Fragment() {
             try {
                 databaseReference2.setValue(feedbackDelivery)
                 Toast.makeText(context, ratings.toString(), Toast.LENGTH_LONG).show()
-            } catch (e: java.lang.Exception) {
+            } catch (e: NullPointerException) {
                 Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
             }
     }
