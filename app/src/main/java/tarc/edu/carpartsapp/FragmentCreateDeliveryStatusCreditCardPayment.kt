@@ -120,9 +120,9 @@ class FragmentCreateDeliveryStatusCreditCardPayment : Fragment() {
                             p2: Int,
                             p3: Long
                         ) {
-                            val database = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
-                            val ref = database.getReference("PaymentDetails Duplicate")
-                            ref.addValueEventListener(object : ValueEventListener {
+                            val databases = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                            val ref2 = databases.getReference("PaymentDetails Duplicate")
+                            ref2.addValueEventListener(object : ValueEventListener {
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     for (snap in snapshot.children) {
                                         for (snap2 in snap.children) {
@@ -188,6 +188,7 @@ class FragmentCreateDeliveryStatusCreditCardPayment : Fragment() {
             try {
                 if (validate()) {
                     storeDeliveryStatus()
+                    deleteOrderId()
                 }
                 //deliveryStatuss()
                 //    deleteOrderId()

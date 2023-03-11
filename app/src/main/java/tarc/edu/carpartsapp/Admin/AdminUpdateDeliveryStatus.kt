@@ -78,8 +78,8 @@ class AdminUpdateDeliveryStatus : Fragment() {
                                         "Delivery Status Updated",
                                         Toast.LENGTH_LONG
                                     ).show()
-                                }catch(e: Exception){
-                                    Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                                }catch(e: NullPointerException){
+                                    Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
                                 }
 
                             } else {

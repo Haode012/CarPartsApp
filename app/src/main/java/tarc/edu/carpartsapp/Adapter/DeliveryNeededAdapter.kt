@@ -47,7 +47,7 @@ class DeliveryNeededAdapter(private val deliveriesList: ArrayList<Deliveries>) :
             val fragment = AdminUpdateDeliveryStatus()
             bundle.putString("name", currentItem.name)
             fragment.arguments = bundle
-            Navigation.findNavController(it).navigate(R.id.action_fragmentViewAllDelivery_to_createDeliveryStatus2, bundle)
+            //Navigation.findNavController(it).navigate(R.id.action_fragmentViewAllDelivery_to_createDeliveryStatus2, bundle)
             }
         }
 

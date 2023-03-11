@@ -1,6 +1,6 @@
 package tarc.edu.carpartsapp.Admin
 
-import android.R
+
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
@@ -295,7 +296,7 @@ class CreateDeliveryStatus : Fragment() {
 //                        Toast.makeText(context, prodId, Toast.LENGTH_LONG).show()
                         for(snap2 in snap.children){
                             val key66 = snap2.key.toString()
-                              Toast.makeText(context, key66, Toast.LENGTH_LONG).show()
+                              //Toast.makeText(context, key66, Toast.LENGTH_LONG).show()
                             deliveryStatusNew["orderID"] = spinner
                             deliveryStatusNew["deliveryStatus"] = deliveryStatus
                             deliveryStatusNew["dateTime"] = dateNow.toString()
@@ -311,8 +312,9 @@ class CreateDeliveryStatus : Fragment() {
                             try {
                                 databaseReference.child(key66).setValue(deliveryStatusNew)
                             } catch (e: Exception) {
-                                   Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                                   Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
                             }
+
                         }
                     }
                 }
