@@ -40,9 +40,10 @@ class RegistrationFragment : Fragment() {
         userProfile = HashMap()
 
         binding.button.setOnClickListener{
-            validateInput()
             //createUserProfile()
-            performRegister()
+            if(validateInput()){
+                performRegister()
+            }
         }
 
         return binding.root
@@ -55,6 +56,7 @@ class RegistrationFragment : Fragment() {
         val dateOfBirth = binding.editTextDate.text.toString()
         val email = binding.editTextEmail.text.toString()
         val passwd = binding.editTextPasswd.text.toString()
+        val group = binding.genderType.checkedRadioButtonId
         val male = binding.radioButtonMale
         val female = binding.radioButtonFemale
 
@@ -88,12 +90,14 @@ class RegistrationFragment : Fragment() {
             binding.editTextAddress.error = "Address must be entered"
             return false
         }
-        if(!male.isChecked){
+        if(group == -1){
             Toast.makeText(context, "Please select your gender", Toast.LENGTH_LONG).show()
+            return false
         }
-        if(!female.isChecked){
-            Toast.makeText(context, "Please select your gender", Toast.LENGTH_LONG).show()
-        }
+//        if(!female.isChecked){
+//            Toast.makeText(context, "Please select your gender", Toast.LENGTH_LONG).show()
+//            return false
+//        }
         return true
     }
 
@@ -125,10 +129,12 @@ class RegistrationFragment : Fragment() {
                             "Customer"
 
                         ))
-                    }else{
+                    }else if(binding.radioButtonFemale.isChecked){
                         ref.child(firebaseUser.uid).setValue(Users("$fullName", "$email", "$address",
                             "$phoneNum", "$dateOfBirth", "Female",
                             "Customer"))
+                    }else{
+                        Toast.makeText(context, "Please select gender", Toast.LENGTH_SHORT).show()
                     }
                     Toast.makeText(context, "Register Successfully", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)

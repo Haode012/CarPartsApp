@@ -260,7 +260,7 @@ class FragmentCustDeliveryStatus : Fragment() {
                                 buttonRate.setOnClickListener {
                                     val ratingBar = dialog.findViewById<RatingBar>(R.id.ratingBarRate)
                                     val ratings = ratingBar.rating
-                                    Toast.makeText(context, ratingBar.rating.toString(), Toast.LENGTH_LONG).show()
+                                   // Toast.makeText(context, ratingBar.rating.toString(), Toast.LENGTH_LONG).show()
                                     saveDeliveryFeedback(ratings)
                                     dialog.dismiss()
                                     findNavController().navigate(R.id.action_fragmentCustDeliveryStatus_to_nav_home_customer)

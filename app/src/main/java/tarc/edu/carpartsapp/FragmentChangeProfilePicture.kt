@@ -83,10 +83,12 @@ class FragmentChangeProfilePicture : Fragment() {
                     val databaseReference =
                         FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
                             .getReference("Users/$userId")
-                    databaseReference.child("profilePicture").setValue(imageMap)
-                    findNavController().navigate(R.id.action_fragmentChangeProfilePicture_to_nav_profile_customer)
-                    Toast.makeText(context, "Profile Picture Updated", Toast.LENGTH_LONG).show()
-
+                    try {
+                        databaseReference.child("profilePicture").setValue(imageMap)
+                        findNavController().navigate(R.id.action_fragmentChangeProfilePicture_to_nav_profile_customer)
+                        Toast.makeText(context, "Profile Picture Updated", Toast.LENGTH_LONG).show()
+                    }catch (e: NullPointerException){
+                    }
                 }
 
             }
