@@ -64,7 +64,7 @@ class FragmentAdminUpdateDeliveryStatusCreditCard : Fragment() {
         val database =
             Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
         val ref = database.getReference("Delivery Status(Credit Card Payment)")
-        ref.addValueEventListener(object : ValueEventListener {
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (snap in snapshot.children) {
                     //updated here

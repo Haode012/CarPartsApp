@@ -65,7 +65,7 @@ class AdminUpdateDeliveryStatus : Fragment() {
             val deliveryId = binding.outputDeliveryOrderId.text.toString()
             val database = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
             val ref = database.getReference("Delivery Status")
-            ref.addValueEventListener(object :ValueEventListener{
+            ref.addListenerForSingleValueEvent(object :ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for (snap in snapshot.children) {
                         //updated here

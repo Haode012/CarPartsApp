@@ -388,6 +388,9 @@
         <action
             android:id="@+id/action_fragmentAdminUpdateDeliveryStatusCreditCard_to_fragmentAdminViewAllDeliveryStatusCreditCard"
             app:destination="@id/fragmentAdminViewAllDeliveryStatusCreditCard" />
+        <action
+            android:id="@+id/action_fragmentAdminUpdateDeliveryStatusCreditCard_to_fragmentChooseView"
+            app:destination="@id/fragmentChooseView" />
     </fragment>
     <fragment
         android:id="@+id/fragmentAdminChooseOrderForDeliveryTracker"
