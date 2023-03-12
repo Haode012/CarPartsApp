@@ -109,15 +109,24 @@ class AddPopularCarPartsFragment : Fragment() {
     }
 
     private fun uploadImage(uri: Uri, key: String , callback: (String) -> Unit) {
-        val fileRef = reference.child("$key.${getFileExtension(uri)}")
-        fileRef.putFile(uri).addOnSuccessListener { taskSnapshot ->
-            fileRef.downloadUrl.addOnSuccessListener { downloadUrl ->
-                callback(downloadUrl.toString())
-                Toast.makeText(requireContext(), "Uploaded Image Successfully", Toast.LENGTH_SHORT).show()
+        try {
+            val fileRef = reference.child("$key.${getFileExtension(uri)}")
+            fileRef.putFile(uri).addOnSuccessListener { taskSnapshot ->
+                fileRef.downloadUrl.addOnSuccessListener { downloadUrl ->
+                    callback(downloadUrl.toString())
+                    Toast.makeText(
+                        requireContext(),
+                        "Uploaded Image Successfully",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }.addOnProgressListener { snapshot ->
+            }.addOnFailureListener { e ->
+                Toast.makeText(requireContext(), "Uploading Image Failed !!", Toast.LENGTH_SHORT)
+                    .show()
             }
-        }.addOnProgressListener { snapshot ->
-        }.addOnFailureListener { e ->
-            Toast.makeText(requireContext(), "Uploading Image Failed !!", Toast.LENGTH_SHORT).show()
+        }catch(e:IllegalStateException){
+
         }
     }
 
