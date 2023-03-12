@@ -37,7 +37,7 @@ class FeedbackAdapter(private val feedbackList: ArrayList<Feedback>) :
         holder.comment.text = currentItem.comment
         holder.deleteButton.setOnClickListener {
             deleteFeedback(holder.bindingAdapterPosition)
-            Toast.makeText(it.context, "Deleted Successfully", Toast.LENGTH_LONG).show()
+            Toast.makeText(it.context, "Deleted Successfully", Toast.LENGTH_SHORT).show()
         }
         holder.feedbackId.text ="Feedback ID:"+currentItem.feedbackId
         holder.DateOfFeedback.text = currentItem.DateOfFeedback

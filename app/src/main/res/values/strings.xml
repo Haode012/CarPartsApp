@@ -62,7 +62,7 @@
     <string name="returnProductName">Return Product Name</string>
     <string name="returnProductImage">Return Product Image</string>
     <string name="deliveryStatus">Delivery Status</string>
-    <string name="adminViewFeedback">Admin View Customer Feedback</string>
+    <string name="adminFeedbackManagement">Feedback Management</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="saveProfilePicture">Save Profile Picture</string>
     <string name="saveProfile">Save Profile</string>

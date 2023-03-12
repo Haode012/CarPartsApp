@@ -297,11 +297,11 @@ class FragmentCustDeliveryStatus : Fragment() {
             val ref = databaseReference2.key
             //val fullRatings = rating.toString()
 
-            feedbackDelivery["feedbackId"] = ref.toString()
-            feedbackDelivery["rating"] = ratings.toString()
+            feedbackDelivery["deliveryFeedbackId"] = ref.toString()
+            feedbackDelivery["ratingBarRateDelivery"] = ratings.toString()
             try {
                 databaseReference2.setValue(feedbackDelivery)
-                Toast.makeText(context, ratings.toString(), Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Thank you for rating our service", Toast.LENGTH_LONG).show()
             } catch (e: NullPointerException) {
                 Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
             }

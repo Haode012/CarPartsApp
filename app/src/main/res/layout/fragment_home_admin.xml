@@ -106,11 +106,11 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
-            android:id="@+id/textViewAdminViewFeedback"
+            android:id="@+id/textViewAdminFeedbackManagement"
             android:layout_width="283dp"
             android:layout_height="55dp"
             android:layout_marginStart="16dp"
-            android:text="@string/adminViewFeedback"
+            android:text="@string/adminFeedbackManagement"
             android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageViewCustomerFeedback"

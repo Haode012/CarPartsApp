@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -330,6 +331,7 @@ class FragmentCreateDeliveryStatusCreditCardPayment : Fragment() {
                             deliveryStatusNewCreditCard["warranty"] = snap2.child("warranty").value as String
                             try {
                                 databaseReference.child(key66).setValue(deliveryStatusNewCreditCard)
+                                findNavController().navigate(tarc.edu.carpartsapp.R.id.action_fragmentCreateDeliveryStatusCreditCardPayment_to_fragmentAdminDeliveryManagement)
                             } catch (e: Exception) {
                                 //   Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
                             }

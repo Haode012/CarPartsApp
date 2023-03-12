@@ -49,7 +49,7 @@ class FragmentAdminViewAllDeliveryStatus : Fragment() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
         db = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
             .getReference().child("Delivery Status")
-
+        val displayedChildNodes = HashMap<String, Boolean>()
         db.addListenerForSingleValueEvent(object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -60,7 +60,7 @@ class FragmentAdminViewAllDeliveryStatus : Fragment() {
                             val key = deliverysnaps.key.toString()
                             val deliveryStatus = snap.getValue(DeliveryStatus::class.java)
                             deliveryStatusArrayList.add(deliveryStatus!!)
-                            Toast.makeText(context, key, Toast.LENGTH_LONG).show()
+                            //Toast.makeText(context, key, Toast.LENGTH_LONG).show()
                         }
                     }
                     deliveryStatusRecyclerview.adapter = DeliveryStatusAdapter(deliveryStatusArrayList)

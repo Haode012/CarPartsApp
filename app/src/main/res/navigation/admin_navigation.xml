@@ -16,14 +16,14 @@
             android:id="@+id/action_nav_home_admin_to_nav_selection_view_all_admin"
             app:destination="@id/nav_selection_view_all_admin" />
         <action
-            android:id="@+id/action_nav_home_admin_to_fragmentAdminViewFeedback"
-            app:destination="@id/fragmentAdminViewFeedback" />
-        <action
             android:id="@+id/action_nav_home_admin_to_fragmentAdminDeliveryManagement"
             app:destination="@id/fragmentAdminDeliveryManagement" />
         <action
             android:id="@+id/action_nav_home_admin_to_nav_returnProduct_admin"
             app:destination="@id/nav_returnProduct_admin" />
+        <action
+            android:id="@+id/action_nav_home_admin_to_fragmentAdminFeedbackManagement"
+            app:destination="@id/fragmentAdminFeedbackManagement" />
     </fragment>
     <fragment
         android:id="@+id/nav_popular_car_parts_admin"
@@ -275,8 +275,8 @@
         android:label="fragment_admin_view_feedback"
         tools:layout="@layout/fragment_admin_view_feedback" >
         <action
-            android:id="@+id/action_fragmentAdminViewFeedback_to_nav_home_admin"
-            app:destination="@id/nav_home_admin" />
+            android:id="@+id/action_fragmentAdminViewFeedback_to_fragmentAdminFeedbackManagement"
+            app:destination="@id/fragmentAdminFeedbackManagement" />
     </fragment>
     <fragment
         android:id="@+id/fragmentAdminDeliveryManagement"
@@ -394,5 +394,29 @@
         <action
             android:id="@+id/action_createDeliveryStatus_to_fragmentAdminDeliveryManagement"
             app:destination="@id/fragmentAdminDeliveryManagement" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentAdminFeedbackManagement"
+        android:name="tarc.edu.carpartsapp.Admin.FragmentAdminFeedbackManagement"
+        android:label="fragment_admin_feedback_management"
+        tools:layout="@layout/fragment_admin_feedback_management" >
+        <action
+            android:id="@+id/action_fragmentAdminFeedbackManagement_to_nav_home_admin"
+            app:destination="@id/nav_home_admin" />
+        <action
+            android:id="@+id/action_fragmentAdminFeedbackManagement_to_fragmentAdminViewFeedback"
+            app:destination="@id/fragmentAdminViewFeedback" />
+        <action
+            android:id="@+id/action_fragmentAdminFeedbackManagement_to_adminViewAllDeliveryFeedback"
+            app:destination="@id/adminViewAllDeliveryFeedback" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminViewAllDeliveryFeedback"
+        android:name="tarc.edu.carpartsapp.Admin.AdminViewAllDeliveryFeedback"
+        android:label="fragment_admin_view_all_delivery_feedback"
+        tools:layout="@layout/fragment_admin_view_all_delivery_feedback" >
+        <action
+            android:id="@+id/action_adminViewAllDeliveryFeedback_to_fragmentAdminFeedbackManagement"
+            app:destination="@id/fragmentAdminFeedbackManagement" />
     </fragment>
 </navigation>

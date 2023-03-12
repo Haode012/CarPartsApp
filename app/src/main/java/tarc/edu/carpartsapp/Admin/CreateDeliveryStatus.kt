@@ -10,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
+import tarc.edu.carpartsapp.R
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
@@ -41,6 +42,7 @@ class CreateDeliveryStatus : Fragment() {
 
         _binding = FragmentCreateDeliveryStatusBinding.inflate(inflater, container, false)
         return binding.root
+
 
     }
 
@@ -173,59 +175,6 @@ class CreateDeliveryStatus : Fragment() {
         }catch (e: NullPointerException){
         }
         }
-
-
-
-        //val orders: List<String> = ArrayList()
-        // databaseReference.get().addOnSuccessListener {
-        //    val orderId: String? = it.child("orderId").getValue(String::class.java)
-        //    val orders: MutableList<String?> = ArrayList()
-        //val orderId = it.child("fullName").value as String
-        //    orders.add(orderId)
-
-        //val orderList = Order(orderId)
-        // items.add(orderList)
-
-
-        // val spinner = binding.spinnerOrder
-        //var languages = arrayOf("fuck","sex")
-
-        //val adapter = ArrayAdapter(
-        //   this@CreateDeliveryStatus,android.R.layout.simple_spinner_item,
-        //    languages)
-        // adapter
-
-        //  val arrayAdapter = activity?.let {
-        //     ArrayAdapter<String>(
-        //         it,
-        //        android.R.layout.simple_spinner_item,
-        //         orders
-        //    )
-        // }
-        //      spinner.adapter = arrayAdapter
-
-        //   spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-        //     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        //         Toast.makeText(context, "Thank You", Toast.LENGTH_SHORT).show()
-        //      }
-
-        //     override fun onNothingSelected(p0: AdapterView<*>?) {
-        //        TODO("Not yet implemented")
-        //    }
-        // }
-//        val listener = object : ValueEventListener {
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                snapshot.children.forEach {
-//                    items.add(it.key!!)
-//                }
-//
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                // Handle error
-//            }
-//        }
-//        databaseReference.addValueEventListener(listener)
     }
 
 
@@ -311,6 +260,7 @@ class CreateDeliveryStatus : Fragment() {
                             deliveryStatusNew["warranty"] = snap2.child("warranty").value as String
                             try {
                                 databaseReference.child(key66).setValue(deliveryStatusNew)
+                                findNavController().navigate(R.id.action_createDeliveryStatus_to_fragmentAdminDeliveryManagement)
                             } catch (e: Exception) {
                                    Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
                             }
