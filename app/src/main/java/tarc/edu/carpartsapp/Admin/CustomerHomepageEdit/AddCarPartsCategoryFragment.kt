@@ -109,6 +109,7 @@ class AddCarPartsCategoryFragment : Fragment() {
     }
 
     private fun uploadImage(uri: Uri, key: String , callback: (String) -> Unit) {
+        try{
         val fileRef = reference.child("$key.${getFileExtension(uri)}")
         fileRef.putFile(uri).addOnSuccessListener { taskSnapshot ->
             fileRef.downloadUrl.addOnSuccessListener { downloadUrl ->
@@ -118,6 +119,8 @@ class AddCarPartsCategoryFragment : Fragment() {
         }.addOnProgressListener { snapshot ->
         }.addOnFailureListener { e ->
             Toast.makeText(requireContext(), "Uploading Image Failed !!", Toast.LENGTH_SHORT).show()
+        }} catch (e:IllegalStateException){
+
         }
     }
 
