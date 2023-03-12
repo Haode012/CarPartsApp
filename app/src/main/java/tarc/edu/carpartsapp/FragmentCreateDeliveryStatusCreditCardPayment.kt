@@ -284,7 +284,7 @@ class FragmentCreateDeliveryStatusCreditCardPayment : Fragment() {
         val delivery = binding.deliveryStatusMessage.text
 
         if(delivery.isNullOrEmpty()){
-            Toast.makeText(context, "Please enter the delivery status", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Please enter the delivery status", Toast.LENGTH_SHORT).show()
             return false
         }
         return true
