@@ -57,9 +57,9 @@ class PasswordForgotFragment : Fragment() {
                 auth.sendPasswordResetEmail(email).addOnCompleteListener{
                     if(it.isSuccessful){
                        findNavController().navigate(R.id.action_passwordForgotFragment_to_loginFragment)
-                        Toast.makeText(this.context, "Email was sent successfully", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this.context, "Email was sent successfully", Toast.LENGTH_SHORT).show()
                     }else{
-                        Toast.makeText(this.context, "Please enter a valid email address", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this.context, "Please enter a valid email address", Toast.LENGTH_SHORT).show()
                     }
                 }
             }

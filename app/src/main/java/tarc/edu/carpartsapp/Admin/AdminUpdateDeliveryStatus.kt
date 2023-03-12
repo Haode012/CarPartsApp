@@ -51,11 +51,16 @@ class AdminUpdateDeliveryStatus : Fragment() {
 
 
         binding.btnUpdateNewStatus.setOnClickListener {
-            updateStatus()
+            try {
+                updateStatus()
+                findNavController().navigate(R.id.action_adminUpdateDeliveryStatus_to_fragmentChooseView)
+            }catch (e: NullPointerException){
+
+            }
         }
     }
 
-        fun updateStatus(){
+        private fun updateStatus(){
             val status = binding.editTextDeliveryStatus.text.toString()
             val deliveryId = binding.outputDeliveryOrderId.text.toString()
             val database = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
@@ -75,17 +80,16 @@ class AdminUpdateDeliveryStatus : Fragment() {
                                 try {
                                     ref.child(key).child(id).child("deliveryStatus")
                                         .setValue(status)
-                                    Toast.makeText(
-                                        context,
-                                        "Delivery Status Updated",
-                                        Toast.LENGTH_LONG
-                                    ).show()
+//                                    Toast.makeText(
+//                                        context,
+//                                        "Delivery Status Updated",
+//                                        Toast.LENGTH_SHORT
+//                                    ).show()
                                 }catch(e: NullPointerException){
-                                    Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
                                 }
 
                             } else {
-                                Toast.makeText(context, "Error", Toast.LENGTH_LONG).show()
+                                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
                             }
                         }
                     }

@@ -63,8 +63,10 @@ class FragmentAdminViewAllDeliveryStatus : Fragment() {
                             //Toast.makeText(context, key, Toast.LENGTH_LONG).show()
                         }
                     }
-                    deliveryStatusRecyclerview.adapter = DeliveryStatusAdapter(deliveryStatusArrayList)
-
+                    try {
+                        deliveryStatusRecyclerview.adapter =
+                            DeliveryStatusAdapter(deliveryStatusArrayList)
+                    }catch (e: NullPointerException){}
                 }
             }
 

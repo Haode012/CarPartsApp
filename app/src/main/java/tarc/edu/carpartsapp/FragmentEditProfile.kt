@@ -115,10 +115,10 @@ class FragmentEditProfile : Fragment() {
         databaseReference.child("gender").setValue(binding.textInputGender.text.toString())
             .addOnSuccessListener {
                 findNavController().navigate(R.id.action_fragmentEditProfile2_to_nav_profile_customer)
-                Toast.makeText(context, "Success", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener {
-                Toast.makeText(context, "Failed to edit profile", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Failed to edit profile", Toast.LENGTH_SHORT).show()
             }
     }
 

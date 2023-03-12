@@ -91,7 +91,7 @@ class RegistrationFragment : Fragment() {
             return false
         }
         if(group == -1){
-            Toast.makeText(context, "Please select your gender", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Please select your gender", Toast.LENGTH_SHORT).show()
             return false
         }
 //        if(!female.isChecked){

@@ -48,11 +48,11 @@ class LoginFragment : Fragment() {
                         if (userType == "Admin") {
                             val intent = Intent(context, AdminActivity::class.java)
                             startActivity(intent)
-                            Toast.makeText(context, "Welcome Back "+name, Toast.LENGTH_LONG).show()
+                           // Toast.makeText(context, "Welcome Back "+name, Toast.LENGTH_LONG).show()
                         } else if (userType == "Customer") {
                             val intent = Intent(context, CustomerActivity::class.java)
                             startActivity(intent)
-                            Toast.makeText(context, "Welcome Back "+name, Toast.LENGTH_LONG).show()
+                            //Toast.makeText(context, "Welcome Back "+name, Toast.LENGTH_LONG).show()
                         }
                     }
                     override fun onCancelled(error: DatabaseError) {
@@ -128,7 +128,6 @@ class LoginFragment : Fragment() {
                             } else if (userType == "Customer") {
                                     val intent = Intent(context, CustomerActivity::class.java)
                                     startActivity(intent)
-
                                     getData()
 
 

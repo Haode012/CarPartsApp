@@ -50,7 +50,11 @@ class FragmentAdminUpdateDeliveryStatusCreditCard : Fragment() {
 
 
         binding.btnUpdateStats.setOnClickListener {
-            updateStatus()
+            try {
+                updateStatus()
+            }catch (e: NullPointerException){
+
+            }
         }
     }
 
@@ -72,11 +76,17 @@ class FragmentAdminUpdateDeliveryStatusCreditCard : Fragment() {
                             //updated here
                             val id = snap2.key.toString()
                             //updated here
-                            ref.child(key).child(id).child("deliveryStatus").setValue(status)
-                            Toast.makeText(context, "Delivery Status Updated", Toast.LENGTH_LONG)
-                                .show()
+                            try {
+                                ref.child(key).child(id).child("deliveryStatus").setValue(status)
+//                                Toast.makeText(
+//                                    context,
+//                                    "Delivery Status Updated",
+//                                    Toast.LENGTH_SHORT
+//                                )
+//                                    .show()
+                            }catch (e: NullPointerException){}
                         } else {
-                            Toast.makeText(context, "Error", Toast.LENGTH_LONG).show()
+                            Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
