@@ -121,7 +121,8 @@
                         android:drawableStart="@drawable/ic_baseline_date_24"
                         android:drawablePadding="10dp"
                         android:hint="@string/dateOfBirth"
-                        android:textColor="@color/black"/>
+                        android:inputType="date"
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout

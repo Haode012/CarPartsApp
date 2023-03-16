@@ -1,5 +1,6 @@
 package tarc.edu.carpartsapp
 
+import android.annotation.SuppressLint
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -20,6 +21,7 @@ import com.google.firebase.storage.UploadTask
 import com.google.firebase.storage.ktx.storage
 import tarc.edu.carpartsapp.databinding.FragmentEditProfileBinding
 import tarc.edu.carpartsapp.databinding.FragmentProfileBinding
+import java.text.SimpleDateFormat
 
 class FragmentEditProfile : Fragment() {
     private var _binding: FragmentEditProfileBinding? = null
@@ -96,9 +98,39 @@ class FragmentEditProfile : Fragment() {
         //}
 
         binding.buttonSaveProfile.setOnClickListener {
-            saveProfileInformation()
+            if(validateInput()){
+                saveProfileInformation()
+            }
+            //saveProfileInformation()
         }
 
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun validateInput():Boolean{
+
+        val name = binding.textInputFullName.text
+        val address = binding.textInputHomeAddress.text
+        val birthDate = binding.textInputDateOfBirth.text
+        val phoneNumber = binding.textInputPhone.text
+
+        if(name.isNullOrEmpty()){
+            binding.textInputFullName.error = "Please enter your full name"
+            return false
+        }
+        if(phoneNumber!!.length > 11|| phoneNumber.isEmpty()){
+            binding.textInputPhone.error = "Please enter your correct phone number!"
+            return false
+        }
+        if (address.isNullOrEmpty()) {
+            binding.textInputHomeAddress.error = "Please enter your house address"
+            return false
+        }
+        if (birthDate.isNullOrEmpty() || birthDate.length!="dd/MM/yyyy".length) {
+            binding.textInputDateOfBirth.error = "Please enter your birth date"
+            return false
+        }
+        return true
     }
 
     fun saveProfileInformation() {
