@@ -69,7 +69,6 @@ class FragmentCustomerChangePassword : Fragment() {
             return false
         }
 
-
         if(passwd != confirmPasswd){
             binding.confirmNewPassword.error = "Your new password does not match with the confirm password"
             return false
