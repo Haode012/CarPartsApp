@@ -103,6 +103,8 @@ try {
         view.textViewEmailCustomer.text = it.child("emailAddress").getValue(String::class.java)
         var requestOptions = RequestOptions()
         requestOptions.signature(ObjectKey(System.currentTimeMillis()))
+
+        // this line got problem
         Glide.with(this).load(profilePic).apply(requestOptions).into(imageView)
     }
 }catch (e:NullPointerException){
