@@ -62,6 +62,7 @@ class FragmentAdminViewAllDeliveryStatusCreditCard : Fragment() {
                             val key = deliverysnaps.key.toString()
                             val deliveryStatus = snap.getValue(DeliveryStatus::class.java)
                             deliveryStatusArrayList.add(deliveryStatus!!)
+                            break
                             //Toast.makeText(context, key, Toast.LENGTH_LONG).show()
                         }
                     }

@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.RatingBar
 import android.widget.Toast
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +25,7 @@ import kotlinx.android.synthetic.main.rate_delivery.*
 import kotlinx.android.synthetic.main.rate_delivery.view.*
 import tarc.edu.carpartsapp.Adapter.CustomerViewDeliveryStatusAdapter
 import tarc.edu.carpartsapp.Adapter.DeliveryStatusProductsAdapter
+import tarc.edu.carpartsapp.Customer.CustomerActivity
 import tarc.edu.carpartsapp.Model.DeliveryStatus
 import tarc.edu.carpartsapp.databinding.FragmentCustDeliveryStatusBinding
 import java.text.SimpleDateFormat
@@ -231,53 +233,53 @@ class FragmentCustDeliveryStatus : Fragment() {
                             if ((binding.outputDeliveryStatusnew.text.toString()
                                     .equals("Delivered"))
                             ) {
-                                        deliveredItems["orderID"] = orderId.toString()
-                                        deliveredItems["userId"] = userId
-                                        val id = snap2.child("id").value.toString()
-                                        deliveredItems["id"] = prodId
-                                        deliveredItems["address"] =
-                                            snap2.child("address").value as String
-                                        deliveredItems["TotalAmount"] =
-                                            snap2.child("TotalAmount").value as String
-                                        deliveredItems["img_url"] =
-                                            snap2.child("img_url").value as String
-                                        deliveredItems["names"] =
-                                            snap2.child("names").value as String
-                                        deliveredItems["quantity"] =
-                                            snap2.child("quantity").value as String
-                                        deliveredItems["deliveryID"] = key
-                                        deliveredItems["deliveredDate"] = "$deliveredDate"
-                                        deliveredItems["deliveredTime"] = "$deliveredTime"
-                                        deliveredItems["warranty"] =
-                                            snap2.child("warranty").value as String
-                                        try {
-                                            databaseReference.child(prodId).setValue(deliveredItems)
-                                        } catch (e: Exception) {
-                                            Toast.makeText(context, e.message, Toast.LENGTH_SHORT)
-                                                .show()
-                                        }
-                                        dialog.show()
-                                        buttonMaybe.setOnClickListener {
-                                            dialog.dismiss()
-                                            findNavController().navigate(R.id.action_fragmentCustDeliveryStatus_to_nav_home_customer)
-                                        }
-                                        buttonRate.setOnClickListener {
-                                            val ratingBar =
-                                                dialog.findViewById<RatingBar>(R.id.ratingBarRate)
-                                            val ratings = ratingBar.rating
-                                            // Toast.makeText(context, ratingBar.rating.toString(), Toast.LENGTH_LONG).show()
-                                            saveDeliveryFeedback(ratings)
-                                            dialog.dismiss()
-                                            findNavController().navigate(R.id.action_fragmentCustDeliveryStatus_to_nav_home_customer)
+                                deliveredItems["orderID"] = orderId.toString()
+                                deliveredItems["userId"] = userId
+                                val id = snap2.child("id").value.toString()
+                                deliveredItems["id"] = prodId
+                                deliveredItems["address"] =
+                                    snap2.child("address").value as String
+                                deliveredItems["TotalAmount"] =
+                                    snap2.child("TotalAmount").value as String
+                                deliveredItems["img_url"] =
+                                    snap2.child("img_url").value as String
+                                deliveredItems["names"] =
+                                    snap2.child("names").value as String
+                                deliveredItems["quantity"] =
+                                    snap2.child("quantity").value as String
+                                deliveredItems["deliveryID"] = key
+                                deliveredItems["deliveredDate"] = "$deliveredDate"
+                                deliveredItems["deliveredTime"] = "$deliveredTime"
+                                deliveredItems["warranty"] =
+                                    snap2.child("warranty").value as String
+                                try {
+                                    databaseReference.child(prodId).setValue(deliveredItems)
+                                } catch (e: Exception) {
+                                    Toast.makeText(context, e.message, Toast.LENGTH_SHORT)
+                                        .show()
+                                }
+                                try {
+                                    val lol = getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)
+                                    Toast.makeText(context,lol.toString(),Toast.LENGTH_SHORT).show()
+                                    dialog.show()
+                                    buttonMaybe.setOnClickListener {
+                                        dialog.dismiss()
+                                        findNavController().navigate(R.id.action_fragmentCustDeliveryStatus_to_nav_home_customer)
+                                    }
+                                    buttonRate.setOnClickListener {
+                                        val ratingBar =
+                                            dialog.findViewById<RatingBar>(R.id.ratingBarRate)
+                                        val ratings = ratingBar.rating
+                                        // Toast.makeText(context, ratingBar.rating.toString(), Toast.LENGTH_LONG).show()
+                                        saveDeliveryFeedback(ratings)
+                                        dialog.dismiss()
+                                        findNavController().navigate(R.id.action_fragmentCustDeliveryStatus_to_nav_home_customer)
 
-                                        }
+                                    }
 
-                            } else {
-                                Toast.makeText(
-                                    context,
-                                    "Your order has not been delivered",
-                                    Toast.LENGTH_LONG
-                                ).show()
+                                }catch (e:NullPointerException){
+
+                                }
                             }
                         }
 
@@ -347,35 +349,6 @@ class FragmentCustDeliveryStatus : Fragment() {
         })
 }
 }
-
-/////
-//////
-//////
-
-
-
-//                                    deliveredItems["orderID"] =
-//                                        snap2.child("orderID").value as String
-//                                    deliveredItems["deliveryStatus"] =
-//                                        snap2.child("orderID").value as String
-//                                    deliveredItems["dateTime"] =
-//                                        snap2.child("dateTime").value as String
-//                                    deliveredItems["userId"] = snap2.child("userId").value as String
-//                                    deliveredItems["address"] =
-//                                        snap2.child("address").value as String
-//                                    deliveredItems["TotalAmount"] =
-//                                        snap2.child("TotalAmount").value as String
-//                                    deliveredItems["img_url"] =
-//                                        snap2.child("img_url").value as String
-//                                    deliveredItems["names"] = snap2.child("names").value as String
-//                                    deliveredItems["quantity"] =
-//                                        snap2.child("quantity").value as String
-//                                    deliveredItems["deliveryStatusId"] = keyRuth
-//                                    try {
-//                                        ref.setValue(deliveredItems)
-//                                    } catch (e: Exception) {
-//                                        //   Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
-//                                    }
 
 
 

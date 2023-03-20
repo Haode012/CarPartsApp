@@ -27,7 +27,9 @@ class DeliveryStatusAdapter(private val deliveryStatusList: ArrayList<DeliverySt
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.delivery_status_layout, parent, false)
+
         return MyViewHolder(itemView)
+
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -36,7 +38,7 @@ class DeliveryStatusAdapter(private val deliveryStatusList: ArrayList<DeliverySt
         holder.buttonUpdate.setOnClickListener{
             val bundle = Bundle()
             val fragment = AdminUpdateDeliveryStatus()
-            bundle.putString("orderID", currentItem.deliveryStatusId)
+            bundle.putString("deliveryStatusId", currentItem.deliveryStatusId)
             fragment.arguments = bundle
             Navigation.findNavController(it).navigate(R.id.action_fragmentAdminViewAllDeliveryStatus_to_adminUpdateDeliveryStatus,bundle)
         }

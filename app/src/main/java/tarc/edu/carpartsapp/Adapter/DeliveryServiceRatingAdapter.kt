@@ -47,7 +47,7 @@ class DeliveryServiceRatingAdapter(private val deliveryFeedbackList: ArrayList<D
     @SuppressLint("NotifyDataSetChanged")
     private fun deleteFeedback(position: Int){
         //val feedbackID = feedback.feedbackId
-        db = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("Admin View All Feedback")
+        db = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("Admin View All Feedback Delivery")
             .child(deliveryFeedbackList.get(position).deliveryFeedbackId)
         db.removeValue()
         deliveryFeedbackList.removeAt(position)

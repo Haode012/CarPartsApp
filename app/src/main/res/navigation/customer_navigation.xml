@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_nav_profile_customer_to_fragmentChangeProfilePicture"
             app:destination="@id/fragmentChangeProfilePicture" />
+        <action
+            android:id="@+id/action_nav_profile_customer_to_fragmentCustomerChangePassword"
+            app:destination="@id/fragmentCustomerChangePassword" />
     </fragment>
     <fragment
         android:id="@+id/nav_myCart_customer"
@@ -256,4 +259,13 @@
         android:name="tarc.edu.carpartsapp.FragmentCustomerSelectDeliveryTracker"
         android:label="fragment_customer_select_delivery_tracker"
         tools:layout="@layout/fragment_customer_select_delivery_tracker" />
+    <fragment
+        android:id="@+id/fragmentCustomerChangePassword"
+        android:name="tarc.edu.carpartsapp.Customer.FragmentCustomerChangePassword"
+        android:label="fragment_customer_change_password"
+        tools:layout="@layout/fragment_customer_change_password" >
+        <action
+            android:id="@+id/action_fragmentCustomerChangePassword_to_nav_profile_customer"
+            app:destination="@id/nav_profile_customer" />
+    </fragment>
 </navigation>

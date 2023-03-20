@@ -36,7 +36,7 @@ class DeliveryStatusCreditCardAdapter(private val deliveryStatusCreditList: Arra
         holder.buttonUpdate.setOnClickListener{
             val bundle = Bundle()
             val fragment = FragmentAdminUpdateDeliveryStatusCreditCard()
-            bundle.putString("orderID", currentItem.deliveryStatusId)
+            bundle.putString("deliveryStatusId", currentItem.deliveryStatusId)
             fragment.arguments = bundle
             Navigation.findNavController(it).navigate(R.id.action_fragmentAdminViewAllDeliveryStatusCreditCard_to_fragmentAdminUpdateDeliveryStatusCreditCard,bundle)
         }

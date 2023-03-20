@@ -50,16 +50,17 @@ class FragmentAdminViewAllDeliveryStatus : Fragment() {
         db = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
             .getReference().child("Delivery Status")
         val displayedChildNodes = HashMap<String, Boolean>()
-        db.addListenerForSingleValueEvent(object : ValueEventListener {
+        db.addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 deliveryStatusArrayList.clear()
                 if (snapshot.exists()) {
                     for (deliverysnaps in snapshot.children) {
+                        val key = deliverysnaps.key.toString()
                         for (snap in deliverysnaps.children) {
-                            val key = deliverysnaps.key.toString()
                             val deliveryStatus = snap.getValue(DeliveryStatus::class.java)
                             deliveryStatusArrayList.add(deliveryStatus!!)
+                            break
                             //Toast.makeText(context, key, Toast.LENGTH_LONG).show()
                         }
                     }

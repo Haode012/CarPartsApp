@@ -32,7 +32,7 @@ class AdminUpdateDeliveryStatus : Fragment() {
 
         _binding = FragmentAdminUpdateDeliveryStatusBinding.inflate(inflater, container, false)
         val args = this.arguments
-        val inputData = args?.get("orderID")
+        val inputData = args?.get("deliveryStatusId")
         var orderId = binding.outputDeliveryOrderId
         val dateToday = binding.outputDateToday
         val currentDate = SimpleDateFormat("MM/dd/yyyy")
@@ -53,7 +53,6 @@ class AdminUpdateDeliveryStatus : Fragment() {
         binding.btnUpdateNewStatus.setOnClickListener {
             try {
                 updateStatus()
-                findNavController().navigate(R.id.action_adminUpdateDeliveryStatus_to_fragmentChooseView)
             }catch (e: NullPointerException){
 
             }
@@ -69,10 +68,9 @@ class AdminUpdateDeliveryStatus : Fragment() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for (snap in snapshot.children) {
                         //updated here
+                        val key = snap.key.toString()
                         for (snap2 in snap.children) {
-                            val key = snap.key.toString()
-                            if (snap2.child("deliveryStatusId").value.toString()
-                                    .equals(deliveryId)
+                            if (deliveryId.equals(key)
                             ) {
                                 //updated here
                                 val id = snap2.key.toString()
@@ -88,8 +86,6 @@ class AdminUpdateDeliveryStatus : Fragment() {
                                 }catch(e: NullPointerException){
                                 }
 
-                            } else {
-                                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
                             }
                         }
                     }

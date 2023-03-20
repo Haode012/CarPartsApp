@@ -262,7 +262,7 @@ class CreateDeliveryStatus : Fragment() {
                                 databaseReference.child(key66).setValue(deliveryStatusNew)
                                 findNavController().navigate(R.id.action_createDeliveryStatus_to_fragmentAdminDeliveryManagement)
                             } catch (e: Exception) {
-                                   Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
+                                   //Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
                             }
 
                         }

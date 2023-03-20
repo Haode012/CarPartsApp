@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ProfileFragment"
+    tools:context=".FragmentAdminProfile"
     tools:ignore="SpeakableTextPresentCheck">
 
     <LinearLayout
@@ -23,19 +23,19 @@
                 android:padding="20dp">
 
                 <ImageView
-                    android:id="@+id/imageView6"
+                    android:id="@+id/imageProfile"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_baseline_person_24" />
+                    android:src="@drawable/ic_baseline_person_24"/>
 
                 <TextView
-                    android:id="@+id/textViewLabelBigName"
+                    android:id="@+id/textViewFullNameAdmin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="10dp"
-                    android:layout_toEndOf="@id/imageView6"
+                    android:layout_toEndOf="@id/imageProfile"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </RelativeLayout>
@@ -46,18 +46,16 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputFullName"
+                        android:id="@+id/adminFullName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_baseline_person_24"
                         android:drawablePadding="10dp"
-                        android:enabled="false"
                         android:hint="@string/name"
                         android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -67,12 +65,11 @@
                     android:layout_height="match_parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputEmail"
+                        android:id="@+id/adminEmailAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_baseline_email_24"
+                        android:drawableStart="@drawable/ic_baseline_person_24"
                         android:drawablePadding="10dp"
-                        android:enabled="false"
                         android:hint="@string/email"
                         android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -82,28 +79,12 @@
                     android:layout_height="match_parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputHomeAddress"
+                        android:id="@+id/adminAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_baseline_home_24"
                         android:drawablePadding="10dp"
-                        android:enabled="false"
                         android:hint="@string/address"
-                        android:textColor="@color/black" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="@string/phoneNumber">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputPhone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_baseline_local_phone_24"
-                        android:drawablePadding="10dp"
-                        android:enabled="false"
                         android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -112,12 +93,25 @@
                     android:layout_height="match_parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputDateOfBirth"
+                        android:id="@+id/adminPhoneNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_baseline_local_phone_24"
+                        android:drawablePadding="10dp"
+                        android:hint="@string/phoneNumber"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/adminBirthDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_baseline_date_24"
                         android:drawablePadding="10dp"
-                        android:enabled="false"
                         android:hint="@string/dateOfBirth"
                         android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -127,45 +121,26 @@
                     android:layout_height="match_parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputGender"
+                        android:id="@+id/adminGender"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_baseline_person_24"
                         android:drawablePadding="10dp"
-                        android:enabled="false"
                         android:hint="@string/gender"
                         android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-            </LinearLayout>
 
+
+            </LinearLayout>
         </LinearLayout>
 
         <Button
-            android:id="@+id/btnEditProfile"
+            android:id="@+id/btnAdminSaveProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#FDC12A"
-            android:text="@string/edit_profile"
+            android:text="Save Profile"
             android:textColor="@color/black" />
-
-        <Button
-            android:id="@+id/btnChangeProfilePic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#FDC12A"
-            android:text="Change Profile Picture"
-            android:textColor="@color/black" />
-
-        <Button
-            android:id="@+id/resetPasswordBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#FDC12A"
-            android:textColor="@color/black"
-            android:text="Reset Password" />
-
-
     </LinearLayout>
-
 </ScrollView>

@@ -69,6 +69,10 @@ class ProfileFragment : Fragment() {
             binding.btnChangeProfilePic.setOnClickListener {
                 findNavController().navigate(R.id.action_nav_profile_customer_to_fragmentChangeProfilePicture)
             }
+
+            binding.resetPasswordBtn.setOnClickListener {
+                findNavController().navigate(R.id.action_nav_profile_customer_to_fragmentCustomerChangePassword)
+            }
             //   ref.child("fullName").setValue(binding.fullName.text.toString())
             //   ref.child("emailAddress").setValue(binding.emailAddress.text.toString())
             //   ref.child("address").setValue(binding.homeAddress.text.toString())

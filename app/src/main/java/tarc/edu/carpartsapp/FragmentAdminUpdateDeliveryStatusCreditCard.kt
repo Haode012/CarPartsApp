@@ -31,7 +31,7 @@ class FragmentAdminUpdateDeliveryStatusCreditCard : Fragment() {
         _binding =
             FragmentAdminUpdateDeliveryStatusCreditCardBinding.inflate(inflater, container, false)
         val args = this.arguments
-        val inputData = args?.get("orderID")
+        val inputData = args?.get("deliveryStatusId")
         var orderId = binding.outputDelivStatusId
         // val dateToday = binding.outputDateToday
         val currentDate = SimpleDateFormat("MM/dd/yyyy")
@@ -85,8 +85,6 @@ class FragmentAdminUpdateDeliveryStatusCreditCard : Fragment() {
 //                                )
 //                                    .show()
                             }catch (e: NullPointerException){}
-                        } else {
-                            Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }

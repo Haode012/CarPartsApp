@@ -113,7 +113,7 @@ class AddViewAllCarPartsCategoryFragment : Fragment() {
 
                 if (warranty.isEmpty()) {
                     Toast.makeText(
-                        requireContext(),
+                        context,
                         "Choose a expiration years",
                         Toast.LENGTH_SHORT
                     ).show()
@@ -140,7 +140,7 @@ class AddViewAllCarPartsCategoryFragment : Fragment() {
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             Toast.makeText(
-                                requireContext(),
+                                context,
                                 "Added Successfully",
                                 Toast.LENGTH_SHORT
                             ).show()

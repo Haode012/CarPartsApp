@@ -331,7 +331,6 @@ class FragmentCreateDeliveryStatusCreditCardPayment : Fragment() {
                             deliveryStatusNewCreditCard["warranty"] = snap2.child("warranty").value as String
                             try {
                                 databaseReference.child(key66).setValue(deliveryStatusNewCreditCard)
-                                findNavController().navigate(tarc.edu.carpartsapp.R.id.action_fragmentCreateDeliveryStatusCreditCardPayment_to_fragmentAdminDeliveryManagement)
                             } catch (e: Exception) {
                                 //   Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
                             }

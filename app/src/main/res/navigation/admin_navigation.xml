@@ -430,4 +430,9 @@
             android:id="@+id/action_adminViewAllDeliveryFeedback_to_fragmentAdminFeedbackManagement"
             app:destination="@id/fragmentAdminFeedbackManagement" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_profile_admin"
+        android:name="tarc.edu.carpartsapp.FragmentAdminProfile"
+        android:label="fragment_admin_profile"
+        tools:layout="@layout/fragment_admin_profile" />
 </navigation>
