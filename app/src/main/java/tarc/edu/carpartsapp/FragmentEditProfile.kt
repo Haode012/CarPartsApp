@@ -85,17 +85,6 @@ class FragmentEditProfile : Fragment() {
             // ref.setValue(binding.emailAddress.text.toString())
         }
 
-        //val galleryImg = registerForActivityResult(
-        //    ActivityResultContracts.GetContent(),
-         //   ActivityResultCallback {
-         //       binding.imageView6.setImageURI(it)
-         //       imageUri = it
-         //   }
-      //  )
-
-       // binding.imageView6.setOnClickListener {
-           // galleryImg.launch("image/*")
-        //}
 
         binding.buttonSaveProfile.setOnClickListener {
             if(validateInput()){

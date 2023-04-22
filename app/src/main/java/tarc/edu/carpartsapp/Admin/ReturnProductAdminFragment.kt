@@ -107,7 +107,7 @@ class ReturnProductAdminFragment : Fragment() {
                         }
                     }
                 } catch (e: Exception) {
-                    Log.e("getData", "Error getting data from Firebase: ${e.message}")
+                    Log.e("getData", "Failed getting data from firebase: ${e.message}")
                 }
             }
             override fun onCancelled(error: DatabaseError) {

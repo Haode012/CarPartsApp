@@ -91,6 +91,7 @@ class ReturnProductCashOnDeliveryFragment : Fragment() {
                             for (secondChildSnapshot in firstChildSnapshot.children) {
                                 val delivery = secondChildSnapshot.getValue(DeliveryModel::class.java)
                                 deliveryModelArrayList.add(delivery!!)
+                                break
                             }
                         }
                         val context = context

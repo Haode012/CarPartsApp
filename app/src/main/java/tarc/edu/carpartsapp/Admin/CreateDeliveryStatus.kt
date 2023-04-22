@@ -104,8 +104,7 @@ class CreateDeliveryStatus : Fragment() {
                             p2: Int,
                             p3: Long
                         ) {
-                            //val database = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
-                            //val ref = database.getReference("OrderItem(Cash On Delivery) Duplicate")
+
                             ref.addValueEventListener(object : ValueEventListener{
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     for (snap in snapshot.children) {
@@ -126,14 +125,6 @@ class CreateDeliveryStatus : Fragment() {
                                                 val totalAmount =
                                                     snap2.child("totalAmount").value as String
                                                 binding.outputOrderAmount.text = totalAmount
-//                                                val url = snap2.child("img_url").value as String
-//                                                binding.outputImgUrl.text = url
-//                                                val productNames =
-//                                                    snap2.child("name").value as String
-//                                                binding.outputProductNames.text = productNames
-                                               // val id = snap2.child("id").value as String
-                                                //binding.outputId.text = id
-
                                             }
                                         }
                                     }
@@ -228,8 +219,6 @@ class CreateDeliveryStatus : Fragment() {
 
         //val id = binding.outputId.text.toString()
         val database = FirebaseDatabase.getInstance()
-        //problem here, wont create delivery status for more than 1 ordered product. In 1 order that has 2 items
-        // it creates the delivery for  1 items only
         val databaseReference = database.getReference("Delivery Status").push()
         val key = databaseReference.key
 
@@ -277,8 +266,6 @@ class CreateDeliveryStatus : Fragment() {
             }
 
         })
-        //val databaseReference = database.getReference("Feedback").child("$userId").push()
-        //val databaseReference = database.getReference("Feedback").child("$userId").child("Feedback").push()
     }
 }
 

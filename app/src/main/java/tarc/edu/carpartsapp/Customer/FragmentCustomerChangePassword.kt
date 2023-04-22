@@ -55,21 +55,17 @@ class FragmentCustomerChangePassword : Fragment() {
         val passwd = binding.newPassword.text.toString()
         val confirmPasswd = binding.confirmNewPassword.text.toString()
 
-        if(passwd.isNullOrEmpty()){
-            binding.newPassword.error = "Please enter your new password"
-            return false
-        }
+//        if(passwd.isNullOrEmpty()){
+//            binding.newPassword.error = "Please enter your new password"
+//            return false
+//        }
 
         if(passwd.length < 8){
             binding.newPassword.error = "Password length must be 8 or more characters"
             return false
         }
-        if(passwd.isNullOrEmpty()){
-            binding.confirmNewPassword.error = "Please enter your confirm password"
-            return false
-        }
 
-        if(passwd != confirmPasswd){
+        if(passwd !=confirmPasswd){
             binding.confirmNewPassword.error = "Your new password does not match with the confirm password"
             return false
         }

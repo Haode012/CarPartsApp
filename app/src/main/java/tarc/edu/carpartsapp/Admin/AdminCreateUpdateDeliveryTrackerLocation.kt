@@ -80,31 +80,6 @@ class AdminCreateUpdateDeliveryTrackerLocation : AppCompatActivity(), OnMapReady
         }
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
-//    override fun onMapReady(googleMap: GoogleMap) {
-//        mMap = googleMap
-//
-//        // Add a marker in Sydney and move the camera
-//        val sydney = LatLng(-34.0, 151.0)
-//        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-//
-//        var addresses: String?
-//        geocoder = Geocoder(applicationContext, Locale.getDefault())
-//        val locations = geocoder.getFromLocation(sydney.latitude,sydney.longitude,10)
-//        addresses = locations?.get(0)?.adminArea // get city name
-//
-//        binding.outputMarkerLocation.text = "Marker Location "+ addresses + sydney.toString()
-//    }
-
     private fun storeLocations(){
         db = FirebaseDatabase.getInstance("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference()
             .child("Delivery Tracker Locations")

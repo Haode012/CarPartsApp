@@ -48,7 +48,6 @@ class ProfileFragment : Fragment() {
             val gender = it.child("gender").value as String
             val profilePic = it.child("profilePicture").child("url").value.toString()
             Glide.with(this).load(profilePic).into(binding.imageView6)
-
             binding.textViewLabelBigName.text = name
             binding.textInputFullName.setText(name)
             binding.textInputEmail.setText(email)
@@ -57,10 +56,6 @@ class ProfileFragment : Fragment() {
             binding.textInputDateOfBirth.setText(birthDate)
             binding.textInputGender.setText(gender)
 
-            //binding.profilePicture.setOnClickListener {
-            //  getPhoto.launch("image/*")
-            //}
-            // }
 
               binding.btnEditProfile.setOnClickListener {
                   findNavController().navigate(R.id.action_nav_profile_customer_to_fragmentEditProfile2)
@@ -73,11 +68,7 @@ class ProfileFragment : Fragment() {
             binding.resetPasswordBtn.setOnClickListener {
                 findNavController().navigate(R.id.action_nav_profile_customer_to_fragmentCustomerChangePassword)
             }
-            //   ref.child("fullName").setValue(binding.fullName.text.toString())
-            //   ref.child("emailAddress").setValue(binding.emailAddress.text.toString())
-            //   ref.child("address").setValue(binding.homeAddress.text.toString())
-            //ref.setValue(binding.emailAddress.text.toString())
-            // ref.setValue(binding.emailAddress.text.toString())
+
         }
 
     }

@@ -159,7 +159,6 @@ class FragmentCustDeliveryStatus : Fragment() {
                 deliveryProductsArrayList.clear()
                 if (snapshot.exists()) {
                     var test = 0
-                    //problem here wont show the new updated delivery status path problem
                     for (snap in snapshot.children) {
                         val keyRuth = snap.key.toString()
                         for (snap2 in snap.children) {
