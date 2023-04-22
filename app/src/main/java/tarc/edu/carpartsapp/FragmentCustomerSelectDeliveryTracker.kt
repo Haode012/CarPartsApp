@@ -27,66 +27,73 @@ class FragmentCustomerSelectDeliveryTracker : Fragment() {
         container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
-        val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
-        val database =
-            Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
-        val ref = database.getReference("Delivery Tracker Locations")
+            val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
+            val database =
+                Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
+            val ref = database.getReference("Delivery Tracker Locations")
 
-        ref.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val orders: ArrayList<String?> = ArrayList()
-                if (snapshot.exists()) {
-                    for (snap in snapshot.children) {
-                        val userIdDatabase = snap.child("userId").value as String
-                        if (userId.equals(userIdDatabase)) {
-                            val orderIds = snap.key.toString()
-                            orders.add(orderIds)
-                            // }
+            ref.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val orders: ArrayList<String?> = ArrayList()
+                    if (snapshot.exists()) {
+                        for (snap in snapshot.children) {
+                            val userIdDatabase = snap.child("userId").value as String
+                            if (userId.equals(userIdDatabase)) {
+                                val orderIds = snap.key.toString()
+                                orders.add(orderIds)
+                                // }
+
+                            }
+                        }
+                        try {
+                            val spinner = binding.spinnerDelivery
+                            val arrayAdapter = activity?.let {
+                                ArrayAdapter<String>(
+                                    it,
+                                    R.layout.simple_spinner_item,
+                                    orders
+                                )
+                            }
+                            spinner.adapter = arrayAdapter
+                        }catch (e:Exception){
 
                         }
                     }
-                    val spinner = binding.spinnerDelivery
-                    val arrayAdapter = activity?.let {
-                        ArrayAdapter<String>(
-                            it,
-                            R.layout.simple_spinner_item,
-                            orders
-                        )
-                    }
-                    spinner.adapter = arrayAdapter
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
+
+            _binding =
+                FragmentCustomerSelectDeliveryTrackerBinding.inflate(inflater, container, false)
+            return binding.root
+        }
+
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+
+
+
+            binding.buttonYes.setOnClickListener {
+                try {
+                    val intent = Intent(context, DeliveryTrackerMapsActivity::class.java)
+                    intent.putExtra("orderID", binding.spinnerDelivery.selectedItem.toString())
+                    startActivity(intent)
+                } catch (e: NullPointerException) {
+                    Toast.makeText(context, "Delivery tracker not found ", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
 
-        _binding = FragmentCustomerSelectDeliveryTrackerBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
-
-        binding.buttonYes.setOnClickListener {
-            try {
-                val intent = Intent(context, DeliveryTrackerMapsActivity::class.java)
-                intent.putExtra("orderID", binding.spinnerDelivery.selectedItem.toString())
-                startActivity(intent)
-            } catch (e: NullPointerException) {
-                Toast.makeText(context, "Delivery tracker not found ", Toast.LENGTH_SHORT).show()
-            }
         }
 
 
-    }
+        override fun onDestroyView() {
+            super.onDestroyView()
+            _binding = null
+        }
 
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

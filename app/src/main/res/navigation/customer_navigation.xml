@@ -253,7 +253,11 @@
         android:id="@+id/fragmentDeliveryStatusCreditCard"
         android:name="tarc.edu.carpartsapp.FragmentDeliveryStatusCreditCard"
         android:label="fragment_delivery_status_credit_card"
-        tools:layout="@layout/fragment_delivery_status_credit_card" />
+        tools:layout="@layout/fragment_delivery_status_credit_card" >
+        <action
+            android:id="@+id/action_fragmentDeliveryStatusCreditCard_to_nav_home_customer"
+            app:destination="@id/nav_home_customer" />
+    </fragment>
     <fragment
         android:id="@+id/nav_my_order_delivery_tracker_new"
         android:name="tarc.edu.carpartsapp.FragmentCustomerSelectDeliveryTracker"

@@ -1,11 +1,16 @@
 package tarc.edu.carpartsapp
 
 import android.annotation.SuppressLint
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.RatingBar
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,7 +33,7 @@ class FragmentDeliveryStatusCreditCard : Fragment() {
     private lateinit var custDeliveryCreditCardList: ArrayList<DeliveryStatus>
 
     private lateinit var deliveryStatusCreditAdapter: DeliveryStatusProductsCreditCardAdapter
-
+    private lateinit var feedbackDelivery: HashMap<String, String>
     private lateinit var deliveredItemsCreditCard: HashMap<String, String>
     private var _binding : FragmentDeliveryStatusCreditCardBinding? = null
     private val binding get() = _binding!!
@@ -42,7 +47,7 @@ class FragmentDeliveryStatusCreditCard : Fragment() {
         val inputData = args?.get("orderID")
         val orderId = binding.orderIdd
         orderId.text = inputData.toString()
-
+        feedbackDelivery = hashMapOf()
         deliveredItemsCreditCard = hashMapOf()
         return binding.root
 
@@ -134,6 +139,16 @@ class FragmentDeliveryStatusCreditCard : Fragment() {
     }
 
     private fun createDeliveredItem() {
+
+        val dialogBinding = layoutInflater.inflate(R.layout.rate_delivery, null)
+        val dialog = Dialog(requireContext())
+        dialog.setContentView(dialogBinding)
+
+        dialog.setCancelable(true)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+        val buttonMaybe = dialogBinding.findViewById<Button>(R.id.buttonLater)
+        val buttonRate = dialogBinding.findViewById<Button>(R.id.buttonRate)
+
         val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
         val orderId = binding.orderIdd.text
         val databaseNew = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
@@ -178,6 +193,21 @@ class FragmentDeliveryStatusCreditCard : Fragment() {
                             } catch (e: Exception) {
                                 //   Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
                             }
+                            dialog.show()
+                            buttonMaybe.setOnClickListener {
+                                dialog.dismiss()
+                                findNavController().navigate(R.id.action_fragmentDeliveryStatusCreditCard_to_nav_home_customer)
+                            }
+                            buttonRate.setOnClickListener {
+                                val ratingBar =
+                                    dialog.findViewById<RatingBar>(R.id.ratingBarRate)
+                                val ratings = ratingBar.rating
+                                // Toast.makeText(context, ratingBar.rating.toString(), Toast.LENGTH_LONG).show()
+                                saveDeliveryFeedback(ratings)
+                                dialog.dismiss()
+                                findNavController().navigate(R.id.action_fragmentDeliveryStatusCreditCard_to_nav_home_customer)
+
+                            }
                         }
 
                         //////
@@ -195,6 +225,23 @@ class FragmentDeliveryStatusCreditCard : Fragment() {
             }
 
         })
+    }
+
+    private fun saveDeliveryFeedback(ratings: Float) {
+
+        val database = Firebase.database("https://latestcarpartsdatabase-default-rtdb.asia-southeast1.firebasedatabase.app/")
+        val databaseReference2 = database.getReference("Admin View All Feedback Delivery").push()
+        val ref = databaseReference2.key
+        //val fullRatings = rating.toString()
+
+        feedbackDelivery["deliveryFeedbackId"] = ref.toString()
+        feedbackDelivery["ratingBarRateDelivery"] = ratings.toString()
+        try {
+            databaseReference2.setValue(feedbackDelivery)
+            Toast.makeText(context, "Thank you for rating our service", Toast.LENGTH_LONG).show()
+        } catch (e: NullPointerException) {
+            Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+        }
     }
 
 }

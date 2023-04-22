@@ -104,38 +104,40 @@ class CreateDeliveryStatus : Fragment() {
                             p2: Int,
                             p3: Long
                         ) {
+try {
+    ref.addValueEventListener(object : ValueEventListener {
+        override fun onDataChange(snapshot: DataSnapshot) {
+            for (snap in snapshot.children) {
+                for (snap2 in snap.children) {
+                    if (snap2.child("orderID").value.toString()
+                            .equals(binding.spinnerOrder.selectedItem.toString())
+                    ) {
+                        val userID = snap2.child("userId")
+                            .getValue(String::class.java)
+                        binding.outputUserid.setText(userID)
+                        val dateOfOrder =
+                            snap2.child("DateOfOrderPlaced").value as String
+                        binding.outputDateOrder.text = dateOfOrder
+                        val deliveryAddress =
+                            snap2.child("DeliveryAddress").value as String
+                        binding.outputCustDeliveryAddress.text =
+                            deliveryAddress
+                        val totalAmount =
+                            snap2.child("totalAmount").value as String
+                        binding.outputOrderAmount.text = totalAmount
+                    }
+                }
+            }
+        }
 
-                            ref.addValueEventListener(object : ValueEventListener{
-                                override fun onDataChange(snapshot: DataSnapshot) {
-                                    for (snap in snapshot.children) {
-                                        for (snap2 in snap.children) {
-                                            if (snap2.child("orderID").value.toString()
-                                                    .equals(binding.spinnerOrder.selectedItem.toString())
-                                            ) {
-                                                val userID = snap2.child("userId")
-                                                    .getValue(String::class.java)
-                                                binding.outputUserid.setText(userID)
-                                                val dateOfOrder =
-                                                    snap2.child("DateOfOrderPlaced").value as String
-                                                binding.outputDateOrder.text = dateOfOrder
-                                                val deliveryAddress =
-                                                    snap2.child("DeliveryAddress").value as String
-                                                binding.outputCustDeliveryAddress.text =
-                                                    deliveryAddress
-                                                val totalAmount =
-                                                    snap2.child("totalAmount").value as String
-                                                binding.outputOrderAmount.text = totalAmount
-                                            }
-                                        }
-                                    }
-                                }
+        override fun onCancelled(error: DatabaseError) {
+            TODO("Not yet implemented")
+        }
 
-                                override fun onCancelled(error: DatabaseError) {
-                                    TODO("Not yet implemented")
-                                }
+    })
+    }catch(e:Exception){
 
-                            })
-
+    }
                                 }
 
 
