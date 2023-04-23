@@ -30,7 +30,7 @@ class DeliveryServiceRatingAdapter(private val deliveryFeedbackList: ArrayList<D
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = deliveryFeedbackList[position]
-        holder.deliveryFeedbackId.text = currentItem.deliveryFeedbackId
+        holder.deliveryFeedbackId.text = "Delivery order ID: "+ currentItem.deliveryFeedbackId
         holder.ratingBarRateDelivery.rating = currentItem.ratingBarRateDelivery.toFloat()
         holder.deleteButn.setOnClickListener {
             deleteFeedback(holder.bindingAdapterPosition)
