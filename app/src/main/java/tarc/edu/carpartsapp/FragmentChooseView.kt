@@ -38,11 +38,11 @@ class FragmentChooseView : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnCash.setOnClickListener {
+        binding.imageViewCodOrders.setOnClickListener {
             findNavController().navigate(R.id.action_fragmentChooseView_to_fragmentAdminViewAllDeliveryStatus)
         }
 
-        binding.btnCredit.setOnClickListener {
+        binding.imageViewCreditCardOrders.setOnClickListener {
             findNavController().navigate(R.id.action_fragmentChooseView_to_fragmentAdminViewAllDeliveryStatusCreditCard)
         }
         }

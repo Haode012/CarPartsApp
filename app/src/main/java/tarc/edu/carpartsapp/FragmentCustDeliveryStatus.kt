@@ -259,7 +259,7 @@ class FragmentCustDeliveryStatus : Fragment() {
                                 }
                                 try {
                                     val lol = getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)
-                                    Toast.makeText(context,lol.toString(),Toast.LENGTH_SHORT).show()
+                                    //Toast.makeText(context,lol.toString(),Toast.LENGTH_SHORT).show()
                                     dialog.show()
                                     buttonMaybe.setOnClickListener {
                                         dialog.dismiss()

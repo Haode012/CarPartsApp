@@ -43,7 +43,6 @@ class FeedbackAdapter(private val feedbackList: ArrayList<Feedback>) :
         holder.DateOfFeedback.text = currentItem.DateOfFeedback
     }
 
-
     @SuppressLint("NotifyDataSetChanged")
     private fun deleteFeedback(position: Int){
         //val feedbackID = feedback.feedbackId

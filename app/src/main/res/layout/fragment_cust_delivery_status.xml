@@ -76,7 +76,7 @@
             android:layout_marginTop="36dp"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.59"
+            app:layout_constraintHorizontal_bias="0.557"
             app:layout_constraintStart_toEndOf="@+id/labelAmount"
             app:layout_constraintTop_toBottomOf="@+id/outputHouseAddress" />
 
@@ -97,10 +97,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:textAlignment="center"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="@+id/outputPurchasedDate"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/outputPurchasedDate"
+            app:layout_constraintHorizontal_bias="0.574"
+            app:layout_constraintStart_toEndOf="@+id/labelHouseAddress"
             app:layout_constraintTop_toBottomOf="@+id/outputPurchasedDate" />
 
         <TextView
@@ -118,12 +119,13 @@
 
         <TextView
             android:id="@+id/outputDeliveryStatusnew"
-            android:layout_width="158dp"
-            android:layout_height="29dp"
+            android:layout_width="217dp"
+            android:layout_height="46dp"
             android:layout_marginTop="36dp"
+            android:textAlignment="center"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.3"
+            app:layout_constraintHorizontal_bias="0.607"
             app:layout_constraintStart_toEndOf="@+id/labelCustDeliveryStatus"
             app:layout_constraintTop_toBottomOf="@+id/outputTotalAmount" />
 

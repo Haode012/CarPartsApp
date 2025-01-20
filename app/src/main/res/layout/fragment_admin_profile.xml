@@ -68,6 +68,8 @@
                         android:id="@+id/adminEmailAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:enabled="false"
                         android:drawableStart="@drawable/ic_baseline_person_24"
                         android:drawablePadding="10dp"
                         android:hint="@string/email"
@@ -127,6 +129,7 @@
                         android:drawableStart="@drawable/ic_baseline_person_24"
                         android:drawablePadding="10dp"
                         android:hint="@string/gender"
+                        android:enabled="false"
                         android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 

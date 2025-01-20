@@ -317,7 +317,7 @@ class FragmentCreateDeliveryStatusCreditCardPayment : Fragment() {
 //                        Toast.makeText(context, prodId, Toast.LENGTH_LONG).show()
                         for(snap2 in snap.children){
                             val key66 = snap2.key.toString()
-                            Toast.makeText(context, key66, Toast.LENGTH_LONG).show()
+                            //Toast.makeText(context, key66, Toast.LENGTH_LONG).show()
                             deliveryStatusNewCreditCard["orderID"] = spinner
                             deliveryStatusNewCreditCard["deliveryStatus"] = deliveryStatus
                             deliveryStatusNewCreditCard["dateTime"] = dateNow.toString()
